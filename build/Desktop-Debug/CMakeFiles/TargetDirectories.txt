@@ -1,0 +1,9 @@
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/COP_II.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/install.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/COP_II_autogen_timestamp_deps.dir
+/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/CMakeFiles/COP_II_autogen.dir
