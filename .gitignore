@@ -52,3 +52,7 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+# Ignore files in build/ and its subfolders
+/build/**/*.*
+# Allow bin files in build/ and its subfolders
+!/build/**/*.
