@@ -1,1 +1,0 @@
-/bin/g++ -DQT_QML_DEBUG -g -Wl,--dependency-file=CMakeFiles/COP_II.dir/link.d CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o CMakeFiles/COP_II.dir/main.cpp.o CMakeFiles/COP_II.dir/mainwindow.cpp.o CMakeFiles/COP_II.dir/game.cpp.o -o COP_II  /usr/lib64/libQt5Widgets.so.5.15.17 /usr/lib64/libQt5Gui.so.5.15.17 /usr/lib64/libQt5Core.so.5.15.17
