@@ -15,11 +15,8 @@ MainWindow::~MainWindow()
 //Press Start buttons
 void MainWindow::on_OnePlayerButton_clicked()
 {
-    if (this->isVisible()) {
-        this->lower(); // Send this window to the back
-    } else {
-        this->raise(); // Bring this window to the front
-    }
+    Game mainGame;
+    mainGame.setModal();
 }
 
 
