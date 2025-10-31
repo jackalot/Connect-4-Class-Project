@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
 #include <QMainWindow>
-
+#include "game.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -17,7 +18,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_OnePlayerButton_clicked();
+
+    void on_TwoPlayerButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    // make an instance of this, we will reveal this window in mainwindow.cpp
+    Game *newGame;
 };
 #endif // MAINWINDOW_H
