@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "game.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,8 +14,9 @@ MainWindow::~MainWindow()
 //Press Start buttons
 void MainWindow::on_OnePlayerButton_clicked()
 {
-    Game mainGame;
-    mainGame.setModal();
+    hide();
+    newGame = new Game(this);
+    newGame->show();
 }
 
 
