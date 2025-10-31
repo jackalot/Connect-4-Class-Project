@@ -25,6 +25,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    // make an instance of this, we will reveal this window in mainwindow.cpp
     Game *newGame;
 };
 #endif // MAINWINDOW_H

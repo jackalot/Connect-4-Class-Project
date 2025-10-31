@@ -269,4 +269,5 @@ CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt5/QtWidgets/QStatusBar \
  /usr/include/qt5/QtWidgets/qstatusbar.h \
  /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h \
- /usr/include/qt5/QtWidgets/QMainWindow
+ /usr/include/qt5/QtWidgets/QMainWindow \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/../../../../game.h

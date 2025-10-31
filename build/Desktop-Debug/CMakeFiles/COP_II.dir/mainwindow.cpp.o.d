@@ -265,4 +265,6 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/qt5/QtWidgets/qstatusbar.h \
  /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h \
  /usr/include/qt5/QtWidgets/QMainWindow \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/game.h \
+ /usr/include/qt5/QtWidgets/QDialog /usr/include/qt5/QtWidgets/qdialog.h \
  /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/include/./ui_mainwindow.h

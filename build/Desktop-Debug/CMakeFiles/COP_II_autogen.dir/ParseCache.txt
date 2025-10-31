@@ -350,6 +350,7 @@
 /home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/mainwindow.h
  mmc:Q_OBJECT
  mdp:/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/COP_II_autogen/moc_predefs.h
+ mdp:/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/game.h
  mdp:/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/mainwindow.h
  mdp:/usr/include/asm-generic/bitsperlong.h
  mdp:/usr/include/asm-generic/errno-base.h
@@ -675,7 +676,9 @@
  mdp:/usr/include/qt5/QtGui/qtguiglobal.h
  mdp:/usr/include/qt5/QtGui/qtransform.h
  mdp:/usr/include/qt5/QtGui/qwindowdefs.h
+ mdp:/usr/include/qt5/QtWidgets/QDialog
  mdp:/usr/include/qt5/QtWidgets/QMainWindow
+ mdp:/usr/include/qt5/QtWidgets/qdialog.h
  mdp:/usr/include/qt5/QtWidgets/qmainwindow.h
  mdp:/usr/include/qt5/QtWidgets/qsizepolicy.h
  mdp:/usr/include/qt5/QtWidgets/qtabwidget.h

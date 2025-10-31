@@ -1,5 +1,6 @@
 /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/mainwindow.h \
   /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/moc_predefs.h \
+  /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/game.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -324,7 +325,9 @@
   /usr/include/qt5/QtGui/qtguiglobal.h \
   /usr/include/qt5/QtGui/qtransform.h \
   /usr/include/qt5/QtGui/qwindowdefs.h \
+  /usr/include/qt5/QtWidgets/QDialog \
   /usr/include/qt5/QtWidgets/QMainWindow \
+  /usr/include/qt5/QtWidgets/qdialog.h \
   /usr/include/qt5/QtWidgets/qmainwindow.h \
   /usr/include/qt5/QtWidgets/qsizepolicy.h \
   /usr/include/qt5/QtWidgets/qtabwidget.h \

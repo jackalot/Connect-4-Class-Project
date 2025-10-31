@@ -13,15 +13,20 @@ MainWindow::~MainWindow()
 }
 //Press Start buttons
 void MainWindow::on_OnePlayerButton_clicked()
-{
+}
+    // Hides main window and then reveals gameWindow
     hide();
     newGame = new Game(this);
     newGame->show();
-}
+{
 
 
 void MainWindow::on_TwoPlayerButton_clicked()
 {
     /* Press start for p1 vs p2*/
+    // Hides main window and then reveals gameWindow
+    hide();
+    newGame = new Game(this);
+    newGame->show();
 }
 
