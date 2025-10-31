@@ -250,11 +250,20 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/qt5/QtGui/qguiapplication.h \
  /usr/include/qt5/QtGui/qinputmethod.h /usr/include/qt5/QtCore/qlocale.h \
  /usr/include/qt5/QtCore/qvariant.h \
+ /usr/include/qt5/QtWidgets/QHBoxLayout \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qlayout.h \
+ /usr/include/qt5/QtWidgets/qlayoutitem.h \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qgridlayout.h \
  /usr/include/qt5/QtWidgets/QMainWindow \
  /usr/include/qt5/QtWidgets/QMenuBar \
  /usr/include/qt5/QtWidgets/qmenubar.h /usr/include/qt5/QtWidgets/qmenu.h \
  /usr/include/qt5/QtWidgets/qaction.h \
  /usr/include/qt5/QtWidgets/qactiongroup.h \
+ /usr/include/qt5/QtWidgets/QPushButton \
+ /usr/include/qt5/QtWidgets/qpushbutton.h \
+ /usr/include/qt5/QtWidgets/qabstractbutton.h \
  /usr/include/qt5/QtWidgets/QStatusBar \
  /usr/include/qt5/QtWidgets/qstatusbar.h \
  /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h
