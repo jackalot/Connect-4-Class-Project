@@ -25,7 +25,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout"/>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="OnePlayerButton">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -38,7 +38,7 @@
      <string>One Player</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="TwoPlayerButton">
     <property name="geometry">
      <rect>
       <x>470</x>
