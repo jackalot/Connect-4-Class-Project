@@ -5,6 +5,7 @@ COP_II: \
   CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o \
   CMakeFiles/COP_II.dir/main.cpp.o \
   CMakeFiles/COP_II.dir/mainwindow.cpp.o \
+  CMakeFiles/COP_II.dir/game.cpp.o \
   /usr/lib64/libQt5Widgets.so.5.15.17 \
   /usr/lib64/libQt5Gui.so.5.15.17 \
   /usr/lib64/libQt5Core.so.5.15.17 \
@@ -72,6 +73,8 @@ CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o:
 CMakeFiles/COP_II.dir/main.cpp.o:
 
 CMakeFiles/COP_II.dir/mainwindow.cpp.o:
+
+CMakeFiles/COP_II.dir/game.cpp.o:
 
 /usr/lib64/libQt5Widgets.so.5.15.17:
 

@@ -224,6 +224,30 @@ COP_II_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/COP_II.dir/build.make CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.s
 .PHONY : COP_II_autogen/mocs_compilation.cpp.s
 
+game.o: game.cpp.o
+.PHONY : game.o
+
+# target to build an object file
+game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COP_II.dir/build.make CMakeFiles/COP_II.dir/game.cpp.o
+.PHONY : game.cpp.o
+
+game.i: game.cpp.i
+.PHONY : game.i
+
+# target to preprocess a source file
+game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COP_II.dir/build.make CMakeFiles/COP_II.dir/game.cpp.i
+.PHONY : game.cpp.i
+
+game.s: game.cpp.s
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COP_II.dir/build.make CMakeFiles/COP_II.dir/game.cpp.s
+.PHONY : game.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -290,6 +314,9 @@ help:
 	@echo "... COP_II_autogen/mocs_compilation.o"
 	@echo "... COP_II_autogen/mocs_compilation.i"
 	@echo "... COP_II_autogen/mocs_compilation.s"
+	@echo "... game.o"
+	@echo "... game.i"
+	@echo "... game.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

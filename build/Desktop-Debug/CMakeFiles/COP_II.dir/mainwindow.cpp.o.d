@@ -2,10 +2,9 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/mainwindow.cpp \
  /usr/include/stdc-predef.h \
  /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/mainwindow.h \
- /usr/include/qt5/QtWidgets/QMainWindow \
- /usr/include/qt5/QtWidgets/qmainwindow.h \
- /usr/include/qt5/QtWidgets/qtwidgetsglobal.h \
- /usr/include/qt5/QtGui/qtguiglobal.h /usr/include/qt5/QtCore/qglobal.h \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/include/ui_mainwindow.h \
+ /usr/include/qt5/QtCore/QVariant /usr/include/qt5/QtCore/qvariant.h \
+ /usr/include/qt5/QtCore/qatomic.h /usr/include/qt5/QtCore/qglobal.h \
  /usr/include/c++/15/type_traits \
  /usr/include/c++/15/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
@@ -71,7 +70,7 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/c++/15/pstl/execution_defs.h \
  /usr/include/qt5/QtCore/qtypeinfo.h /usr/include/qt5/QtCore/qsysinfo.h \
  /usr/include/qt5/QtCore/qlogging.h /usr/include/qt5/QtCore/qflags.h \
- /usr/include/qt5/QtCore/qatomic.h /usr/include/qt5/QtCore/qbasicatomic.h \
+ /usr/include/qt5/QtCore/qbasicatomic.h \
  /usr/include/qt5/QtCore/qatomic_cxx11.h \
  /usr/include/qt5/QtCore/qgenericatomic.h /usr/include/c++/15/atomic \
  /usr/include/c++/15/bits/atomic_base.h \
@@ -83,18 +82,10 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/qt5/QtCore/qglobalstatic.h \
  /usr/include/qt5/QtCore/qnumeric.h \
  /usr/include/qt5/QtCore/qversiontagging.h \
- /usr/include/qt5/QtGui/qtgui-config.h \
- /usr/include/qt5/QtWidgets/qtwidgets-config.h \
- /usr/include/qt5/QtWidgets/qwidget.h \
- /usr/include/qt5/QtGui/qwindowdefs.h \
- /usr/include/qt5/QtCore/qobjectdefs.h \
+ /usr/include/qt5/QtCore/qbytearray.h /usr/include/qt5/QtCore/qrefcount.h \
  /usr/include/qt5/QtCore/qnamespace.h \
- /usr/include/qt5/QtCore/qobjectdefs_impl.h \
- /usr/include/qt5/QtCore/qobject.h /usr/include/qt5/QtCore/qstring.h \
- /usr/include/qt5/QtCore/qchar.h /usr/include/qt5/QtCore/qbytearray.h \
- /usr/include/qt5/QtCore/qrefcount.h /usr/include/qt5/QtCore/qarraydata.h \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/c++/15/stdlib.h \
+ /usr/include/qt5/QtCore/qarraydata.h /usr/include/string.h \
+ /usr/include/strings.h /usr/include/c++/15/stdlib.h \
  /usr/lib/gcc/x86_64-redhat-linux/15/include/stdarg.h \
  /usr/include/c++/15/string /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/c++/15/bits/stringfwd.h \
@@ -167,13 +158,14 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/c++/15/bits/exception_ptr.h \
  /usr/include/c++/15/bits/cxxabi_init_exception.h \
  /usr/include/c++/15/typeinfo /usr/include/c++/15/bits/nested_exception.h \
- /usr/include/c++/15/bits/streambuf.tcc \
- /usr/include/qt5/QtCore/qstringliteral.h \
- /usr/include/qt5/QtCore/qstringalgorithms.h \
- /usr/include/qt5/QtCore/qstringview.h /usr/include/qt5/QtCore/qlist.h \
+ /usr/include/c++/15/bits/streambuf.tcc /usr/include/qt5/QtCore/qlist.h \
  /usr/include/qt5/QtCore/qalgorithms.h \
  /usr/include/qt5/QtCore/qiterator.h \
- /usr/include/qt5/QtCore/qhashfunctions.h /usr/include/qt5/QtCore/qpair.h \
+ /usr/include/qt5/QtCore/qhashfunctions.h \
+ /usr/include/qt5/QtCore/qstring.h /usr/include/qt5/QtCore/qchar.h \
+ /usr/include/qt5/QtCore/qstringliteral.h \
+ /usr/include/qt5/QtCore/qstringalgorithms.h \
+ /usr/include/qt5/QtCore/qstringview.h /usr/include/qt5/QtCore/qpair.h \
  /usr/include/c++/15/numeric /usr/include/c++/15/bits/stl_numeric.h \
  /usr/include/c++/15/pstl/glue_numeric_defs.h \
  /usr/include/c++/15/functional /usr/include/c++/15/bits/std_function.h \
@@ -202,7 +194,6 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/bits/uio_lim.h /usr/include/qt5/QtCore/qbytearraylist.h \
  /usr/include/qt5/QtCore/qstringlist.h /usr/include/qt5/QtCore/qregexp.h \
  /usr/include/qt5/QtCore/qstringmatcher.h \
- /usr/include/qt5/QtCore/qscopedpointer.h \
  /usr/include/qt5/QtCore/qmetatype.h \
  /usr/include/qt5/QtCore/qvarlengtharray.h \
  /usr/include/qt5/QtCore/qcontainerfwd.h /usr/include/c++/15/memory \
@@ -213,16 +204,44 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/c++/15/ext/concurrence.h \
  /usr/include/c++/15/bits/shared_ptr_atomic.h \
  /usr/include/c++/15/backward/auto_ptr.h \
- /usr/include/c++/15/pstl/glue_memory_defs.h /usr/include/c++/15/map \
+ /usr/include/c++/15/pstl/glue_memory_defs.h \
+ /usr/include/qt5/QtCore/qobjectdefs.h \
+ /usr/include/qt5/QtCore/qobjectdefs_impl.h /usr/include/c++/15/map \
  /usr/include/c++/15/bits/stl_tree.h /usr/include/c++/15/bits/stl_map.h \
- /usr/include/c++/15/bits/stl_multimap.h \
+ /usr/include/c++/15/bits/stl_multimap.h /usr/include/qt5/QtCore/qmap.h \
+ /usr/include/qt5/QtCore/qhash.h /usr/include/qt5/QtCore/qobject.h \
+ /usr/include/qt5/QtCore/qscopedpointer.h \
  /usr/include/qt5/QtCore/qobject_impl.h /usr/include/c++/15/chrono \
  /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/ratio \
  /usr/include/c++/15/limits /usr/include/c++/15/ctime \
- /usr/include/c++/15/bits/parse_numbers.h \
- /usr/include/qt5/QtCore/qmargins.h /usr/include/qt5/QtGui/qpaintdevice.h \
- /usr/include/qt5/QtCore/qrect.h /usr/include/qt5/QtCore/qsize.h \
- /usr/include/qt5/QtCore/qpoint.h /usr/include/qt5/QtGui/qpalette.h \
+ /usr/include/c++/15/bits/parse_numbers.h /usr/include/c++/15/variant \
+ /usr/include/c++/15/bits/monostate.h \
+ /usr/include/qt5/QtWidgets/QApplication \
+ /usr/include/qt5/QtWidgets/qapplication.h \
+ /usr/include/qt5/QtWidgets/qtwidgetsglobal.h \
+ /usr/include/qt5/QtGui/qtguiglobal.h \
+ /usr/include/qt5/QtGui/qtgui-config.h \
+ /usr/include/qt5/QtWidgets/qtwidgets-config.h \
+ /usr/include/qt5/QtCore/qcoreapplication.h \
+ /usr/include/qt5/QtCore/qcoreevent.h \
+ /usr/include/qt5/QtCore/qeventloop.h \
+ /usr/include/qt5/QtGui/qwindowdefs.h /usr/include/qt5/QtCore/qpoint.h \
+ /usr/include/qt5/QtCore/qsize.h /usr/include/qt5/QtCore/qmargins.h \
+ /usr/include/qt5/QtGui/qcursor.h \
+ /usr/include/qt5/QtGui/qguiapplication.h \
+ /usr/include/qt5/QtGui/qinputmethod.h /usr/include/qt5/QtCore/qlocale.h \
+ /usr/include/qt5/QtCore/qvariant.h /usr/include/qt5/QtCore/qshareddata.h \
+ /usr/include/qt5/QtWidgets/QHBoxLayout \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qlayout.h \
+ /usr/include/qt5/QtWidgets/qlayoutitem.h \
+ /usr/include/qt5/QtWidgets/qsizepolicy.h /usr/include/qt5/QtCore/qrect.h \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qgridlayout.h \
+ /usr/include/qt5/QtWidgets/QMainWindow \
+ /usr/include/qt5/QtWidgets/qmainwindow.h \
+ /usr/include/qt5/QtWidgets/qwidget.h \
+ /usr/include/qt5/QtGui/qpaintdevice.h /usr/include/qt5/QtGui/qpalette.h \
  /usr/include/qt5/QtGui/qcolor.h /usr/include/qt5/QtGui/qrgb.h \
  /usr/include/qt5/QtGui/qrgba64.h /usr/include/qt5/QtGui/qbrush.h \
  /usr/include/qt5/QtGui/qmatrix.h /usr/include/qt5/QtGui/qpolygon.h \
@@ -231,32 +250,10 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/qt5/QtGui/qtransform.h /usr/include/qt5/QtGui/qimage.h \
  /usr/include/qt5/QtGui/qpixelformat.h /usr/include/qt5/QtGui/qpixmap.h \
  /usr/include/qt5/QtCore/qsharedpointer.h \
- /usr/include/qt5/QtCore/qshareddata.h /usr/include/qt5/QtCore/qhash.h \
  /usr/include/qt5/QtCore/qsharedpointer_impl.h \
  /usr/include/qt5/QtGui/qfont.h /usr/include/qt5/QtGui/qfontmetrics.h \
- /usr/include/qt5/QtGui/qfontinfo.h \
- /usr/include/qt5/QtWidgets/qsizepolicy.h \
- /usr/include/qt5/QtGui/qcursor.h /usr/include/qt5/QtGui/qkeysequence.h \
+ /usr/include/qt5/QtGui/qfontinfo.h /usr/include/qt5/QtGui/qkeysequence.h \
  /usr/include/qt5/QtWidgets/qtabwidget.h /usr/include/qt5/QtGui/qicon.h \
- /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/include/./ui_mainwindow.h \
- /usr/include/qt5/QtCore/QVariant /usr/include/qt5/QtCore/qvariant.h \
- /usr/include/qt5/QtCore/qmap.h /usr/include/c++/15/variant \
- /usr/include/c++/15/bits/monostate.h \
- /usr/include/qt5/QtWidgets/QApplication \
- /usr/include/qt5/QtWidgets/qapplication.h \
- /usr/include/qt5/QtCore/qcoreapplication.h \
- /usr/include/qt5/QtCore/qcoreevent.h \
- /usr/include/qt5/QtCore/qeventloop.h \
- /usr/include/qt5/QtGui/qguiapplication.h \
- /usr/include/qt5/QtGui/qinputmethod.h /usr/include/qt5/QtCore/qlocale.h \
- /usr/include/qt5/QtCore/qvariant.h \
- /usr/include/qt5/QtWidgets/QHBoxLayout \
- /usr/include/qt5/QtWidgets/qboxlayout.h \
- /usr/include/qt5/QtWidgets/qlayout.h \
- /usr/include/qt5/QtWidgets/qlayoutitem.h \
- /usr/include/qt5/QtWidgets/qboxlayout.h \
- /usr/include/qt5/QtWidgets/qgridlayout.h \
- /usr/include/qt5/QtWidgets/QMainWindow \
  /usr/include/qt5/QtWidgets/QMenuBar \
  /usr/include/qt5/QtWidgets/qmenubar.h /usr/include/qt5/QtWidgets/qmenu.h \
  /usr/include/qt5/QtWidgets/qaction.h \
@@ -266,4 +263,6 @@ CMakeFiles/COP_II.dir/mainwindow.cpp.o: \
  /usr/include/qt5/QtWidgets/qabstractbutton.h \
  /usr/include/qt5/QtWidgets/QStatusBar \
  /usr/include/qt5/QtWidgets/qstatusbar.h \
- /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h
+ /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h \
+ /usr/include/qt5/QtWidgets/QMainWindow \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/include/./ui_mainwindow.h

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "COP_II_autogen/timestamp" "custom" "COP_II_autogen/deps"
   "/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/build/Desktop-Debug/COP_II_autogen/mocs_compilation.cpp" "CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o.d"
+  "/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/game.cpp" "CMakeFiles/COP_II.dir/game.cpp.o" "gcc" "CMakeFiles/COP_II.dir/game.cpp.o.d"
   "/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/main.cpp" "CMakeFiles/COP_II.dir/main.cpp.o" "gcc" "CMakeFiles/COP_II.dir/main.cpp.o.d"
   "/home/cgonzalez/Programming Projects/Assignments/Class Project/COP_II/mainwindow.cpp" "CMakeFiles/COP_II.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/COP_II.dir/mainwindow.cpp.o.d"
   "" "COP_II" "gcc" "CMakeFiles/COP_II.dir/link.d"

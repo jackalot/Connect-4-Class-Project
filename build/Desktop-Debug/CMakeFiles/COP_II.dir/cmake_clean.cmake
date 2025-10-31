@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "COP_II_autogen"
   "CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/COP_II.dir/game.cpp.o"
+  "CMakeFiles/COP_II.dir/game.cpp.o.d"
   "CMakeFiles/COP_II.dir/main.cpp.o"
   "CMakeFiles/COP_II.dir/main.cpp.o.d"
   "CMakeFiles/COP_II.dir/mainwindow.cpp.o"

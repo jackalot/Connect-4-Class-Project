@@ -38,6 +38,7 @@ else()
     else()
         add_executable(COP_II
             ${PROJECT_SOURCES}
+            game.h game.cpp game.ui
         )
     endif()
 endif()

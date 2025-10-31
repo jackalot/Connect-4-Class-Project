@@ -1,7 +1,7 @@
 CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o: \
  /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/moc_mainwindow.cpp \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/moc_game.cpp \
  /usr/include/c++/15/memory /usr/include/c++/15/bits/memoryfwd.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
@@ -101,9 +101,8 @@ CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/15/backward/auto_ptr.h \
  /usr/include/c++/15/pstl/glue_memory_defs.h \
  /usr/include/c++/15/pstl/execution_defs.h \
- /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/../../../../mainwindow.h \
- /usr/include/qt5/QtWidgets/QMainWindow \
- /usr/include/qt5/QtWidgets/qmainwindow.h \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/../../../../game.h \
+ /usr/include/qt5/QtWidgets/QDialog /usr/include/qt5/QtWidgets/qdialog.h \
  /usr/include/qt5/QtWidgets/qtwidgetsglobal.h \
  /usr/include/qt5/QtGui/qtguiglobal.h /usr/include/qt5/QtCore/qglobal.h \
  /usr/include/c++/15/cstddef /usr/include/c++/15/utility \
@@ -237,4 +236,37 @@ CMakeFiles/COP_II.dir/COP_II_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt5/QtGui/qfontinfo.h \
  /usr/include/qt5/QtWidgets/qsizepolicy.h \
  /usr/include/qt5/QtGui/qcursor.h /usr/include/qt5/QtGui/qkeysequence.h \
- /usr/include/qt5/QtWidgets/qtabwidget.h /usr/include/qt5/QtGui/qicon.h
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/moc_mainwindow.cpp \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/EWIEGA46WW/../../../../mainwindow.h \
+ /home/cgonzalez/Programming\ Projects/Assignments/Class\ Project/COP_II/build/Desktop-Debug/COP_II_autogen/include/ui_mainwindow.h \
+ /usr/include/qt5/QtCore/QVariant /usr/include/qt5/QtCore/qvariant.h \
+ /usr/include/qt5/QtCore/qmap.h /usr/include/c++/15/variant \
+ /usr/include/c++/15/bits/monostate.h \
+ /usr/include/qt5/QtWidgets/QApplication \
+ /usr/include/qt5/QtWidgets/qapplication.h \
+ /usr/include/qt5/QtCore/qcoreapplication.h \
+ /usr/include/qt5/QtCore/qcoreevent.h \
+ /usr/include/qt5/QtCore/qeventloop.h \
+ /usr/include/qt5/QtGui/qguiapplication.h \
+ /usr/include/qt5/QtGui/qinputmethod.h /usr/include/qt5/QtCore/qlocale.h \
+ /usr/include/qt5/QtCore/qvariant.h \
+ /usr/include/qt5/QtWidgets/QHBoxLayout \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qlayout.h \
+ /usr/include/qt5/QtWidgets/qlayoutitem.h \
+ /usr/include/qt5/QtWidgets/qboxlayout.h \
+ /usr/include/qt5/QtWidgets/qgridlayout.h \
+ /usr/include/qt5/QtWidgets/QMainWindow \
+ /usr/include/qt5/QtWidgets/qmainwindow.h \
+ /usr/include/qt5/QtWidgets/qtabwidget.h /usr/include/qt5/QtGui/qicon.h \
+ /usr/include/qt5/QtWidgets/QMenuBar \
+ /usr/include/qt5/QtWidgets/qmenubar.h /usr/include/qt5/QtWidgets/qmenu.h \
+ /usr/include/qt5/QtWidgets/qaction.h \
+ /usr/include/qt5/QtWidgets/qactiongroup.h \
+ /usr/include/qt5/QtWidgets/QPushButton \
+ /usr/include/qt5/QtWidgets/qpushbutton.h \
+ /usr/include/qt5/QtWidgets/qabstractbutton.h \
+ /usr/include/qt5/QtWidgets/QStatusBar \
+ /usr/include/qt5/QtWidgets/qstatusbar.h \
+ /usr/include/qt5/QtWidgets/QWidget /usr/include/qt5/QtWidgets/qwidget.h \
+ /usr/include/qt5/QtWidgets/QMainWindow

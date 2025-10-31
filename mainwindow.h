@@ -18,6 +18,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_OnePlayerButton_clicked();
+
+    void on_TwoPlayerButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

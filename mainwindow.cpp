@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
+#include "game.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,7 +15,11 @@ MainWindow::~MainWindow()
 //Press Start buttons
 void MainWindow::on_OnePlayerButton_clicked()
 {
-    /* Press start for p1 vs AI*/
+    if (this->isVisible()) {
+        this->lower(); // Send this window to the back
+    } else {
+        this->raise(); // Bring this window to the front
+    }
 }
 
 

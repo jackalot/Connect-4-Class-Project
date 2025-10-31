@@ -26,8 +26,8 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *OnePlayerButton;
+    QPushButton *TwoPlayerButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -44,12 +44,12 @@ public:
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(80, 410, 201, 26));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(470, 450, 201, 26));
+        OnePlayerButton = new QPushButton(centralwidget);
+        OnePlayerButton->setObjectName(QString::fromUtf8("OnePlayerButton"));
+        OnePlayerButton->setGeometry(QRect(80, 410, 201, 26));
+        TwoPlayerButton = new QPushButton(centralwidget);
+        TwoPlayerButton->setObjectName(QString::fromUtf8("TwoPlayerButton"));
+        TwoPlayerButton->setGeometry(QRect(470, 450, 201, 26));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -67,8 +67,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "One Player", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Two Player", nullptr));
+        OnePlayerButton->setText(QCoreApplication::translate("MainWindow", "One Player", nullptr));
+        TwoPlayerButton->setText(QCoreApplication::translate("MainWindow", "Two Player", nullptr));
     } // retranslateUi
 
 };
