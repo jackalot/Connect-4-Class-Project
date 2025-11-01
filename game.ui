@@ -40,6 +40,11 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -52,6 +57,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -66,6 +76,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -78,6 +93,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -92,6 +112,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -104,6 +129,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -118,6 +148,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -130,6 +165,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -144,6 +184,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -156,6 +201,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -170,6 +220,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -183,6 +238,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -195,6 +255,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -228,6 +293,11 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -240,6 +310,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -254,6 +329,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -266,6 +346,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -280,6 +365,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -292,6 +382,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -306,6 +401,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -318,6 +418,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -332,6 +437,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -344,6 +454,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -358,6 +473,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -371,6 +491,11 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -383,6 +508,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -404,7 +534,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_3">
+   <widget class="QPushButton" name="Coll1_4">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -416,11 +546,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_3">
+   <widget class="QPushButton" name="Coll8_4">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -429,11 +564,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_3">
+   <widget class="QPushButton" name="Coll10_4">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -442,11 +582,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_3">
+   <widget class="QPushButton" name="Coll3_4">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -455,11 +600,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_3">
+   <widget class="QPushButton" name="Coll9_4">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -468,11 +618,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_3">
+   <widget class="QPushButton" name="Coll4_4">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -481,11 +636,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_3">
+   <widget class="QPushButton" name="Coll2_4">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -494,11 +654,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_3">
+   <widget class="QPushButton" name="Coll7_4">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -507,11 +672,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_3">
+   <widget class="QPushButton" name="Coll5_4">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -520,11 +690,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_3">
+   <widget class="QPushButton" name="Coll13_4">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -533,11 +708,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_3">
+   <widget class="QPushButton" name="Coll12_4">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -546,11 +726,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_3">
+   <widget class="QPushButton" name="Coll11_4">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -559,11 +744,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_3">
+   <widget class="QPushButton" name="Coll6_4">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -571,6 +761,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -592,7 +787,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_5">
+   <widget class="QPushButton" name="Coll1_6">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -604,11 +799,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_5">
+   <widget class="QPushButton" name="Coll8_6">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -617,11 +817,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_5">
+   <widget class="QPushButton" name="Coll10_6">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -630,11 +835,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_5">
+   <widget class="QPushButton" name="Coll3_6">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -643,11 +853,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_5">
+   <widget class="QPushButton" name="Coll9_6">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -656,11 +871,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_5">
+   <widget class="QPushButton" name="Coll4_6">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -669,11 +889,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_5">
+   <widget class="QPushButton" name="Coll2_6">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -682,11 +907,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_5">
+   <widget class="QPushButton" name="Coll7_6">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -695,11 +925,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_5">
+   <widget class="QPushButton" name="Coll5_6">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -708,11 +943,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_5">
+   <widget class="QPushButton" name="Coll13_6">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -721,11 +961,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_5">
+   <widget class="QPushButton" name="Coll12_6">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -734,11 +979,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_5">
+   <widget class="QPushButton" name="Coll11_6">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -747,11 +997,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_5">
+   <widget class="QPushButton" name="Coll6_6">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -759,6 +1014,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -780,7 +1040,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_6">
+   <widget class="QPushButton" name="Coll1_12">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -792,11 +1052,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_6">
+   <widget class="QPushButton" name="Coll8_12">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -805,11 +1070,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_6">
+   <widget class="QPushButton" name="Coll10_12">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -818,11 +1088,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_6">
+   <widget class="QPushButton" name="Coll3_12">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -831,11 +1106,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_6">
+   <widget class="QPushButton" name="Coll9_12">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -844,11 +1124,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_6">
+   <widget class="QPushButton" name="Coll4_12">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -857,11 +1142,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_6">
+   <widget class="QPushButton" name="Coll2_12">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -870,11 +1160,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_6">
+   <widget class="QPushButton" name="Coll7_12">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -883,11 +1178,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_6">
+   <widget class="QPushButton" name="Coll5_12">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -896,11 +1196,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_6">
+   <widget class="QPushButton" name="Coll13_12">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -909,11 +1214,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_6">
+   <widget class="QPushButton" name="Coll12_12">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -922,11 +1232,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_6">
+   <widget class="QPushButton" name="Coll11_12">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -935,11 +1250,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_6">
+   <widget class="QPushButton" name="Coll6_12">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -947,6 +1267,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -968,7 +1293,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_7">
+   <widget class="QPushButton" name="Coll1_13">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -980,11 +1305,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_7">
+   <widget class="QPushButton" name="Coll8_13">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -993,11 +1323,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_7">
+   <widget class="QPushButton" name="Coll10_13">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -1006,11 +1341,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_7">
+   <widget class="QPushButton" name="Coll3_13">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1019,11 +1359,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_7">
+   <widget class="QPushButton" name="Coll9_13">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -1032,11 +1377,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_7">
+   <widget class="QPushButton" name="Coll4_13">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -1045,11 +1395,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_7">
+   <widget class="QPushButton" name="Coll2_13">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -1058,11 +1413,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_7">
+   <widget class="QPushButton" name="Coll7_13">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -1071,11 +1431,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_7">
+   <widget class="QPushButton" name="Coll5_13">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -1084,11 +1449,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_7">
+   <widget class="QPushButton" name="Coll13_13">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -1097,11 +1467,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_7">
+   <widget class="QPushButton" name="Coll12_13">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -1110,11 +1485,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_7">
+   <widget class="QPushButton" name="Coll11_13">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -1123,11 +1503,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_7">
+   <widget class="QPushButton" name="Coll6_13">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -1135,6 +1520,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -1156,7 +1546,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_8">
+   <widget class="QPushButton" name="Coll1_15">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1168,11 +1558,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_8">
+   <widget class="QPushButton" name="Coll8_15">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -1181,11 +1576,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_8">
+   <widget class="QPushButton" name="Coll10_15">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -1194,11 +1594,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_8">
+   <widget class="QPushButton" name="Coll3_15">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1207,11 +1612,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_8">
+   <widget class="QPushButton" name="Coll9_15">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -1220,11 +1630,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_8">
+   <widget class="QPushButton" name="Coll4_15">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -1233,11 +1648,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_8">
+   <widget class="QPushButton" name="Coll2_15">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -1246,11 +1666,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_8">
+   <widget class="QPushButton" name="Coll7_15">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -1259,11 +1684,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_8">
+   <widget class="QPushButton" name="Coll5_15">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -1272,11 +1702,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_8">
+   <widget class="QPushButton" name="Coll13_15">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -1285,11 +1720,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_8">
+   <widget class="QPushButton" name="Coll12_15">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -1298,11 +1738,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_8">
+   <widget class="QPushButton" name="Coll11_15">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -1311,11 +1756,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_8">
+   <widget class="QPushButton" name="Coll6_15">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -1323,6 +1773,11 @@
       <width>21</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -1344,7 +1799,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="Coll1_9">
+   <widget class="QPushButton" name="Coll1_17">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1356,11 +1811,16 @@
     <property name="toolTip">
      <string>Row 1 Col 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll8_9">
+   <widget class="QPushButton" name="Coll8_17">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -1369,11 +1829,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll10_9">
+   <widget class="QPushButton" name="Coll10_17">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -1382,11 +1847,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll3_9">
+   <widget class="QPushButton" name="Coll3_17">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1395,11 +1865,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll9_9">
+   <widget class="QPushButton" name="Coll9_17">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -1408,11 +1883,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll4_9">
+   <widget class="QPushButton" name="Coll4_17">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -1421,11 +1901,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll2_9">
+   <widget class="QPushButton" name="Coll2_17">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -1434,11 +1919,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll7_9">
+   <widget class="QPushButton" name="Coll7_17">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -1447,11 +1937,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll5_9">
+   <widget class="QPushButton" name="Coll5_17">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -1460,11 +1955,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll13_9">
+   <widget class="QPushButton" name="Coll13_17">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -1473,11 +1973,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll12_9">
+   <widget class="QPushButton" name="Coll12_17">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -1486,11 +1991,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll11_9">
+   <widget class="QPushButton" name="Coll11_17">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -1499,11 +2009,16 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Coll6_9">
+   <widget class="QPushButton" name="Coll6_17">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -1512,385 +2027,14 @@
       <height>26</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="Row9">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>240</y>
-     <width>391</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string/>
-   </property>
-   <widget class="QPushButton" name="Coll1_10">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Row 1 Col 1</string>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(117, 117, 117);;
+}</string>
     </property>
     <property name="text">
      <string/>
     </property>
-   </widget>
-   <widget class="QPushButton" name="Coll8_10">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll10_10">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll3_10">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll9_10">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll4_10">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll2_10">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll7_10">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll5_10">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll13_10">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll12_10">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll11_10">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Coll6_10">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>10</y>
-      <width>21</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="Row1_10">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>30</y>
-      <width>391</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <widget class="QPushButton" name="Coll1_11">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Row 1 Col 1</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll8_11">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll10_11">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll3_11">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll9_11">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll4_11">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll2_11">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll7_11">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll5_11">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll13_11">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll12_11">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll11_11">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Coll6_11">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>10</y>
-       <width>21</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
   </widget>
  </widget>
