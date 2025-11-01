@@ -28,7 +28,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="R1C1">
+   <widget class="QPushButton" name="Coll1">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -44,7 +44,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C8">
+   <widget class="QPushButton" name="Coll8">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -57,7 +57,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C10">
+   <widget class="QPushButton" name="Coll10">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -70,7 +70,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C3">
+   <widget class="QPushButton" name="Coll3">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -83,7 +83,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C9">
+   <widget class="QPushButton" name="Coll9">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -96,7 +96,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C4">
+   <widget class="QPushButton" name="Coll4">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -109,7 +109,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C2">
+   <widget class="QPushButton" name="Coll2">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -122,7 +122,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C7">
+   <widget class="QPushButton" name="Coll7">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -135,7 +135,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C5">
+   <widget class="QPushButton" name="Coll5">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -148,7 +148,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C13">
+   <widget class="QPushButton" name="Coll13">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -161,7 +161,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C12">
+   <widget class="QPushButton" name="Coll12">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -174,7 +174,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C11">
+   <widget class="QPushButton" name="Coll11">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -187,7 +187,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="R1C6">
+   <widget class="QPushButton" name="Coll6">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -199,6 +199,1698 @@
     <property name="text">
      <string/>
     </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>30</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_2">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_3">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_3">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_3">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_3">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_3">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_3">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_3">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row4">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>90</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_5">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_5">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_5">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_5">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_5">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_5">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_5">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_5">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_5">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_5">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_5">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row5">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>120</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_6">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_6">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_6">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_6">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_6">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_6">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_6">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_6">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_6">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_6">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_6">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row6">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_7">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_7">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_7">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_7">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_7">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_7">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_7">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_7">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_7">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_7">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_7">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_7">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row7">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>180</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_8">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_8">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_8">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_8">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_8">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_8">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_8">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_8">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_8">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_8">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_8">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_8">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row8">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>210</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_9">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_9">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_9">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_9">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_9">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_9">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_9">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_9">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_9">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_9">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_9">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_9">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_9">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="Row9">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>240</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="Coll1_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Row 1 Col 1</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll8_10">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll10_10">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll3_10">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll9_10">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll4_10">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll2_10">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll7_10">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll5_10">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll13_10">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll12_10">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll11_10">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Coll6_10">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="Row1_10">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>30</y>
+      <width>391</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="Coll1_11">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Row 1 Col 1</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll8_11">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll10_11">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll3_11">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll9_11">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll4_11">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll2_11">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll7_11">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll5_11">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll13_11">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll12_11">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll11_11">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Coll6_11">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>21</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
