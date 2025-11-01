@@ -12,3 +12,17 @@ Game::~Game()
 {
     delete ui;
 }
+/*=====================
+ * Row 1
+ ====================*/
+void Game::on_Coll1R1_clicked()
+{
+    //Collumn 1 Row 1
+}
+
+
+void Game::on_Coll2R1_clicked()
+{
+
+}
+
