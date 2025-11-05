@@ -44,7 +44,7 @@ private slots:
 
     void on_Coll1R2_clicked();
 
-    void on_Coll2_clicked();
+    //void on_Coll2_clicked();
 
     void on_Coll3R2_clicked();
 
