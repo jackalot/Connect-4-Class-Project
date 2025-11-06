@@ -1,6 +1,7 @@
 #include "game.h"
 #include "ui_game.h"
-
+#include <iostream>
+#include <vector>
 Game::Game(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Game)
@@ -12,645 +13,152 @@ Game::~Game()
 {
     delete ui;
 }
-/*---------------------
- Rows 1-8 event handlers
-To quick search, CTRL+F
-Then type for ex.:
-"Collumn 1 Row 8"
-Each handler is commented.
-----------------------*/
-/*=====================
- * Row 1
- ====================*/
-void Game::on_Coll1R1_clicked()
-{
-    //Collumn 1 Row 1
-}
-
-
-void Game::on_Coll2R1_clicked()
-{
-    //Collumn 2 Row 1
-}
-
-void Game::on_Coll3R1_clicked()
-{
-    //Collumn 3 Row 1
-}
-
-
-void Game::on_Coll4R1_clicked()
-{
-    //Collumn 4 Row 1
-}
-
-
-void Game::on_Coll5R1_clicked()
-{
-    //Collumn 5 Row 1
-}
-
-
-void Game::on_Coll6R1_clicked()
-{
-    //Collumn 6 Row 1
-}
-
-
-void Game::on_Coll7R1_clicked()
-{
-    //Collumn 7 Row 1
-}
-
-
-void Game::on_Coll8R1_clicked()
-{
-    //Collumn 8 Row 1
-}
-
-
-void Game::on_Coll9R1_clicked()
-{
-    //Collumn 9 Row 1
-}
-
-
-void Game::on_Coll10R1_clicked()
-{
-    //Collumn 10 Row 1
-}
-
-
-void Game::on_Coll11R1_clicked()
-{
-    //Collumn 11 Row 1
-}
-
-
-void Game::on_Coll12R1_clicked()
-{
-    //Collumn 12 Row 1
-}
-
-void Game::on_Coll13R1_clicked()
-{
-    //Collumn 13 Row 1
-}
-/*=====================
- * Row 2
- ====================*/
-void Game::on_Coll1R2_clicked()
-{
-    //Collumn 1 Row 2
-}
-void Game::on_Coll2R2_clicked()
-{
-    //Collumn 2 Row 2
-}
-
-void Game::on_Coll3R2_clicked()
-{
-    //Collumn 3 Row 2
-}
-
-
-void Game::on_Coll4R2_clicked()
-{
-    //Collumn 4 Row 2
-}
-
-
-void Game::on_Coll5R2_clicked()
-{
-    //Collumn 5 Row 2
-}
-
-
-void Game::on_Coll6R2_clicked()
-{
-    //Collumn 6 Row 2
-}
-
-
-void Game::on_Coll7R2_clicked()
-{
-    //Collumn 7 Row 2
-}
-
-
-void Game::on_Coll8R2_clicked()
-{
-    //Collumn 8 Row 2
-}
-
-
-void Game::on_Coll9R2_clicked()
-{
-    //Collumn 9 Row 2
-}
-
-
-void Game::on_Coll10R2_clicked()
-{
-    //Collumn 10 Row 2
-}
-
-
-void Game::on_Coll11R2_clicked()
-{
-    //Collumn 11 Row 2
-}
-
-
-void Game::on_Coll12R2_clicked()
-{
-    //Collumn 12 Row 2
-}
-
-
-void Game::on_Coll13R2_clicked()
-{
-    //Collumn 13 Row 2
-}
-
-/*=====================
- * Row 3
- ====================*/
-void Game::on_Coll1R3_clicked()
-{
-    //Collumn 1 Row 3
-}
-
-
-void Game::on_Coll2R3_clicked()
-{
-    //Collumn 2 Row 3
-}
-
-
-void Game::on_Coll3R3_clicked()
-{
-    //Collumn 3 Row 3
-}
-
-
-void Game::on_Coll4R3_clicked()
-{
-    //Collumn 4 Row 3
-}
-
-
-void Game::on_Coll5R3_clicked()
-{
-    //Collumn 5 Row 3
-}
-
-
-void Game::on_Coll6R3_clicked()
-{
-    //Collumn 6 Row 3
-}
-
-
-void Game::on_Coll7R3_clicked()
-{
-    //Collumn 7 Row 3
-}
-
-
-void Game::on_Coll8R3_clicked()
-{
-    //Collumn 8 Row 3
-}
-
-
-void Game::on_Coll9R3_clicked()
-{
-    //Collumn 9 Row 3
-}
-
-
-void Game::on_Coll10R3_clicked()
-{
-    //Collumn 10 Row 3
-}
-
-
-void Game::on_Coll11R3_clicked()
-{
-    //Collumn 11 Row 3
-}
-
-
-void Game::on_Coll12R3_clicked()
-{
-    //Collumn 12 Row 3
-}
-
-
-void Game::on_Coll13R3_clicked()
-{
-    //Collumn 13 Row 3
-}
-
-/*=====================
- * Row 4
- ====================*/
-void Game::on_Coll1R4_clicked()
-{
-    //Collumn 1 Row 4
-}
-
-
-void Game::on_Coll2R4_clicked()
-{
-    //Collumn 2 Row 4
-}
-
-
-void Game::on_Coll3R4_clicked()
-{
-    //Collumn 3 Row 4
-}
-
-
-void Game::on_Coll4R4_clicked()
-{
-    //Collumn 4 Row 4
-}
-
-
-void Game::on_Coll5R4_clicked()
-{
-    //Collumn 5 Row 4
-}
-
-
-void Game::on_Coll6R4_clicked()
-{
-    //Collumn 6 Row 4
-}
-
-
-void Game::on_Coll7R4_clicked()
-{
-    //Collumn 7 Row 4
-}
-
-
-void Game::on_Coll8R4_clicked()
-{
-    //Collumn 8 Row 4
-}
-
-
-void Game::on_Coll9R4_clicked()
-{
-    //Collumn 9 Row 4
-}
-
-
-void Game::on_Coll10R4_clicked()
-{
-    //Collumn 10 Row 4
-}
-
-
-void Game::on_Coll11R4_clicked()
-{
-    //Collumn 11 Row 4
-}
-
-
-void Game::on_Coll12R4_clicked()
-{
-    //Collumn 12 Row 4
-}
-
-
-void Game::on_Coll13R4_clicked()
-{
-    //Collumn 13 Row 4
-}
-/*=====================
- * Row 5
- ====================*/
-
-void Game::on_Coll1R5_clicked()
-{
-    //Collumn 1 Row 5
-}
-
-
-void Game::on_Coll2R5_clicked()
-{
-    //Collumn 2 Row 5
-}
-
-
-void Game::on_Coll3R5_clicked()
-{
-    //Collumn 3 Row 5
-}
-
-
-void Game::on_Coll4R5_clicked()
-{
-    //Collumn 4 Row 5
-}
-
-
-void Game::on_Coll5R5_clicked()
-{
-    //Collumn 5 Row 5
-}
-
-
-void Game::on_Coll6R5_clicked()
-{
-    //Collumn 6 Row 5
-}
-
-
-void Game::on_Coll7R5_clicked()
-{
-    //Collumn 7 Row 5
-}
-
-
-void Game::on_Coll8R5_clicked()
-{
-    //Collumn 8 Row 5
-}
-
-
-void Game::on_Coll9R5_clicked()
-{
-    //Collumn 9 Row 5
-}
-
-
-void Game::on_Coll10R5_clicked()
-{
-    //Collumn 10 Row 5
-}
-
-
-void Game::on_Coll11R5_clicked()
-{
-    //Collumn 11 Row 5
-}
-
-
-void Game::on_Coll12R5_clicked()
-{
-    //Collumn 12 Row 5
-}
-
-
-void Game::on_Coll13R5_clicked()
-{
-    //Collumn 13 Row 5
-}
-/*=====================
- * Row 6
- ====================*/
-
-void Game::on_Coll1R6_clicked()
-{
-    //Collumn 1 Row 6
-}
-
-
-void Game::on_Coll2R6_clicked()
-{
-    //Collumn 2 Row 6
-}
-
-
-void Game::on_Coll3R6_clicked()
-{
-    //Collumn 3 Row 6
-}
-
-
-void Game::on_Coll4R6_clicked()
-{
-    //Collumn 4 Row 6
-}
-
-
-void Game::on_Coll5R6_clicked()
-{
-    //Collumn 5 Row 6
-}
-
-
-void Game::on_Coll6R6_clicked()
-{
-    //Collumn 6 Row 6
-}
-
-
-void Game::on_Coll7R6_clicked()
-{
-    //Collumn 7 Row 6
-}
-
-
-void Game::on_Coll8R6_clicked()
-{
-    //Collumn 8 Row 6
-}
-
-
-void Game::on_Coll9R6_clicked()
-{
-    //Collumn 9 Row 6
-}
-
-
-void Game::on_Coll10R6_clicked()
-{
-    //Collumn 10 Row 6
-}
-
-
-void Game::on_Coll11R6_clicked()
-{
-    //Collumn 11 Row 6
-}
-
-
-void Game::on_Coll12R6_clicked()
-{
-    //Collumn 12 Row 6
-}
-
-
-void Game::on_Coll13R6_clicked()
-{
-    //Collumn 13 Row 6
-}
-/*=====================
- * Row 7
- ====================*/
-
-void Game::on_Coll1R7_clicked()
-{
-    //Collumn 1 Row 7
-}
-
-
-void Game::on_Coll2R7_clicked()
-{
-    //Collumn 2 Row 7
-}
-
-
-void Game::on_Coll3R7_clicked()
-{
-    //Collumn 3 Row 7
-}
-
-
-void Game::on_Coll4R7_clicked()
-{
-    //Collumn 4 Row 7
-}
-
-
-void Game::on_Coll5R7_clicked()
-{
-    //Collumn 5 Row 7
-}
-
-
-void Game::on_Coll6R7_clicked()
-{
-    //Collumn 6 Row 7
-}
-
-
-void Game::on_Coll7R7_clicked()
-{
-    //Collumn 7 Row 7
-}
-
-
-void Game::on_Coll8R7_clicked()
-{
-    //Collumn 8 Row 7
-}
-
-
-void Game::on_Coll9R7_clicked()
-{
-    //Collumn 9 Row 7
-}
-
-
-void Game::on_Coll10R7_clicked()
-{
-    //Collumn 10 Row 7
-}
-
-
-void Game::on_Coll11R7_clicked()
-{
-    //Collumn 11 Row 7
-}
-
-
-void Game::on_Coll12R7_clicked()
-{
-    //Collumn 12 Row 7
-}
-
-
-void Game::on_Coll13R7_clicked()
-{
-    //Collumn 13 Row 7
-}
-/*=====================
- * Row 8
- ====================*/
-
-void Game::on_Coll1R8_clicked()
-{
-    //Collumn 1 Row 8
-}
-
-
-void Game::on_Coll2R8_clicked()
-{
-    //Collumn 2 Row 8
-}
-
-
-void Game::on_Coll3R8_clicked()
-{
-    //Collumn 3 Row 8
-}
-
-
-void Game::on_Coll4R8_clicked()
-{
-    //Collumn 4 Row 8
-}
-
-
-void Game::on_Coll5R8_clicked()
-{
-    //Collumn 5 Row 8
-}
-
-
-void Game::on_Coll6R8_clicked()
-{
-    //Collumn 6 Row 8
-}
-
-
-void Game::on_Coll7R8_clicked()
-{
-    //Collumn 7 Row 8
-}
-
-
-void Game::on_Coll8R8_clicked()
-{
-    //Collumn 8 Row 8
-}
-
-
-void Game::on_Coll9R8_clicked()
-{
-    //Collumn 9 Row 8
-}
-
-
-void Game::on_Coll10R8_clicked()
-{
-    //Collumn 10 Row 8
-}
-
-
-void Game::on_Coll11R8_clicked()
-{
-    //Collumn 11 Row 8
-}
-
-
-void Game::on_Coll12R8_clicked()
-{
-    //Collumn 12 Row 8
-}
-
-
-void Game::on_Coll13R8_clicked()
-{
-    //Collumn 13 Row 8
-}
-
+class Connect4Board {
+//Private variables for showcasing encapulation
+private:
+    std::vector<std::vector<char>> board;
+    int rows;
+    int cols;
+
+public:
+    // Initialize vector to have 6 rows and 7 columns with empty space.
+    Connect4Board() : rows(6), cols(7), board(6, std::vector<char>(7, ' ')) {}
+
+    // Getter for number of rows
+    int getRows() const {
+        return rows;
+    }
+
+    // Getter for number of columns
+    int getCols() {
+        return cols;
+    }
+
+    // Gets the character which will be 'R' or 'B' at specified cell
+    char getCell(int row, int col) {
+        return board[row][col];
+    }
+
+    // Resets all cells in 2d vector to empty
+    void clearBoard() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                board[i][j] = ' ';
+            }
+        }
+    }
+
+    //Virtual destructor does nothing yet but can be used for inheritance and polymorphism
+    virtual ~Connect4Board() = default;
+
+	// Displays a board for testing in console ***Is not needed after GUI and player input is implemented***
+    void display() {
+
+		//Displays white space for peices
+        std::cout << std::endl << "  ";
+        for (int j = 0; j < cols; j++) {
+            std::cout << j << " ";
+        }
+
+		//Displays border for rows
+        std::cout << std::endl << "  ";
+        for (int j = 0; j < cols; j++) {
+            std::cout << "- ";
+        }
+        std::cout << std::endl;
+
+		//Displays border for columns
+        for (int i = 0; i < rows; i++) {
+            std::cout << i << "|";
+            for (int j = 0; j < cols; j++) {
+                std::cout << board[i][j] << "|";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "  ";
+        for (int j = 0; j < cols; j++) {
+            std::cout << "- ";
+        }
+        std::cout << std::endl << std::endl;
+    }
+
+    // Bool to drop peice in a column and check if it's full
+    bool dropPiece(int col, char symbol) {
+
+		//Checks row 1 by 1 to drop peice to lowest empty space until full
+        for (int row = rows - 1; row >= 0; row--) {
+            if (board[row][col] == ' ') {
+                board[row][col] = symbol;
+                return true;
+            }
+        }
+
+		//Column is full and won't allow placement
+        return false;
+    }
+
+    // Method checks if player symbol 'R' or 'B' won
+    bool checkWin(char symbol) {
+
+        // Check horizontal wins
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols - 3; c++) {
+                if (board[r][c] == symbol &&
+                    board[r][c + 1] == symbol &&
+                    board[r][c + 2] == symbol &&
+                    board[r][c + 3] == symbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Check vertical wins
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (board[r][c] == symbol &&
+                    board[r + 1][c] == symbol &&
+                    board[r + 2][c] == symbol &&
+                    board[r + 3][c] == symbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Check diagonal wins (top-left to bottom-right)
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 0; c < cols - 3; c++) {
+                if (board[r][c] == symbol &&
+                    board[r + 1][c + 1] == symbol &&
+                    board[r + 2][c + 2] == symbol &&
+                    board[r + 3][c + 3] == symbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Check diagonal wins (top-right to bottom-left)
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 3; c < cols; c++) {
+                if (board[r][c] == symbol &&
+                    board[r + 1][c - 1] == symbol &&
+                    board[r + 2][c - 2] == symbol &&
+                    board[r + 3][c - 3] == symbol) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // Checks if the board is completely full for a draw
+    bool isFull() {
+        for (int c = 0; c < cols; c++) {
+            if (board[0][c] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 
