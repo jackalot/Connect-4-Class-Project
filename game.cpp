@@ -1,6 +1,7 @@
 #include "game.h"
 #include "ui_game.h"
-
+#include <iostream>
+#include <vector>
 Game::Game(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Game)
@@ -12,9 +13,6 @@ Game::~Game()
 {
     delete ui;
 }
-#include <iostream>
-#include <vector>
-
 class Connect4Board {
 //Private variables for showcasing encapulation
 private:
@@ -164,20 +162,3 @@ public:
     }
 };
 
-int main() {
-
-    Connect4Board myGame;
-
-    //Test to display board
-    myGame.display();
-
-    //Test drop piece method can change column between 0-6 and use 'R' or 'B'
-    myGame.dropPiece(3, 'R');
-    myGame.display();
-
-    //Same test but for next player
-    myGame.dropPiece(3, 'B');
-    myGame.display();
-
-    return 0;
-}
