@@ -189,12 +189,11 @@ Connect4Board ourGameBoard;
 char Player1Piece = 'B';
 char Player2Piece = 'R';
 // Calls methods needed for column and row calls
-void DropInColumn(int collumn, int row) //row here is temporary, debug variable.
-{
-    // for now, it always drops player1's piece, blue
-    ourGameBoard.dropPiece(1, Player1Piece);
-    //put logic here for changing what column and row we need to highlight.
-    HighlightCell(collumn, row);
+void Game::DropInColumn(int column, int row) {
+    // For now, we always drop Player 1's piece
+    if (ourGameBoard.dropPiece(column, Player1Piece)) {
+        HighlightCell(column, row);  // Method call directly
+    }
 }
 /*=======================
  * UI SECTION:

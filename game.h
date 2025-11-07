@@ -23,6 +23,7 @@ public:
             button->setStyleSheet("background-color: blue; color: white;");
         }
     }
+        void DropInColumn(int column, int row); // This should match the definition
     ~Game();
 
 private slots:
