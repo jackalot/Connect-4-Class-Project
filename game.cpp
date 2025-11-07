@@ -192,7 +192,7 @@ char Player2Piece = 'R';
 void Game::DropInColumn(int column, int row) {
     // For now, we always drop Player 1's piece
     if (ourGameBoard.dropPiece(column, Player1Piece)) {
-        HighlightCell(column, row);  // Method call directly
+        HighlightCell(column, row, Player1Piece);  // Method call directly
     }
 }
 /*=======================
