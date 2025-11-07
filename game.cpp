@@ -3,6 +3,9 @@
 
 #include "game.h"
 #include "ui_game.h"
+/*=======================
+ * GAME LOGIC:
+----------------------*/
 Game::Game(QWidget *parent) : QDialog(parent), ui(new Ui::Game) {
   ui->setupUi(this);
 }
@@ -176,12 +179,14 @@ class Connect4Board : public BoardGrid {
     return true;
   }
 };
-/*---------------------
- Rows 1-8 event handlers
-To quick search, CTRL+F
-Then type for ex.:
-"Collumn 1 Row 8"
-Each handler is commented.
+/*=======================
+ * UI SECTION:
+ * By Chris:
+ *  Rows 1-8 event handlers
+ *  To quick search, CTRL+F
+ *  Then type for ex.:
+ *  "Collumn 1 Row 8"
+ *  Each handler is commented.
 ----------------------*/
 /*=====================
 
