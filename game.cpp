@@ -184,7 +184,8 @@ Diagnal Checks
 
 /*This will be called when we click a button
   to drop a piece. Only game logic side, not UI side.  */
-Connect4Board ourGameBoard();
+Connect4Board ourGameBoard;
+
 char Player1Piece = 'B';
 char Player2Piece = 'R';
 void DropPiece(int collumn)
