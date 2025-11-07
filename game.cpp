@@ -145,7 +145,9 @@ class Connect4Board : public BoardGrid {
         }
       }
     }
-
+    /*
+Diagnal Checks
+    */
     // Check diagonal wins (top-left to bottom-right)
     for (int r = 0; r < rows - 3; r++) {
       for (int c = 0; c < cols - 3; c++) {
@@ -179,6 +181,8 @@ class Connect4Board : public BoardGrid {
     return true;
   }
 };
+Connect4Board ourGameBoard();
+
 /*=======================
  * UI SECTION:
  * By Chris:
@@ -188,6 +192,7 @@ class Connect4Board : public BoardGrid {
  *  "Collumn 1 Row 8"
  *  Each handler is commented.
 ----------------------*/
+
 /*=====================
 
 
@@ -198,10 +203,9 @@ class Connect4Board : public BoardGrid {
 
 
 void Game::on_Coll1R1_clicked()
-
-
 {
   // Collumn 1 Row 1
+    ourGameBoard.dropPiece(1;)
 }
 
 void Game::on_Coll2R1_clicked()
