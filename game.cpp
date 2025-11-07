@@ -189,7 +189,7 @@ Connect4Board ourGameBoard;
 char Player1Piece = 'B';
 char Player2Piece = 'R';
 // Calls methods needed for column and row calls
-void DropInColumn(int collumn, int row)
+void DropInColumn(int collumn, int row) //row here is temporary, debug variable.
 {
     // for now, it always drops player1's piece, blue
     ourGameBoard.dropPiece(1, Player1Piece);
