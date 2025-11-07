@@ -2,7 +2,7 @@
 #define GAME_H
 #include <QPushButton>
 #include <QDialog>
-
+#include <string>
 namespace Ui {
 class Game;
 }
@@ -15,7 +15,8 @@ public:
     explicit Game(QWidget *parent = nullptr);
     void HighlightCell(int column, int Row)
     {
-        QPushButton* button = this->findChild<QPushButton*>("Coll1R1");
+        string cellName = "Coll" + column + "R" + Row;
+        QPushButton* button = this->findChild<QPushButton*>("cellName");
         if (button) {
             button->setStyleSheet("background-color: blue; color: white;");
         }
