@@ -201,7 +201,9 @@ void DropPiece(int collumn)
  *  "Collumn 1 Row 8"
  *  Each handler is commented.
 ----------------------*/
-
+void HighlightCell(int column, int Row)
+{
+}
 /*=====================
 
 
