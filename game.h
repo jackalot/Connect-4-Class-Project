@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QDialog>
 #include <string>
+using namespace std;
 namespace Ui {
 class Game;
 }
@@ -15,7 +16,8 @@ public:
     explicit Game(QWidget *parent = nullptr);
     void HighlightCell(int column, int Row)
     {
-        string cellName = "Coll" + column + "R" + Row;
+        // Convert column and Row to strings before concatenating
+        string cellName = "Coll" + std::to_string(column) + "R" + std::to_string(Row);
         QPushButton* button = this->findChild<QPushButton*>("cellName");
         if (button) {
             button->setStyleSheet("background-color: blue; color: white;");
