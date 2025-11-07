@@ -216,13 +216,14 @@ void Game::DropInColumn(int column, int row) {
 
 void Game::on_Coll1R1_clicked()
 {
-    HighlightCell(1, 1);
+    DropInColumn(1, 1);
   // Collumn 1 Row 1
 }
 
 void Game::on_Coll2R1_clicked()
 
 {
+        DropInColumn(2, 1);
   // Collumn 2 Row 1
 }
 
