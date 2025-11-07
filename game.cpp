@@ -104,7 +104,7 @@ class BoardGrid {
 class Connect4Board : public BoardGrid {
  public:
   // Initialize board to be a 6x7 grid
-  Connect4Board() : BoardGrid(6, 7) {}
+  Connect4Board() : BoardGrid(8, 14) {}
 
   // Method to define column bounds for pieces
   bool dropPiece(int col, char piece) {
