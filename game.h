@@ -18,7 +18,7 @@ public:
     {
         // Convert column and Row to strings before concatenating
         string cellName = "Coll" + std::to_string(column) + "R" + std::to_string(Row);
-        QPushButton* button = this->findChild<QPushButton*>("cellName");
+        QPushButton* button = this->findChild<QPushButton*>(cellName.c_str());
         if (button) {
             button->setStyleSheet("background-color: blue; color: white;");
         }
