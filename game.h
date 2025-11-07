@@ -20,12 +20,12 @@ public:
         string cellName = "Coll" + std::to_string(column) + "R" + std::to_string(Row);
         QPushButton* button = this->findChild<QPushButton*>(cellName.c_str());
         if (button) {
-            if(ColorKey == "B")
+            if(ColorKey == 'B')
             {
                 button->setStyleSheet("background-color: blue; color: white;");
             }
-            else if(ColorKey == "R") {
-            button->setStyleSheet("background-color: red; color: white;");
+            else if(ColorKey == 'R') {
+                button->setStyleSheet("background-color: red; color: white;");
             }
         }
     }
