@@ -188,7 +188,7 @@ Connect4Board ourGameBoard;
 
 char Player1Piece = 'B';
 char Player2Piece = 'R';
-void DropPiece(int collumn)
+void DropInColumn(int collumn)
 {
     // for now, it always drops player1's piece, blue
     ourGameBoard().dropPiece(1, Player1Piece);
@@ -216,7 +216,7 @@ void Game::on_Coll1R1_clicked()
 {
     HighlightCell(1, 1);
   // Collumn 1 Row 1
-    ourGameBoard.dropPiece(1);
+    DropInColumn(1);
 }
 
 void Game::on_Coll2R1_clicked()
