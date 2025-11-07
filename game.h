@@ -1,6 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
-
+#include <QPushButton>
 #include <QDialog>
 
 namespace Ui {
@@ -13,6 +13,13 @@ class Game : public QDialog
 
 public:
     explicit Game(QWidget *parent = nullptr);
+    void HighlightCell(int column, int Row)
+    {
+        QPushButton* button = this->findChild<QPushButton*>("Coll1R1");
+        if (button) {
+            button->setStyleSheet("background-color: blue; color: white;");
+        }
+    }
     ~Game();
 
 private slots:
