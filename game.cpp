@@ -13,19 +13,26 @@ Game::~Game()
 {
     delete ui;
 }
-class Connect4Board {
+
+// Class for board grid to be used for polymorphism if othe games are create ex. tic tac toe and battleship
+class BoardGrid {
+
 //Private variables for showcasing encapulation
-private:
+protected:
     std::vector<std::vector<char>> board;
     int rows;
     int cols;
 
 public:
-    // Initialize vector to have 6 rows and 7 columns with empty space.
-    Connect4Board() : rows(6), cols(7), board(6, std::vector<char>(7, ' ')) {}
+    
+	//Empty Vector for reuse as a 2d game grid 
+    BoardGrid(int r, int c) : rows(r), cols(c), board(r, std::vector<char>(c, ' ')) {}
+
+    
+    ~BoardGrid() = default;
 
     // Getter for number of rows
-    int getRows() const {
+    int getRows() {
         return rows;
     }
 
@@ -34,9 +41,20 @@ public:
         return cols;
     }
 
-    // Gets the character which will be 'R' or 'B' at specified cell
+    // Gets the character at specified cell
     char getCell(int row, int col) {
-        return board[row][col];
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            return board[row][col];
+        }
+    }
+
+    // Sets a cell value
+    bool setCell(int row, int col, char symbol) {
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            board[row][col] = symbol;
+            return true;
+        }
+        return false;
     }
 
     // Resets all cells in 2d vector to empty
@@ -48,26 +66,19 @@ public:
         }
     }
 
-    //Virtual destructor does nothing yet but can be used for inheritance and polymorphism
-    virtual ~Connect4Board() = default;
-
-	// Displays a board for testing in console ***Is not needed after GUI and player input is implemented***
+    // Display board to console for testing ***THIS CAN BE REMOVED AFTER GUI IS IMPLEMETED***
     void display() {
-
-		//Displays white space for peices
         std::cout << std::endl << "  ";
         for (int j = 0; j < cols; j++) {
             std::cout << j << " ";
         }
 
-		//Displays border for rows
         std::cout << std::endl << "  ";
         for (int j = 0; j < cols; j++) {
             std::cout << "- ";
         }
         std::cout << std::endl;
 
-		//Displays border for columns
         for (int i = 0; i < rows; i++) {
             std::cout << i << "|";
             for (int j = 0; j < cols; j++) {
@@ -82,31 +93,54 @@ public:
         std::cout << std::endl << std::endl;
     }
 
-    // Bool to drop peice in a column and check if it's full
-    bool dropPiece(int col, char symbol) {
+    // Method for checking if board is full
+    bool isFull() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (board[i][j] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
 
-		//Checks row 1 by 1 to drop peice to lowest empty space until full
+//Showing inheritance and potential for polymorphism 
+class Connect4Board : public BoardGrid {
+public:
+    
+	//Initialize board to be a 6x7 grid
+    Connect4Board() : BoardGrid(6, 7) {}
+
+    // Method to define column bounds for pieces
+    bool dropPiece(int col, char piece) {
+        if (col < 0 || col >= cols) {
+            return false;
+        }
+
+        // Drop piece to lowest empty space
         for (int row = rows - 1; row >= 0; row--) {
             if (board[row][col] == ' ') {
-                board[row][col] = symbol;
+                board[row][col] = piece;
                 return true;
             }
         }
 
-		//Column is full and won't allow placement
+        // Column is full
         return false;
     }
 
-    // Method checks if player symbol 'R' or 'B' won
-    bool checkWin(char symbol) {
-
+    //Method for checking if 4 pieces are connected either 'R' or 'B'
+    bool checkWin(char piece) {
+	
         // Check horizontal wins
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols - 3; c++) {
-                if (board[r][c] == symbol &&
-                    board[r][c + 1] == symbol &&
-                    board[r][c + 2] == symbol &&
-                    board[r][c + 3] == symbol) {
+                if (board[r][c] == piece &&
+                    board[r][c + 1] == piece &&
+                    board[r][c + 2] == piece &&
+                    board[r][c + 3] == piece) {
                     return true;
                 }
             }
@@ -115,10 +149,10 @@ public:
         // Check vertical wins
         for (int r = 0; r < rows - 3; r++) {
             for (int c = 0; c < cols; c++) {
-                if (board[r][c] == symbol &&
-                    board[r + 1][c] == symbol &&
-                    board[r + 2][c] == symbol &&
-                    board[r + 3][c] == symbol) {
+                if (board[r][c] == piece &&
+                    board[r + 1][c] == piece &&
+                    board[r + 2][c] == piece &&
+                    board[r + 3][c] == piece) {
                     return true;
                 }
             }
@@ -127,10 +161,10 @@ public:
         // Check diagonal wins (top-left to bottom-right)
         for (int r = 0; r < rows - 3; r++) {
             for (int c = 0; c < cols - 3; c++) {
-                if (board[r][c] == symbol &&
-                    board[r + 1][c + 1] == symbol &&
-                    board[r + 2][c + 2] == symbol &&
-                    board[r + 3][c + 3] == symbol) {
+                if (board[r][c] == piece &&
+                    board[r + 1][c + 1] == piece &&
+                    board[r + 2][c + 2] == piece &&
+                    board[r + 3][c + 3] == piece) {
                     return true;
                 }
             }
@@ -139,10 +173,10 @@ public:
         // Check diagonal wins (top-right to bottom-left)
         for (int r = 0; r < rows - 3; r++) {
             for (int c = 3; c < cols; c++) {
-                if (board[r][c] == symbol &&
-                    board[r + 1][c - 1] == symbol &&
-                    board[r + 2][c - 2] == symbol &&
-                    board[r + 3][c - 3] == symbol) {
+                if (board[r][c] == piece &&
+                    board[r + 1][c - 1] == piece &&
+                    board[r + 2][c - 2] == piece &&
+                    board[r + 3][c - 3] == piece) {
                     return true;
                 }
             }
@@ -151,7 +185,7 @@ public:
         return false;
     }
 
-    // Checks if the board is completely full for a draw
+    // Checks if top row is full for a draw
     bool isFull() {
         for (int c = 0; c < cols; c++) {
             if (board[0][c] == ' ') {
@@ -161,4 +195,3 @@ public:
         return true;
     }
 };
-
