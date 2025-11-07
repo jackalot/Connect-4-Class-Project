@@ -191,7 +191,7 @@ char Player2Piece = 'R';
 void DropInColumn(int collumn)
 {
     // for now, it always drops player1's piece, blue
-    ourGameBoard().dropPiece(1, Player1Piece);
+    ourGameBoard.dropPiece(1, Player1Piece);
 }
 /*=======================
  * UI SECTION:
