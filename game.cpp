@@ -182,6 +182,16 @@ Diagnal Checks
   }
 };
 
+/*This will be called when we click a button
+  to drop a piece. Only game logic side, not UI side.  */
+Connect4Board ourGameBoard();
+char Player1Piece = 'B';
+char Player2Piece = 'R';
+void DropPiece(int collumn)
+{
+    // for now, it always drops player1's piece, blue
+    ourGameBoard().dropPiece(1, Player1Piece);
+}
 /*=======================
  * UI SECTION:
  * By Chris:
@@ -191,14 +201,7 @@ Diagnal Checks
  *  "Collumn 1 Row 8"
  *  Each handler is commented.
 ----------------------*/
-Connect4Board ourGameBoard();
-char Player1Piece = 'B';
-char Player2Piece = 'R';
-void DropPiece(int collumn)
-{
-    // for now, it always drops player1's piece, blue
-    ourGameBoard().dropPiece(1, Player1Piece);
-}
+
 /*=====================
 
 
