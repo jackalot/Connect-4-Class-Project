@@ -1,8 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
-
+#include <QPushButton>
 #include <QDialog>
-
+#include <string>
+using namespace std;
 namespace Ui {
 class Game;
 }
@@ -13,6 +14,22 @@ class Game : public QDialog
 
 public:
     explicit Game(QWidget *parent = nullptr);
+    void HighlightCell(int column, int Row, char ColorKey)
+    {
+        // Convert column and Row to strings before concatenating
+        string cellName = "Coll" + std::to_string(column) + "R" + std::to_string(Row);
+        QPushButton* button = this->findChild<QPushButton*>(cellName.c_str());
+        if (button) {
+            if(ColorKey == 'B')
+            {
+                button->setStyleSheet("background-color: blue; color: white;");
+            }
+            else if(ColorKey == 'R') {
+                button->setStyleSheet("background-color: red; color: white;");
+            }
+        }
+    }
+        void DropInColumn(int column, int row); // This should match the definition
     ~Game();
 
 private slots:
