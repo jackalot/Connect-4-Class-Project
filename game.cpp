@@ -201,9 +201,7 @@ void DropPiece(int collumn)
  *  "Collumn 1 Row 8"
  *  Each handler is commented.
 ----------------------*/
-void HighlightCell(int column, int Row)
-{
-}
+
 /*=====================
 
 
@@ -215,8 +213,9 @@ void HighlightCell(int column, int Row)
 
 void Game::on_Coll1R1_clicked()
 {
+    HighlightCell(1, 1);
   // Collumn 1 Row 1
-    ourGameBoard.dropPiece(1;)
+    ourGameBoard.dropPiece(1);
 }
 
 void Game::on_Coll2R1_clicked()
