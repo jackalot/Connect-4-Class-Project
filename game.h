@@ -14,8 +14,9 @@ class Game : public QDialog
 
 public:
     explicit Game(QWidget *parent = nullptr);
+    void setSinglePlayer(bool singlePlayer);
     void HighlightCell(int column, int Row, char ColorKey)
-    {
+{
         // Convert column and Row to strings before concatenating
         string cellName = "Coll" + std::to_string(column) + "R" + std::to_string(Row);
         QPushButton* button = this->findChild<QPushButton*>(cellName.c_str());
@@ -244,7 +245,13 @@ private slots:
     void on_Coll2R2_clicked();
 
 private:
+    void resetBoard();
     Ui::Game *ui;
+
+    bool m_singlePlayer = false;   // true = One Player, false = Two Players
+    int  m_currentPlayer = 1;      // 1 = human player, 2 = AI or player 2
+    bool m_gameOver = false;       // true when there is a winner or tie
 };
+
 
 #endif // GAME_H

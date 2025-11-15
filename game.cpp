@@ -1,16 +1,28 @@
 #include <iostream>
 #include <vector>
-
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+#include <QMessageBox>
 #include "game.h"
 #include "ui_game.h"
 /*=======================
  * GAME LOGIC:
 ----------------------*/
 Game::Game(QWidget *parent) : QDialog(parent), ui(new Ui::Game) {
-  ui->setupUi(this);
+    ui->setupUi(this);
+    resetBoard();   // we only call the function
 }
 
+
 Game::~Game() { delete ui; }
+
+void Game::setSinglePlayer(bool singlePlayer)
+{
+    m_singlePlayer = singlePlayer;
+    m_currentPlayer = 1;  // 1st player always starts
+}
+
 
 // Class for board grid to be used for polymorphism if othe games are create ex.
 // tic tac toe and battleship
@@ -102,99 +114,327 @@ class BoardGrid {
 
 // Showing inheritance and potential for polymorphism
 class Connect4Board : public BoardGrid {
- public:
-  // Initialize board to be a 6x7 grid
-  Connect4Board() : BoardGrid(8, 14) {}
+public:
+    // we use 8 rows x 13 columns
+    Connect4Board() : BoardGrid(8, 13) {}
 
-  // Method to define column bounds for pieces
-  bool dropPiece(int col, char piece) {
-    if (col < 0 || col >= cols) {
-      return false;
-    }
-
-    // Drop piece to lowest empty space
-    for (int row = rows - 1; row >= 0; row--) {
-      if (board[row][col] == ' ') {
-        board[row][col] = piece;
-        return true;
-      }
-    }
-
-    // Column is full
-    return false;
-  }
-
-  // Method for checking if 4 pieces are connected either 'R' or 'B'
-  bool checkWin(char piece) {
-    // Check horizontal wins
-    for (int r = 0; r < rows; r++) {
-      for (int c = 0; c < cols - 3; c++) {
-        if (board[r][c] == piece && board[r][c + 1] == piece &&
-            board[r][c + 2] == piece && board[r][c + 3] == piece) {
-          return true;
+    // We drop the piece and returns row where it falled
+    bool dropPiece(int col, char piece, int &outRow) {
+        if (col < 0 || col >= cols) {
+            return false;
         }
-      }
-    }
 
-    // Check vertical wins
-    for (int r = 0; r < rows - 3; r++) {
-      for (int c = 0; c < cols; c++) {
-        if (board[r][c] == piece && board[r + 1][c] == piece &&
-            board[r + 2][c] == piece && board[r + 3][c] == piece) {
-          return true;
+        // from down to top we look for the first empty space
+        for (int row = rows - 1; row >= 0; row--) {
+            if (board[row][col] == ' ') {
+                board[row][col] = piece;
+                outRow = row;
+                return true;
+            }
         }
-      }
-    }
-    /*
-Diagnal Checks
-    */
-    // Check diagonal wins (top-left to bottom-right)
-    for (int r = 0; r < rows - 3; r++) {
-      for (int c = 0; c < cols - 3; c++) {
-        if (board[r][c] == piece && board[r + 1][c + 1] == piece &&
-            board[r + 2][c + 2] == piece && board[r + 3][c + 3] == piece) {
-          return true;
-        }
-      }
-    }
 
-    // Check diagonal wins (top-right to bottom-left)
-    for (int r = 0; r < rows - 3; r++) {
-      for (int c = 3; c < cols; c++) {
-        if (board[r][c] == piece && board[r + 1][c - 1] == piece &&
-            board[r + 2][c - 2] == piece && board[r + 3][c - 3] == piece) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  // Checks if top row is full for a draw
-  bool isFull() {
-    for (int c = 0; c < cols; c++) {
-      if (board[0][c] == ' ') {
+        //full colum
         return false;
-      }
     }
-    return true;
-  }
+
+    // old version to not break anything
+    bool dropPiece(int col, char piece) {
+        int dummyRow;
+        return dropPiece(col, piece, dummyRow);
+    }
+
+    // Can drop on this colum?
+    bool canDrop(int col) const {
+        if (col < 0 || col >= cols) return false;
+        return board[0][col] == ' ';
+    }
+
+    // Méthod to check if  4 in row
+    bool checkWin(char piece) {
+        // Horizontal
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols - 3; c++) {
+                if (board[r][c] == piece && board[r][c + 1] == piece &&
+                    board[r][c + 2] == piece && board[r][c + 3] == piece) {
+                    return true;
+                }
+            }
+        }
+
+        // Vertical
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (board[r][c] == piece && board[r + 1][c] == piece &&
+                    board[r + 2][c] == piece && board[r + 3][c] == piece) {
+                    return true;
+                }
+            }
+        }
+
+        // Diagonal ↘
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 0; c < cols - 3; c++) {
+                if (board[r][c] == piece && board[r + 1][c + 1] == piece &&
+                    board[r + 2][c + 2] == piece && board[r + 3][c + 3] == piece) {
+                    return true;
+                }
+            }
+        }
+
+        // Diagonal ↙
+        for (int r = 0; r < rows - 3; r++) {
+            for (int c = 3; c < cols; c++) {
+                if (board[r][c] == piece && board[r + 1][c - 1] == piece &&
+                    board[r + 2][c - 2] == piece && board[r + 3][c - 3] == piece) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // full board (tie)
+    bool isFull() {
+        for (int c = 0; c < cols; c++) {
+            if (board[0][c] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
 };
+class BasicAI {
+public:
+    BasicAI(char aiPiece, char humanPiece)
+        : m_ai(aiPiece), m_human(humanPiece)
+    {
+        std::srand(static_cast<unsigned>(std::time(nullptr)));
+    }
+
+    // Returns a valid column (0..cols-1) or -1 if there are no moves
+    int chooseMove(Connect4Board &board) {
+        int cols = board.getCols();
+        int rows = board.getRows();
+
+        // 1) Try to win this turn
+        for (int c = 0; c < cols; ++c) {
+            if (!board.canDrop(c)) continue;
+
+            Connect4Board temp = board;   // we copy the board
+            int rTmp = -1;
+            temp.dropPiece(c, m_ai, rTmp);
+            if (temp.checkWin(m_ai)) {
+                return c; // If I win, I play here
+            }
+        }
+
+        // 2) Block the player if they can win on their next turn
+        for (int c = 0; c < cols; ++c) {
+            if (!board.canDrop(c)) continue;
+
+            Connect4Board temp = board;
+            int rTmp = -1;
+            temp.dropPiece(c, m_human, rTmp);
+            if (temp.checkWin(m_human)) {
+                return c; // block his winning move
+            }
+        }
+
+        // 3) Choosing a 'good' move with a simple heuristic
+        std::vector<int> validCols;
+        for (int c = 0; c < cols; ++c) {
+            if (board.canDrop(c)) {
+                validCols.push_back(c);
+            }
+        }
+        if (validCols.empty()) return -1;
+
+        int bestScore = -1;
+        std::vector<int> bestCols;
+        int center = cols / 2;
+
+        for (int c : validCols) {
+            // base: prefer columns closer to the center
+            int score = 10 - std::abs(c - center);
+
+            //We try to place our piece and see how it looks
+            Connect4Board temp = board;
+            int rTmp = -1;
+            temp.dropPiece(c, m_ai, rTmp);
+
+            // score points for our tokens around (horizontally/vertically)
+            score += countAdjacents(temp, rTmp, c, m_ai);
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestCols.clear();
+                bestCols.push_back(c);
+            } else if (score == bestScore) {
+                bestCols.push_back(c);
+            }
+        }
+
+        // If there are several with the same score, we choose one at random
+        int idx = std::rand() % bestCols.size();
+        return bestCols[idx];
+    }
+
+private:
+    char m_ai;
+    char m_human;
+
+    // Counts neighboring pieces (up/down/left/right)
+    int countAdjacents(Connect4Board &b, int r, int c, char piece) {
+        int score = 0;
+
+        auto addIf = [&](int rr, int cc) {
+            if (rr >= 0 && rr < b.getRows() &&
+                cc >= 0 && cc < b.getCols() &&
+                b.getCell(rr, cc) == piece) {
+                score++;
+            }
+        };
+
+        addIf(r, c - 1); // left
+        addIf(r, c + 1); // right
+        addIf(r - 1, c); // up
+        addIf(r + 1, c); // down
+
+        return score;
+    }
+};
+
 
 /*This will be called when we click a button
   to drop a piece. Only game logic side, not UI side.  */
 Connect4Board ourGameBoard;
 
-char Player1Piece = 'B';
-char Player2Piece = 'R';
-// Calls methods needed for column and row calls
-void Game::DropInColumn(int column, int row) {
-    // For now, we always drop Player 1's piece
-    if (ourGameBoard.dropPiece(column, Player1Piece)) {
-        HighlightCell(column, row, Player1Piece);  // Method call directly
+char Player1Piece = 'B';   // Blue
+char Player2Piece = 'R';   // Red
+void Game::resetBoard()
+{
+    ourGameBoard.clearBoard();
+    m_currentPlayer = 1;
+    m_gameOver = false;
+}
+
+BasicAI g_ai(Player2Piece, Player1Piece);
+void Game::DropInColumn(int column, int /*rowClicked*/)
+{
+    if (m_gameOver) {
+        // If the game is over, ignore clicks
+        return;
+    }
+
+    // GUI columns are 1..13, board columns are 0..12
+    int colIndex = column - 1;
+    int placedRow = -1;
+
+    // Current player's piece
+    char piece = (m_currentPlayer == 1) ? Player1Piece : Player2Piece;
+
+    // Try to drop a piece in that column
+    if (!ourGameBoard.dropPiece(colIndex, piece, placedRow)) {
+        // Column is full: do nothing
+        return;
+    }
+
+    // Color the correct cell according to the board (row + 1, col + 1 for the GUI)
+    HighlightCell(colIndex + 1, placedRow + 1, piece);
+
+    // 1) Did the player who just moved win?
+    if (ourGameBoard.checkWin(piece)) {
+        m_gameOver = true;
+
+        if (m_singlePlayer) {
+            if (m_currentPlayer == 1) {
+                QMessageBox::information(
+                    this,
+                    "You won!",
+                    "🎉 Congratulations! You beat the AI. 😎"
+                    );
+            } else {
+                QMessageBox::information(
+                    this,
+                    "You lost",
+                    "🤖 The AI has won this game. Try again!"
+                    );
+            }
+        } else {
+            QString msg;
+            if (m_currentPlayer == 1) {
+                msg = "🎉 Player 1 (Blue) has won the game.";
+            } else {
+                msg = "🎉 Player 2 (Red) has won the game.";
+            }
+            QMessageBox::information(
+                this,
+                "We have a winner",
+                msg
+                );
+        }
+
+        return;
+    }
+
+    // 2) Draw? (board is full)
+    if (ourGameBoard.isFull()) {
+        m_gameOver = true;
+        QMessageBox::information(
+            this,
+            "Draw",
+            "The board is full. It's a draw. 🤝"
+            );
+        return;
+    }
+
+    // 3) If it is single-player mode and the human just played, now the AI plays
+    if (m_singlePlayer && m_currentPlayer == 1) {
+        m_currentPlayer = 2;  // AI's turn
+
+        int aiCol = g_ai.chooseMove(ourGameBoard);
+        if (aiCol >= 0) {
+            int aiRow = -1;
+            if (ourGameBoard.dropPiece(aiCol, Player2Piece, aiRow)) {
+                HighlightCell(aiCol + 1, aiRow + 1, Player2Piece);
+
+                // Check if the AI wins
+                if (ourGameBoard.checkWin(Player2Piece)) {
+                    m_gameOver = true;
+                    QMessageBox::information(
+                        this,
+                        "You lost",
+                        "🤖 The AI has won this game. Keep practicing!"
+                        );
+                    return;
+                }
+
+                // Check for a draw after the AI's move
+                if (ourGameBoard.isFull()) {
+                    m_gameOver = true;
+                    QMessageBox::information(
+                        this,
+                        "Draw",
+                        "The board is full. It's a draw. 🤝"
+                        );
+                    return;
+                }
+            }
+        }
+
+        // If the game continues, give the turn back to player 1
+        m_currentPlayer = 1;
+    } else {
+        // Two-player mode: alternate between Player 1 and Player 2
+        m_currentPlayer = (m_currentPlayer == 1) ? 2 : 1;
     }
 }
+
+
+
+// Common logic when clicking any box
+
 /*=======================
  * UI SECTION:
  * By Chris:
