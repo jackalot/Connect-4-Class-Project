@@ -35,6 +35,7 @@ else()
     else()
         add_executable(COP_II
             ${PROJECT_SOURCES}
+            boardgrid.h boardgrid.cpp
         )
     endif()
 endif()
