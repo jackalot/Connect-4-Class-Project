@@ -242,10 +242,13 @@ void Game::ChangeGameStateText(char PlayerKey)
     {
         case 'R':
                 PlayerTurnText->setPlainText("Player 1's turn");
+            break;
         case 'B':
                 PlayerTurnText->setPlainText("Player 2's turn");
+            break;
         case 'F':
                 PlayerTurnText->setPlainText("Board Full");
+            break;
         default:
             PlayerTurnText->setPlainText("Game Over");
     }
