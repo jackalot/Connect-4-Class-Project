@@ -1,116 +1,68 @@
-# C++ objects and libs
-*.slo
-*.lo
-*.o
-*.a
-*.la
-*.lai
-*.so
-*.so.*
-*.dll
-*.dylib
-# C++ objects and libs
-*.slo
-*.lo
-*.o
-*.a
-*.la
-*.lai
-*.so
-*.so.*
-*.dll
-*.dylib
-
-# Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
-/.qmake.cache
-/.qmake.stash
+# Qt-specific build and generated files
 *.pro.user
 *.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-*.qmlc
-*.jsc
-Makefile*
-*build-*
-*.qm
-*.prl
+*.qmake.stash
 
-# Qt unit tests
-target_wrapper.*
-
-# QtCreator
-*.autosave
-
-# QtCreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
-
-# QtCreator CMake
-CMakeLists.txt.user*
-
-# QtCreator 4.8< compilation database 
-compile_commands.json
-
-# QtCreator local machine specific files for imported projects
-*creator.user*
-
-# AtH stuff
-*.swp
+# Build directories
+build/
+build-*/
 debug/
-saves/
+release/
 
-# Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
-/.qmake.cache
-/.qmake.stash
-*.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-*.qmlc
-*.jsc
-Makefile*
-*build-*
-*.qm
-*.prl
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
 
-# Qt unit tests
-target_wrapper.*
+# Precompiled Headers
+*.gch
+*.pch
 
-# QtCreator
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt Creator settings
 *.autosave
+*.creator.user*
+*.config
+*.creator
+*.files
+*.includes
 
-# QtCreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
+# CMake build files
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
 
-# QtCreator CMake
-CMakeLists.txt.user*
+# IDE-specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sdf
+*.opensdf
 
-# QtCreator 4.8< compilation database
-compile_commands.json
+# Temporary files
+*.swp
+*~
+.DS_Store
 
-# QtCreator local machine specific files for imported projects
-*creator.user*
-
-*_qmlcache.qrc
-# Ignore files in build/ and its subfolders
-/build
-/build/**/*.*
-# Allow bin files in build/ and its subfolders
-!/build/**/*.
+# Logs and databases
+*.log
+*.sqlite
