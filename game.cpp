@@ -30,12 +30,14 @@ public:
     // Getter for number of columns
     int getCols() { return cols; }
 
-    // Gets the character at specified cell
     char getCell(int row, int col) {
         if (row >= 0 && row < rows && col >= 0 && col < cols) {
             return board[row][col];
         }
+        // Add a default return when out of bounds
+        return ' '; // or throw an exception if you prefer
     }
+
 
     // Sets a cell value
     bool setCell(int row, int col, char symbol) {
@@ -212,11 +214,23 @@ void Game::HighlightCell(int column, int Row, char ColorKey)
         }
     }
 }
+int Player1Wins = 0;
+int Player2Wins = 0;
 void Game::ChangePlayerWins(char PlayerKey)
 {
-
+    if(PlayerKey == 'R')
+    {
+        Player1Wins++;
+        QPlainTextEdit* player1WinsText = this->findChild<QPlainTextEdit*>("Player1Wins");
+        player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
+    }
+    if(PlayerKey == 'B')
+    {
+        Player2Wins++;
+        QPlainTextEdit* player2WinsText = this->findChild<QPlainTextEdit*>("Player2Wins");
+        player2WinsText->setPlainText("Player 2's Wins: " + QString::number(Player2Wins));
+    }
 }
-
 //Make sure to -1 from row and columnso it starts at index 0
 void Game::DropInColumn(int column) {
     int highlightCol = column - 1;
