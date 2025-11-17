@@ -280,6 +280,7 @@ void Game::DropInColumn(int column) {
             } else {
                 currentPlayerPiece = 'B';
             }
+            ChangeGameStateText(currentPlayerPiece);
         }
     } else {
         // Need to create dialogue box to state that collumn is full and to try another
