@@ -17,6 +17,8 @@ set(PROJECT_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    boardgrid.cpp
+    boardgrid.h
     game.cpp
     game.h
     game.ui
@@ -35,6 +37,8 @@ else()
     else()
         add_executable(COP_II
             ${PROJECT_SOURCES}
+            boardgrid.h boardgrid.cpp
+            battleship.h battleship.cpp battleship.ui
         )
     endif()
 endif()

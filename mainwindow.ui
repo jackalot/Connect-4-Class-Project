@@ -14,42 +14,143 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QGroupBox" name="Connect4">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>130</y>
-      <width>160</width>
-      <height>80</height>
+      <x>10</x>
+      <y>20</y>
+      <width>771</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="font">
+        <font>
+         <family>Comfortaa SemiBold</family>
+         <pointsize>60</pointsize>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="plainText">
+        <string>Connect 4
+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="Buttons">
+       <item>
+        <widget class="QPushButton" name="OnePlayerButtonC4">
+         <property name="text">
+          <string>One Player</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="TwoPlayerButtonC4">
+         <property name="text">
+          <string>Two Player's</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="OnePlayerButton">
+   <widget class="QGroupBox" name="BattleShip">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>410</y>
-      <width>201</width>
-      <height>26</height>
+      <x>10</x>
+      <y>150</y>
+      <width>771</width>
+      <height>121</height>
      </rect>
     </property>
-    <property name="text">
-     <string>One Player</string>
+    <property name="title">
+     <string/>
     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit_2">
+       <property name="font">
+        <font>
+         <family>Comfortaa SemiBold</family>
+         <pointsize>60</pointsize>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="plainText">
+        <string>Battleship</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="Buttons_2">
+       <item>
+        <widget class="QPushButton" name="OnePlayerButtonBS">
+         <property name="text">
+          <string>One Player</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="TwoPlayerButton">
+   <widget class="QGroupBox" name="TicTacToe">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>450</y>
-      <width>201</width>
-      <height>26</height>
+      <x>0</x>
+      <y>280</y>
+      <width>771</width>
+      <height>121</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Two Player</string>
+    <property name="title">
+     <string/>
     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit_3">
+       <property name="font">
+        <font>
+         <family>Comfortaa SemiBold</family>
+         <pointsize>60</pointsize>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="plainText">
+        <string>Tic Tac Toe</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="Buttons_3">
+       <item>
+        <widget class="QPushButton" name="OnePlayerButtonTTT">
+         <property name="text">
+          <string>One Player</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="TwoPlayerButtonTTT">
+         <property name="text">
+          <string>Two Player's</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

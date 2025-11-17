@@ -2037,6 +2037,52 @@
     </property>
    </widget>
   </widget>
+  <widget class="QPlainTextEdit" name="PlayerTurnText">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>250</y>
+     <width>201</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="plainText">
+    <string>It is player 1's turn.</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="Player1WinText">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>250</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Player 1 Win's
+</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="Player2WinText">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>270</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Player 2 Win's
+</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

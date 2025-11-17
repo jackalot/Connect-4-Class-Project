@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include <QMainWindow>
 #include "game.h"
+#include "battleship.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,13 +20,21 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_OnePlayerButton_clicked();
 
-    void on_TwoPlayerButton_clicked();
+    void on_OnePlayerButtonBS_clicked();
+
+    void on_OnePlayerButtonC4_clicked();
+
+    void on_TwoPlayerButtonC4_clicked();
+
+    void on_OnePlayerButtonTTT_clicked();
+
+    void on_TwoPlayerButtonTTT_clicked();
 
 private:
     Ui::MainWindow *ui;
     // make an instance of this, we will reveal this window in mainwindow.cpp
     Game *newGame;
+    battleship *newBattleship;
 };
 #endif // MAINWINDOW_H

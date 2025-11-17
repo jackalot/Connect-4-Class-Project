@@ -11,20 +11,47 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-//Press Start buttons
-void MainWindow::on_OnePlayerButton_clicked()
+/*
+Battle Ship
+*/
+void MainWindow::on_OnePlayerButtonBS_clicked()
 {
     hide();
+    newBattleship = new battleship(this);
+    newBattleship->show();
+}
+
+/*
+Connect 4
+*/
+void MainWindow::on_OnePlayerButtonC4_clicked()
+{
+    // Hides main window and then reveals gameWindow
+    hide();
     newGame = new Game(this);
-    newGame->setSinglePlayer(true);   // <-- One Player
     newGame->show();
 }
 
-void MainWindow::on_TwoPlayerButton_clicked()
+
+void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
+    // Hides main window and then reveals gameWindow
     hide();
     newGame = new Game(this);
-    newGame->setSinglePlayer(false);  // <-- Two Players
     newGame->show();
+}
+
+/*
+ * Tic Tack Toe
+ */
+void MainWindow::on_OnePlayerButtonTTT_clicked()
+{
+
+}
+
+
+void MainWindow::on_TwoPlayerButtonTTT_clicked()
+{
+
 }
 

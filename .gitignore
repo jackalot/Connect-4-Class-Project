@@ -1,59 +1,49 @@
-# C++ objects and libs
+# Overwrite .gitignore with a clean, comprehensive configuration
+cat > .gitignore << EOF
+# Qt Creator user files
+*.pro.user
+*.pro.user.*
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Build directories
+build/
+build-*/
+CMakeFiles/
+cmake_install.cmake
+CMakeCache.txt
+
+# Compiled Object files
 *.slo
 *.lo
 *.o
-*.a
-*.la
-*.lai
+*.obj
+
+# Compiled Dynamic libraries
 *.so
-*.so.*
-*.dll
 *.dylib
+*.dll
 
-# Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
-/.qmake.cache
-/.qmake.stash
-*.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-*.qmlc
-*.jsc
-Makefile*
-*build-*
-*.qm
-*.prl
+# Compiled Static libraries
+*.a
+*.lib
 
-# Qt unit tests
-target_wrapper.*
+# Executables
+*.exe
+*.out
+*.app
 
-# QtCreator
-*.autosave
+# IDE specific files
+.vscode/
+.idea/
+*.suo
 
-# QtCreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
+# Temporary files
+*.swp
+*~
+.DS_Store
 
-# QtCreator CMake
-CMakeLists.txt.user*
-
-# QtCreator 4.8< compilation database
-compile_commands.json
-
-# QtCreator local machine specific files for imported projects
-*creator.user*
-
-*_qmlcache.qrc
-# Ignore files in build/ and its subfolders
-/build
-/build/**/*.*
-# Allow bin files in build/ and its subfolders
-!/build/**/*.
+# Logs and databases
+*.log
+*.sqlite
+EOF
