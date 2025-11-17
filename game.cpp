@@ -237,7 +237,16 @@ void Game::ChangePlayerWins(char PlayerKey)
 }
 void ChangeGameStateText(char PlayerKey)
 {
-
+     QPlainTextEdit* PlayerTurnText = this->findChild<QPlainTextEdit*>("PlayerTurnText");
+    switch(PlayerKey)
+    {
+        case 'R':
+                PlayerTurnText->setPlainText("Player 1's turn");
+        case 'B':
+                PlayerTurnText->setPlainText("Player 2's turn");
+        default:
+            PlayerTurnText->setPlainText("Player 1's turn");
+    }
 }
 
 //Make sure to -1 from row and columnso it starts at index 0
