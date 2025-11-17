@@ -30,3 +30,33 @@ void MainWindow::on_TwoPlayerButton_clicked()
     newGame->show();
 }
 
+
+void MainWindow::on_OnePlayerButtonBS_clicked()
+{
+    /*Battle Ship*/
+}
+
+
+void MainWindow::on_OnePlayerButtonC4_clicked()
+{
+
+}
+
+
+void MainWindow::on_TwoPlayerButtonC4_clicked()
+{
+
+}
+
+
+void MainWindow::on_OnePlayerButtonTTT_clicked()
+{
+
+}
+
+
+void MainWindow::on_TwoPlayerButtonTTT_clicked()
+{
+
+}
+
