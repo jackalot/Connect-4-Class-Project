@@ -2037,7 +2037,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
+  <widget class="QPlainTextEdit" name="PlayerTurnText">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -2055,7 +2055,7 @@
     <string>It is player 1's turn.</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="Player1Wins">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -2075,7 +2075,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Player 1's wins:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QTextEdit" name="Player2Wins">
    <property name="geometry">
     <rect>
      <x>200</x>
