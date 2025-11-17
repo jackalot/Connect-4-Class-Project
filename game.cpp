@@ -244,8 +244,10 @@ void ChangeGameStateText(char PlayerKey)
                 PlayerTurnText->setPlainText("Player 1's turn");
         case 'B':
                 PlayerTurnText->setPlainText("Player 2's turn");
+        case 'F':
+                PlayerTurnText->setPlainText("Board Full");
         default:
-            PlayerTurnText->setPlainText("Player 1's turn");
+            PlayerTurnText->setPlainText("Game Over");
     }
 }
 
@@ -265,9 +267,11 @@ void Game::DropInColumn(int column) {
         if (ourGameBoard->checkWin(currentPlayerPiece)) {
             // Need to create dialogue box to show winner and turn off buttons
             ChangePlayerWins(currentPlayerPiece);
+            ChangeGameStateText('G');
 
         } else if (ourGameBoard->isFull()) {
             // Need to create dialogue box to show draw and turn off buttons
+            ChangeGameStateText('F');
 
         } else {
             // Switch player
