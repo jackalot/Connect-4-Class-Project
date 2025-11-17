@@ -235,7 +235,7 @@ void Game::ChangePlayerWins(char PlayerKey)
         }
     }
 }
-void ChangeGameStateText(char PlayerKey)
+void Game::ChangeGameStateText(char PlayerKey)
 {
      QPlainTextEdit* PlayerTurnText = this->findChild<QPlainTextEdit*>("PlayerTurnText");
     switch(PlayerKey)
