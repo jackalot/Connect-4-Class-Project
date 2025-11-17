@@ -1,13 +1,17 @@
-# Qt-specific build and generated files
+# Overwrite .gitignore with a clean, comprehensive configuration
+cat > .gitignore << EOF
+# Qt Creator user files
 *.pro.user
 *.pro.user.*
-*.qmake.stash
+CMakeLists.txt.user
+CMakeLists.txt.user.*
 
 # Build directories
 build/
 build-*/
-debug/
-release/
+CMakeFiles/
+cmake_install.cmake
+CMakeCache.txt
 
 # Compiled Object files
 *.slo
@@ -15,18 +19,12 @@ release/
 *.o
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
 
 # Compiled Static libraries
-*.lai
-*.la
 *.a
 *.lib
 
@@ -35,28 +33,10 @@ release/
 *.out
 *.app
 
-# Qt Creator settings
-*.autosave
-*.creator.user*
-*.config
-*.creator
-*.files
-*.includes
-
-# CMake build files
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
-install_manifest.txt
-
-# IDE-specific files
+# IDE specific files
 .vscode/
 .idea/
 *.suo
-*.user
-*.sdf
-*.opensdf
 
 # Temporary files
 *.swp
@@ -66,3 +46,4 @@ install_manifest.txt
 # Logs and databases
 *.log
 *.sqlite
+EOF
