@@ -1,75 +1,11 @@
 #include <vector>
 #include "game.h"
 #include "ui_game.h"
-
+#include "boardgrid.h"
 using namespace std;
 
 /* Class for board grid to be used for polymorphism if other
 games are created ex.tic tac toe and battleship*/
-class BoardGrid {
-
-// Private variable for showcasing encapsulation
-private:
-    vector<vector<char>> board;
-
-protected:
-    int rows;
-    int cols;
-
-public:
-
-    // Empty Vector for reuse as a 2d game grid
-    BoardGrid(int r, int c)
-        : rows(r), cols(c), board(r, vector<char>(c, ' ')) {}
-
-    ~BoardGrid() = default;
-
-    // Getter for number of rows
-    int getRows() { return rows; }
-
-    // Getter for number of columns
-    int getCols() { return cols; }
-
-    char getCell(int row, int col) {
-        if (row >= 0 && row < rows && col >= 0 && col < cols) {
-            return board[row][col];
-        }
-        // Add a default return when out of bounds
-        return ' '; // or throw an exception if you prefer
-    }
-
-
-    // Sets a cell value
-    bool setCell(int row, int col, char symbol) {
-        if (row >= 0 && row < rows && col >= 0 && col < cols) {
-            board[row][col] = symbol;
-            return true;
-        }
-        return false;
-    }
-
-    // Resets all cells in 2d vector to empty
-    void clearBoard() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                setCell(i, j, ' ');
-            }
-        }
-    }
-
-    /* Method for checking if board is full but only makes sense
-    for tic tac toe since connect 4 only need to check top row*/
-    bool isFull() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (board[i][j] == ' ') {
-                return false;
-                }
-            }
-        }
-    return true;
-    }
-};
 
 // Showing inheritance and potential for polymorphism
 class Connect4Board : public BoardGrid {
