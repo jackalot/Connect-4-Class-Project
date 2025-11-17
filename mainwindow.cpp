@@ -11,13 +11,17 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+/*
+Battle Ship
+*/
 void MainWindow::on_OnePlayerButtonBS_clicked()
 {
-    /*Battle Ship*/
+
 }
 
-
+/*
+Connect 4
+*/
 void MainWindow::on_OnePlayerButtonC4_clicked()
 {
     // Hides main window and then reveals gameWindow
@@ -35,7 +39,9 @@ void MainWindow::on_TwoPlayerButtonC4_clicked()
     newGame->show();
 }
 
-
+/*
+ * Tic Tack Toe
+ */
 void MainWindow::on_OnePlayerButtonTTT_clicked()
 {
 
