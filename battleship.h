@@ -1,0 +1,22 @@
+#ifndef BATTLESHIP_H
+#define BATTLESHIP_H
+
+#include <QDialog>
+
+namespace Ui {
+class battleship;
+}
+
+class battleship : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit battleship(QWidget *parent = nullptr);
+    ~battleship();
+
+private:
+    Ui::battleship *ui;
+};
+
+#endif // BATTLESHIP_H

@@ -16,7 +16,9 @@ Battle Ship
 */
 void MainWindow::on_OnePlayerButtonBS_clicked()
 {
-
+    hide();
+    newBattleship = new battleship(this);
+    newBattleship->show();
 }
 
 /*
