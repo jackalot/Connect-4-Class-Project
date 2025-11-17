@@ -112,24 +112,27 @@ QList<QPushButton*> gridButtons = this->findChildren<QPushButton*>(regex);
 }
 
 Game::~Game() { delete ui; }
-
+bool gameOver = false;
 void Game::onGridCellClicked()
 {
-    //Check which button was clicked
-    QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if(gameOver == false)
+    {
+        //Check which button was clicked
+        QPushButton* button = qobject_cast<QPushButton*>(sender());
 
-    //Check the name of the button
-    QString buttonName = button->objectName();
+        //Check the name of the button
+        QString buttonName = button->objectName();
 
-    //Use regex to parse out row and collumn
-    static QRegularExpression regex("Coll(\\d+)R(\\d+)");
-    QRegularExpressionMatch match = regex.match(buttonName);
+        //Use regex to parse out row and collumn
+        static QRegularExpression regex("Coll(\\d+)R(\\d+)");
+        QRegularExpressionMatch match = regex.match(buttonName);
 
-    //Get the column number and convert text to int
-    int col = match.captured(1).toInt();
+        //Get the column number and convert text to int
+        int col = match.captured(1).toInt();
 
-    //Drop piece
-    DropInColumn(col);
+        //Drop piece
+        DropInColumn(col);
+    }
 }
 
 void Game::HighlightCell(int column, int Row, char ColorKey)
@@ -171,6 +174,7 @@ void Game::ChangePlayerWins(char PlayerKey)
         }
     }
 }
+
 void Game::ChangeGameStateText(char PlayerKey)
 {
      QPlainTextEdit* PlayerTurnText = this->findChild<QPlainTextEdit*>("PlayerTurnText");
@@ -184,8 +188,10 @@ void Game::ChangeGameStateText(char PlayerKey)
             break;
         case 'F':
                 PlayerTurnText->setPlainText("Board Full");
+                gameOver = true;
             break;
         default:
+            gameOver = true;
             PlayerTurnText->setPlainText("Game Over");
     }
 }
