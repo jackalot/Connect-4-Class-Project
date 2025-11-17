@@ -21,6 +21,7 @@ public:
     explicit Game(QWidget *parent = nullptr);
     void HighlightCell(int column, int Row, char ColorKey);
     void ChangePlayerWins(char PlayerKey);
+    void ChangeGameStateText(char PlayerKey);
     ~Game();
 
 private slots:

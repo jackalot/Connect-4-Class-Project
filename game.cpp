@@ -235,6 +235,10 @@ void Game::ChangePlayerWins(char PlayerKey)
         }
     }
 }
+void ChangeGameStateText(char PlayerKey)
+{
+
+}
 
 //Make sure to -1 from row and columnso it starts at index 0
 void Game::DropInColumn(int column) {
