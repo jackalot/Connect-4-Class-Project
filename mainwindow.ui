@@ -27,7 +27,7 @@
      <item>
       <widget class="QPushButton" name="TwoPlayerButton">
        <property name="text">
-        <string>Two Player</string>
+        <string>Two Player's</string>
        </property>
       </widget>
      </item>
