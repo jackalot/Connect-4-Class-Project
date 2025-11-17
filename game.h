@@ -2,6 +2,7 @@
 #define GAME_H
 #include <QPushButton>
 #include <QDialog>
+#include <QPlainTextEdit>
 #include <QRegularExpression>
 using namespace std;
 
@@ -25,8 +26,6 @@ public:
 private slots:
 
     void onGridCellClicked();
-
-    void on_Coll6R1_clicked();
 
 private:
     Ui::Game *ui;
