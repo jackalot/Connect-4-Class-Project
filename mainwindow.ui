@@ -14,42 +14,59 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>10</y>
+      <width>171</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="TwoPlayerButton">
+       <property name="text">
+        <string>Two Player</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="OnePlayerButton">
+       <property name="text">
+        <string>One Player</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>130</y>
-      <width>160</width>
-      <height>80</height>
+      <x>209</x>
+      <y>29</y>
+      <width>581</width>
+      <height>111</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
-   </widget>
-   <widget class="QPushButton" name="OnePlayerButton">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>410</y>
-      <width>201</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>One Player</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="TwoPlayerButton">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>450</y>
-      <width>201</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Two Player</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="font">
+        <font>
+         <family>Comfortaa SemiBold</family>
+         <pointsize>60</pointsize>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="plainText">
+        <string>Connect 4
+</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
