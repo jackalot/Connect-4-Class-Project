@@ -218,7 +218,7 @@ int Player1Wins = 0;
 int Player2Wins = 0;
 void Game::ChangePlayerWins(char PlayerKey)
 {
-    if(PlayerKey == 'R')
+    if(PlayerKey == 'B')
     {
         Player1Wins++;
         QPlainTextEdit* player1WinsText = this->findChild<QPlainTextEdit*>("Player1WinText");
@@ -226,7 +226,7 @@ void Game::ChangePlayerWins(char PlayerKey)
             player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
         }
     }
-    if(PlayerKey == 'B')
+    if(PlayerKey == 'R')
     {
         Player2Wins++;
         QPlainTextEdit* player2WinsText = this->findChild<QPlainTextEdit*>("Player2WinText");
@@ -241,10 +241,10 @@ void Game::ChangeGameStateText(char PlayerKey)
     switch(PlayerKey)
     {
         case 'R':
-                PlayerTurnText->setPlainText("Player 1's turn");
+                PlayerTurnText->setPlainText("Player 2's turn");
             break;
         case 'B':
-                PlayerTurnText->setPlainText("Player 2's turn");
+                PlayerTurnText->setPlainText("Player 1's turn");
             break;
         case 'F':
                 PlayerTurnText->setPlainText("Board Full");
