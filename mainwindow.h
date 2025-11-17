@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include <QMainWindow>
 #include "game.h"
+#include "battleship.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -34,5 +35,6 @@ private:
     Ui::MainWindow *ui;
     // make an instance of this, we will reveal this window in mainwindow.cpp
     Game *newGame;
+    battleship *newBattleship;
 };
 #endif // MAINWINDOW_H
