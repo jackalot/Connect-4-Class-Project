@@ -212,6 +212,10 @@ void Game::HighlightCell(int column, int Row, char ColorKey)
         }
     }
 }
+void Game::ChangePlayerWins(char PlayerKey)
+{
+
+}
 
 //Make sure to -1 from row and columnso it starts at index 0
 void Game::DropInColumn(int column) {
