@@ -17,6 +17,9 @@ set(PROJECT_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    battleship.cpp
+    battleship.h
+    battleship.ui
     boardgrid.cpp
     boardgrid.h
     game.cpp
