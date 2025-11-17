@@ -46,14 +46,14 @@
      <item>
       <layout class="QVBoxLayout" name="Buttons">
        <item>
-        <widget class="QPushButton" name="OnePlayerButton">
+        <widget class="QPushButton" name="OnePlayerButtonC4">
          <property name="text">
           <string>One Player</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="TwoPlayerButton">
+        <widget class="QPushButton" name="TwoPlayerButtonC4">
          <property name="text">
           <string>Two Player's</string>
          </property>
@@ -94,7 +94,7 @@
      <item>
       <layout class="QVBoxLayout" name="Buttons_2">
        <item>
-        <widget class="QPushButton" name="OnePlayerButton_2">
+        <widget class="QPushButton" name="OnePlayerButtonBS">
          <property name="text">
           <string>One Player</string>
          </property>
@@ -135,14 +135,14 @@
      <item>
       <layout class="QVBoxLayout" name="Buttons_3">
        <item>
-        <widget class="QPushButton" name="OnePlayerButton_3">
+        <widget class="QPushButton" name="OnePlayerButtonTTT">
          <property name="text">
           <string>One Player</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="TwoPlayerButton_3">
+        <widget class="QPushButton" name="TwoPlayerButtonTTT">
          <property name="text">
           <string>Two Player's</string>
          </property>
