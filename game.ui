@@ -2055,7 +2055,7 @@
     <string>It is player 1's turn.</string>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="Player2WinText_2">
+  <widget class="QPlainTextEdit" name="Player1WinText">
    <property name="geometry">
     <rect>
      <x>200</x>
