@@ -19,9 +19,16 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_OnePlayerButton_clicked();
 
-    void on_TwoPlayerButton_clicked();
+    void on_OnePlayerButtonBS_clicked();
+
+    void on_OnePlayerButtonC4_clicked();
+
+    void on_TwoPlayerButtonC4_clicked();
+
+    void on_OnePlayerButtonTTT_clicked();
+
+    void on_TwoPlayerButtonTTT_clicked();
 
 private:
     Ui::MainWindow *ui;
