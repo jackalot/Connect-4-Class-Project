@@ -221,16 +221,21 @@ void Game::ChangePlayerWins(char PlayerKey)
     if(PlayerKey == 'R')
     {
         Player1Wins++;
-        QPlainTextEdit* player1WinsText = this->findChild<QPlainTextEdit*>("Player1Wins");
-        player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
+        QPlainTextEdit* player1WinsText = this->findChild<QPlainTextEdit*>("Player1WinText");
+        if (player1WinsText) {
+            player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
+        }
     }
     if(PlayerKey == 'B')
     {
         Player2Wins++;
-        QPlainTextEdit* player2WinsText = this->findChild<QPlainTextEdit*>("Player2Wins");
-        player2WinsText->setPlainText("Player 2's Wins: " + QString::number(Player2Wins));
+        QPlainTextEdit* player2WinsText = this->findChild<QPlainTextEdit*>("Player2WinText");
+        if (player2WinsText) {
+            player2WinsText->setPlainText("Player 2's Wins: " + QString::number(Player2Wins));
+        }
     }
 }
+
 //Make sure to -1 from row and columnso it starts at index 0
 void Game::DropInColumn(int column) {
     int highlightCol = column - 1;
@@ -246,6 +251,7 @@ void Game::DropInColumn(int column) {
         // Check for win/draw
         if (ourGameBoard->checkWin(currentPlayerPiece)) {
             // Need to create dialogue box to show winner and turn off buttons
+            ChangePlayerWins(currentPlayerPiece);
 
         } else if (ourGameBoard->isFull()) {
             // Need to create dialogue box to show draw and turn off buttons
