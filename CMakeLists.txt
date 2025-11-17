@@ -36,6 +36,7 @@ else()
         add_executable(COP_II
             ${PROJECT_SOURCES}
             boardgrid.h boardgrid.cpp
+            battleship.h battleship.cpp battleship.ui
         )
     endif()
 endif()

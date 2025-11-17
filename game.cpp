@@ -90,7 +90,7 @@ public:
 };
 
 //Call Gmae to create a new game window and start with player 1 Blue
-Game::Game(QWidget *parent) :
+Game::Game(QWidget *parent, playerAmount) :
     QDialog(parent),
     ui(new Ui::Game),
     currentPlayerPiece('B'){
