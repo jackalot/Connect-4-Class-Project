@@ -28,6 +28,8 @@ private slots:
 
     void onGridCellClicked();
 
+    void on_resetButton_clicked();
+
 private:
     Ui::Game *ui;
     Connect4Board* ourGameBoard;
