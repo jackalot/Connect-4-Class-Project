@@ -240,9 +240,12 @@ void Game::DropInColumn(int column) {
 void Game::on_resetButton_clicked()
 {
     ourGameBoard->clearBoard();
-    for(int col = 0; i < ourGameBoard->getCols(); col++)
+    for(int currentCol = 1; currentCol <= ourGameBoard->getCols(); currentCol++)
     {
+        for(int currentRow = 1; currentRow <= ourGameBoard->getRows(); currentRow++)
+        {
+            HighlightCell(currentCol, currentRow, 'G');
+        }
     }
-    HighlightCell(13,8, 'G');
 }
 
