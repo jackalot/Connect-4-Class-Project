@@ -151,6 +151,10 @@ void Game::HighlightCell(int column, int Row, char ColorKey)
         } else if (ColorKey == 'R') {
             button->setStyleSheet("background-color: red; color: white;");
         }
+        else
+        {
+            button->setStyleSheet("background-color: gray; color: white;");
+        }
     }
 }
 int Player1Wins = 0;
@@ -236,5 +240,9 @@ void Game::DropInColumn(int column) {
 void Game::on_resetButton_clicked()
 {
     ourGameBoard->clearBoard();
+    for(int col = 0; i < ourGameBoard->getCols(); col++)
+    {
+    }
+    HighlightCell(13,8, 'G');
 }
 
