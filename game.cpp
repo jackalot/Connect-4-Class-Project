@@ -247,5 +247,8 @@ void Game::on_resetButton_clicked()
             HighlightCell(currentCol, currentRow, 'G');
         }
     }
+    ChangeGameStateText('B');
+    currentPlayerPiece = 'B';
+    gameOver = false;
 }
 
