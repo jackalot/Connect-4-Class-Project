@@ -2083,6 +2083,51 @@
 </string>
    </property>
   </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>330</y>
+     <width>104</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Click Here to reset the board!</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="resetButton">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>335</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">button-&gt;setStyleSheet(R&quot;(
+    QPushButton {
+        background-color: red;
+        border: none;
+        color: white; /* Optional: set text color */
+        padding: 5px 10px; /* Optional: add some padding */
+        border-radius: 5px; /* Optional: rounded corners */
+    }
+    
+    QPushButton:hover {
+        background-color: darkred; /* Optional: change color on hover */
+    }
+)&quot;);
+</string>
+   </property>
+   <property name="text">
+    <string>RESET</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
