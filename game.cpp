@@ -232,3 +232,9 @@ void Game::DropInColumn(int column) {
     }
 
 }
+
+void Game::on_resetButton_clicked()
+{
+    ourGameBoard->clearBoard();
+}
+
