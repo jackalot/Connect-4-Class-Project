@@ -2,6 +2,7 @@
 #include "ui_battleship.h"
 #include <QRegularExpression>
 #include "boardgrid.h"
+#include <vector>
 // Set up class and methods
 battleship::battleship(QWidget *parent)
     : QDialog(parent)
@@ -27,6 +28,8 @@ public:
 
 };
 class Ship {
+
+public:
 
 };
 
