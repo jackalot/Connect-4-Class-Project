@@ -27,6 +27,7 @@ class BattleShipBoard : public BoardGrid {
     int BoardRowSize = 10;
     //Stores misses, ship locations, and hits
     BoardGrid PlayerBoard(BoardRowSize, BoardColSize);
+    // Enemy Board
     BoardGrid MissesAndHits(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
     /* ^ Board codes:
      * M: Miss
@@ -38,7 +39,26 @@ public:
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
     }
-
+    /* Attack/Recieve attack
+     * Board codes:
+     * M: Miss
+     * S: Ship
+     * H: Hit
+     * E: Empty
+     */
+    //Send Attack
+    void SendAttack(int Row, int Col)
+    {
+        MissesAndHits.RecieveAttack(Row, Col);
+        // change our hits/misses if we won or not?
+    }
+    // Did we get hit?
+    bool RecieveAttack(int Row, int Col)
+    {
+        bool attempt;
+        // check if we got hit
+        return attempt;
+    }
 };
 BattleShipBoard PlayerOneBoard;
 BattleShipBoard AIBoard;
