@@ -26,6 +26,10 @@ public:
     BattleShipBoard() : BoardGrid(10, 10) {}
 
 };
+class Ship {
+
+};
+
 class ShipPiece {
 private:
     int X;
