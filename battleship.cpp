@@ -23,6 +23,7 @@ battleship::battleship(QWidget *parent)
 
 class BattleShipBoard : public BoardGrid {
     vector<Ship> ShipsOnBoard;
+    int SunkCount;
     int BoardColSize = 10;
     int BoardRowSize = 10;
     //Stores misses, ship locations, and hits
