@@ -38,11 +38,15 @@ class Ship {
 public:
     vector<ShipPiece> ourPieces;
     int ShipSize;
+    int HitCount = 0;
     Ship(int newSize)
     {
         ShipSize = newSize;
     }
-
+    void IncreaseHitCount()
+    {
+        HitCount++;
+    }
 };
 
 class ShipPiece {
