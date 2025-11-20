@@ -40,6 +40,10 @@ public:
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
     }
+    void PlaceShip(int Col, int Row)
+    {
+
+    }
     /* Attack/Recieve attack
      * Board codes:
      * M: Miss
@@ -48,13 +52,13 @@ public:
      * E: Empty
      */
     //Send Attack
-    void SendAttack(int Row, int Col)
+    void SendAttack(int Col, int Row)
     {
-        MissesAndHits.RecieveAttack(Row, Col);
+        MissesAndHits.RecieveAttack(Col, Row);
         // change our hits/misses if we won or not?
     }
     // Did we get hit?
-    bool RecieveAttack(int Row, int Col)
+    bool RecieveAttack(int Col, int Row)
     {
         bool attempt;
         // check if we got hit
