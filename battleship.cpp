@@ -47,6 +47,10 @@ public:
     {
         HitCount++;
     }
+    bool CheckIfSunk()
+    {
+        return HitCount == ShipSize;
+    }
 };
 
 class ShipPiece {
