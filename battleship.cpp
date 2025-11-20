@@ -28,8 +28,13 @@ public:
 
 };
 class Ship {
-
 public:
+    vector<ShipPiece> ourPieces;
+    int ShipSize;
+    Ship(int newSize)
+    {
+        ShipSize = newSize;
+    }
 
 };
 
