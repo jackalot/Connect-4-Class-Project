@@ -46,18 +46,20 @@ battleship::~battleship()
 {
     delete ui;
 }
-
+bool gameOver = false;
 void battleship::onButtonClicked() {
-    QPushButton* button = qobject_cast<QPushButton*>(sender());
-    if (button) {
-        QString buttonName = button->objectName();
-        //Use regex to parse out row and collumn
-        static QRegularExpression regex("Coll(\\d+)R(\\d+)");
-        QRegularExpressionMatch match = regex.match(buttonName);
-
-        // Your code based on buttonName
-        int col = match.captured(1).toInt();
-        int row = match.captured(2).toInt();
-        HighlightCell(row, col);
+    if(gameOver)
+    {
+        QPushButton* button = qobject_cast<QPushButton*>(sender());
+        if (button) {
+            QString buttonName = button->objectName();
+            //Use regex to parse out row and collumn
+            static QRegularExpression regex("Coll(\\d+)R(\\d+)");
+            QRegularExpressionMatch match = regex.match(buttonName);
+            // Your code based on buttonName
+            int col = match.captured(1).toInt();
+            int row = match.captured(2).toInt();
+            HighlightCell(row, col);
+        }
     }
 }
