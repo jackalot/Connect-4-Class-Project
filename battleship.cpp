@@ -45,6 +45,10 @@ public:
     {
         return Y;
     }
+    void SetHit()
+    {
+        HIT = true;
+    }
 };
 
 // Highlights the proper scell we need
