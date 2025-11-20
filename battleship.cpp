@@ -26,12 +26,12 @@ class BattleShipBoard : public BoardGrid {
     int BoardColSize = 10;
     int BoardRowSize = 10;
     //Stores misses and hits
-    BoardGrid PlayerGrid;
-    //Stores hits and misses against enemy board.
-    BoardGrid MissesAndHits;
+    BoardGrid PlayerBoard(BoardRowSize, BoardColSize);
+    BoardGrid MissesAndHits(BoardRowSize, BoardColSize);
 public:
     // Initialize board to be a 10x10 grid
-    BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {}
+    BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
+    }
 
 };
 BattleShipBoard PlayerOneBoard;
