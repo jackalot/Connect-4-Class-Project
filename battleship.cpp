@@ -18,7 +18,16 @@ battleship::battleship(QWidget *parent)
         connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
     }
 }
+void battleship::HighlightCell(int row, int col)
+{
+    /*Create the object of the clicked button building
+    the row and collumn into "Coll%1R%2"*/
+    QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
 
+    //Find the button for the newly created object
+    QPushButton* button = this->findChild<QPushButton*>(buttonName);
+    button->setStyleSheet("background-color: green; color: white;");
+}
 battleship::~battleship()
 {
     delete ui;
@@ -29,5 +38,7 @@ void battleship::onButtonClicked() {
     if (button) {
         QString buttonName = button->objectName();
         // Your code based on buttonName
+        int col = match.captured(1).toInt();
+        HighlightCell(1, 1);
     }
 }
