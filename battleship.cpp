@@ -23,7 +23,7 @@ class BattleShipBoard : public BoardGrid {
 public:
 
     // Initialize board to be a 10x10 grid
-    Connect4Board() : BoardGrid(10, 10) {}
+    BattleShipBoard() : BoardGrid(10, 10) {}
 };
 // Highlights the proper scell we need
 void battleship::HighlightCell(int row, int col)
