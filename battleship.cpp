@@ -25,9 +25,9 @@ class BattleShipBoard : public BoardGrid {
     vector<Ship> ShipsOnBoard;
     int BoardColSize = 10;
     int BoardRowSize = 10;
-    //Stores misses and hits
+    //Stores misses, ship locations, and hits
     BoardGrid PlayerBoard(BoardRowSize, BoardColSize);
-    BoardGrid MissesAndHits(BoardRowSize, BoardColSize);
+    BoardGrid MissesAndHits(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
 public:
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
