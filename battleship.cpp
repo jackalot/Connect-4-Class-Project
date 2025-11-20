@@ -44,6 +44,6 @@ void battleship::onButtonClicked() {
         // Your code based on buttonName
         int col = match.captured(1).toInt();
         int row = match.captured(2).toInt();
-        HighlightCell(1, 1);
+        HighlightCell(row, col);
     }
 }
