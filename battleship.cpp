@@ -73,6 +73,7 @@ public:
     void SetHit()
     {
         HIT = true;
+        parentShip.IncreaseHitCount();
     }
 };
 
