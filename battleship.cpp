@@ -51,10 +51,12 @@ private:
     int Y;
     bool HIT = false;
 public:
-    ShipPiece(int xPos, int yPos)
+    Ship parentShip;
+    ShipPiece(int xPos, int yPos, Ship &ship)
     {
         X = xPos;
         Y = yPos;
+        parentShip = &ship;
     }
     int getXPos()
     {
