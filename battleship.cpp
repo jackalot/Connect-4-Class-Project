@@ -45,8 +45,17 @@ public:
      * P: Piece
      * S: Ship
     */
+    // if it's -1, none have been placed yet
+    int FirstPieceX = -1;
+    int FirstPieceY = -1;
     void PlaceShip(int Col, int Row)
     {
+        if(Col == FirstPieceX && Row == FirstPieceY)
+        {
+            // Reset
+            FirstPieceX = -1;
+            FirstPieceY = -1;
+        }
 
     }
     /* Attack/Recieve attack
