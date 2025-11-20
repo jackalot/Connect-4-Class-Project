@@ -20,11 +20,18 @@ battleship::battleship(QWidget *parent)
         connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
     }
 }
-class BattleShipBoard : public BoardGrid {
-public:
 
+class BattleShipBoard : public BoardGrid {
+    vector<Ship> ShipsOnBoard;
+    int BoardColSize = 10;
+    int BoardRowSize = 10;
+    //Stores misses and hits
+    BoardGrid PlayerGrid;
+    //Stores hits and misses against enemy board.
+    BoardGrid MissesAndHits;
+public:
     // Initialize board to be a 10x10 grid
-    BattleShipBoard() : BoardGrid(10, 10) {}
+    BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {}
 
 };
 class Ship {
