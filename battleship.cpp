@@ -24,7 +24,13 @@ public:
 
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(10, 10) {}
+
 };
+class ShipPiece {
+public:
+private:
+};
+
 // Highlights the proper scell we need
 void battleship::HighlightCell(int row, int col)
 {
