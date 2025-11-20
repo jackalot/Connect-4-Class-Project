@@ -34,6 +34,9 @@ public:
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {}
 
 };
+BattleShipBoard PlayerOneBoard;
+BattleShipBoard AIBoard;
+
 class Ship {
 public:
     vector<ShipPiece> ourPieces;
