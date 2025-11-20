@@ -10,6 +10,8 @@ class battleship;
 class battleship : public QDialog
 {
     Q_OBJECT
+private slots:
+    void onButtonClicked();
 
 public:
     explicit battleship(QWidget *parent = nullptr);
