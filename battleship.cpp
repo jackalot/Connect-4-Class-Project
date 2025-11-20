@@ -28,6 +28,12 @@ class BattleShipBoard : public BoardGrid {
     //Stores misses, ship locations, and hits
     BoardGrid PlayerBoard(BoardRowSize, BoardColSize);
     BoardGrid MissesAndHits(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
+    /* ^ Board codes:
+     * M: Miss
+     * S: Ship
+     * H: Hit
+     * E: Empty
+     */
 public:
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
