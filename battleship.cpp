@@ -1,7 +1,7 @@
 #include "battleship.h"
 #include "ui_battleship.h"
 #include <QRegularExpression>
-
+#include "boardgrid.h"
 // Set up class and methods
 battleship::battleship(QWidget *parent)
     : QDialog(parent)
@@ -19,6 +19,12 @@ battleship::battleship(QWidget *parent)
         connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
     }
 }
+class BattleShipBoard : public BoardGrid {
+public:
+
+    // Initialize board to be a 10x10 grid
+    Connect4Board() : BoardGrid(10, 10) {}
+};
 // Highlights the proper scell we need
 void battleship::HighlightCell(int row, int col)
 {
