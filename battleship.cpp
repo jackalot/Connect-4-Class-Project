@@ -138,9 +138,17 @@ public:
     }
 };
 
+
 // Highlights the proper scell we need
 void battleship::HighlightCell(int row, int col)
 {
+    /* Color Codes:
+     * P: Placing a ship piece (Purple)
+     * G: Ship (Green)
+     * R: Hit (Red)
+     * G: Miss (Gray)
+     * W: Default (White)
+     */
     /*Create the object of the clicked button building
     the row and collumn into "Coll%1R%2"*/
     QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
