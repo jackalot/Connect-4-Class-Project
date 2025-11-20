@@ -56,7 +56,16 @@ public:
             FirstPieceX = -1;
             FirstPieceY = -1;
         }
-
+        else
+        {
+            // First time clicking
+            if(FirstPieceX == -1 && FirstPieceY == -1)
+            {
+                //store it
+                FirstPieceX = Col;
+                FirstPieceY = Row;
+            }
+        }
     }
     /* Attack/Recieve attack
      * Board codes:
