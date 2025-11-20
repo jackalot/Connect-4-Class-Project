@@ -40,6 +40,11 @@ public:
     // Initialize board to be a 10x10 grid
     BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
     }
+    /* Place Ship code
+     * Board codes:
+     * P: Piece
+     * S: Ship
+    */
     void PlaceShip(int Col, int Row)
     {
 
