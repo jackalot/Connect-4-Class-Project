@@ -28,7 +28,23 @@ public:
 };
 class ShipPiece {
 private:
+    int X;
+    int Y;
+    bool HIT = false;
 public:
+    ShipPiece(int xPos, int yPos)
+    {
+        X = xPos;
+        Y = yPos;
+    }
+    int getXPos()
+    {
+        return X;
+    }
+    int getYPos()
+    {
+        return Y;
+    }
 };
 
 // Highlights the proper scell we need
