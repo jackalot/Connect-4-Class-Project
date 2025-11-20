@@ -48,7 +48,7 @@ battleship::~battleship()
 }
 bool gameOver = false;
 void battleship::onButtonClicked() {
-    if(gameOver)
+    if(gameOver == false)
     {
         QPushButton* button = qobject_cast<QPushButton*>(sender());
         if (button) {
