@@ -2,6 +2,7 @@
 #include "ui_battleship.h"
 #include <QRegularExpression>
 
+// Set up class and methods
 battleship::battleship(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::battleship)
@@ -18,6 +19,7 @@ battleship::battleship(QWidget *parent)
         connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
     }
 }
+// Highlights the proper scell we need
 void battleship::HighlightCell(int row, int col)
 {
     /*Create the object of the clicked button building
@@ -26,6 +28,12 @@ void battleship::HighlightCell(int row, int col)
 
     //Find the button for the newly created object
     QPushButton* button = this->findChild<QPushButton*>(buttonName);
+    /* We need the following kinds of styles:
+     * Selecting a slot for creating a ship
+     * Confirmed ships
+     * misses
+     * hits
+     */
     button->setStyleSheet("background-color: green; color: white;");
 }
 battleship::~battleship()
