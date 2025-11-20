@@ -27,8 +27,8 @@ public:
 
 };
 class ShipPiece {
-public:
 private:
+public:
 };
 
 // Highlights the proper scell we need
