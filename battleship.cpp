@@ -140,7 +140,7 @@ public:
 
 
 // Highlights the proper scell we need
-void battleship::HighlightCell(int row, int col)
+void battleship::HighlightCell(int row, int col, char ColorKey)
 {
     /* Color Codes:
      * P: Placing a ship piece (Purple)
@@ -184,7 +184,7 @@ void battleship::onButtonClicked() {
             if(placeMode == false)
             {
                 // for now
-                HighlightCell(row, col);
+                HighlightCell(row, col, 'G');
             }
             if(placeMode == true)
             {
