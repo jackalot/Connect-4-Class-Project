@@ -168,6 +168,7 @@ battleship::~battleship()
     delete ui;
 }
 bool gameOver = false;
+bool placeMode = true;
 void battleship::onButtonClicked() {
     if(gameOver == false)
     {
@@ -180,7 +181,15 @@ void battleship::onButtonClicked() {
             // Your code based on buttonName
             int col = match.captured(1).toInt();
             int row = match.captured(2).toInt();
-            HighlightCell(row, col);
+            if(placeMode == false)
+            {
+                // for now
+                HighlightCell(row, col);
+            }
+            if(placeMode == true)
+            {
+                PlayerOneBoard.PlaceShip(col, row);
+            }
         }
     }
 }
