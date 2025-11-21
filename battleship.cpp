@@ -183,10 +183,10 @@ battleship::~battleship()
 {
     delete ui;
 }
-bool gameOver = false;
+bool GameOver = false;
 bool placeMode = true;
 void battleship::onButtonClicked() {
-    if(gameOver == false)
+    if(GameOver == false)
     {
         QPushButton* button = qobject_cast<QPushButton*>(sender());
         if (button) {
