@@ -80,9 +80,9 @@ class BattleShipBoard : public BoardGrid {
     int BoardColSize = 10;
     int BoardRowSize = 10;
     //Stores misses, ship locations, and hits
-    BoardGrid PlayerBoard = new BoardGrid(BoardRowSize, BoardColSize);
+    BoardGrid* PlayerBoard;
     // Enemy Board
-    BoardGrid MissesAndHits = new BoardGrid(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
+    BoardGrid* MissesAndHits;     //Stores misses, and hits for enemy ship
     /* ^ Board codes:
      * M: Miss
      * S: Ship
@@ -91,7 +91,14 @@ class BattleShipBoard : public BoardGrid {
      */
 public:
     // Initialize board to be a 10x10 grid
-    BattleShipBoard() : BoardGrid(BoardRowSize, BoardColSize) {
+    BattleShipBoard()
+        : BoardGrid(BoardRowSize, BoardColSize),
+        PlayerBoard(nullptr),
+        MissesAndHits(nullptr)
+    {
+        // Dynamically allocate BoardGrid objects
+        PlayerBoard = new BoardGrid(BoardRowSize, BoardColSize);
+        MissesAndHits = new BoardGrid(BoardRowSize, BoardColSize);
     }
     /* Place Ship code
      * Board codes:
