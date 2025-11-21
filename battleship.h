@@ -10,7 +10,9 @@ class battleship;
 class battleship : public QDialog
 {
     Q_OBJECT
-
+private slots:
+    void onButtonClicked();
+    void HighlightCell(int row, int col);
 public:
     explicit battleship(QWidget *parent = nullptr);
     ~battleship();
