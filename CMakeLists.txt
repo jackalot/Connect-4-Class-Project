@@ -22,9 +22,9 @@ set(PROJECT_SOURCES
     battleship.ui
     boardgrid.cpp
     boardgrid.h
-    game.cpp
-    game.h
-    game.ui
+    Connect4.cpp
+    Connect4.h
+    Connect4.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
