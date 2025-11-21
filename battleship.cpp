@@ -137,7 +137,8 @@ public:
     //Send Attack
     void SendAttack(int Col, int Row)
     {
-        MissesAndHits.RecieveAttack(Col, Row);
+        // we are pointing to BoardGrid, not BattleShipBoard
+        MissesAndHits->RecieveAttack(Col, Row);
         // change our hits/misses if we won or not?
     }
     // Did we get hit?
