@@ -3,23 +3,76 @@
 #include <QRegularExpression>
 #include "boardgrid.h"
 #include <vector>
-// Set up class and methods
-battleship::battleship(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::battleship)
+using namespace std;
+
+// Forward declarations
+class Ship;  // Add this forward declaration
+
+class ShipPiece {
+private:
+    int X;
+    int Y;
+    bool HIT = false;
+public:
+    Ship* parentShip;  // Change to pointer
+
+    ShipPiece(int xPos, int yPos, Ship* ship)  // Modify constructor
+    {
+        X = xPos;
+        Y = yPos;
+        parentShip = ship;
+    }
+
+    int getXPos()
+    {
+        return X;
+    }
+
+    int getYPos()
+    {
+        return Y;
+    }
+
+    void SetHit();  // Forward declaration of SetHit
+};
+
+class Ship {
+public:
+    vector<ShipPiece> ourPieces;
+    int ShipSize;
+    int HitCount = 0;
+
+    Ship(int newSize)
+    {
+        ShipSize = newSize;
+    }
+
+    void IncreaseHitCount()
+    {
+        HitCount++;
+    }
+
+    bool CheckIfSunk()
+    {
+        return HitCount == ShipSize;
+    }
+
+    // Add a method to add pieces
+    void AddPiece(int x, int y)
+    {
+        ourPieces.emplace_back(x, y, this);
+    }
+};
+
+// Implement SetHit after Ship is fully defined
+void ShipPiece::SetHit()
 {
-    ui->setupUi(this);
-
-    // Use a regex to find buttons with names that match the pattern
-    QRegularExpression regex("Coll\\d+R\\d+");
-    // Find all QPushButtons that match the regex
-    QList<QPushButton*> gridButtons = this->findChildren<QPushButton*>(regex);
-
-    // Connect each button's clicked signal to the onButtonClicked slot
-    for (QPushButton* button : gridButtons) {
-        connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
+    HIT = true;
+    if (parentShip) {
+        parentShip->IncreaseHitCount();
     }
 }
+
 
 class BattleShipBoard : public BoardGrid {
     vector<Ship> ShipsOnBoard;
@@ -27,9 +80,9 @@ class BattleShipBoard : public BoardGrid {
     int BoardColSize = 10;
     int BoardRowSize = 10;
     //Stores misses, ship locations, and hits
-    BoardGrid PlayerBoard(BoardRowSize, BoardColSize);
+    BoardGrid PlayerBoard = new BoardGrid(BoardRowSize, BoardColSize);
     // Enemy Board
-    BoardGrid MissesAndHits(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
+    BoardGrid MissesAndHits = new BoardGrid(BoardRowSize, BoardColSize);     //Stores misses, and hits for enemy ship
     /* ^ Board codes:
      * M: Miss
      * S: Ship
@@ -91,52 +144,7 @@ public:
 BattleShipBoard PlayerOneBoard;
 BattleShipBoard AIBoard;
 
-class Ship {
-public:
-    vector<ShipPiece> ourPieces;
-    int ShipSize;
-    int HitCount = 0;
-    Ship(int newSize)
-    {
-        ShipSize = newSize;
-    }
-    void IncreaseHitCount()
-    {
-        HitCount++;
-    }
-    bool CheckIfSunk()
-    {
-        return HitCount == ShipSize;
-    }
-};
 
-class ShipPiece {
-private:
-    int X;
-    int Y;
-    bool HIT = false;
-public:
-    Ship parentShip;
-    ShipPiece(int xPos, int yPos, Ship &ship)
-    {
-        X = xPos;
-        Y = yPos;
-        parentShip = &ship;
-    }
-    int getXPos()
-    {
-        return X;
-    }
-    int getYPos()
-    {
-        return Y;
-    }
-    void SetHit()
-    {
-        HIT = true;
-        parentShip.IncreaseHitCount();
-    }
-};
 
 
 // Highlights the proper scell we need
