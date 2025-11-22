@@ -50,7 +50,9 @@ class BattleShipBoard : public BoardGrid {
     vector<Ship> ShipsOnBoard;
     BoardGrid* PlayerBoard;
     BoardGrid* MissesAndHits;
-
+    // The first spot we click for placing a ship
+    int originalX;
+    int originalY;
 public:
     BattleShipBoard() : BoardGrid(10, 10), PlayerBoard(new BoardGrid(10, 10)), MissesAndHits(new BoardGrid(10, 10)) {}
 
@@ -61,6 +63,7 @@ public:
 
 void BattleShipBoard::PlaceShip(int Col, int Row) {
     // Implementation for placing the ship
+
 }
 
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
