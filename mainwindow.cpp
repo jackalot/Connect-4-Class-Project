@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , newGame(nullptr)
+    , newConnect4(nullptr)
     , newBattleship(nullptr)
 {
     try {
@@ -117,7 +117,6 @@ void MainWindow::on_OnePlayerButtonBS_clicked()
 
 void MainWindow::on_OnePlayerButtonC4_clicked()
 {
-<<<<<<< HEAD
     try {
         qDebug() << "OnePlayerButtonC4 clicked";
 
@@ -133,14 +132,14 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
 
         // Create Connect 4 window
         try {
-            newGame = std::make_unique<Game>(this);
+            newConnect4 = std::make_unique<Game>(this);
 
             // Validate object creation
-            if (!newGame) {
+            if (!newConnect4) {
                 throw std::runtime_error("Failed to create Connect 4 window");
             }
 
-            newGame->show();
+            newConnect4->show();
         }
         catch (const std::exception& e) {
             qDebug() << "Connect 4 Window Creation Error: " << e.what();
@@ -159,24 +158,19 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
         qDebug() << "Unexpected error in Connect 4 button handler";
         show(); // Ensure main window is visible
     }
-=======
     // Hides main window and then reveals gameWindow
     hide();
-    newGame = new Game(this, true);
-    newGame->show();
->>>>>>> 464146b39fd54439f42438d627d074115ac38df4
+    newConnect4 = std::make_unique<Game>(this, true);
+    newConnect4->show();
 }
 void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
-<<<<<<< HEAD
     // Reuse one-player logic for now
     on_OnePlayerButtonC4_clicked();
-=======
     // Hides main window and then reveals gameWindow
     hide();
-    newGame = new Game(this, false);
-    newGame->show();
->>>>>>> 464146b39fd54439f42438d627d074115ac38df4
+    newConnect4 = std::make_unique<Game>(this, true);
+    newConnect4->show();
 }
 
 void MainWindow::on_OnePlayerButtonTTT_clicked()

@@ -36,7 +36,7 @@ private:
     void setupConnections();
 
     Ui::MainWindow *ui;
-    std::unique_ptr<Game> newGame;
+    std::unique_ptr<Game> newConnect4;
     std::unique_ptr<battleship> newBattleship;
 };
 

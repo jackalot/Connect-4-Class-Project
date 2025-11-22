@@ -79,6 +79,10 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     MissesAndHits(new BoardGrid(10, 10)),
     parentUI(ui)
 {}
+bool BattleShipBoard::CheckSlotsIfAvailable()
+{
+    return true;
+}
 
 // Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
