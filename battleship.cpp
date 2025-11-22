@@ -81,7 +81,22 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
 {}
 bool BattleShipBoard::CheckSlotsIfAvailable()
 {
-    return true;
+    bool available = false;
+    // Check Vertically
+    if(originalX == FinalX)
+    {
+        // check between the coordinates
+    }
+    // check horizontally
+    else if(originalY == FinalY)
+    {
+        // check between the coordinates
+    }
+    else
+    {
+        available = false;
+    }
+    return available;
 }
 
 // Place a ship on the board
