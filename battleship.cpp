@@ -86,6 +86,7 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
     // Check Vertically
     if(originalX == FinalX)
     {
+        //From up to down
         if(originalY < FinalY)
         {
             // check between the coordinates first
@@ -107,12 +108,25 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
                 }
             }
         }
-        else
+        else //Down to up
         {
             // check between the coordinates first
-            for(int yCoord = originalY; yCoord <= FinalY && available; yCoord--)
+            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
             {
-
+                if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                {
+                    available = false;
+                    break;
+                }
+            }
+            if(available)
+            {
+                // Highlight between the coordinates
+                for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
+                {
+                    parentUI->HighlightCell(yCoord, originalX, 'G');
+                    PlayerBoard->setCell(yCoord, originalX, 'S');
+                }
             }
         }
     }
