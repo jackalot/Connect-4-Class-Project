@@ -4,6 +4,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , newGame(nullptr)
+    , newBattleship(nullptr)
 {
     try {
         qDebug() << "MainWindow: Starting initialization";
@@ -115,6 +117,7 @@ void MainWindow::on_OnePlayerButtonBS_clicked()
 
 void MainWindow::on_OnePlayerButtonC4_clicked()
 {
+<<<<<<< HEAD
     try {
         qDebug() << "OnePlayerButtonC4 clicked";
 
@@ -156,11 +159,24 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
         qDebug() << "Unexpected error in Connect 4 button handler";
         show(); // Ensure main window is visible
     }
+=======
+    // Hides main window and then reveals gameWindow
+    hide();
+    newGame = new Game(this, true);
+    newGame->show();
+>>>>>>> 464146b39fd54439f42438d627d074115ac38df4
 }
 void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
+<<<<<<< HEAD
     // Reuse one-player logic for now
     on_OnePlayerButtonC4_clicked();
+=======
+    // Hides main window and then reveals gameWindow
+    hide();
+    newGame = new Game(this, false);
+    newGame->show();
+>>>>>>> 464146b39fd54439f42438d627d074115ac38df4
 }
 
 void MainWindow::on_OnePlayerButtonTTT_clicked()
