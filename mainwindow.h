@@ -3,7 +3,7 @@
 
 #include "ui_mainwindow.h"
 #include <QMainWindow>
-#include "game.h"
+#include "Connect4.h"
 #include "battleship.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
