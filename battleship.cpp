@@ -46,7 +46,7 @@ void ShipPiece::SetHit() {
     }
 }
 
-class BattleShipBoard : public BoardGrid {
+class BattleShipBoard : public BoardGrid, public battleship {
     vector<Ship> ShipsOnBoard;
     BoardGrid* PlayerBoard;
     BoardGrid* MissesAndHits;
@@ -68,6 +68,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         //new cordinate
         originalX = Col;
         originalY = Row;
+        HighlightCell(originalY, originalX, 'P');
     }
 }
 
