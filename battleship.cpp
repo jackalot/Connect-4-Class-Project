@@ -84,10 +84,13 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     else
     {
         // We cancel ship placement
-        if(col == originalX && originalY == Row)
+        if(Col == originalX && originalY == Row)
         {
             originalX = -1;
             originalY = -1;
+            if (parentUI) {
+                parentUI->HighlightCell(Row, Col, 'X');
+            }
         }
 
     }
@@ -119,12 +122,13 @@ battleship::battleship(QWidget *parent)
     if (!AIBoard)
         AIBoard = new BattleShipBoard(this);
     // Connect all grid buttons to onButtonClicked()
-    for (int row = 0; row < 10; ++row) {
-        for (int col = 0; col < 10; ++col) {
+    for (int row = 1; row <= 10; ++row) {
+        for (int col = 1; col <= 10; ++col) {
             QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
             QPushButton* button = this->findChild<QPushButton*>(buttonName);
             if (button) {
                 connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
+                button->setStyleSheet("background-color: gray; color: white;");
             } else {
                 qDebug() << "Button not found:" << buttonName;
             }
@@ -150,7 +154,7 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
         button->setStyleSheet("background-color: blue; color: white;");
     } else if (ColorKey == 'G') {
         button->setStyleSheet("background-color: green; color: white;");
-    } else {
+    } else if (ColorKey == 'X') { //X for canceling ships, default
         button->setStyleSheet("background-color: gray; color: white;");
     }
 }
