@@ -85,8 +85,6 @@ public:
     }
 };
 
-/* *****COMMENTING OUT AI CODE UNTIL WE CAN TEST*****
-
 //Boris' AI code - removed duplicate code - made variables private
 //to keep their values protected - modified code to use Qt libraries
 //instead of C++ ie. ctime, cstdlib for QRandomGenerator and QtGlobal
@@ -167,7 +165,6 @@ public:
 };
 
 BasicAI g_ai('R', 'B');
-***** END OF COMMENTED OUT CODE***** */
 
 //Call Gmae to create a new game window and start with player 1 Blue
 Game::Game(QWidget *parent) :
