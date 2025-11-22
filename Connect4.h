@@ -35,7 +35,7 @@ private:
     Connect4Board* ourGameBoard;
     char currentPlayerPiece;
 
-    bool gameOver;
+    bool gameOver = false;
 
     void DropInColumn(int column);
 };
