@@ -6,7 +6,7 @@
 using namespace std;
 
 // Forward declarations
-class Ship;  // Add this forward declaration
+class Ship;
 
 class ShipPiece {
 private:
@@ -14,26 +14,13 @@ private:
     int Y;
     bool HIT = false;
 public:
-    Ship* parentShip;  // Change to pointer
+    Ship* parentShip;
 
-    ShipPiece(int xPos, int yPos, Ship* ship)  // Modify constructor
-    {
-        X = xPos;
-        Y = yPos;
-        parentShip = ship;
-    }
+    ShipPiece(int xPos, int yPos, Ship* ship) : X(xPos), Y(yPos), parentShip(ship) {}
 
-    int getXPos()
-    {
-        return X;
-    }
-
-    int getYPos()
-    {
-        return Y;
-    }
-
-    void SetHit();  // Forward declaration of SetHit
+    int getXPos() { return X; }
+    int getYPos() { return Y; }
+    void SetHit(); // Declaration only
 };
 
 class Ship {
@@ -42,168 +29,80 @@ public:
     int ShipSize;
     int HitCount = 0;
 
-    Ship(int newSize)
-    {
-        ShipSize = newSize;
-    }
+    Ship(int newSize) : ShipSize(newSize) {}
 
-    void IncreaseHitCount()
-    {
-        HitCount++;
-    }
-
-    bool CheckIfSunk()
-    {
-        return HitCount == ShipSize;
-    }
-
-    // Add a method to add pieces
-    void AddPiece(int x, int y)
-    {
+    void IncreaseHitCount() { HitCount++; }
+    bool CheckIfSunk() { return HitCount == ShipSize; }
+    void AddPiece(int x, int y) {
         ourPieces.emplace_back(x, y, this);
     }
 };
 
 // Implement SetHit after Ship is fully defined
-void ShipPiece::SetHit()
-{
+void ShipPiece::SetHit() {
     HIT = true;
     if (parentShip) {
         parentShip->IncreaseHitCount();
     }
 }
 
-
 class BattleShipBoard : public BoardGrid {
     vector<Ship> ShipsOnBoard;
-    int SunkCount;
-    int BoardColSize = 10;
-    int BoardRowSize = 10;
-    //Stores misses, ship locations, and hits
     BoardGrid* PlayerBoard;
-    // Enemy Board
-    BoardGrid* MissesAndHits;     //Stores misses, and hits for enemy ship
-    /* ^ Board codes:
-     * M: Miss
-     * S: Ship
-     * H: Hit
-     * E: Empty
-     */
+    BoardGrid* MissesAndHits;
+
 public:
-    // Initialize board to be a 10x10 grid
-    BattleShipBoard()
-        : BoardGrid(BoardRowSize, BoardColSize),
-        PlayerBoard(nullptr),
-        MissesAndHits(nullptr)
-    {
-        // Dynamically allocate BoardGrid objects
-        PlayerBoard = new BoardGrid(BoardRowSize, BoardColSize);
-        MissesAndHits = new BoardGrid(BoardRowSize, BoardColSize);
-    }
-    /* Place Ship code
-     * Board codes:
-     * P: Piece
-     * S: Ship
-    */
-    // if it's -1, none have been placed yet
-    int FirstPieceX = -1;
-    int FirstPieceY = -1;
-    void PlaceShip(int Col, int Row)
-    {
-        if(Col == FirstPieceX && Row == FirstPieceY)
-        {
-            // Reset
-            FirstPieceX = -1;
-            FirstPieceY = -1;
-        }
-        else
-        {
-            // First time clicking
-            if(FirstPieceX == -1 && FirstPieceY == -1)
-            {
-                //store it
-                FirstPieceX = Col;
-                FirstPieceY = Row;
-            }
-        }
-    }
-    /* Attack/Recieve attack
-     * Board codes:
-     * M: Miss
-     * S: Ship
-     * H: Hit
-     * E: Empty
-     */
-    //Send Attack
-    void SendAttack(int Col, int Row)
-    {
-        // we are pointing to BoardGrid, not BattleShipBoard
-        //MissesAndHits->RecieveAttack(Col, Row);
-        // change our hits/misses if we won or not?
-    }
-    // Did we get hit?
-    bool RecieveAttack(int Col, int Row)
-    {
-        bool attempt;
-        // check if we got hit
-        return attempt;
-    }
+    BattleShipBoard() : BoardGrid(10, 10), PlayerBoard(new BoardGrid(10, 10)), MissesAndHits(new BoardGrid(10, 10)) {}
+
+    void PlaceShip(int Col, int Row);
+    void SendAttack(int Col, int Row);
+    bool RecieveAttack(int Col, int Row);
 };
+
+void BattleShipBoard::PlaceShip(int Col, int Row) {
+    // Implementation for placing the ship
+}
+
+bool BattleShipBoard::RecieveAttack(int Col, int Row) {
+    // Implementation to check if attacked
+    return false; // Placeholder
+}
+
 BattleShipBoard PlayerOneBoard;
 BattleShipBoard AIBoard;
 
-
-
-
-// Highlights the proper scell we need
-void battleship::HighlightCell(int row, int col, char ColorKey)
-{
-    /* Color Codes:
-     * P: Placing a ship piece (Purple)
-     * G: Ship (Green)
-     * R: Hit (Red)
-     * G: Miss (Gray)
-     * W: Default (White)
-     */
-    /*Create the object of the clicked button building
-    the row and collumn into "Coll%1R%2"*/
-    QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
-
-    //Find the button for the newly created object
-    QPushButton* button = this->findChild<QPushButton*>(buttonName);
-    /* We need the following kinds of styles:
-     * Selecting a slot for creating a ship
-     * Confirmed ships
-     * misses
-     * hits
-     */
-    button->setStyleSheet("background-color: green; color: white;");
+battleship::battleship(QWidget *parent)
+    : QDialog(parent), ui(new Ui::battleship) {
+    ui->setupUi(this);  // Set up the UI
 }
-battleship::~battleship()
-{
+
+battleship::~battleship() {
     delete ui;
 }
+
+void battleship::HighlightCell(int row, int col, char ColorKey) {
+    QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
+    QPushButton* button = this->findChild<QPushButton*>(buttonName);
+    button->setStyleSheet("background-color: green; color: white;");
+}
+
 bool GameOver = false;
 bool placeMode = true;
+
 void battleship::onButtonClicked() {
-    if(GameOver == false)
-    {
+    if (!GameOver) {
         QPushButton* button = qobject_cast<QPushButton*>(sender());
         if (button) {
             QString buttonName = button->objectName();
-            //Use regex to parse out row and collumn
             static QRegularExpression regex("Coll(\\d+)R(\\d+)");
             QRegularExpressionMatch match = regex.match(buttonName);
-            // Your code based on buttonName
+
             int col = match.captured(1).toInt();
             int row = match.captured(2).toInt();
-            if(placeMode == false)
-            {
-                // for now
+
+            if (!placeMode) {
                 HighlightCell(row, col, 'G');
-            }
-            if(placeMode == true)
-            {
+            } else {
                 PlayerOneBoard.PlaceShip(col, row);
             }
         }
