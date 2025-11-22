@@ -80,7 +80,17 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
 
 // Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    if (originalX == -1 && originalY == -1) {
+    if(FinalX != -1 && FinalY != -1)
+    {
+        //Cancel this ship all together
+        parentUI->HighlightCell(FinalY, FinalX, 'X');
+        parentUI->HighlightCell(originalY, originalX, 'X');
+        originalX = -1;
+        originalY = -1;
+        FinalX = -1;
+        FinalY = -1;
+    }
+    else if (originalX == -1 && originalY == -1) {
         originalX = Col;
         originalY = Row;
         if (parentUI) {
@@ -89,7 +99,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     }
     else
     {
-        // We cancel ship placement
+        // We cancel initial ship placement
         if(Col == originalX && originalY == Row)
         {
             originalX = -1;
@@ -107,15 +117,6 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 if (parentUI) {
                     parentUI->HighlightCell(Row, Col, 'P');
                 }
-            }
-            else
-            {
-                parentUI->HighlightCell(FinalY, FinalX, 'X');
-                parentUI->HighlightCell(originalY, originalX, 'X');
-                originalX = -1;
-                originalY = -1;
-                FinalX = -1;
-                FinalY = -1;
             }
         }
 
