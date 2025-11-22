@@ -108,6 +108,18 @@ battleship::battleship(QWidget *parent)
 
     if (!AIBoard)
         AIBoard = new BattleShipBoard(this);
+    // Connect all grid buttons to onButtonClicked()
+    for (int row = 0; row < 10; ++row) {
+        for (int col = 0; col < 10; ++col) {
+            QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
+            QPushButton* button = this->findChild<QPushButton*>(buttonName);
+            if (button) {
+                connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
+            } else {
+                qDebug() << "Button not found:" << buttonName;
+            }
+        }
+    }
 }
 
 battleship::~battleship() {
