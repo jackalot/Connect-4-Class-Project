@@ -86,10 +86,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
     // Check Vertically
     if(originalX == FinalX)
     {
-        if(originalY > FinalY)
+        if(originalY < FinalY)
         {
             // check between the coordinates first
-            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
+            for(int yCoord = originalY; yCoord <= FinalY && available; yCoord++)
             {
                 if(PlayerBoard->getCell(yCoord, originalX) == 'S')
                 {
@@ -110,7 +110,7 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
         else
         {
             // check between the coordinates first
-            for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
+            for(int yCoord = originalY; yCoord <= FinalY && available; yCoord--)
             {
 
             }
