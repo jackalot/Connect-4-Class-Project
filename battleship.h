@@ -11,14 +11,14 @@ class battleship : public QDialog
 {
     Q_OBJECT
 
-private slots:
-    void onButtonClicked();
-
-
 public:
     explicit battleship(QWidget *parent = nullptr);
     ~battleship();
-    void HighlightCell(int row, int col, char ColorKey);
+
+    void HighlightCell(int row, int col, char ColorKey); // Make this public
+
+private slots:
+    void onButtonClicked(); // Keep this under private slots
 
 private:
     Ui::battleship *ui;
