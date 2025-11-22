@@ -3,6 +3,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , newGame(nullptr)
+    , newBattleship(nullptr)
 {
     ui->setupUi(this);
 }
@@ -28,7 +30,7 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
 {
     // Hides main window and then reveals gameWindow
     hide();
-    newGame = new Game(this);
+    newGame = new Game(this, true);
     newGame->show();
 }
 
@@ -37,7 +39,7 @@ void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
     // Hides main window and then reveals gameWindow
     hide();
-    newGame = new Game(this);
+    newGame = new Game(this, false);
     newGame->show();
 }
 

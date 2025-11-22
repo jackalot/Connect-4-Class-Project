@@ -167,10 +167,12 @@ public:
 BasicAI g_ai('R', 'B');
 
 //Call Gmae to create a new game window and start with player 1 Blue
-Game::Game(QWidget *parent) :
+Game::Game(QWidget *parent, bool singlePlayerMode) :
     QDialog(parent),
     ui(new Ui::Game),
-    currentPlayerPiece('B')
+    currentPlayerPiece('B'),
+    gameOver(false),
+    singlePlayer(singlePlayerMode)
 {
     ui->setupUi(this);
 
@@ -226,52 +228,65 @@ void Game::DropInColumn(int column) {
     int droppedPiece = -1;
 
     // Two player no ai - Call ourGameBoard dropPiece function
-    if (ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedPiece)) {
-
+    if (!ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedPiece)) {
+        return;// full collum
+    }
         // Highlight correct location of collumn and row
         HighlightCell(column, droppedPiece + 1, currentPlayerPiece);
 
-        // Check for win/draw
+        // Check for win
         if (ourGameBoard->checkWin(currentPlayerPiece)) {
             ChangePlayerWins(currentPlayerPiece);
-            ChangeGameStateText('G');
+            ChangeGameStateText('G'); // puts gameOver = true
+            return; //// IMPORTANT: we do not call the AI
 
-        } else if (ourGameBoard->isFull()) {
-            ChangeGameStateText('F');
         }
-
+        //check for draw
+        if (ourGameBoard->isFull()) {
+            ChangeGameStateText('F'); // also put gameOver = true
+            return;
+        }
+        //  2 players without AI
+        if (!singlePlayer) {
         // Switch between human players
-        if (currentPlayerPiece == 'B') {
-            currentPlayerPiece = 'R';
-        } else {
-            currentPlayerPiece = 'B';
+            currentPlayerPiece = (currentPlayerPiece == 'B') ? 'R' : 'B';
+            ChangeGameStateText(currentPlayerPiece);
+            return;
         }
-        ChangeGameStateText(currentPlayerPiece);
+        // 1 player vs AI
+        // At this point, the human (B) has already played and has NOT finished the game.
+        // It's the AI's (R) turn.
 
-        if (currentPlayerPiece == 'R') {
             int aiCol = g_ai.chooseMove(*ourGameBoard); // Dereference pointer
 
-            if (aiCol != -1) {
-                int aiRow = -1;
-                if (ourGameBoard->dropPiece(aiCol, 'R', aiRow)) {
-                    HighlightCell(aiCol + 1, aiRow + 1, 'R');
-
-                    if (ourGameBoard->checkWin('R')) {
-                        ChangePlayerWins('R');
-                        // Update text specifically for AI win if needed
-                        QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
-                        if(text) text->setPlainText("AI Wins!");
-                        gameOver = true;
-                    } else if (ourGameBoard->isFull()) {
-                        ChangeGameStateText('F');
-                    } else {
-                        currentPlayerPiece = 'B';
-                        ChangeGameStateText(currentPlayerPiece);
-                    }
-                }
+            if (aiCol == -1) {
+                // Sin movimientos válidos: por seguridad, tratamos como tablas
+                ChangeGameStateText('F');
+                return;
             }
-        }
-    }
+
+            int aiRow = -1;
+            if (!ourGameBoard->dropPiece(aiCol, 'R', aiRow))
+                return;
+
+            HighlightCell(aiCol + 1, aiRow + 1, 'R');
+
+            if (ourGameBoard->checkWin('R')) {
+                ChangePlayerWins('R');
+                QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
+                if (text) text->setPlainText("AI Wins!");
+                gameOver = true;
+                return;
+            }
+
+            if (ourGameBoard->isFull()) {
+                ChangeGameStateText('F');
+                return;
+            }
+
+            // It's the human player's turn again (B)
+            currentPlayerPiece = 'B';
+            ChangeGameStateText(currentPlayerPiece);
 }
 
 void Game::HighlightCell(int column, int Row, char ColorKey) {

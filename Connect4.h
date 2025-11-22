@@ -18,12 +18,11 @@ class Game : public QDialog
     Q_OBJECT
 
 public:
-    explicit Game(QWidget *parent = nullptr);
+    explicit Game(QWidget *parent = nullptr, bool singlePlayerMode = true);
     void HighlightCell(int column, int Row, char ColorKey);
     void ChangePlayerWins(char PlayerKey);
     void ChangeGameStateText(char PlayerKey);
     ~Game();
-
 private slots:
 
     void onGridCellClicked();
@@ -36,7 +35,7 @@ private:
     char currentPlayerPiece;
 
     bool gameOver = false;
-
+    bool singlePlayer = true; // ← NEW: true = 1 player vs AI, false = 2 players
     void DropInColumn(int column);
 };
 
