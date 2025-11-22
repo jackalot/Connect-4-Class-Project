@@ -64,6 +64,7 @@ class BattleShipBoard : public BoardGrid {
 public:
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
+    void ConfirmShip();
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
 };
