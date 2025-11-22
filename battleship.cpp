@@ -81,6 +81,16 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             parentUI->HighlightCell(originalY, originalX, 'P');
         }
     }
+    else
+    {
+        // We cancel ship placement
+        if(col == originalX && originalY == Row)
+        {
+            originalX = -1;
+            originalY = -1;
+        }
+
+    }
 }
 
 // Placeholder: receive attack
