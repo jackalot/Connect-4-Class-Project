@@ -13,11 +13,12 @@ class battleship : public QDialog
 
 private slots:
     void onButtonClicked();
-    void HighlightCell(int row, int col, char ColorKey);
+
 
 public:
     explicit battleship(QWidget *parent = nullptr);
     ~battleship();
+    void HighlightCell(int row, int col, char ColorKey);
 
 private:
     Ui::battleship *ui;
