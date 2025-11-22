@@ -64,6 +64,7 @@ class BattleShipBoard : public BoardGrid {
 public:
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
+    bool CheckSlotsIfAvailable();
     void ConfirmShip();
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
@@ -97,7 +98,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 parentUI->HighlightCell(Row, Col, 'X');
             }
         }
-        else
+        else //Place the second point
         {
             FinalX = Col;
             FinalY = Row;
