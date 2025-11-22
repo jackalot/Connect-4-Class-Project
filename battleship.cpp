@@ -181,6 +181,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
     {
         available = false;
     }
+    if(available)
+    {
+        //create ship
+    }
     return available;
 }
 
