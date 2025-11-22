@@ -193,6 +193,15 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         firstPointPlaced = false;
         secondPointPlaced = false;
         }
+        else
+        {
+            originalX = -1;
+            originalY = -1;
+            FinalX = -1;
+            FinalY = -1;
+            firstPointPlaced = false;
+            secondPointPlaced = false;
+        }
     }
 }
 
