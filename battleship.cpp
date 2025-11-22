@@ -230,7 +230,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         {
             //Place the second point
             if (!secondPointPlaced) {
-                if(PlayerBoard->getCell(originalY, originalX) != 'S')
+                if(PlayerBoard->getCell(Row, Col) != 'S')
                 {
                     FinalX = Col;
                     FinalY = Row;
