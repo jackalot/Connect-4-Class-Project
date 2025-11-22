@@ -129,6 +129,17 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         }
 
     }
+    if(!CheckSlotsIfAvailable())
+    {
+        parentUI->HighlightCell(FinalY, FinalX, 'X');
+        parentUI->HighlightCell(originalY, originalX, 'X');
+        originalX = -1;
+        originalY = -1;
+        FinalX = -1;
+        FinalY = -1;
+        firstPointPlaced = false;
+        secondPointPlaced = false;
+    }
 }
 
 // Placeholder: receive attack
