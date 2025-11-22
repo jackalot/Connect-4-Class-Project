@@ -76,8 +76,11 @@ public:
 // Constructor definition
 BattleShipBoard::BattleShipBoard(battleship* ui)
     : BoardGrid(10, 10),
-    PlayerBoard(new BoardGrid(10, 10)),
-    MissesAndHits(new BoardGrid(10, 10)),
+    // code side comes from 0-9,
+    // UI is 1-10
+    // increase size by one
+    PlayerBoard(new BoardGrid(11, 11)), // Our ships, where enemy hit's, misses
+    MissesAndHits(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {}
 bool BattleShipBoard::CheckSlotsIfAvailable()
