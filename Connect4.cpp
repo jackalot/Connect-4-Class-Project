@@ -248,8 +248,6 @@ void Game::DropInColumn(int column) {
         }
         ChangeGameStateText(currentPlayerPiece);
 
-        /* ***** COMMENTING OUT AI MOVE UNTIL WE CAN TEST*****
-
         if (currentPlayerPiece == 'R') {
             int aiCol = g_ai.chooseMove(*ourGameBoard); // Dereference pointer
 
@@ -273,7 +271,6 @@ void Game::DropInColumn(int column) {
                 }
             }
         }
-    ***** END OF COMMENTED OUT CODE***** */
     }
 }
 
