@@ -27,23 +27,14 @@ set(PROJECT_SOURCES
     Connect4.ui
 )
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type" FORCE)
+endif()
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(COP_II
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
+    qt_add_executable(COP_II MANUAL_FINALIZATION ${PROJECT_SOURCES})
 else()
-    if(ANDROID)
-        add_library(COP_II SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(COP_II
-            ${PROJECT_SOURCES}
-            boardgrid.h boardgrid.cpp
-            battleship.h battleship.cpp battleship.ui
-        )
-    endif()
+    add_executable(COP_II ${PROJECT_SOURCES})
 endif()
 
 target_link_libraries(COP_II PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

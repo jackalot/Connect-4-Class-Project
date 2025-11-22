@@ -1,69 +1,35 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-// Constructor
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    newGame(nullptr),  // Initialize to nullptr
-    newBattleship(nullptr) // Initialize to nullptr
-{
-    ui->setupUi(this);
-}
+#include <QMainWindow>
+#include <memory> // For smart pointers
+#include "Connect4.h"
+#include "battleship.h"
 
-// Destructor
-MainWindow::~MainWindow()
-{
-    delete ui; // Clean up the UI
-    delete newGame; // Clean up Game pointer
-    delete newBattleship; // Clean up battleship pointer
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
 }
+QT_END_NAMESPACE
 
-/*
- * Battle Ship
- */
-void MainWindow::on_OnePlayerButtonBS_clicked()
-{
-    hide(); // Hide main window
-    if (newBattleship) {
-        delete newBattleship; // Clean up previous instance if it exists
-    }
-    newBattleship = new battleship(this); // Allocate new battleship
-    newBattleship->show(); // Show battleship window
-}
+class MainWindow : public QMainWindow {
+    Q_OBJECT
 
-/*
- * Connect 4
- */
-void MainWindow::on_OnePlayerButtonC4_clicked()
-{
-    hide(); // Hide main window
-    if (newGame) {
-        delete newGame; // Clean up previous instance if it exists
-    }
-    newGame = new Game(this); // Allocate new Game instance
-    newGame->show(); // Show game window
-}
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
-void MainWindow::on_TwoPlayerButtonC4_clicked()
-{
-    hide(); // Hide main window
-    if (newGame) {
-        delete newGame; // Clean up previous instance if it exists
-    }
-    newGame = new Game(this); // Allocate new Game instance
-    newGame->show(); // Show game window
-}
+private slots:
+    void on_OnePlayerButtonBS_clicked();
+    void on_OnePlayerButtonC4_clicked();
+    void on_TwoPlayerButtonC4_clicked();
+    void on_OnePlayerButtonTTT_clicked();
+    void on_TwoPlayerButtonTTT_clicked();
 
-/*
- * Tic Tac Toe
- */
-void MainWindow::on_OnePlayerButtonTTT_clicked()
-{
-    // Implementation for single-player Tic Tac Toe
-}
+private:
+    Ui::MainWindow *ui;
+    std::unique_ptr<Game> newGame; // Use smart pointer
+    std::unique_ptr<battleship> newBattleship; // Use smart pointer
+};
 
-void MainWindow::on_TwoPlayerButtonTTT_clicked()
-{
-    // Implementation for two-player Tic Tac Toe
-}
+#endif // MAINWINDOW_H
