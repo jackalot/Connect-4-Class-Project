@@ -85,7 +85,22 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
     // Check Vertically
     if(originalX == FinalX)
     {
-        // check between the coordinates
+        if(originalY > FinalY)
+        {
+            // check between the coordinates first
+            for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
+            {
+
+            }
+        }
+        else
+        {
+            // check between the coordinates first
+            for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
+            {
+
+            }
+        }
     }
     // check horizontally
     else if(originalY == FinalY)
