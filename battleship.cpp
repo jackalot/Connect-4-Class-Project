@@ -3,9 +3,11 @@
 #include <QRegularExpression>
 #include "boardgrid.h"
 #include <vector>
+#include <QDebug>
+
 using namespace std;
 
-// Forward declarations
+// --------------------- Ship and ShipPiece ---------------------
 class Ship;
 
 class ShipPiece {
@@ -20,7 +22,7 @@ public:
 
     int getXPos() { return X; }
     int getYPos() { return Y; }
-    void SetHit(); // Declaration only
+    void SetHit();
 };
 
 class Ship {
@@ -46,74 +48,113 @@ void ShipPiece::SetHit() {
     }
 }
 
-class BattleShipBoard : public BoardGrid, public battleship {
+// --------------------- BattleShipBoard ---------------------
+class BattleShipBoard : public BoardGrid {
+    battleship* parentUI; // pointer to the battleship UI
     vector<Ship> ShipsOnBoard;
     BoardGrid* PlayerBoard;
     BoardGrid* MissesAndHits;
-    // The first spot we click for placing a ship
     int originalX = -1;
     int originalY = -1;
-public:
-    BattleShipBoard() : BoardGrid(10, 10), PlayerBoard(new BoardGrid(10, 10)), MissesAndHits(new BoardGrid(10, 10)) {}
 
+public:
+    BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
 };
 
+// Constructor definition
+BattleShipBoard::BattleShipBoard(battleship* ui)
+    : BoardGrid(10, 10),
+    PlayerBoard(new BoardGrid(10, 10)),
+    MissesAndHits(new BoardGrid(10, 10)),
+    parentUI(ui)
+{}
+
+// Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    // Implementation for placing the ship
-    if(originalX == -1 && originalY == -1)
-    {
-        //new cordinate
+    if (originalX == -1 && originalY == -1) {
         originalX = Col;
         originalY = Row;
-        HighlightCell(originalY, originalX, 'P');
+        if (parentUI) {
+            parentUI->HighlightCell(originalY, originalX, 'P');
+        }
     }
 }
 
+// Placeholder: receive attack
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-    // Implementation to check if attacked
-    return false; // Placeholder
+    return false;
 }
 
-BattleShipBoard PlayerOneBoard;
-BattleShipBoard AIBoard;
+void BattleShipBoard::SendAttack(int Col, int Row) {
+    // Implement sending attack logic here
+}
 
+// --------------------- Global Boards ---------------------
+BattleShipBoard* PlayerOneBoard = nullptr;
+BattleShipBoard* AIBoard = nullptr;
+
+// --------------------- battleship UI ---------------------
 battleship::battleship(QWidget *parent)
-    : QDialog(parent), ui(new Ui::battleship) {
-    ui->setupUi(this);  // Set up the UI
+    : QDialog(parent), ui(new Ui::battleship)
+{
+    ui->setupUi(this);
+
+    // Initialize boards and pass this UI pointer
+    if (!PlayerOneBoard)
+        PlayerOneBoard = new BattleShipBoard(this);
+
+    if (!AIBoard)
+        AIBoard = new BattleShipBoard(this);
 }
 
 battleship::~battleship() {
     delete ui;
 }
 
+// Highlight a cell on the UI
 void battleship::HighlightCell(int row, int col, char ColorKey) {
     QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
     QPushButton* button = this->findChild<QPushButton*>(buttonName);
-    button->setStyleSheet("background-color: green; color: white;");
+    if (!button) {
+        qDebug() << "ERROR: No button named" << buttonName;
+        return;
+    }
+
+    // Example: color green for 'P' or 'G'
+    if (ColorKey == 'P') {
+        button->setStyleSheet("background-color: blue; color: white;");
+    } else if (ColorKey == 'G') {
+        button->setStyleSheet("background-color: green; color: white;");
+    } else {
+        button->setStyleSheet("background-color: gray; color: white;");
+    }
 }
 
+// --------------------- Button click handler ---------------------
 bool GameOver = false;
 bool placeMode = true;
 
 void battleship::onButtonClicked() {
-    if (!GameOver) {
-        QPushButton* button = qobject_cast<QPushButton*>(sender());
-        if (button) {
-            QString buttonName = button->objectName();
-            static QRegularExpression regex("Coll(\\d+)R(\\d+)");
-            QRegularExpressionMatch match = regex.match(buttonName);
+    if (GameOver) return;
 
-            int col = match.captured(1).toInt();
-            int row = match.captured(2).toInt();
+    QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if (!button) return;
 
-            if (!placeMode) {
-                HighlightCell(row, col, 'G');
-            } else {
-                PlayerOneBoard.PlaceShip(col, row);
-            }
-        }
+    QString buttonName = button->objectName();
+    static QRegularExpression regex("Coll(\\d+)R(\\d+)");
+    QRegularExpressionMatch match = regex.match(buttonName);
+
+    if (!match.hasMatch()) return;
+
+    int col = match.captured(1).toInt();
+    int row = match.captured(2).toInt();
+
+    if (!placeMode) {
+        HighlightCell(row, col, 'G'); // Mark attack
+    } else {
+        PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
 }

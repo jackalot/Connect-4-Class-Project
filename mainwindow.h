@@ -1,8 +1,13 @@
+// mainwindow.h
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_mainwindow.h"
 #include <QMainWindow>
+#include <memory>
+#include <QDebug>
+#include <QMessageBox>
+
+#include "ui_mainwindow.h"
 #include "Connect4.h"
 #include "battleship.h"
 
@@ -16,7 +21,7 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -27,10 +32,12 @@ private slots:
     void on_TwoPlayerButtonTTT_clicked();
 
 private:
+    // Enhanced initialization method
+    void setupConnections();
+
     Ui::MainWindow *ui;
-    // Use pointers to the different game instances
-    Game *newGame = nullptr; // Initialize to nullptr
-    battleship *newBattleship = nullptr; // Initialize to nullptr
+    std::unique_ptr<Game> newGame;
+    std::unique_ptr<battleship> newBattleship;
 };
 
 #endif // MAINWINDOW_H
