@@ -59,8 +59,10 @@ class BattleShipBoard : public BoardGrid {
     BoardGrid* MissesAndHits;
     int originalX = -1;
     int originalY = -1;
+    bool firstPointPlaced = false;
     int FinalX = -1;
     int FinalY = -1;
+    bool secondPointPlaced = false;
 public:
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
@@ -80,7 +82,7 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
 
 // Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    if(FinalX != -1 && FinalY != -1)
+    if(secondPointPlaced)
     {
         //Cancel this ship all together
         parentUI->HighlightCell(FinalY, FinalX, 'X');
@@ -89,13 +91,17 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         originalY = -1;
         FinalX = -1;
         FinalY = -1;
+        firstPointPlaced = false;
+        secondPointPlaced = false;
     }
-    else if (originalX == -1 && originalY == -1) {
+    else if (!firstPointPlaced) {
+        // just place the first point
         originalX = Col;
         originalY = Row;
         if (parentUI) {
             parentUI->HighlightCell(originalY, originalX, 'P');
         }
+        firstPointPlaced = true;
     }
     else
     {
@@ -107,16 +113,18 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             if (parentUI) {
                 parentUI->HighlightCell(Row, Col, 'X');
             }
+            firstPointPlaced = false;
         }
         else
         {
             //Place the second point
-            if (FinalX == -1 && FinalY == -1) {
+            if (!secondPointPlaced) {
                 FinalX = Col;
                 FinalY = Row;
                 if (parentUI) {
                     parentUI->HighlightCell(Row, Col, 'P');
                 }
+                secondPointPlaced = true;
             }
         }
 
