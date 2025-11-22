@@ -30,7 +30,10 @@ public:
     vector<ShipPiece> ourPieces;
     int ShipSize;
     int HitCount = 0;
-
+    int initialX = -1;
+    int initailY = -1;
+    int FinalX = -1;
+    int FinalY = -1;
     Ship(int newSize) : ShipSize(newSize) {}
 
     void IncreaseHitCount() { HitCount++; }
@@ -56,7 +59,8 @@ class BattleShipBoard : public BoardGrid {
     BoardGrid* MissesAndHits;
     int originalX = -1;
     int originalY = -1;
-
+    int FinalX = -1;
+    int FinalY = -1;
 public:
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
@@ -184,3 +188,12 @@ void battleship::onButtonClicked() {
         PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
 }
+
+void battleship::on_ConfirmButton_clicked()
+{
+    if(placeMode)
+    {
+        //PlayerOneBoard->
+    }
+}
+
