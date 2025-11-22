@@ -155,6 +155,27 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
                 }
             }
         }
+        if(originalX > FinalX)
+        {
+            // check between the coordinates first
+            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
+            {
+                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                {
+                    available = false;
+                    break;
+                }
+            }
+            if(available)
+            {
+                // Highlight between the coordinates
+                for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
+                {
+                    parentUI->HighlightCell(originalY, xCoord, 'G');
+                    PlayerBoard->setCell(originalY, xCoord, 'S');
+                }
+            }
+        }
     }
     else
     {
