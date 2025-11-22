@@ -143,7 +143,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         secondPointPlaced = false;
     }
     else if (!firstPointPlaced) {
-        if(PlayerBoard->getCell(originalY, originalX) != 'S')
+        if(PlayerBoard->getCell(Row, Col) != 'S')
         {
             // just place the first point
             originalX = Col;
@@ -170,12 +170,15 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         {
             //Place the second point
             if (!secondPointPlaced) {
-                FinalX = Col;
-                FinalY = Row;
-                if (parentUI) {
-                    parentUI->HighlightCell(Row, Col, 'P');
+                if(PlayerBoard->getCell(originalY, originalX) != 'S')
+                {
+                    FinalX = Col;
+                    FinalY = Row;
+                    if (parentUI) {
+                        parentUI->HighlightCell(Row, Col, 'P');
+                    }
+                    secondPointPlaced = true;
                 }
-                secondPointPlaced = true;
             }
         }
 
