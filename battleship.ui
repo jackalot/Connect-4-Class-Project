@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>902</width>
-    <height>684</height>
+    <width>1069</width>
+    <height>736</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>40</x>
      <y>50</y>
-     <width>521</width>
-     <height>411</height>
+     <width>832</width>
+     <height>832</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="GameGrid">
@@ -864,6 +864,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="ConfirmButton">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>220</y>
+     <width>86</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm Ship</string>
+   </property>
   </widget>
  </widget>
  <resources/>
