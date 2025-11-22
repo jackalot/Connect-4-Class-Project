@@ -98,12 +98,24 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 parentUI->HighlightCell(Row, Col, 'X');
             }
         }
-        else //Place the second point
+        else
         {
-            FinalX = Col;
-            FinalY = Row;
-            if (parentUI) {
-                parentUI->HighlightCell(Row, Col, 'P');
+            //Place the second point
+            if (FinalX == -1 && FinalY == -1) {
+                FinalX = Col;
+                FinalY = Row;
+                if (parentUI) {
+                    parentUI->HighlightCell(Row, Col, 'P');
+                }
+            }
+            else
+            {
+                parentUI->HighlightCell(FinalY, FinalX, 'X');
+                parentUI->HighlightCell(originalY, originalX, 'X');
+                originalX = -1;
+                originalY = -1;
+                FinalX = -1;
+                FinalY = -1;
             }
         }
 
