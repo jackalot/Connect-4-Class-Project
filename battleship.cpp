@@ -97,6 +97,14 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 parentUI->HighlightCell(Row, Col, 'X');
             }
         }
+        else
+        {
+            FinalX = Col;
+            FinalY = Row;
+            if (parentUI) {
+                parentUI->HighlightCell(Row, Col, 'P');
+            }
+        }
 
     }
 }
