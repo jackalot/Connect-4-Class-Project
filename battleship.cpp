@@ -99,8 +99,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
             }
             if(available)
             {
-            // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
+                // Highlight between the coordinates
+                for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
                 {
                     parentUI->HighlightCell(yCoord, originalX, 'G');
                     PlayerBoard->setCell(yCoord, originalX, 'S');
