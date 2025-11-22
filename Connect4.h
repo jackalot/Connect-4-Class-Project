@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef CONNECT4_H
+#define CONNECT4_H
 #include <QPushButton>
 #include <QDialog>
 #include <QPlainTextEdit>
@@ -28,13 +28,17 @@ private slots:
 
     void onGridCellClicked();
 
+    void on_resetButton_clicked();
+
 private:
     Ui::Game *ui;
     Connect4Board* ourGameBoard;
     char currentPlayerPiece;
 
+    bool gameOver = false;
+
     void DropInColumn(int column);
 };
 
 
-#endif // GAME_H
+#endif // CONNECT4_H

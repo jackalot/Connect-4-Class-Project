@@ -1,12 +1,14 @@
 #ifndef BOARDGRID_H
 #define BOARDGRID_H
+#include <vector>
+using namespace std;
 
-#include <vector>  // Add explicit std namespace
-
+/* Class for board grid to be used for polymorphism if other
+games are created ex.tic tac toe and battleship*/
 class BoardGrid {
     // Private variable for showcasing encapsulation
 private:
-    std::vector<std::vector<char>> board;  // Use std:: prefix
+    vector<vector<char>> board;
 
 protected:
     int rows;
