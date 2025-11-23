@@ -416,7 +416,22 @@ public:
     AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
     }
+    void PlaceARandomShip()
+    {
+        int vertical = rand() % 101;
+        int initialX;
+        int initialY;
+        int finalX;
+        int finalY;
+        // lets go vertical
+        if(vertical > 50)
+        {
 
+        }
+        else //horizontal
+        {
+        }
+    }
     // Destructor to clean up if needed
     ~AI() {
     }
@@ -500,6 +515,7 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
 
 void battleship::on_UndoButton_clicked()
 {
+    ourAI->PlaceARandomShip();
     /*
      * This works, we will just be using
      *  this as a debug button for the AI right now.
