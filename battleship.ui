@@ -865,17 +865,17 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="ConfirmButton">
+  <widget class="QPushButton" name="UndoButton">
    <property name="geometry">
     <rect>
-     <x>930</x>
-     <y>220</y>
-     <width>86</width>
-     <height>26</height>
+     <x>915</x>
+     <y>215</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Confirm Ship</string>
+    <string>Undo Last Ship</string>
    </property>
   </widget>
  </widget>
