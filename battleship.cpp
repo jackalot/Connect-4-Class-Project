@@ -405,10 +405,10 @@ BattleShipBoard* AIBoard = nullptr;
 // --------------------- Global Boards ---------------------
 class AI {
 public:
-    BattleshipBoard* AIBoard;
+    BattleShipBoard* AIBoard;
 
     // Constructor takes a pointer to a BattleshipBoard
-    AI(BattleshipBoard* newAIBoard) {
+    AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
     }
 
@@ -416,6 +416,7 @@ public:
     ~AI() {
     }
 };
+AI ourAI(AIBoard);
 // --------------------- battleship UI ---------------------
 battleship::battleship(QWidget *parent)
     : QDialog(parent), ui(new Ui::battleship)
