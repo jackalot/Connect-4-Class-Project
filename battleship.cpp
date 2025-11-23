@@ -6,7 +6,13 @@
 #include <QDebug>
 
 using namespace std;
+class BattleShipBoard; // Forward declaration
+class AI;
 
+// Global variable definitions
+BattleShipBoard* PlayerOneBoard = nullptr; // Definition
+BattleShipBoard* AIBoard = nullptr;         // Definition
+AI* ourAI = nullptr;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship;
 
@@ -398,11 +404,7 @@ void BattleShipBoard::RemoveLastShip() {
 void BattleShipBoard::SendAttack(int Col, int Row) {
     // Implement sending attack logic here
 }
-
-// --------------------- Global Boards ---------------------
-BattleShipBoard* PlayerOneBoard = nullptr;
-BattleShipBoard* AIBoard = nullptr;
-// --------------------- Global Boards ---------------------
+// --------------------- AI LOGIC ---------------------
 class AI {
 public:
     BattleShipBoard* AIBoard;
@@ -410,13 +412,39 @@ public:
     // Constructor takes a pointer to a BattleshipBoard
     AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
+        AIBoard->PlaceShip(1, 2);
+        //AIBoard->PlaceShip(1, 8);
     }
 
     // Destructor to clean up if needed
     ~AI() {
     }
 };
-AI ourAI(AIBoard);
+// --------------------- Button click handler ---------------------
+bool GameOver = false;
+bool placeMode = true;
+
+void battleship::onButtonClicked() {
+    if (GameOver) return;
+
+    QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if (!button) return;
+
+    QString buttonName = button->objectName();
+    static QRegularExpression regex("Coll(\\d+)R(\\d+)");
+    QRegularExpressionMatch match = regex.match(buttonName);
+
+    if (!match.hasMatch()) return;
+
+    int col = match.captured(1).toInt();
+    int row = match.captured(2).toInt();
+
+    if (!placeMode) {
+        HighlightCell(row, col, 'G'); // Mark attack
+    } else {
+        PlayerOneBoard->PlaceShip(col, row); // Place ship
+    }
+}
 // --------------------- battleship UI ---------------------
 battleship::battleship(QWidget *parent)
     : QDialog(parent), ui(new Ui::battleship)
@@ -429,6 +457,7 @@ battleship::battleship(QWidget *parent)
 
     if (!AIBoard)
         AIBoard = new BattleShipBoard(this);
+    ourAI = new AI(AIBoard);
     // Connect all grid buttons to onButtonClicked()
     for (int row = 1; row <= 10; ++row) {
         for (int col = 1; col <= 10; ++col) {
@@ -467,36 +496,12 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
     }
 }
 
-// --------------------- Button click handler ---------------------
-bool GameOver = false;
-bool placeMode = true;
-
-void battleship::onButtonClicked() {
-    if (GameOver) return;
-
-    QPushButton* button = qobject_cast<QPushButton*>(sender());
-    if (!button) return;
-
-    QString buttonName = button->objectName();
-    static QRegularExpression regex("Coll(\\d+)R(\\d+)");
-    QRegularExpressionMatch match = regex.match(buttonName);
-
-    if (!match.hasMatch()) return;
-
-    int col = match.captured(1).toInt();
-    int row = match.captured(2).toInt();
-
-    if (!placeMode) {
-        HighlightCell(row, col, 'G'); // Mark attack
-    } else {
-        PlayerOneBoard->PlaceShip(col, row); // Place ship
-    }
-}
-
-
 
 void battleship::on_UndoButton_clicked()
 {
+    if(PlayerOneBoard)
+    {
     PlayerOneBoard->RemoveLastShip();
+    }
 }
 
