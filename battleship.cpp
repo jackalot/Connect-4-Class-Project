@@ -35,13 +35,12 @@ public:
     int FinalX = -1;
     int FinalY = -1;
     battleship* parentUI; // pointer to the battleship UI
-    Ship(int newSize, int newInitialX, int newInitialY, int newFinalX, int newFinalY, battleship* ui) {
-        ShipSize = newSize;
+    Ship(int newInitialX, int newInitialY, int newFinalX, int newFinalY, battleship* ui) {
         initialX = newInitialX;
         initailY = newInitialY;
         FinalX = newFinalX;
         FinalY = newFinalY;
-        parentUi = &ui;
+        parentUI = ui;
     }
 
     void IncreaseHitCount() { HitCount++; }
@@ -269,6 +268,8 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         }
         else
         {
+            Ship newShip(originalX, originalY, FinalX, FinalY, parentUI);
+            ShipsOnBoard.push_back(newShip);
             originalX = -1;
             originalY = -1;
             FinalX = -1;
