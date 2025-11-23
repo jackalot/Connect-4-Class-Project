@@ -410,6 +410,7 @@ void BattleShipBoard::SendAttack(int Col, int Row) {
 // --------------------- AI LOGIC ---------------------
 class AI {
 public:
+    int maxShipCount = 4;
     BattleShipBoard* AIBoard;
 
     // Constructor takes a pointer to a BattleshipBoard
@@ -418,38 +419,50 @@ public:
     }
     void PlaceARandomShip()
     {
-        int vertical = rand() % 101;
-        int initialX;
-        int initialY;
-        int finalX;
-        int finalY;
-        // lets go vertical
-        if(vertical > 10)
+        while (maxShipCount > 0)
         {
-            initialX =  rand() % 10;
-            finalX = initialX;
-            finalY = rand() % 10;
-            initialY = rand() % 10;
-        }
-        else //horizontal
-        {
-            initialY =  rand() % 10;
-            finalY = initialY;
-            finalX = rand() % 10;
-            initialX = rand() % 10;
-        }
-        AIBoard->FinalX = finalX;
-        AIBoard->FinalX = finalX;
-        AIBoard->originalX = initialX;
-        AIBoard->originalY = initialY;
-        if(AIBoard->CheckSlotsIfAvailable(true))
-        {
-            Ship newShip(AIBoard->originalX, AIBoard->originalY, AIBoard->FinalX, AIBoard->FinalY, AIBoard->parentUI);
-            AIBoard->ShipsOnBoard.push_back(newShip);
-            AIBoard->originalX = -1;
-            AIBoard->originalY = -1;
-            AIBoard->FinalX = -1;
-            AIBoard->FinalY = -1;
+            maxShipCount--;
+            int vertical = rand() % 101;
+            int initialX;
+            int initialY;
+            int finalX;
+            int finalY;
+            // lets go vertical
+            if(vertical > 50)
+            {
+                initialX =  rand() % 10;
+                finalX = initialX;
+                finalY = rand() % 10;
+                initialY = rand() % 10;
+            }
+            else //horizontal
+            {
+                initialY =  rand() % 10;
+                finalY = initialY;
+                finalX = rand() % 10;
+                initialX = rand() % 10;
+            }
+            AIBoard->FinalX = finalX;
+            AIBoard->FinalY = finalY;
+            AIBoard->originalX = initialX;
+            AIBoard->originalY = initialY;
+            if(AIBoard->CheckSlotsIfAvailable(true))
+            {
+                Ship newShip(AIBoard->originalX, AIBoard->originalY, AIBoard->FinalX, AIBoard->FinalY, AIBoard->parentUI);
+                AIBoard->ShipsOnBoard.push_back(newShip);
+                AIBoard->originalX = -1;
+                AIBoard->originalY = -1;
+                AIBoard->FinalX = -1;
+                AIBoard->FinalY = -1;
+            }
+            else
+            {
+                maxShipCount++;
+                AIBoard->originalX = -1;
+                AIBoard->originalY = -1;
+                AIBoard->FinalX = -1;
+                AIBoard->FinalY = -1;
+            }
         }
     }
     // Destructor to clean up if needed
