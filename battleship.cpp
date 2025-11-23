@@ -423,46 +423,34 @@ public:
         {
             maxShipCount--;
             int vertical = rand() % 101;
-            int initialX;
-            int initialY;
-            int finalX;
-            int finalY;
             // lets go vertical
             if(vertical > 50)
             {
-                initialX =  rand() % 10;
-                finalX = initialX;
-                finalY = rand() % 10;
-                initialY = rand() % 10;
+                AIBoard->originalX = rand() % 10;
+                AIBoard->FinalX = AIBoard->originalX;
+                AIBoard->FinalY = rand() % 10;
+                AIBoard->originalY = rand() % 10;
             }
             else //horizontal
             {
-                initialY =  rand() % 10;
-                finalY = initialY;
-                finalX = rand() % 10;
-                initialX = rand() % 10;
+                AIBoard->originalY = rand() % 10;
+                AIBoard->FinalY = AIBoard->originalY;
+                AIBoard->FinalX = rand() % 10;
+                AIBoard->originalX = rand() % 10;
             }
-            AIBoard->FinalX = finalX;
-            AIBoard->FinalY = finalY;
-            AIBoard->originalX = initialX;
-            AIBoard->originalY = initialY;
             if(AIBoard->CheckSlotsIfAvailable(true))
             {
                 Ship newShip(AIBoard->originalX, AIBoard->originalY, AIBoard->FinalX, AIBoard->FinalY, AIBoard->parentUI);
                 AIBoard->ShipsOnBoard.push_back(newShip);
-                AIBoard->originalX = -1;
-                AIBoard->originalY = -1;
-                AIBoard->FinalX = -1;
-                AIBoard->FinalY = -1;
             }
             else
             {
                 maxShipCount++;
-                AIBoard->originalX = -1;
-                AIBoard->originalY = -1;
-                AIBoard->FinalX = -1;
-                AIBoard->FinalY = -1;
             }
+            AIBoard->originalX = -1;
+            AIBoard->originalY = -1;
+            AIBoard->FinalX = -1;
+            AIBoard->FinalY = -1;
         }
     }
     // Destructor to clean up if needed
