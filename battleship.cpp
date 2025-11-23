@@ -41,8 +41,34 @@ public:
         FinalX = newFinalX;
         FinalY = newFinalY;
         parentUI = ui;
+        char direction = GetDirection();
     }
-
+    char GetDirection() {
+        char direction = "D";
+        if(initialX == FinalX)
+        {
+            if(initialY < FinalY)
+            {
+                direction = 'D';
+            }
+            else
+            {
+                direction = 'U';
+            }
+        }
+        else if(initialY == FinalY)
+        {
+            if(initialX < FinalX)
+            {
+                direction = 'R';
+            }
+            else
+            {
+                direction = 'L';
+            }
+        }
+        return direction;
+    }
     void IncreaseHitCount() { HitCount++; }
     bool CheckIfSunk() { return HitCount == ShipSize; }
     void AddPiece(int x, int y) {
