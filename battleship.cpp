@@ -166,6 +166,7 @@ class BattleShipBoard : public BoardGrid {
     int FinalY = -1;
     bool secondPointPlaced = false;
 public:
+    vector<int> ShipSizes = {2, 2, 3, 4, 5};
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
     bool CheckSlotsIfAvailable();
@@ -404,10 +405,15 @@ BattleShipBoard* AIBoard = nullptr;
 // --------------------- Global Boards ---------------------
 class AI {
 public:
-    BattleShipBoard* AIBoard;
-    AI(BattleshipBoard newAIBoard)
-    {
-        AIBoard = newAIBoard;
+    BattleshipBoard* AIBoard;
+
+    // Constructor takes a pointer to a BattleshipBoard
+    AI(BattleshipBoard* newAIBoard) {
+        AIBoard = newAIBoard; // Initialize the pointer
+    }
+
+    // Destructor to clean up if needed
+    ~AI() {
     }
 };
 // --------------------- battleship UI ---------------------
