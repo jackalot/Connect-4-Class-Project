@@ -34,7 +34,13 @@ public:
     int initailY = -1;
     int FinalX = -1;
     int FinalY = -1;
-    Ship(int newSize) : ShipSize(newSize) {}
+    Ship(int newSize, int newInitialX, int newInitialY, int newFinalX, int newFinalY) {
+        ShipSize = newSize;
+        initialX = newInitialX;
+        initailY = newInitialY;
+        FinalX = newFinalX;
+        FinalY = newFinalY;
+    }
 
     void IncreaseHitCount() { HitCount++; }
     bool CheckIfSunk() { return HitCount == ShipSize; }
