@@ -412,8 +412,6 @@ public:
     // Constructor takes a pointer to a BattleshipBoard
     AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
-        AIBoard->PlaceShip(1, 2);
-        //AIBoard->PlaceShip(1, 8);
     }
 
     // Destructor to clean up if needed
