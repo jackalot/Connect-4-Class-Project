@@ -34,12 +34,14 @@ public:
     int initailY = -1;
     int FinalX = -1;
     int FinalY = -1;
-    Ship(int newSize, int newInitialX, int newInitialY, int newFinalX, int newFinalY) {
+    battleship* parentUI; // pointer to the battleship UI
+    Ship(int newSize, int newInitialX, int newInitialY, int newFinalX, int newFinalY, battleship* ui) {
         ShipSize = newSize;
         initialX = newInitialX;
         initailY = newInitialY;
         FinalX = newFinalX;
         FinalY = newFinalY;
+        parentUi = &ui;
     }
 
     void IncreaseHitCount() { HitCount++; }
