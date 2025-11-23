@@ -6,23 +6,22 @@
 #include <QRegularExpression>
 using namespace std;
 
-//Declare Connect4Board class
-class Connect4Board;
-
 namespace Ui {
-class Game;
+class Connect4;
 }
 
-class Game : public QDialog
+class Connect4Board;
+
+class Connect4 : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Game(QWidget *parent = nullptr, bool singlePlayerMode = true);
+    explicit Connect4(QWidget *parent = nullptr, bool singlePlayerMode = true);
     void HighlightCell(int column, int Row, char ColorKey);
     void ChangePlayerWins(char PlayerKey);
     void ChangeGameStateText(char PlayerKey);
-    ~Game();
+    ~Connect4();
 private slots:
 
     void onGridCellClicked();
@@ -30,7 +29,7 @@ private slots:
     void on_resetButton_clicked();
 
 private:
-    Ui::Game *ui;
+    Ui::Connect4 *ui;
     Connect4Board* ourGameBoard;
     char currentPlayerPiece;
 
