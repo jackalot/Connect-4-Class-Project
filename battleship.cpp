@@ -382,6 +382,9 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
 void BattleShipBoard::RemoveLastShip() {
     ShipsOnBoard.back().RemoveShipInUI();
     ShipsOnBoard.pop_back();
+    /*
+    Remember to reset the coordinates we touched.
+    */
 }
 
 void BattleShipBoard::SendAttack(int Col, int Row) {
