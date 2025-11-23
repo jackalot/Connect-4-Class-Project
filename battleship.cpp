@@ -447,7 +447,7 @@ public:
                 while(!RightSize)
                 {
                     int result = AIBoard->FinalY - AIBoard->originalY;
-                    if(result = shipSize)
+                    if(result == shipSize)
                     {
                         RightSize = true;
                     }
@@ -461,7 +461,7 @@ public:
                 while(!RightSize)
                 {
                     int result = AIBoard->originalY - AIBoard->FinalY;
-                    if(result = shipSize)
+                    if(result == shipSize)
                     {
                         RightSize = true;
                     }
@@ -472,8 +472,32 @@ public:
                 }
                 break;
             case 'L':
+                while(!RightSize)
+                {
+                    int result = AIBoard->FinalX - AIBoard->originalX;
+                    if(result == shipSize)
+                    {
+                        RightSize = true;
+                    }
+                    else
+                    {
+                        AIBoard->FinalX++;
+                    }
+                }
                 break;
             case 'R':
+                while(!RightSize)
+                {
+                    int result = AIBoard->FinalX - AIBoard->originalX;
+                    if(result == shipSize)
+                    {
+                        RightSize = true;
+                    }
+                    else
+                    {
+                        AIBoard->FinalX--;
+                    }
+                }
                 break;
         }
     }
