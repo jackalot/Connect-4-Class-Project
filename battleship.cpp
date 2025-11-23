@@ -107,8 +107,9 @@ public:
     }
     void IncreaseHitCount() { HitCount++; }
     bool CheckIfSunk() { return HitCount == ShipSize; }
-    void AddPiece(int x, int y) {
-        ourPieces.emplace_back(x, y, this);
+    void RemoveShipInUI()
+    {
+        char direction = GetDirection();
     }
 };
 
@@ -348,7 +349,7 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
 void BattleShipBoard::RemoveLastShip() {
-    size(ShipsOnBoard);
+    ShipsOnBoard[size(ShipsOnBoard)].;
     ShipsOnBoard.pop_back();
 }
 
