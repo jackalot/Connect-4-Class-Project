@@ -42,6 +42,17 @@ public:
         FinalY = newFinalY;
         parentUI = ui;
         char direction = GetDirection();
+        switch(direction)
+        {
+            case 'U':
+                break;
+            case 'D':
+                break;
+            case 'L':
+                break;
+            case 'R':
+                break;
+        }
     }
     char GetDirection() {
         char direction = "D";
