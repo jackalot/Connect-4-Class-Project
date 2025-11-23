@@ -42,23 +42,48 @@ public:
         FinalY = newFinalY;
         parentUI = ui;
         char direction = GetDirection();
+        ShipSize = 0;
         switch(direction)
         {
             case 'U':
+                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                {
+                    ShipSize++;
+                    ShipPiece newPiece(initialX, yCoord, this);
+                    ourPieces.push_back(newPiece);
+                }
                 break;
             case 'D':
+                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
+                {
+                    ShipSize++;
+                    ShipPiece newPiece(initialX, yCoord, this);
+                    ourPieces.push_back(newPiece);
+                }
                 break;
             case 'L':
+                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
+                {
+                    ShipSize++;
+                    ShipPiece newPiece(xCoord, initailY, this);
+                    ourPieces.push_back(newPiece);
+                }
                 break;
             case 'R':
+                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
+                {
+                    ShipSize++;
+                    ShipPiece newPiece(xCoord, initailY, this);
+                    ourPieces.push_back(newPiece);
+                }
                 break;
         }
     }
     char GetDirection() {
-        char direction = "D";
+        char direction = 'D';
         if(initialX == FinalX)
         {
-            if(initialY < FinalY)
+            if(initailY < FinalY)
             {
                 direction = 'D';
             }
@@ -67,7 +92,7 @@ public:
                 direction = 'U';
             }
         }
-        else if(initialY == FinalY)
+        else if(initailY == FinalY)
         {
             if(initialX < FinalX)
             {
