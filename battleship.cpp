@@ -175,7 +175,7 @@ public:
     vector<int> ShipSizes = {2, 2, 3, 4, 5};
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
-    bool CheckSlotsIfAvailable();
+    bool CheckSlotsIfAvailable(bool Paint);
     void ConfirmShip();
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
@@ -192,7 +192,7 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     MissesAndHits(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {}
-bool BattleShipBoard::CheckSlotsIfAvailable()
+bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
 {
     bool available = true;
     // Check Vertically
@@ -215,7 +215,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable()
                 // Highlight between the coordinates
                 for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
                 {
-                    parentUI->HighlightCell(yCoord, originalX, 'G');
+                    if(Paint)
+                    {
+                        parentUI->HighlightCell(yCoord, originalX, 'G');
+                    }
                     PlayerBoard->setCell(yCoord, originalX, 'S');
                 }
             }
@@ -357,7 +360,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     }
     if(firstPointPlaced && secondPointPlaced)
     {
-        if(!CheckSlotsIfAvailable())
+        if(!CheckSlotsIfAvailable(true))
         {
         parentUI->HighlightCell(FinalY, FinalX, 'X');
         parentUI->HighlightCell(originalY, originalX, 'X');
