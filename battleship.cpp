@@ -46,7 +46,7 @@ public:
         switch(direction)
         {
             case 'U':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
                 {
                     ShipSize++;
                     ShipPiece newPiece(initialX, yCoord, this);
@@ -54,7 +54,7 @@ public:
                 }
                 break;
             case 'D':
-                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
+                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
                 {
                     ShipSize++;
                     ShipPiece newPiece(initialX, yCoord, this);
@@ -113,31 +113,31 @@ public:
         switch(direction)
         {
             case 'U':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
-                {
-                    ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'G');
-                }
-                break;
-            case 'D':
                 for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'G');
+                    parentUI->HighlightCell(yCoord, initialX, 'X');
+                }
+                break;
+            case 'D':
+                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                {
+                    ourPieces.pop_back();
+                    parentUI->HighlightCell(yCoord, initialX, 'X');
                 }
                 break;
             case 'L':
                 for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'G');
+                    parentUI->HighlightCell(initailY, xCoord, 'X');
                 }
                 break;
             case 'R':
                 for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'G');
+                    parentUI->HighlightCell(initailY, xCoord, 'X');
                 }
                 break;
         }
@@ -380,7 +380,7 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
 void BattleShipBoard::RemoveLastShip() {
-    ShipsOnBoard[size(ShipsOnBoard)].RemoveShipInUI();
+    ShipsOnBoard.back().RemoveShipInUI();
     ShipsOnBoard.pop_back();
 }
 
@@ -432,10 +432,10 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
         return;
     }
 
-    // Example: color green for 'P' or 'G'
+    // P is for placing
     if (ColorKey == 'P') {
         button->setStyleSheet("background-color: blue; color: white;");
-    } else if (ColorKey == 'G') {
+    } else if (ColorKey == 'G') { // G is for ships that are placed
         button->setStyleSheet("background-color: green; color: white;");
     } else if (ColorKey == 'X') { //X for canceling ships, default
         button->setStyleSheet("background-color: gray; color: white;");
