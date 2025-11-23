@@ -174,7 +174,7 @@ public:
     bool RecieveAttack(int Col, int Row);
     void RemoveLastShip();
 };
-
+// --------------------- BattleShipBoard methods ---------------------
 // Constructor definition
 BattleShipBoard::BattleShipBoard(battleship* ui)
     : BoardGrid(10, 10),
@@ -401,7 +401,15 @@ void BattleShipBoard::SendAttack(int Col, int Row) {
 // --------------------- Global Boards ---------------------
 BattleShipBoard* PlayerOneBoard = nullptr;
 BattleShipBoard* AIBoard = nullptr;
-
+// --------------------- Global Boards ---------------------
+class AI {
+public:
+    BattleShipBoard* AIBoard;
+    AI(BattleshipBoard newAIBoard)
+    {
+        AIBoard = newAIBoard;
+    }
+}
 // --------------------- battleship UI ---------------------
 battleship::battleship(QWidget *parent)
     : QDialog(parent), ui(new Ui::battleship)
