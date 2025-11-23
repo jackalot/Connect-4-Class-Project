@@ -409,7 +409,7 @@ public:
     {
         AIBoard = newAIBoard;
     }
-}
+};
 // --------------------- battleship UI ---------------------
 battleship::battleship(QWidget *parent)
     : QDialog(parent), ui(new Ui::battleship)
