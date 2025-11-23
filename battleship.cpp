@@ -140,6 +140,7 @@ public:
     void ConfirmShip();
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
+    void RemoveLastShip();
 };
 
 // Constructor definition
@@ -346,6 +347,10 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
+void BattleShipBoard::RemoveLastShip() {
+    size(ShipsOnBoard);
+    ShipsOnBoard.pop_back();
+}
 
 void BattleShipBoard::SendAttack(int Col, int Row) {
     // Implement sending attack logic here
@@ -435,6 +440,6 @@ void battleship::onButtonClicked() {
 
 void battleship::on_UndoButton_clicked()
 {
-
+    PlayerOneBoard->RemoveLastShip();
 }
 
