@@ -497,9 +497,13 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
 
 void battleship::on_UndoButton_clicked()
 {
-    if(PlayerOneBoard)
-    {
-    PlayerOneBoard->RemoveLastShip();
-    }
+    /*
+     * This works, we will just be using
+     *  this as a debug button for the AI right now.
+        if(PlayerOneBoard)
+        {
+        PlayerOneBoard->RemoveLastShip();
+        }
+    */
 }
 
