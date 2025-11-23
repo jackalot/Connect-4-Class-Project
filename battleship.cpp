@@ -380,6 +380,13 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
 void BattleShipBoard::RemoveLastShip() {
+    Ship shipToRemove = ShipsOnBoard.back();
+    for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
+    {
+        int X = shipToRemove.ourPieces[i].getXPos();
+        int Y = shipToRemove.ourPieces[i].getYPos();
+        PlayerBoard->setCell(Y, X, 'E');
+    }
     ShipsOnBoard.back().RemoveShipInUI();
     ShipsOnBoard.pop_back();
     /*
