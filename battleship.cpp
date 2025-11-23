@@ -439,7 +439,43 @@ public:
     }
     void MakeProperSize(int shipSize)
     {
-
+        char Direction = AIBoard->GetDirection();
+        bool RightSize;
+        switch(Direction)
+        {
+            case 'U':
+                while(!RightSize)
+                {
+                    int result = AIBoard->FinalY - AIBoard->originalY;
+                    if(result = shipSize)
+                    {
+                        RightSize = true;
+                    }
+                    else
+                    {
+                        AIBoard->FinalY++;
+                    }
+                }
+                break;
+            case 'D':
+                while(!RightSize)
+                {
+                    int result = AIBoard->originalY - AIBoard->FinalY;
+                    if(result = shipSize)
+                    {
+                        RightSize = true;
+                    }
+                    else
+                    {
+                        AIBoard->FinalY--;
+                    }
+                }
+                break;
+            case 'L':
+                break;
+            case 'R':
+                break;
+        }
     }
     void PlaceARandomShip()
     {
@@ -466,7 +502,7 @@ public:
             MakeProperSize(shipSize);
             if(AIBoard->CheckSlotsIfAvailable(true))
             {
-                AIBoard->ConfirmShip();
+                AIBoard->CreateShip();
                 AIBoard->ShipSizes.pop_back();
             }
             else
