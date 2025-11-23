@@ -2,7 +2,13 @@
 #define BATTLESHIP_H
 
 #include <QDialog>
+class BattleShipBoard; // Forward declaration
+class AI;
 
+// Global Boards
+extern BattleShipBoard* PlayerOneBoard;  // Declaration
+extern BattleShipBoard* AIBoard;          // Declaration
+extern AI* ourAI;
 namespace Ui {
 class battleship;
 }
