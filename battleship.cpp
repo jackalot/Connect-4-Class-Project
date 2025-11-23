@@ -110,6 +110,37 @@ public:
     void RemoveShipInUI()
     {
         char direction = GetDirection();
+        switch(direction)
+        {
+            case 'U':
+                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                {
+                    ourPieces.pop_back();
+                    parentUI->HighlightCell(yCoord, initialX, 'G');
+                }
+                break;
+            case 'D':
+                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
+                {
+                    ourPieces.pop_back();
+                    parentUI->HighlightCell(yCoord, initialX, 'G');
+                }
+                break;
+            case 'L':
+                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
+                {
+                    ourPieces.pop_back();
+                    parentUI->HighlightCell(initailY, xCoord, 'G');
+                }
+                break;
+            case 'R':
+                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
+                {
+                    ourPieces.pop_back();
+                    parentUI->HighlightCell(initailY, xCoord, 'G');
+                }
+                break;
+        }
     }
 };
 
@@ -349,7 +380,7 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
 void BattleShipBoard::RemoveLastShip() {
-    ShipsOnBoard[size(ShipsOnBoard)].;
+    ShipsOnBoard[size(ShipsOnBoard)].RemoveShipInUI();
     ShipsOnBoard.pop_back();
 }
 
