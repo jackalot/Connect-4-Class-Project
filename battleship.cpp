@@ -160,12 +160,12 @@ void ShipPiece::SetHit() {
 
 // --------------------- BattleShipBoard ---------------------
 class BattleShipBoard : public BoardGrid {
-    battleship* parentUI; // pointer to the battleship UI
-    vector<Ship> ShipsOnBoard;
     BoardGrid* PlayerBoard;
     BoardGrid* MissesAndHits;
     /**/
 public:
+    battleship* parentUI; // pointer to the battleship UI
+    vector<Ship> ShipsOnBoard;
     int originalX = -1;
     int originalY = -1;
     bool firstPointPlaced = false;
@@ -442,7 +442,15 @@ public:
         AIBoard->FinalX = finalX;
         AIBoard->originalX = initialX;
         AIBoard->originalY = initialY;
-        AIBoard->CheckSlotsIfAvailable(true);
+        if(AIBoard->CheckSlotsIfAvailable(true))
+        {
+            Ship newShip(AIBoard->originalX, AIBoard->originalY, AIBoard->FinalX, AIBoard->FinalY, AIBoard->parentUI);
+            AIBoard->ShipsOnBoard.push_back(newShip);
+            AIBoard->originalX = -1;
+            AIBoard->originalY = -1;
+            AIBoard->FinalX = -1;
+            AIBoard->FinalY = -1;
+        }
     }
     // Destructor to clean up if needed
     ~AI() {
