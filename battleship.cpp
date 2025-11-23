@@ -437,12 +437,15 @@ public:
     AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
     }
+    void MakeProperSize(int shipSize)
+    {
+
+    }
     void PlaceARandomShip()
     {
         while (maxShipCount > 0)
         {
             int shipSize = AIBoard->ShipSizes.back();
-            AIBoard->ShipSizes.pop_back();
             maxShipCount--;
            int orientation = rand() % 2; // 0 for vertical, 1 for horizontal
             // lets go vertical
@@ -450,7 +453,7 @@ public:
             {
                 AIBoard->originalX = rand() % 10;
                 AIBoard->FinalX = AIBoard->originalX;
-                AIBoard->FinalY = rand() % 10;
+                AIBoard->FinalY = rand() % (10 - shipSize);
                 AIBoard->originalY = rand() % 10;
             }
             else //horizontal
@@ -460,10 +463,11 @@ public:
                 AIBoard->FinalX = rand() % 10;
                 AIBoard->originalX = rand() % 10;
             }
+            MakeProperSize(shipSize);
             if(AIBoard->CheckSlotsIfAvailable(true))
             {
-                Ship newShip(AIBoard->originalX, AIBoard->originalY, AIBoard->FinalX, AIBoard->FinalY, AIBoard->parentUI);
-                AIBoard->ShipsOnBoard.push_back(newShip);
+                AIBoard->ConfirmShip();
+                AIBoard->ShipSizes.pop_back();
             }
             else
             {
