@@ -20,7 +20,7 @@ public:
 private slots:
     void onButtonClicked(); // Keep this under private slots
 
-    void on_ConfirmButton_clicked();
+    void on_UndoButton_clicked();
 
 private:
     Ui::battleship *ui;

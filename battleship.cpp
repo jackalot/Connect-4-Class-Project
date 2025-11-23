@@ -360,11 +360,10 @@ void battleship::onButtonClicked() {
     }
 }
 
-void battleship::on_ConfirmButton_clicked()
+
+
+void battleship::on_UndoButton_clicked()
 {
-    if(placeMode)
-    {
-        //PlayerOneBoard->
-    }
+
 }
 
