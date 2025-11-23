@@ -441,10 +441,12 @@ public:
     {
         while (maxShipCount > 0)
         {
+            int shipSize = AIBoard->ShipSizes.back();
+            AIBoard->ShipSizes.pop_back();
             maxShipCount--;
-            int vertical = rand() % 101;
+           int orientation = rand() % 2; // 0 for vertical, 1 for horizontal
             // lets go vertical
-            if(vertical > 50)
+            if(orientation == 1)
             {
                 AIBoard->originalX = rand() % 10;
                 AIBoard->FinalX = AIBoard->originalX;
