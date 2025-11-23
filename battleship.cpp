@@ -181,7 +181,8 @@ public:
     bool RecieveAttack(int Col, int Row);
     void RemoveLastShip();
     char GetDirection();
-
+    void CreateShip();
+    void ResetCoordinates();
 };
 // --------------------- BattleShipBoard methods ---------------------
 // Constructor definition
@@ -194,6 +195,14 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     MissesAndHits(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {}
+void BattleShipBoard::ResetCoordinates() {
+    originalX = -1;
+    originalY = -1;
+    FinalX = -1;
+    FinalY = -1;
+    firstPointPlaced = false;
+    secondPointPlaced = false;
+}
 char BattleShipBoard::GetDirection() {
 
         char direction = 'D';
@@ -324,6 +333,11 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
     return available;
 }
 
+void BattleShipBoard::CreateShip()
+{
+    Ship newShip(originalX, originalY, FinalX, FinalY, parentUI);
+    ShipsOnBoard.push_back(newShip);
+}
 // Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
     if(secondPointPlaced)
@@ -331,12 +345,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         //Cancel this ship all together
         parentUI->HighlightCell(FinalY, FinalX, 'X');
         parentUI->HighlightCell(originalY, originalX, 'X');
-        originalX = -1;
-        originalY = -1;
-        FinalX = -1;
-        FinalY = -1;
-        firstPointPlaced = false;
-        secondPointPlaced = false;
+        ResetCoordinates();
     }
     else if (!firstPointPlaced) {
         if(PlayerBoard->getCell(Row, Col) != 'S')
@@ -385,23 +394,13 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         {
         parentUI->HighlightCell(FinalY, FinalX, 'X');
         parentUI->HighlightCell(originalY, originalX, 'X');
-        originalX = -1;
-        originalY = -1;
-        FinalX = -1;
-        FinalY = -1;
         firstPointPlaced = false;
         secondPointPlaced = false;
         }
         else
         {
-            Ship newShip(originalX, originalY, FinalX, FinalY, parentUI);
-            ShipsOnBoard.push_back(newShip);
-            originalX = -1;
-            originalY = -1;
-            FinalX = -1;
-            FinalY = -1;
-            firstPointPlaced = false;
-            secondPointPlaced = false;
+            CreateShip();
+            ResetCoordinates();
         }
     }
 }
@@ -468,10 +467,7 @@ public:
             {
                 maxShipCount++;
             }
-            AIBoard->originalX = -1;
-            AIBoard->originalY = -1;
-            AIBoard->FinalX = -1;
-            AIBoard->FinalY = -1;
+            AIBoard->ResetCoordinates();
         }
     }
     // Destructor to clean up if needed
