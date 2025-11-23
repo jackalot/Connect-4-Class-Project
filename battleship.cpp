@@ -180,6 +180,8 @@ public:
     void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
     void RemoveLastShip();
+    char GetDirection();
+
 };
 // --------------------- BattleShipBoard methods ---------------------
 // Constructor definition
@@ -192,6 +194,34 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     MissesAndHits(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {}
+char BattleShipBoard::GetDirection() {
+
+        char direction = 'D';
+        if(originalX == FinalX)
+        {
+            if(originalY < FinalY)
+            {
+                direction = 'D';
+            }
+            else
+            {
+                direction = 'U';
+            }
+        }
+        else if(originalY == FinalY)
+        {
+            if(originalX < FinalX)
+            {
+                direction = 'R';
+            }
+            else
+            {
+                direction = 'L';
+            }
+        }
+        return direction;
+
+}
 bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
 {
     bool available = true;
