@@ -25,12 +25,16 @@ set(PROJECT_SOURCES
     Connect4.cpp
     Connect4.h
     Connect4.ui
+    tictactoe.cpp
+    tictactoe.h
+    tictactoe.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COP_II
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        tictactoe.h tictactoe.cpp tictactoe.ui
     )
 else()
     if(ANDROID)
