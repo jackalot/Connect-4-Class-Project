@@ -165,13 +165,13 @@ class BattleShipBoard : public BoardGrid {
     BoardGrid* PlayerBoard;
     BoardGrid* MissesAndHits;
     /**/
+public:
     int originalX = -1;
     int originalY = -1;
     bool firstPointPlaced = false;
     int FinalX = -1;
     int FinalY = -1;
     bool secondPointPlaced = false;
-public:
     vector<int> ShipSizes = {2, 2, 3, 4, 5};
     BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
@@ -424,13 +424,25 @@ public:
         int finalX;
         int finalY;
         // lets go vertical
-        if(vertical > 50)
+        if(vertical > 10)
         {
-
+            initialX =  rand() % 10;
+            finalX = initialX;
+            finalY = rand() % 10;
+            initialY = rand() % 10;
         }
         else //horizontal
         {
+            initialY =  rand() % 10;
+            finalY = initialY;
+            finalX = rand() % 10;
+            initialX = rand() % 10;
         }
+        AIBoard->FinalX = finalX;
+        AIBoard->FinalX = finalX;
+        AIBoard->originalX = initialX;
+        AIBoard->originalY = initialY;
+        AIBoard->CheckSlotsIfAvailable(true);
     }
     // Destructor to clean up if needed
     ~AI() {
