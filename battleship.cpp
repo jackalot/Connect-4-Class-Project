@@ -226,11 +226,74 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
 {
     bool available = true;
     // Check Vertically
-    if(originalX == FinalX)
+    char direction = GetDirection();
+    switch(direction)
     {
-        //From up to down
-        if(originalY < FinalY)
+        case 'R':
+            // from left to right
+            // check between the coordinates first
+            for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
+            {
+                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                {
+                    available = false;
+                    break;
+                }
+            }
+            if(available)
+            {
+                // Highlight between the coordinates
+                for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
+                {
+                    parentUI->HighlightCell(originalY, xCoord, 'G');
+                    PlayerBoard->setCell(originalY, xCoord, 'S');
+                }
+            }
+            break;
+        case 'L':
+            // From right to left
+            // check between the coordinates first
+            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
         {
+            if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+            {
+                available = false;
+                break;
+            }
+        }
+            if(available)
+        {
+            // Highlight between the coordinates
+            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
+            {
+                parentUI->HighlightCell(originalY, xCoord, 'G');
+                PlayerBoard->setCell(originalY, xCoord, 'S');
+            }
+        }
+            break;
+        case 'U':
+            // From down to up
+            // check between the coordinates first
+            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
+            {
+                if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                {
+                    available = false;
+                    break;
+                }
+            }
+            if(available)
+            {
+                // Highlight between the coordinates
+                for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
+                {
+                    parentUI->HighlightCell(yCoord, originalX, 'G');
+                    PlayerBoard->setCell(yCoord, originalX, 'S');
+                }
+            }
+            break;
+        case 'D':
+            // from up to down
             // check between the coordinates first
             for(int yCoord = originalY; yCoord <= FinalY && available; yCoord++)
             {
@@ -252,84 +315,12 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                     PlayerBoard->setCell(yCoord, originalX, 'S');
                 }
             }
-        }
-        else //Down to up
-        {
-            // check between the coordinates first
-            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
-            {
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S')
-                {
-                    available = false;
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
-                {
-                    parentUI->HighlightCell(yCoord, originalX, 'G');
-                    PlayerBoard->setCell(yCoord, originalX, 'S');
-                }
-            }
-        }
+            break;
+        default:
+            available = false;
+            break;
     }
-    // check horizontally
-    else if(originalY == FinalY)
-    {
-        // From left to right
-        if(originalX < FinalX)
-        {
-            // check between the coordinates first
-            for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
-            {
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
-                {
-                    available = false;
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
-                {
-                    parentUI->HighlightCell(originalY, xCoord, 'G');
-                    PlayerBoard->setCell(originalY, xCoord, 'S');
-                }
-            }
-        }
-        if(originalX > FinalX)
-        {
-            // check between the coordinates first
-            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
-            {
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
-                {
-                    available = false;
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
-                {
-                    parentUI->HighlightCell(originalY, xCoord, 'G');
-                    PlayerBoard->setCell(originalY, xCoord, 'S');
-                }
-            }
-        }
-    }
-    else
-    {
-        available = false;
-    }
-    if(available)
-    {
-        //create ship
-    }
+
     return available;
 }
 
