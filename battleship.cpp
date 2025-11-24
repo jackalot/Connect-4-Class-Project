@@ -465,7 +465,6 @@ void BattleShipBoard::CreateShip()
 void BattleShipBoard::PlaceShip(int Col, int Row) {
     if(ShipSizes.size())
     {
-        parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
         if(secondPointPlaced)
         {
             //Cancel this ship all together
@@ -585,13 +584,12 @@ void BattleShipBoard::RemoveLastShip() {
         ShipsOnBoard.back().RemoveShipInUI();
         ShipsOnBoard.pop_back();
         ResetCoordinates();
+        parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
+        parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()) + ". Ship's left: " + std::to_string(ShipSizes.size()));
     }
     else
     {
-        /*
-         * ERROR
-         * No ships to remove, place one please!
-         */
+        parentUI->SetGameStatus("No ship's to remove, please add one!");
     }
 }
 
@@ -825,7 +823,7 @@ battleship::battleship(QWidget *parent)
     ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
     ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
     SetModeStatus("Place Ship Mode");
-    SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
+    SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()) + ". Ship's left: 5");
     SetGameStatus("Please click a square to put the start position of your ship!");
 }
 
