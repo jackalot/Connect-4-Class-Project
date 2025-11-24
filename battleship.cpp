@@ -487,18 +487,18 @@ public:
                         //Lets change coords so that it fits
                         if(result < shipSize)
                         {
-                            if(AIBoard->originalY == 1)
+                            if(AIBoard->originalX == 1)
                             {
                                 AIBoard->FinalY++;
                             }
                             else
                             {
-                                AIBoard->originalY--;
+                                AIBoard->originalX--;
                             }
                         }
                         else
                         {
-                            AIBoard->originalY++;
+                            AIBoard->FinalX++;
                         }
                     }
                 }
@@ -506,14 +506,29 @@ public:
             case 'L':
                 while(!RightSize)
                 {
-                    int result = AIBoard->FinalX - AIBoard->originalX;
+                    int result = AIBoard->originalX - AIBoard->FinalX;
                     if(result == shipSize)
                     {
                         RightSize = true;
                     }
                     else
                     {
-                        AIBoard->FinalX++;
+                        //Lets change coords so that it fits
+                        if(result < shipSize)
+                        {
+                            if(AIBoard->FinalX == 1)
+                            {
+                                AIBoard->originalX++;
+                            }
+                            else
+                            {
+                                AIBoard->FinalX--;
+                            }
+                        }
+                        else
+                        {
+                            AIBoard->FinalX++;
+                        }
                     }
                 }
                 break;
@@ -527,7 +542,22 @@ public:
                     }
                     else
                     {
-                        AIBoard->FinalX--;
+                        //Lets change coords so that it fits
+                        if(result < shipSize)
+                        {
+                            if(AIBoard->originalX == 1)
+                            {
+                                AIBoard->FinalX++;
+                            }
+                            else
+                            {
+                                AIBoard->originalX--;
+                            }
+                        }
+                        else
+                        {
+                            AIBoard->originalX++;
+                        }
                     }
                 }
                 break;
