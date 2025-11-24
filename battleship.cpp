@@ -446,20 +446,6 @@ public:
             case 'U':
                 while(!RightSize)
                 {
-                    int result = AIBoard->FinalY - AIBoard->originalY;
-                    if(result == shipSize)
-                    {
-                        RightSize = true;
-                    }
-                    else
-                    {
-                        AIBoard->FinalY++;
-                    }
-                }
-                break;
-            case 'D':
-                while(!RightSize)
-                {
                     int result = AIBoard->originalY - AIBoard->FinalY;
                     if(result == shipSize)
                     {
@@ -467,7 +453,53 @@ public:
                     }
                     else
                     {
-                        AIBoard->FinalY--;
+                        //Lets change coords so that it fits
+                        if(result < shipSize)
+                        {
+                            if(AIBoard->FinalY == 1)
+                            {
+                                AIBoard->originalY++;
+                            }
+                            else
+                            {
+                                AIBoard->FinalY--;
+                            }
+                        }
+                        else
+                        {
+                            AIBoard->FinalY++;
+                        }
+                    }
+                }
+                break;
+            case 'D':
+                while(!RightSize)
+                {
+                    // final is below where the slot was
+                    // final has bigger Y value;
+                    int result = AIBoard->FinalY - AIBoard->originalY;
+                    if(result == shipSize)
+                    {
+                        RightSize = true;
+                    }
+                    else
+                    {
+                        //Lets change coords so that it fits
+                        if(result < shipSize)
+                        {
+                            if(AIBoard->originalY == 1)
+                            {
+                                AIBoard->FinalY++;
+                            }
+                            else
+                            {
+                                AIBoard->originalY--;
+                            }
+                        }
+                        else
+                        {
+                            AIBoard->originalY++;
+                        }
                     }
                 }
                 break;
