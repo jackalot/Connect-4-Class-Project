@@ -465,10 +465,7 @@ void BattleShipBoard::CreateShip()
 void BattleShipBoard::PlaceShip(int Col, int Row) {
     if(ShipSizes.size())
     {
-        /*
-        * ERROR
-        * Please place a ship of size: ShipSizes.back();
-        */
+        parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
         if(secondPointPlaced)
         {
             //Cancel this ship all together
@@ -486,10 +483,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                     parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'P');
                 }
                 firstPointPlaced = true;
-                /*
-                * ERROR
-                * Now click a button for the second piece (vertically or hirozontally)
-                */
+                parentUI->SetGameStatus("Now click a button for the second piece (vertically or horizontally)!");
             }
         }
         else
@@ -500,10 +494,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 if (parentUI) {
                     parentUI->HighlightCell(Row, Col, 'D');
                 }
-                /*
-                * ERROR
-                * Click a button to place the first piece
-                */
+                parentUI->SetGameStatus("Click a button to place the first piece!");
                 ResetCoordinates();
             }
             else
@@ -550,7 +541,10 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 //we created one ship, let's pop the one we used
                 ShipSizes.pop_back();
                 ResetCoordinates();
-
+                if(ShipSizes.size())
+                {
+                    parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
+                }
             }
         }
     }
@@ -820,7 +814,7 @@ battleship::battleship(QWidget *parent)
     ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
     ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
     SetModeStatus("Place Ship Mode");
-    SetViewStatus("The current needed size is " + PlayerOneBoard->ShipSizes.back());
+    SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
     SetGameStatus("Please click a square to put the start position of your ship!");
 }
 
