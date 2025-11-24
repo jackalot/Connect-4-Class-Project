@@ -191,6 +191,20 @@ public:
     {
         return *PlayerBoard;
     }
+    void DisplayPlayerBoardGrid() {
+        for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
+        {
+            for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
+            {
+                switch(PlayerBoard->getCell(CurrentRow, CurrentCol))
+                {
+                    case 'S':
+                    parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
+                    break;
+                }
+            }
+        }
+    }
 };
 // --------------------- BattleShipBoard methods ---------------------
 // Constructor definition
@@ -657,7 +671,7 @@ battleship::battleship(QWidget *parent)
             QPushButton* button = this->findChild<QPushButton*>(buttonName);
             if (button) {
                 connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
-                button->setStyleSheet("background-color: gray; color: white;");
+                button->setStyleSheet("background-color: white; color: white;");
             } else {
                 qDebug() << "Button not found:" << buttonName;
             }
@@ -688,7 +702,7 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
     } else if (ColorKey == 'G') { // G is for ships that are placed
         button->setStyleSheet("background-color: green; color: white;");
     } else if (ColorKey == 'X') { //X for canceling ships, default
-        button->setStyleSheet("background-color: gray; color: white;");
+        button->setStyleSheet("background-color: white; color: white;");
     }
 }
 
