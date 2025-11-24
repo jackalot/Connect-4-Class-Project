@@ -291,7 +291,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             // check between the coordinates first
             for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
         {
-            if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                 int result = originalX - FinalX + 1; // Inclusive calculation
+            if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
             {
                 available = false;
                 break;
@@ -315,7 +316,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             // check between the coordinates first
             for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
             {
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                int result = originalY - FinalY + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
                 {
                     available = false;
                     break;
@@ -339,7 +341,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             // check between the coordinates first
             for(int yCoord = originalY; yCoord <= FinalY && available; yCoord++)
             {
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                int result = FinalY - originalY + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
                 {
                     available = false;
                     break;
