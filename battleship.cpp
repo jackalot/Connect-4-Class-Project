@@ -639,7 +639,6 @@ battleship::battleship(QWidget *parent)
     if (!AIBoard)
         AIBoard = new BattleShipBoard(this);
     ourAI = new AI(AIBoard);
-    ourAI->PlaceARandomShip();
     // Connect all grid buttons to onButtonClicked()
     for (int row = 1; row <= 10; ++row) {
         for (int col = 1; col <= 10; ++col) {
@@ -653,6 +652,7 @@ battleship::battleship(QWidget *parent)
             }
         }
     }
+    ourAI->PlaceARandomShip();
 }
 
 battleship::~battleship() {
