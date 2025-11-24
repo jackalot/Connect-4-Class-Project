@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1069</width>
-    <height>736</height>
+    <height>996</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
+     <x>30</x>
+     <y>90</y>
      <width>832</width>
      <height>832</height>
     </rect>
@@ -876,6 +876,51 @@
    </property>
    <property name="text">
     <string>Undo Last Ship</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="GameStatus">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>411</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Click a button to place the first piece</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ViewButton">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>0</y>
+     <width>361</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>View other board</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="ModeStatus">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>411</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Place Ship Mode</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
