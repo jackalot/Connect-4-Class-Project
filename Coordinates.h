@@ -17,6 +17,12 @@ void incrementY()
     {
     y++;
     }
+    void decrementX()
+    { x--; }
+    void decrementY()
+    {
+        y--;
+    }
 private:
     int x;
     int y;
