@@ -584,7 +584,7 @@ public:
         case 'U':
             while(!RightSize)
             {
-                int result = AIBoard->originalY - AIBoard->FinalY + 1; // Inclusive calculation
+                int result = AIBoard->OriginalCoords.getY() - AIBoard->FinalCoords.getY() + 1; // Inclusive calculation
                 if(result == shipSize)
                 {
                     RightSize = true;
@@ -594,18 +594,18 @@ public:
                     // Adjust coordinates so that it fits
                     if(result < shipSize)
                     {
-                        if(AIBoard->FinalY == 1)
+                        if(AIBoard->FinalCoords.getY() == 1)
                         {
-                            AIBoard->originalY++;
+                            AIBoard->OriginalCoords.incrementY();
                         }
                         else
                         {
-                            AIBoard->FinalY--;
+                            AIBoard->FinalCoords.decrementY();
                         }
                     }
                     else
                     {
-                        AIBoard->FinalY++;
+                        AIBoard->FinalCoords.incrementY();
                     }
                 }
             }
@@ -613,7 +613,7 @@ public:
         case 'D':
             while(!RightSize)
             {
-                int result = AIBoard->FinalY - AIBoard->originalY + 1; // Inclusive calculation
+                int result = AIBoard->FinalCoords.getY() - AIBoard->OriginalCoords.getY() + 1; // Inclusive calculation
                 if(result == shipSize)
                 {
                     RightSize = true;
@@ -623,18 +623,18 @@ public:
                     // Adjust coordinates so that it fits
                     if(result < shipSize)
                     {
-                        if(AIBoard->originalY == 1)
+                        if(AIBoard->OriginalCoords.getY() == 1)
                         {
-                            AIBoard->FinalY++;
+                            AIBoard->FinalCoords.incrementY();
                         }
                         else
                         {
-                            AIBoard->originalY--;
+                            AIBoard->OriginalCoords.decrementY();
                         }
                     }
                     else
                     {
-                        AIBoard->FinalY++;
+                        AIBoard->FinalCoords.incrementY();
                     }
                 }
             }
@@ -642,7 +642,7 @@ public:
         case 'L':
             while(!RightSize)
             {
-                int result = AIBoard->originalX - AIBoard->FinalX + 1; // Inclusive calculation
+                int result = AIBoard->OriginalCoords.getX() - AIBoard->FinalCoords.getX() + 1; // Inclusive calculation
                 if(result == shipSize)
                 {
                     RightSize = true;
@@ -652,18 +652,18 @@ public:
                     // Adjust coordinates so that it fits
                     if(result < shipSize)
                     {
-                        if(AIBoard->FinalX == 1)
+                        if(AIBoard->FinalCoords.getX() == 1)
                         {
-                            AIBoard->originalX++;
+                            AIBoard->OriginalCoords.incrementX();
                         }
                         else
                         {
-                            AIBoard->FinalX--;
+                            AIBoard->FinalCoords.decrementX();
                         }
                     }
                     else
                     {
-                        AIBoard->FinalX++;
+                        AIBoard->FinalCoords.incrementX();
                     }
                 }
             }
@@ -671,7 +671,7 @@ public:
         case 'R':
             while(!RightSize)
             {
-                int result = AIBoard->FinalX - AIBoard->originalX + 1; // Inclusive calculation
+                int result = AIBoard->FinalCoords.getX() - AIBoard->OriginalCoords.getX() + 1; // Inclusive calculation
                 if(result == shipSize)
                 {
                     RightSize = true;
@@ -681,18 +681,18 @@ public:
                     // Adjust coordinates so that it fits
                     if(result < shipSize)
                     {
-                        if(AIBoard->originalX == 1)
+                        if(AIBoard->OriginalCoords.getX() == 1)
                         {
-                            AIBoard->FinalX++;
+                            AIBoard->FinalCoords.incrementX();
                         }
                         else
                         {
-                            AIBoard->originalX--;
+                            AIBoard->OriginalCoords.decrementX();
                         }
                     }
                     else
                     {
-                        AIBoard->FinalX++;
+                        AIBoard->FinalCoords.incrementX();
                     }
                 }
             }
@@ -709,17 +709,17 @@ public:
             // lets go vertical
             if(orientation == 1)
             {
-                AIBoard->originalX = rand() % 10;
-                AIBoard->FinalX = AIBoard->originalX;
-                AIBoard->FinalY = rand() % (10 - shipSize);
-                AIBoard->originalY = rand() % 10;
+                AIBoard->OriginalCoords.setX(rand() % 10);
+                AIBoard->FinalCoords.setX(AIBoard->OriginalCoords.getX());
+                AIBoard->FinalCoords.setY(rand() % (10 - shipSize));
+                AIBoard->OriginalCoords.setY(rand() % 10);
             }
             else //horizontal
             {
-                AIBoard->originalY = rand() % 10;
-                AIBoard->FinalY = AIBoard->originalY;
-                AIBoard->FinalX = rand() % 10;
-                AIBoard->originalX = rand() % 10;
+                AIBoard->OriginalCoords.setY(rand() % 10);
+                AIBoard->FinalCoords.setY(AIBoard->OriginalCoords.getY());
+                AIBoard->FinalCoords.setX(rand() % (10 - shipSize));
+                AIBoard->OriginalCoords.setX(rand() % 10);
             }
             MakeProperSize(shipSize);
             if(AIBoard->CheckSlotsIfAvailable(false))
