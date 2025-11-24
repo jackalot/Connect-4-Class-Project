@@ -158,6 +158,23 @@ public:
                 break;
         }
     }
+    bool CheckIfHit(int X, int Y)
+    {
+        bool hit = false;
+        if(OriginalCoords.getX() == X || OriginalCoords.getY() == Y)
+        {
+            for(int i = 0; i < ShipSize; i++)
+            {
+                ShipPiece currentPiece = ourPieces[i];
+                if(currentPiece.getXPos() == X && currentPiece.getYPos() == Y)
+                {
+                    hit = true;
+                    currentPiece.SetHit();
+                ]
+            }
+        }
+        return hit;
+    }
 };
 
 // Implement SetHit after Ship is fully defined
