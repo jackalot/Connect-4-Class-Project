@@ -174,12 +174,9 @@ class BattleShipBoard : public BoardGrid {
 public:
     battleship* parentUI; // pointer to the battleship UI
     vector<Ship> ShipsOnBoard;
-    int originalX = -1;
-    int originalY = -1;
-
+    Coordinate OriginalCoords;
+    Coordinate FinalCoords;
     bool firstPointPlaced = false;
-    int FinalX = -1;
-    int FinalY = -1;
     bool secondPointPlaced = false;
     vector<int> ShipSizes = {2, 2, 3, 4, 5};
     BattleShipBoard(battleship* ui);  // constructor declaration
@@ -225,21 +222,23 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     PlayerBoard(new BoardGrid(11, 11)), // Our ships, where enemy hit's, misses
     EnemyBoard(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
-{}
+{
+    ResetCoordinates();
+}
 void BattleShipBoard::ResetCoordinates() {
-    originalX = -1;
-    originalY = -1;
-    FinalX = -1;
-    FinalY = -1;
+    OriginalCoords.setX(-1);
+    OriginalCoords.setY(-1);
+    FinalCoords.setX(-1);
+    FinalCoords.setY(-1);
     firstPointPlaced = false;
     secondPointPlaced = false;
 }
 char BattleShipBoard::GetDirection() {
 
         char direction = 'D';
-        if(originalX == FinalX)
+        if(OriginalCoords.getX() == FinalCoords.getX())
         {
-            if(originalY < FinalY)
+            if(OriginalCoords.getY() < FinalCoords.getY())
             {
                 direction = 'D';
             }
@@ -248,9 +247,9 @@ char BattleShipBoard::GetDirection() {
                 direction = 'U';
             }
         }
-        else if(originalY == FinalY)
+        else if(OriginalCoords.getY() == FinalCoords.getY())
         {
-            if(originalX < FinalX)
+            if(OriginalCoords.getX() < FinalCoords.getX())
             {
                 direction = 'R';
             }
@@ -273,13 +272,13 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
         case 'R':
             // from left to right
             // check between the coordinates first
-            for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
+            for(int xCoord = OriginalCoords.getX(); xCoord <= FinalCoords.getX() && available; xCoord++)
             {
-                int result = FinalX - originalX + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
+                int result = FinalCoords.getX() - OriginalCoords.getX() + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S' || currentSize != result)
                 {
                     available = false;
-                    if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                    if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S')
                     {
                         /*
                         * ERROR
@@ -299,26 +298,26 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             if(available)
             {
                 // Highlight between the coordinates
-                for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
+                for(int xCoord = OriginalCoords.getX(); xCoord <= FinalCoords.getX() && available; xCoord++)
                 {
                     if(Paint)
                     {
-                        parentUI->HighlightCell(originalY, xCoord, 'G');
+                        parentUI->HighlightCell(OriginalCoords.getY(), xCoord, 'G');
                     }
-                    PlayerBoard->setCell(originalY, xCoord, 'S');
+                    PlayerBoard->setCell(OriginalCoords.getY(), xCoord, 'S');
                 }
             }
             break;
         case 'L':
             // From right to left
             // check between the coordinates first
-            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
+            for(int xCoord = OriginalCoords.getX(); xCoord >= FinalCoords.getX() && available; xCoord--)
         {
-                 int result = originalX - FinalX + 1; // Inclusive calculation
-            if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
+                 int result = OriginalCoords.getX() - FinalCoords.getX() + 1; // Inclusive calculation
+            if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S' || currentSize != result)
             {
                 available = false;
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S')
                 {
                     /*
                         * ERROR
@@ -338,26 +337,26 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             if(available)
         {
             // Highlight between the coordinates
-            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
+            for(int xCoord = OriginalCoords.getX(); xCoord >= FinalCoords.getX() && available; xCoord--)
             {
                 if(Paint)
                 {
-                    parentUI->HighlightCell(originalY, xCoord, 'G');
+                    parentUI->HighlightCell(OriginalCoords.getY(), xCoord, 'G');
                 }
-                PlayerBoard->setCell(originalY, xCoord, 'S');
+                PlayerBoard->setCell(OriginalCoords.getY(), xCoord, 'S');
             }
         }
             break;
         case 'U':
             // From down to up
             // check between the coordinates first
-            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
+            for(int yCoord = OriginalCoords.getY(); yCoord >= FinalCoords.getY() && available; yCoord--)
             {
-                int result = originalY - FinalY + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
+                int result = OriginalCoords.getY() - FinalCoords.getY() + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S' || currentSize != result)
                 {
                     available = false;
-                    if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                    if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S')
                     {
                         /*
                         * ERROR
@@ -377,26 +376,26 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             if(available)
             {
                 // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
+                for(int yCoord = OriginalCoords.getY(); yCoord >= FinalCoords.getY(); yCoord--)
                 {
                     if(Paint)
                     {
-                        parentUI->HighlightCell(yCoord, originalX, 'G');
+                        parentUI->HighlightCell(yCoord, OriginalCoords.getX(), 'G');
                     }
-                    PlayerBoard->setCell(yCoord, originalX, 'S');
+                    PlayerBoard->setCell(yCoord, OriginalCoords.getX(), 'S');
                 }
             }
             break;
         case 'D':
             // from up to down
             // check between the coordinates first
-            for(int yCoord = originalY; yCoord <= FinalY && available; yCoord++)
+            for(int yCoord = OriginalCoords.getY(); yCoord <= FinalCoords.getY() && available; yCoord++)
             {
-                int result = FinalY - originalY + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
+                int result = FinalCoords.getY() - OriginalCoords.getY() + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S' || currentSize != result)
                 {
                     available = false;
-                    if(PlayerBoard->getCell(yCoord, originalX) == 'S')
+                    if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S')
                     {
                         /*
                         * ERROR
@@ -416,13 +415,13 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             if(available)
             {
                 // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
+                for(int yCoord = OriginalCoords.getY(); yCoord <= FinalCoords.getY(); yCoord++)
                 {
                     if(Paint)
                     {
-                        parentUI->HighlightCell(yCoord, originalX, 'G');
+                        parentUI->HighlightCell(yCoord, OriginalCoords.getX(), 'G');
                     }
-                    PlayerBoard->setCell(yCoord, originalX, 'S');
+                    PlayerBoard->setCell(yCoord, OriginalCoords.getX(), 'S');
                 }
             }
             break;
@@ -436,7 +435,7 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
 
 void BattleShipBoard::CreateShip()
 {
-    Ship newShip(originalX, originalY, FinalX, FinalY, parentUI);
+    Ship newShip(OriginalCoords.getX(), OriginalCoords.getY(), FinalCoords.getX(), FinalCoords.getY(), parentUI);
     ShipsOnBoard.push_back(newShip);
 }
 // Place a ship on the board
@@ -450,18 +449,18 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         if(secondPointPlaced)
         {
             //Cancel this ship all together
-            parentUI->HighlightCell(FinalY, FinalX, 'D');
-            parentUI->HighlightCell(originalY, originalX, 'D');
+            parentUI->HighlightCell(FinalCoords.getY(), FinalCoords.getX(), 'D');
+            parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'D');
             ResetCoordinates();
         }
         else if (!firstPointPlaced) {
             if(PlayerBoard->getCell(Row, Col) != 'S')
             {
                 // just place the first point
-                originalX = Col;
-                originalY = Row;
+                OriginalCoords.setX(Col);
+                OriginalCoords.setY(Row);
                 if (parentUI) {
-                    parentUI->HighlightCell(originalY, originalX, 'P');
+                    parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'P');
                 }
                 firstPointPlaced = true;
                 /*
@@ -473,7 +472,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         else
         {
             // We cancel initial ship placement
-            if(Col == originalX && originalY == Row)
+            if(Col == OriginalCoords.getX() && OriginalCoords.getY() == Row)
             {
                 if (parentUI) {
                     parentUI->HighlightCell(Row, Col, 'D');
@@ -491,10 +490,10 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                     if(PlayerBoard->getCell(Row, Col) != 'S')
                     {
                         //if it's on the X or Y coordinate, it's not diagnal
-                        if(Col == originalX || originalY == Row)
+                        if(Col == OriginalCoords.getX() || OriginalCoords.getY() == Row)
                         {
-                            FinalX = Col;
-                            FinalY = Row;
+                            FinalCoords.setX(Col);
+                            FinalCoords.setY(Row);
                             if (parentUI) {
                                 parentUI->HighlightCell(Row, Col, 'P');
                             }
@@ -518,8 +517,8 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             if(!CheckSlotsIfAvailable(true))
             {
                 //Cancel the ship
-                parentUI->HighlightCell(FinalY, FinalX, 'D');
-                parentUI->HighlightCell(originalY, originalX, 'D');
+                parentUI->HighlightCell(FinalCoords.getY(), FinalCoords.getX(), 'D');
+                parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'D');
                 ResetCoordinates();
             }
             else
