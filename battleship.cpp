@@ -429,16 +429,19 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     }
     if(firstPointPlaced && secondPointPlaced)
     {
+        //can we place this ship?
         if(!CheckSlotsIfAvailable(true))
         {
-        parentUI->HighlightCell(FinalY, FinalX, 'D');
-        parentUI->HighlightCell(originalY, originalX, 'D');
-        firstPointPlaced = false;
-        secondPointPlaced = false;
+            //Cancel the ship
+            parentUI->HighlightCell(FinalY, FinalX, 'D');
+            parentUI->HighlightCell(originalY, originalX, 'D');
+            ResetCoordinates();
         }
         else
         {
             CreateShip();
+            //we created one ship, let's pop the one we used
+            ShipSizes.pop_back();
             ResetCoordinates();
         }
     }
@@ -450,6 +453,9 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
 }
 void BattleShipBoard::RemoveLastShip() {
     Ship shipToRemove = ShipsOnBoard.back();
+    //we popped it when we made the ship
+    //let's use that size again
+    ShipSizes.push_back(shipToRemove.ShipSize);
     for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
     {
         int X = shipToRemove.ourPieces[i].getXPos();
