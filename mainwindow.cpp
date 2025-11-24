@@ -176,8 +176,46 @@ void MainWindow::on_TwoPlayerButtonC4_clicked()
 
 void MainWindow::on_OnePlayerButtonTTT_clicked()
 {
-    qDebug() << "OnePlayerButtonTTT clicked - Not implemented";
-    // TODO: Implement Tic Tac Toe functionality
+    try {
+        qDebug() << "OnePlayerButtonBS clicked";
+
+        // Validate current window state
+        if (!isVisible()) {
+            qDebug() << "Cannot open Tic Tac Toe from invisible window";
+            return;
+        }
+
+        // Hide current window
+        hide();
+
+        // Create Battleship window
+        try {
+            newTicTacToe = std::make_unique<TicTacToe>(this);
+
+            // Validate object creation
+            if (!newTicTacToe) {
+                throw std::runtime_error("Failed to create Tic Tac Toe window");
+            }
+
+            newTicTacToe->show();
+        }
+        catch (const std::exception& e) {
+            qDebug() << "Tic Tac Toe Window Creation Error: " << e.what();
+
+            // Restore main window visibility
+            show();
+
+            // Show error to user
+            QMessageBox::critical(this,
+                                  "Window Creation Error",
+                                  QString("Could not open Tic Tac Toe game: %1").arg(e.what())
+                                  );
+        }
+    }
+    catch (...) {
+        qDebug() << "Unexpected error in Tic Tac Toe button handler";
+        show(); // Ensure main window is visible
+    }
 }
 
 void MainWindow::on_TwoPlayerButtonTTT_clicked()
