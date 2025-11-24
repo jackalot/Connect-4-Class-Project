@@ -303,17 +303,11 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                     available = false;
                     if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S')
                     {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
+                        parentUI->SetGameStatus("This selection crosses an existing ship, select a new ship.");
                     }
                     else
                     {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
+                        parentUI->SetGameStatus("We need a size of " + std::to_string(currentSize) + ", this isn't a big enough ship.");
                     }
                     break;
                 }
@@ -342,17 +336,11 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                 available = false;
                 if(PlayerBoard->getCell(OriginalCoords.getY(), xCoord) == 'S')
                 {
-                    /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
+                    parentUI->SetGameStatus("This selection crosses an existing ship, select a new ship.");
                 }
                 else
                 {
-                    /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
+                    parentUI->SetGameStatus("We need a size of " + std::to_string(currentSize) + ", this isn't a big enough ship.");
                 }
                 break;
             }
@@ -381,17 +369,11 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                     available = false;
                     if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S')
                     {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
+                        parentUI->SetGameStatus("This selection crosses an existing ship, select a new ship.");
                     }
                     else
                     {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
+                        parentUI->SetGameStatus("We need a size of " + std::to_string(currentSize) + ", this isn't a big enough ship.");
                     }
                     break;
                 }
@@ -420,17 +402,11 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                     available = false;
                     if(PlayerBoard->getCell(yCoord, OriginalCoords.getX()) == 'S')
                     {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
+                        parentUI->SetGameStatus("This selection crosses an existing ship.");
                     }
                     else
                     {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
+                        parentUI->SetGameStatus("We need a size of " + std::to_string(currentSize) + ", this isn't a big enough ship.");
                     }
                     break;
                 }
@@ -515,10 +491,6 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                         }
                         else
                         {
-                            /*
-                            * ERROR
-                            * You can't place a diagnal ship, sorry I don't make the rules
-                            */
                             parentUI->SetGameStatus("You can't place a diagnal ship, sorry I don't make the rules");
                         }
                     }
@@ -535,7 +507,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 parentUI->HighlightCell(FinalCoords.getY(), FinalCoords.getX(), 'D');
                 parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'D');
                 ResetCoordinates();
-                parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
+                //parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
             }
             else
             {
