@@ -17,7 +17,7 @@ QPlainTextEdit* ModeStatusText; // obj name ModeStatus
 QPlainTextEdit* GameStatusText; // obj name GameStatus
 QPlainTextEdit* ViewStatusText; // obj name ViewStatus
 // --------------------- Ship and ShipPiece ---------------------
-
+class Ship; // Forward declaration of Ship
 class ShipPiece {
 private:
     Coordinate ourCoords;  // Use the Coordinate class
