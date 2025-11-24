@@ -16,6 +16,8 @@ AI* ourAI = nullptr;
 QPlainTextEdit* ModeStatusText; // obj name ModeStatus
 QPlainTextEdit* GameStatusText; // obj name GameStatus
 QPlainTextEdit* ViewStatusText; // obj name ViewStatus
+bool GameOver = false;
+bool placeMode = true;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
 class ShipPiece {
@@ -531,6 +533,10 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             }
         }
     }
+    else {
+        //we ran out of ships to do
+        placeMode = false;
+    }
 }
 
 // Placeholder: receive attack
@@ -735,8 +741,7 @@ public:
     }
 };
 // --------------------- Button click handler ---------------------
-bool GameOver = false;
-bool placeMode = true;
+
 
 void battleship::onButtonClicked() {
     if (GameOver) return;
@@ -754,7 +759,7 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if (!placeMode) {
-        HighlightCell(row, col, 'G'); // Mark attack
+        HighlightCell(row, col, 'R'); // Mark attack
     } else {
         PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
