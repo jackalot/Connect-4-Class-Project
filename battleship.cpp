@@ -122,28 +122,28 @@ public:
                 for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'X');
+                    parentUI->HighlightCell(yCoord, initialX, 'D');
                 }
                 break;
             case 'D':
                 for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'X');
+                    parentUI->HighlightCell(yCoord, initialX, 'D');
                 }
                 break;
             case 'L':
                 for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'X');
+                    parentUI->HighlightCell(initailY, xCoord, 'D');
                 }
                 break;
             case 'R':
                 for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'X');
+                    parentUI->HighlightCell(initailY, xCoord, 'D');
                 }
                 break;
         }
@@ -374,8 +374,8 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     if(secondPointPlaced)
     {
         //Cancel this ship all together
-        parentUI->HighlightCell(FinalY, FinalX, 'X');
-        parentUI->HighlightCell(originalY, originalX, 'X');
+        parentUI->HighlightCell(FinalY, FinalX, 'D');
+        parentUI->HighlightCell(originalY, originalX, 'D');
         ResetCoordinates();
     }
     else if (!firstPointPlaced) {
@@ -398,7 +398,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             originalX = -1;
             originalY = -1;
             if (parentUI) {
-                parentUI->HighlightCell(Row, Col, 'X');
+                parentUI->HighlightCell(Row, Col, 'D');
             }
             firstPointPlaced = false;
         }
@@ -423,8 +423,8 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     {
         if(!CheckSlotsIfAvailable(true))
         {
-        parentUI->HighlightCell(FinalY, FinalX, 'X');
-        parentUI->HighlightCell(originalY, originalX, 'X');
+        parentUI->HighlightCell(FinalY, FinalX, 'D');
+        parentUI->HighlightCell(originalY, originalX, 'D');
         firstPointPlaced = false;
         secondPointPlaced = false;
         }
@@ -698,11 +698,15 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
 
     // P is for placing
     if (ColorKey == 'P') {
-        button->setStyleSheet("background-color: blue; color: white;");
+        button->setStyleSheet("background-color: purple; color: white;");
     } else if (ColorKey == 'G') { // G is for ships that are placed
         button->setStyleSheet("background-color: green; color: white;");
-    } else if (ColorKey == 'X') { //X for canceling ships, default
+    } else if (ColorKey == 'D') { //D for canceling ships, default color
         button->setStyleSheet("background-color: white; color: white;");
+    } else if (ColorKey == 'X') { //X for misses
+        button->setStyleSheet("background-color: gray; color: white;");
+    } else if (ColorKey == 'R') { //R for hits
+        button->setStyleSheet("background-color: red; color: white;");
     }
 }
 
