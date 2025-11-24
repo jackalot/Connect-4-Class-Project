@@ -11,7 +11,12 @@ public:
 
     void setX(int newX) { x = newX; }
     void setY(int newY) { y = newY; }
-
+void incrementX()
+    { x++; }
+void incrementY()
+    {
+    y++;
+    }
 private:
     int x;
     int y;
