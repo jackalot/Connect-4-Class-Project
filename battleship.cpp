@@ -258,6 +258,7 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
     bool available = true;
     // Check Vertically
     char direction = GetDirection();
+    int currentSize = ShipSizes.back();
     switch(direction)
     {
         case 'R':
@@ -265,7 +266,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             // check between the coordinates first
             for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
             {
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
+                int result = FinalX - originalX + 1; // Inclusive calculation
+                if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
                 {
                     available = false;
                     break;
