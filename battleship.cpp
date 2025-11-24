@@ -430,7 +430,6 @@ void BattleShipBoard::SendAttack(int Col, int Row) {
 // --------------------- AI LOGIC ---------------------
 class AI {
 public:
-    int maxShipCount = 4;
     BattleShipBoard* AIBoard;
 
     // Constructor takes a pointer to a BattleshipBoard
@@ -567,8 +566,7 @@ public:
         while (AIBoard->ShipSizes.size())
         {
             int shipSize = AIBoard->ShipSizes.back();
-            maxShipCount--;
-           int orientation = rand() % 2; // 0 for vertical, 1 for horizontal
+            int orientation = rand() % 2; // 0 for vertical, 1 for horizontal
             // lets go vertical
             if(orientation == 1)
             {
@@ -589,10 +587,6 @@ public:
             {
                 AIBoard->CreateShip();
                 AIBoard->ShipSizes.pop_back();
-            }
-            else
-            {
-                maxShipCount++;
             }
             AIBoard->ResetCoordinates();
         }
