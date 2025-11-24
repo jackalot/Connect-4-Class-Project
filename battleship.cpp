@@ -161,7 +161,7 @@ void ShipPiece::SetHit() {
 // --------------------- BattleShipBoard ---------------------
 class BattleShipBoard : public BoardGrid {
     BoardGrid* PlayerBoard;
-    BoardGrid* MissesAndHits;
+    BoardGrid* EnemyBoard;
     /**/
 public:
     battleship* parentUI; // pointer to the battleship UI
@@ -183,6 +183,14 @@ public:
     char GetDirection();
     void CreateShip();
     void ResetCoordinates();
+    void SetEnemyBoard(BoardGrid enemyGrid)
+    {
+        EnemyBoard = &enemyGrid;
+    }
+    BoardGrid GetPlayerBoard()
+    {
+        return *PlayerBoard;
+    }
 };
 // --------------------- BattleShipBoard methods ---------------------
 // Constructor definition
@@ -192,7 +200,7 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     // UI is 1-10
     // increase size by one
     PlayerBoard(new BoardGrid(11, 11)), // Our ships, where enemy hit's, misses
-    MissesAndHits(new BoardGrid(11, 11)), // where we hit, miss
+    EnemyBoard(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {}
 void BattleShipBoard::ResetCoordinates() {
@@ -254,7 +262,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                 // Highlight between the coordinates
                 for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
                 {
-                    parentUI->HighlightCell(originalY, xCoord, 'G');
+                    if(Paint)
+                    {
+                        parentUI->HighlightCell(originalY, xCoord, 'G');
+                    }
                     PlayerBoard->setCell(originalY, xCoord, 'S');
                 }
             }
@@ -275,7 +286,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
             // Highlight between the coordinates
             for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
             {
-                parentUI->HighlightCell(originalY, xCoord, 'G');
+                if(Paint)
+                {
+                    parentUI->HighlightCell(originalY, xCoord, 'G');
+                }
                 PlayerBoard->setCell(originalY, xCoord, 'S');
             }
         }
@@ -296,7 +310,10 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
                 // Highlight between the coordinates
                 for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
                 {
-                    parentUI->HighlightCell(yCoord, originalX, 'G');
+                    if(Paint)
+                    {
+                        parentUI->HighlightCell(yCoord, originalX, 'G');
+                    }
                     PlayerBoard->setCell(yCoord, originalX, 'S');
                 }
             }
@@ -583,7 +600,7 @@ public:
                 AIBoard->originalX = rand() % 10;
             }
             MakeProperSize(shipSize);
-            if(AIBoard->CheckSlotsIfAvailable(true))
+            if(AIBoard->CheckSlotsIfAvailable(false))
             {
                 AIBoard->CreateShip();
                 AIBoard->ShipSizes.pop_back();
@@ -646,7 +663,10 @@ battleship::battleship(QWidget *parent)
             }
         }
     }
+    // set up game
     ourAI->PlaceARandomShip();
+    ourAI->AIBoard->SetEnemyBoard(PlayerOneBoard->GetPlayerBoard());
+    PlayerOneBoard->SetEnemyBoard(ourAI->AIBoard->GetPlayerBoard());
 }
 
 battleship::~battleship() {
