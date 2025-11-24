@@ -395,12 +395,10 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         // We cancel initial ship placement
         if(Col == originalX && originalY == Row)
         {
-            originalX = -1;
-            originalY = -1;
             if (parentUI) {
                 parentUI->HighlightCell(Row, Col, 'D');
             }
-            firstPointPlaced = false;
+            ResetCoordinates();
         }
         else
         {
@@ -408,12 +406,17 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             if (!secondPointPlaced) {
                 if(PlayerBoard->getCell(Row, Col) != 'S')
                 {
-                    FinalX = Col;
-                    FinalY = Row;
-                    if (parentUI) {
-                        parentUI->HighlightCell(Row, Col, 'P');
+                    //if it's on the X or Y coordinate, it's not diagnal
+                    if(Col == originalX || originalY == Row)
+                    {
+                        FinalX = Col;
+                        FinalY = Row;
+                        if (parentUI) {
+                            parentUI->HighlightCell(Row, Col, 'P');
+                        }
+                        secondPointPlaced = true;
+
                     }
-                    secondPointPlaced = true;
                 }
             }
         }
