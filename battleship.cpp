@@ -17,22 +17,32 @@ QPlainTextEdit* ModeStatusText; // obj name ModeStatus
 QPlainTextEdit* GameStatusText; // obj name GameStatus
 QPlainTextEdit* ViewStatusText; // obj name ViewStatus
 // --------------------- Ship and ShipPiece ---------------------
-class Ship;
 
 class ShipPiece {
 private:
-    int X;
-    int Y;
+    Coordinate ourCoords;  // Use the Coordinate class
     bool HIT = false;
 public:
     Ship* parentShip;
 
-    ShipPiece(int xPos, int yPos, Ship* ship) : X(xPos), Y(yPos), parentShip(ship) {}
+    // Constructor
+    ShipPiece(int xPos, int yPos, Ship* ship)
+        : ourCoords(xPos, yPos), // Initialize ourCoords directly with Coordinate
+        parentShip(ship)  // Initialize parentShip
+    {
+    }
 
-    int getXPos() { return X; }
-    int getYPos() { return Y; }
-    void SetHit();
+    // Getters for the coordinates
+    int getXPos() { return ourCoords.getX(); }
+    int getYPos() { return ourCoords.getY(); }
+
+    // SetHit method to mark the piece as hit
+    void SetHit() {
+        HIT = true;
+        parentShip->IncreaseHitCount();
+    }
 };
+
 
 class Ship {
 public:
