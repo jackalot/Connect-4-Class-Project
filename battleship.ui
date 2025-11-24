@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>902</width>
-    <height>684</height>
+    <width>1069</width>
+    <height>996</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
-     <width>521</width>
-     <height>411</height>
+     <x>30</x>
+     <y>90</y>
+     <width>832</width>
+     <height>832</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="GameGrid">
@@ -864,6 +864,80 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="UndoButton">
+   <property name="geometry">
+    <rect>
+     <x>915</x>
+     <y>215</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Undo Last Ship</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="GameStatus">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>411</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Click a button to place the first piece</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ViewButton">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>0</y>
+     <width>361</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>View Hits/Misses on other board</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="ModeStatus">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>411</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Place Ship Mode</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="ViewStatus">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>40</y>
+     <width>351</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>You are currently viewing your board</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
+   </property>
   </widget>
  </widget>
  <resources/>
