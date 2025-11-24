@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include "Connect4.h"
 #include "battleship.h"
+#include "tictactoe.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -34,7 +35,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     // make an instance of this, we will reveal this window in mainwindow.cpp
-    Game *newGame;
+    Connect4 *newConnect4;
     battleship *newBattleship;
+    TicTacToe *newTicTacToe;
 };
 #endif // MAINWINDOW_H
