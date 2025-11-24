@@ -376,73 +376,76 @@ void BattleShipBoard::CreateShip()
 }
 // Place a ship on the board
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    if(secondPointPlaced)
+    if(ShipSizes.size())
     {
-        //Cancel this ship all together
-        parentUI->HighlightCell(FinalY, FinalX, 'D');
-        parentUI->HighlightCell(originalY, originalX, 'D');
-        ResetCoordinates();
-    }
-    else if (!firstPointPlaced) {
-        if(PlayerBoard->getCell(Row, Col) != 'S')
+        if(secondPointPlaced)
         {
-            // just place the first point
-            originalX = Col;
-            originalY = Row;
-            if (parentUI) {
-                parentUI->HighlightCell(originalY, originalX, 'P');
-            }
-            firstPointPlaced = true;
-        }
-    }
-    else
-    {
-        // We cancel initial ship placement
-        if(Col == originalX && originalY == Row)
-        {
-            if (parentUI) {
-                parentUI->HighlightCell(Row, Col, 'D');
-            }
-            ResetCoordinates();
-        }
-        else
-        {
-            //Place the second point
-            if (!secondPointPlaced) {
-                if(PlayerBoard->getCell(Row, Col) != 'S')
-                {
-                    //if it's on the X or Y coordinate, it's not diagnal
-                    if(Col == originalX || originalY == Row)
-                    {
-                        FinalX = Col;
-                        FinalY = Row;
-                        if (parentUI) {
-                            parentUI->HighlightCell(Row, Col, 'P');
-                        }
-                        secondPointPlaced = true;
-
-                    }
-                }
-            }
-        }
-
-    }
-    if(firstPointPlaced && secondPointPlaced)
-    {
-        //can we place this ship?
-        if(!CheckSlotsIfAvailable(true))
-        {
-            //Cancel the ship
+            //Cancel this ship all together
             parentUI->HighlightCell(FinalY, FinalX, 'D');
             parentUI->HighlightCell(originalY, originalX, 'D');
             ResetCoordinates();
         }
+        else if (!firstPointPlaced) {
+            if(PlayerBoard->getCell(Row, Col) != 'S')
+            {
+                // just place the first point
+                originalX = Col;
+                originalY = Row;
+                if (parentUI) {
+                    parentUI->HighlightCell(originalY, originalX, 'P');
+                }
+                firstPointPlaced = true;
+            }
+        }
         else
         {
-            CreateShip();
-            //we created one ship, let's pop the one we used
-            ShipSizes.pop_back();
-            ResetCoordinates();
+            // We cancel initial ship placement
+            if(Col == originalX && originalY == Row)
+            {
+                if (parentUI) {
+                    parentUI->HighlightCell(Row, Col, 'D');
+                }
+                ResetCoordinates();
+            }
+            else
+            {
+                //Place the second point
+                if (!secondPointPlaced) {
+                    if(PlayerBoard->getCell(Row, Col) != 'S')
+                    {
+                        //if it's on the X or Y coordinate, it's not diagnal
+                        if(Col == originalX || originalY == Row)
+                        {
+                            FinalX = Col;
+                            FinalY = Row;
+                            if (parentUI) {
+                                parentUI->HighlightCell(Row, Col, 'P');
+                            }
+                            secondPointPlaced = true;
+
+                        }
+                    }
+                }
+            }
+
+        }
+        if(firstPointPlaced && secondPointPlaced)
+        {
+            //can we place this ship?
+            if(!CheckSlotsIfAvailable(true))
+            {
+                //Cancel the ship
+                parentUI->HighlightCell(FinalY, FinalX, 'D');
+                parentUI->HighlightCell(originalY, originalX, 'D');
+                ResetCoordinates();
+            }
+            else
+            {
+                CreateShip();
+                //we created one ship, let's pop the one we used
+                ShipSizes.pop_back();
+                ResetCoordinates();
+            }
         }
     }
 }
