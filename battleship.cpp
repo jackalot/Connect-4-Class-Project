@@ -494,6 +494,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 if (parentUI) {
                     parentUI->HighlightCell(Row, Col, 'D');
                 }
+                parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
                 parentUI->SetGameStatus("Click a button to place the first piece!");
                 ResetCoordinates();
             }
@@ -519,6 +520,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                             * ERROR
                             * You can't place a diagnal ship, sorry I don't make the rules
                             */
+                            parentUI->SetGameStatus("You can't place a diagnal ship, sorry I don't make the rules");
                         }
                     }
                 }
@@ -534,6 +536,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 parentUI->HighlightCell(FinalCoords.getY(), FinalCoords.getX(), 'D');
                 parentUI->HighlightCell(OriginalCoords.getY(), OriginalCoords.getX(), 'D');
                 ResetCoordinates();
+                parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
             }
             else
             {
@@ -543,6 +546,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 ResetCoordinates();
                 if(ShipSizes.size())
                 {
+                    parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
                     parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
                 }
             }
