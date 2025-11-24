@@ -170,7 +170,7 @@ public:
                 {
                     hit = true;
                     currentPiece.SetHit();
-                ]
+                }
             }
         }
         return hit;
@@ -225,6 +225,10 @@ public:
                 {
                     case 'S':
                     parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
+                    case 'H':
+                        parentUI->HighlightCell(CurrentRow, CurrentRow, 'R');
+                    case 'M':
+                        parentUI->HighlightCell(CurrentRow, CurrentRow, 'M');
                     break;
                 }
             }
