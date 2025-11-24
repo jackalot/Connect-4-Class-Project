@@ -2,7 +2,7 @@
 #include "ui_battleship.h"
 #include <QRegularExpression>
 #include "boardgrid.h"
-#include <vector>
+#include "Coordinates.h" // Include the Coordinate header#include <vector>
 #include <QDebug>
 
 using namespace std;
@@ -39,50 +39,48 @@ public:
     vector<ShipPiece> ourPieces;
     int ShipSize;
     int HitCount = 0;
-    int initialX = -1;
-    int initailY = -1;
-    int FinalX = -1;
-    int FinalY = -1;
+    Coordinate OriginalCoords;
+    Coordinate FinalCoords;
     battleship* parentUI; // pointer to the battleship UI
     Ship(int newInitialX, int newInitialY, int newFinalX, int newFinalY, battleship* ui) {
-        initialX = newInitialX;
-        initailY = newInitialY;
-        FinalX = newFinalX;
-        FinalY = newFinalY;
+        OriginalCoords.setX(newInitialX);
+        OriginalCoords.setY(newInitialY);
+        FinalCoords.setX(newFinalX);
+        FinalCoords.setY(newFinalY);
         parentUI = ui;
         char direction = GetDirection();
         ShipSize = 0;
         switch(direction)
         {
             case 'U':
-                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
+                for(int yCoord = OriginalCoords.getY(); yCoord >= FinalCoords.getY(); yCoord--)
                 {
                     ShipSize++;
-                    ShipPiece newPiece(initialX, yCoord, this);
+                    ShipPiece newPiece(OriginalCoords.getX(), yCoord, this);
                     ourPieces.push_back(newPiece);
                 }
                 break;
             case 'D':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                for(int yCoord = OriginalCoords.getY(); yCoord <= FinalCoords.getY(); yCoord++)
                 {
                     ShipSize++;
-                    ShipPiece newPiece(initialX, yCoord, this);
+                    ShipPiece newPiece(OriginalCoords.getX(), yCoord, this);
                     ourPieces.push_back(newPiece);
                 }
                 break;
             case 'L':
-                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
+                for(int xCoord = OriginalCoords.getX(); xCoord >= FinalCoords.getX(); xCoord--)
                 {
                     ShipSize++;
-                    ShipPiece newPiece(xCoord, initailY, this);
+                    ShipPiece newPiece(xCoord, OriginalCoords.getY(), this);
                     ourPieces.push_back(newPiece);
                 }
                 break;
             case 'R':
-                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
+                for(int xCoord = OriginalCoords.getX(); xCoord <= FinalCoords.getX(); xCoord++)
                 {
                     ShipSize++;
-                    ShipPiece newPiece(xCoord, initailY, this);
+                    ShipPiece newPiece(xCoord, OriginalCoords.getY(), this);
                     ourPieces.push_back(newPiece);
                 }
                 break;
@@ -171,6 +169,7 @@ public:
     vector<Ship> ShipsOnBoard;
     int originalX = -1;
     int originalY = -1;
+
     bool firstPointPlaced = false;
     int FinalX = -1;
     int FinalY = -1;
