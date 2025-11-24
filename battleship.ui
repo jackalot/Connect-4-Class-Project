@@ -904,7 +904,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>View other board</string>
+    <string>View Hits/Misses on other board</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="ModeStatus">
@@ -918,6 +918,22 @@
    </property>
    <property name="plainText">
     <string>Place Ship Mode</string>
+   </property>
+   <property name="backgroundVisible">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="ModeStatus_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>40</y>
+     <width>351</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>You are currently viewing your board</string>
    </property>
    <property name="backgroundVisible">
     <bool>false</bool>

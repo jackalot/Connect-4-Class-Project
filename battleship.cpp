@@ -455,21 +455,29 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     return false;
 }
 void BattleShipBoard::RemoveLastShip() {
-    Ship shipToRemove = ShipsOnBoard.back();
-    //we popped it when we made the ship
-    //let's use that size again
-    ShipSizes.push_back(shipToRemove.ShipSize);
-    for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
+    if(ShipsOnBoard.size())
     {
-        int X = shipToRemove.ourPieces[i].getXPos();
-        int Y = shipToRemove.ourPieces[i].getYPos();
-        PlayerBoard->setCell(Y, X, 'E');
+        Ship shipToRemove = ShipsOnBoard.back();
+        //we popped it when we made the ship
+        //let's use that size again
+        ShipSizes.push_back(shipToRemove.ShipSize);
+        for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
+        {
+            int X = shipToRemove.ourPieces[i].getXPos();
+            int Y = shipToRemove.ourPieces[i].getYPos();
+            PlayerBoard->setCell(Y, X, 'E');
+        }
+        ShipsOnBoard.back().RemoveShipInUI();
+        ShipsOnBoard.pop_back();
+        ResetCoordinates();
     }
-    ShipsOnBoard.back().RemoveShipInUI();
-    ShipsOnBoard.pop_back();
-    /*
-    Remember to reset the coordinates we touched.
-    */
+    else
+    {
+        /*
+         * ERROR
+         * No ships to remove, place one please!
+         */
+    }
 }
 
 void BattleShipBoard::SendAttack(int Col, int Row) {
