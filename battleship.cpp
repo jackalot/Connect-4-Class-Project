@@ -37,10 +37,7 @@ public:
     int getYPos() { return ourCoords.getY(); }
 
     // SetHit method to mark the piece as hit
-    void SetHit() {
-        HIT = true;
-        parentShip->IncreaseHitCount();
-    }
+    void SetHit();
 };
 
 
