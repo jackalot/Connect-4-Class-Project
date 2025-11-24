@@ -88,9 +88,9 @@ public:
     }
     char GetDirection() {
         char direction = 'D';
-        if(initialX == FinalX)
+        if(OriginalCoords.getX() == FinalCoords.getX())
         {
-            if(initailY < FinalY)
+            if(OriginalCoords.getY() < FinalCoords.getY())
             {
                 direction = 'D';
             }
@@ -99,9 +99,9 @@ public:
                 direction = 'U';
             }
         }
-        else if(initailY == FinalY)
+        else if(OriginalCoords.getY() == FinalCoords.getY())
         {
-            if(initialX < FinalX)
+            if(OriginalCoords.getX() < FinalCoords.getX())
             {
                 direction = 'R';
             }
@@ -120,31 +120,31 @@ public:
         switch(direction)
         {
             case 'U':
-                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
+            for(int yCoord = OriginalCoords.getY(); yCoord >= FinalCoords.getY(); yCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'D');
+                    parentUI->HighlightCell(yCoord, OriginalCoords.getX(), 'D');
                 }
                 break;
             case 'D':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
+                for(int yCoord = OriginalCoords.getY(); yCoord <= FinalCoords.getY(); yCoord++)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'D');
+                    parentUI->HighlightCell(yCoord, OriginalCoords.getX(), 'D');
                 }
                 break;
             case 'L':
-                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
+                for(int xCoord = OriginalCoords.getX(); xCoord >= FinalCoords.getY(); xCoord--)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'D');
+                    parentUI->HighlightCell(OriginalCoords.getY(), xCoord, 'D');
                 }
                 break;
             case 'R':
-                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
+                for(int xCoord = OriginalCoords.getX(); xCoord <= FinalCoords.getX(); xCoord++)
                 {
                     ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'D');
+                    parentUI->HighlightCell(OriginalCoords.getY(), xCoord, 'D');
                 }
                 break;
         }
