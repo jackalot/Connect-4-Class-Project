@@ -67,9 +67,6 @@ MainWindow::~MainWindow()
 {
     qDebug() << "MainWindow: Destructor called";
     delete ui;
-    if (newTicTacToe) delete newTicTacToe;
-    if (newBattleship) delete newBattleship;
-    if (newConnect4) delete newConnect4;
 }
 
 // Existing button handlers remain the same
@@ -136,7 +133,7 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
 
         // Create Connect 4 window
         try {
-            newConnect4 = std::make_unique<Game>(this);
+            newConnect4 = std::make_unique<Connect4>(this);
 
             // Validate object creation
             if (!newConnect4) {
@@ -164,7 +161,7 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
     }
     // Hides main window and then reveals gameWindow
     hide();
-    newConnect4 = std::make_unique<Game>(this, true);
+    newConnect4 = std::make_unique<Connect4>(this, true);
     newConnect4->show();
 }
 void MainWindow::on_TwoPlayerButtonC4_clicked()
@@ -173,7 +170,7 @@ void MainWindow::on_TwoPlayerButtonC4_clicked()
     on_OnePlayerButtonC4_clicked();
     // Hides main window and then reveals gameWindow
     hide();
-    newConnect4 = std::make_unique<Game>(this, true);
+    newConnect4 = std::make_unique<Connect4>(this, true);
     newConnect4->show();
 }
 
