@@ -564,7 +564,7 @@ public:
 
     void PlaceARandomShip()
     {
-        while (maxShipCount > 0)
+        while (AIBoard->ShipSizes.size())
         {
             int shipSize = AIBoard->ShipSizes.back();
             maxShipCount--;
@@ -639,6 +639,7 @@ battleship::battleship(QWidget *parent)
     if (!AIBoard)
         AIBoard = new BattleShipBoard(this);
     ourAI = new AI(AIBoard);
+    ourAI->PlaceARandomShip();
     // Connect all grid buttons to onButtonClicked()
     for (int row = 1; row <= 10; ++row) {
         for (int col = 1; col <= 10; ++col) {
@@ -680,14 +681,9 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
 
 void battleship::on_UndoButton_clicked()
 {
-    ourAI->PlaceARandomShip();
-    /*
-     * This works, we will just be using
-     *  this as a debug button for the AI right now.
-        if(PlayerOneBoard)
-        {
+    if(PlayerOneBoard)
+    {
         PlayerOneBoard->RemoveLastShip();
-        }
-    */
+    }
 }
 
