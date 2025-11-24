@@ -37,9 +37,10 @@ private:
 
     Ui::MainWindow *ui;
     // make an instance of this, we will reveal this window in mainwindow.cpp
-    Connect4 *newConnect4;
-    battleship *newBattleship;
-    TicTacToe *newTicTacToe;
+    // Use std::unique_ptr for better memory management
+    std::unique_ptr<Connect4> newConnect4; // Change to std::unique_ptr
+    std::unique_ptr<battleship> newBattleship; // Change to std::unique_ptr
+    std::unique_ptr<TicTacToe> newTicTacToe; // Change to std::unique_ptr
 };
 
 #endif // MAINWINDOW_H
