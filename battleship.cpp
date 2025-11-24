@@ -440,129 +440,128 @@ public:
     void MakeProperSize(int shipSize)
     {
         char Direction = AIBoard->GetDirection();
-        bool RightSize;
+        bool RightSize = false; // Initialize RightSize to false
         switch(Direction)
         {
-            case 'U':
-                while(!RightSize)
+        case 'U':
+            while(!RightSize)
+            {
+                int result = AIBoard->originalY - AIBoard->FinalY + 1; // Inclusive calculation
+                if(result == shipSize)
                 {
-                    int result = AIBoard->originalY - AIBoard->FinalY;
-                    if(result == shipSize)
+                    RightSize = true;
+                }
+                else
+                {
+                    // Adjust coordinates so that it fits
+                    if(result < shipSize)
                     {
-                        RightSize = true;
+                        if(AIBoard->FinalY == 1)
+                        {
+                            AIBoard->originalY++;
+                        }
+                        else
+                        {
+                            AIBoard->FinalY--;
+                        }
                     }
                     else
                     {
-                        //Lets change coords so that it fits
-                        if(result < shipSize)
-                        {
-                            if(AIBoard->FinalY == 1)
-                            {
-                                AIBoard->originalY++;
-                            }
-                            else
-                            {
-                                AIBoard->FinalY--;
-                            }
-                        }
-                        else
+                        AIBoard->FinalY++;
+                    }
+                }
+            }
+            break;
+        case 'D':
+            while(!RightSize)
+            {
+                int result = AIBoard->FinalY - AIBoard->originalY + 1; // Inclusive calculation
+                if(result == shipSize)
+                {
+                    RightSize = true;
+                }
+                else
+                {
+                    // Adjust coordinates so that it fits
+                    if(result < shipSize)
+                    {
+                        if(AIBoard->originalY == 1)
                         {
                             AIBoard->FinalY++;
                         }
-                    }
-                }
-                break;
-            case 'D':
-                while(!RightSize)
-                {
-                    // final is below where the slot was
-                    // final has bigger Y value;
-                    int result = AIBoard->FinalY - AIBoard->originalY;
-                    if(result == shipSize)
-                    {
-                        RightSize = true;
+                        else
+                        {
+                            AIBoard->originalY--;
+                        }
                     }
                     else
                     {
-                        //Lets change coords so that it fits
-                        if(result < shipSize)
-                        {
-                            if(AIBoard->originalX == 1)
-                            {
-                                AIBoard->FinalY++;
-                            }
-                            else
-                            {
-                                AIBoard->originalX--;
-                            }
-                        }
-                        else
-                        {
-                            AIBoard->FinalX++;
-                        }
+                        AIBoard->FinalY++;
                     }
                 }
-                break;
-            case 'L':
-                while(!RightSize)
+            }
+            break;
+        case 'L':
+            while(!RightSize)
+            {
+                int result = AIBoard->originalX - AIBoard->FinalX + 1; // Inclusive calculation
+                if(result == shipSize)
                 {
-                    int result = AIBoard->originalX - AIBoard->FinalX;
-                    if(result == shipSize)
-                    {
-                        RightSize = true;
-                    }
-                    else
-                    {
-                        //Lets change coords so that it fits
-                        if(result < shipSize)
-                        {
-                            if(AIBoard->FinalX == 1)
-                            {
-                                AIBoard->originalX++;
-                            }
-                            else
-                            {
-                                AIBoard->FinalX--;
-                            }
-                        }
-                        else
-                        {
-                            AIBoard->FinalX++;
-                        }
-                    }
+                    RightSize = true;
                 }
-                break;
-            case 'R':
-                while(!RightSize)
+                else
                 {
-                    int result = AIBoard->FinalX - AIBoard->originalX;
-                    if(result == shipSize)
+                    // Adjust coordinates so that it fits
+                    if(result < shipSize)
                     {
-                        RightSize = true;
-                    }
-                    else
-                    {
-                        //Lets change coords so that it fits
-                        if(result < shipSize)
-                        {
-                            if(AIBoard->originalX == 1)
-                            {
-                                AIBoard->FinalX++;
-                            }
-                            else
-                            {
-                                AIBoard->originalX--;
-                            }
-                        }
-                        else
+                        if(AIBoard->FinalX == 1)
                         {
                             AIBoard->originalX++;
                         }
+                        else
+                        {
+                            AIBoard->FinalX--;
+                        }
+                    }
+                    else
+                    {
+                        AIBoard->FinalX++;
                     }
                 }
-                break;
+            }
+            break;
+        case 'R':
+            while(!RightSize)
+            {
+                int result = AIBoard->FinalX - AIBoard->originalX + 1; // Inclusive calculation
+                if(result == shipSize)
+                {
+                    RightSize = true;
+                }
+                else
+                {
+                    // Adjust coordinates so that it fits
+                    if(result < shipSize)
+                    {
+                        if(AIBoard->originalX == 1)
+                        {
+                            AIBoard->FinalX++;
+                        }
+                        else
+                        {
+                            AIBoard->originalX--;
+                        }
+                    }
+                    else
+                    {
+                        AIBoard->FinalX++;
+                    }
+                }
+            }
+            break;
         }
     }
+
     void PlaceARandomShip()
     {
         while (maxShipCount > 0)
