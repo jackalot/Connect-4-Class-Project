@@ -167,10 +167,12 @@ public:
 BasicAI g_ai('R', 'B');
 
 //Call Gmae to create a new game window and start with player 1 Blue
-Game::Game(QWidget *parent) :
+Connect4::Connect4(QWidget *parent, bool singlePlayerMode) :
     QDialog(parent),
-    ui(new Ui::Game),
-    currentPlayerPiece('B')
+    ui(new Ui::Connect4),
+    currentPlayerPiece('B'),
+    gameOver(false),
+    singlePlayer(singlePlayerMode)
 {
     ui->setupUi(this);
 
@@ -185,17 +187,17 @@ Game::Game(QWidget *parent) :
 
     // Once button is clicked call onGridCellClicked function
     for (QPushButton* button : gridButtons) {
-        connect(button, &QPushButton::clicked, this, &Game::onGridCellClicked);
+        connect(button, &QPushButton::clicked, this, &Connect4::onGridCellClicked);
     }
 }
 
 // Destructor for Game and delete ourGameBoard and ui
-Game::~Game() {
+Connect4::~Connect4() {
     delete ourGameBoard;
     delete ui;
 }
 
-void Game::onGridCellClicked() {
+void Connect4::onGridCellClicked() {
     if(!gameOver) {
 
         //Check which button was clicked
@@ -219,62 +221,75 @@ void Game::onGridCellClicked() {
 
 /*Make sure to -1 from row and columnso it starts at index 0
 also mdoified logic to flow better with 2 player and AI game modes*/
-void Game::DropInColumn(int column) {
+void Connect4::DropInColumn(int column) {
     if (gameOver) return;
 
     int colIndex = column - 1;
     int droppedPiece = -1;
 
     // Two player no ai - Call ourGameBoard dropPiece function
-    if (ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedPiece)) {
-
+    if (!ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedPiece)) {
+        return;// full collum
+    }
         // Highlight correct location of collumn and row
         HighlightCell(column, droppedPiece + 1, currentPlayerPiece);
 
-        // Check for win/draw
+        // Check for win
         if (ourGameBoard->checkWin(currentPlayerPiece)) {
             ChangePlayerWins(currentPlayerPiece);
-            ChangeGameStateText('G');
+            ChangeGameStateText('G'); // puts gameOver = true
+            return; //// IMPORTANT: we do not call the AI
 
-        } else if (ourGameBoard->isFull()) {
-            ChangeGameStateText('F');
         }
-
+        //check for draw
+        if (ourGameBoard->isFull()) {
+            ChangeGameStateText('F'); // also put gameOver = true
+            return;
+        }
+        //  2 players without AI
+        if (!singlePlayer) {
         // Switch between human players
-        if (currentPlayerPiece == 'B') {
-            currentPlayerPiece = 'R';
-        } else {
-            currentPlayerPiece = 'B';
+            currentPlayerPiece = (currentPlayerPiece == 'B') ? 'R' : 'B';
+            ChangeGameStateText(currentPlayerPiece);
+            return;
         }
-        ChangeGameStateText(currentPlayerPiece);
+        // 1 player vs AI
+        // At this point, the human (B) has already played and has NOT finished the game.
+        // It's the AI's (R) turn.
 
-        if (currentPlayerPiece == 'R') {
             int aiCol = g_ai.chooseMove(*ourGameBoard); // Dereference pointer
 
-            if (aiCol != -1) {
-                int aiRow = -1;
-                if (ourGameBoard->dropPiece(aiCol, 'R', aiRow)) {
-                    HighlightCell(aiCol + 1, aiRow + 1, 'R');
-
-                    if (ourGameBoard->checkWin('R')) {
-                        ChangePlayerWins('R');
-                        // Update text specifically for AI win if needed
-                        QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
-                        if(text) text->setPlainText("AI Wins!");
-                        gameOver = true;
-                    } else if (ourGameBoard->isFull()) {
-                        ChangeGameStateText('F');
-                    } else {
-                        currentPlayerPiece = 'B';
-                        ChangeGameStateText(currentPlayerPiece);
-                    }
-                }
+            if (aiCol == -1) {
+                // Sin movimientos válidos: por seguridad, tratamos como tablas
+                ChangeGameStateText('F');
+                return;
             }
-        }
-    }
+
+            int aiRow = -1;
+            if (!ourGameBoard->dropPiece(aiCol, 'R', aiRow))
+                return;
+
+            HighlightCell(aiCol + 1, aiRow + 1, 'R');
+
+            if (ourGameBoard->checkWin('R')) {
+                ChangePlayerWins('R');
+                QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
+                if (text) text->setPlainText("AI Wins!");
+                gameOver = true;
+                return;
+            }
+
+            if (ourGameBoard->isFull()) {
+                ChangeGameStateText('F');
+                return;
+            }
+
+            // It's the human player's turn again (B)
+            currentPlayerPiece = 'B';
+            ChangeGameStateText(currentPlayerPiece);
 }
 
-void Game::HighlightCell(int column, int Row, char ColorKey) {
+void Connect4::HighlightCell(int column, int Row, char ColorKey) {
 
     /*Create the object of the clicked button building
     the row and collumn into "Coll%1R%2"*/
@@ -296,7 +311,7 @@ void Game::HighlightCell(int column, int Row, char ColorKey) {
 }
 
 //Display win dialogue box - moved variables inside of function
-void Game::ChangePlayerWins(char PlayerKey) {
+void Connect4::ChangePlayerWins(char PlayerKey) {
 
     int Player1Wins = 0;
     int Player2Wins = 0;
@@ -313,7 +328,7 @@ void Game::ChangePlayerWins(char PlayerKey) {
     }
 }
 
-void Game::ChangeGameStateText(char PlayerKey)
+void Connect4::ChangeGameStateText(char PlayerKey)
 {
     QPlainTextEdit* PlayerTurnText = this->findChild<QPlainTextEdit*>("PlayerTurnText");
     switch(PlayerKey)
@@ -334,7 +349,7 @@ void Game::ChangeGameStateText(char PlayerKey)
     }
 }
 
-void Game::on_resetButton_clicked() {
+void Connect4::on_resetButton_clicked() {
     ourGameBoard->clearBoard();
     for(int currentCol = 1; currentCol <= ourGameBoard->getCols(); currentCol++) {
         for(int currentRow = 1; currentRow <= ourGameBoard->getRows(); currentRow++) {
