@@ -547,7 +547,14 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 if(ShipSizes.size())
                 {
                     parentUI->SetGameStatus("Please click a square to put the start position of your ship!");
-                    parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()));
+                    parentUI->SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()) + ". Ship's left: " + std::to_string(ShipSizes.size()));
+                }
+                else
+                {
+                    placeMode = false;
+                    parentUI->SetModeStatus("Game/Attack mode");
+                    parentUI->SetGameStatus("Select a square to attack");
+                    parentUI->SetViewStatus("You are viewing your board");
                 }
             }
         }
