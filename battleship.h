@@ -1,6 +1,6 @@
 #ifndef BATTLESHIP_H
 #define BATTLESHIP_H
-
+#include <string>
 #include <QDialog>
 class BattleShipBoard; // Forward declaration
 class AI;
@@ -22,7 +22,9 @@ public:
     ~battleship();
 
     void HighlightCell(int row, int col, char ColorKey); // Make this public
-
+    void SetGameStatus(std::string text);
+    void SetModeStatus(std::string text);
+    void SetViewStatus(std::string text);
 private slots:
     void onButtonClicked(); // Keep this under private slots
 

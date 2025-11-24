@@ -788,13 +788,24 @@ battleship::battleship(QWidget *parent)
     GameStatusText = this->findChild<QPlainTextEdit*>("GameStatus");
     ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
     ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
-    GameStatusText->setPlainText(QString("taco bell"));
+    SetModeStatus("Place Ship Mode");
+    SetViewStatus("The current needed size is " + PlayerOneBoard->ShipSizes.back());
+    SetGameStatus("Please click a square to put the start position of your ship!");
 }
 
 battleship::~battleship() {
     delete ui;
 }
-
+void battleship::SetGameStatus(std::string text)
+{
+    GameStatusText->setPlainText(QString::fromStdString(text));
+}
+void battleship::SetModeStatus(std::string text) {
+    ModeStatusText->setPlainText(QString::fromStdString(text));
+}
+void battleship::SetViewStatus(std::string text) {
+    ViewStatusText->setPlainText(QString::fromStdString(text));
+}
 // Highlight a cell on the UI
 void battleship::HighlightCell(int row, int col, char ColorKey) {
     QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
