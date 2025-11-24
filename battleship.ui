@@ -923,7 +923,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="ModeStatus_2">
+  <widget class="QPlainTextEdit" name="ViewStatus">
    <property name="geometry">
     <rect>
      <x>470</x>

@@ -13,6 +13,9 @@ class AI;
 BattleShipBoard* PlayerOneBoard = nullptr; // Definition
 BattleShipBoard* AIBoard = nullptr;         // Definition
 AI* ourAI = nullptr;
+QPlainTextEdit* ModeStatusText; // obj name ModeStatus
+QPlainTextEdit* GameStatusText; // obj name GameStatus
+QPlainTextEdit* ViewStatusText; // obj name ViewStatus
 // --------------------- Ship and ShipPiece ---------------------
 class Ship;
 
@@ -781,6 +784,11 @@ battleship::battleship(QWidget *parent)
     ourAI->PlaceARandomShip();
     ourAI->AIBoard->SetEnemyBoard(PlayerOneBoard->GetPlayerBoard());
     PlayerOneBoard->SetEnemyBoard(ourAI->AIBoard->GetPlayerBoard());
+    // Set up ui
+    GameStatusText = this->findChild<QPlainTextEdit*>("GameStatus");
+    ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
+    ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
+    GameStatusText->setPlainText(QString("taco bell"));
 }
 
 battleship::~battleship() {
