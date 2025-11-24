@@ -167,9 +167,9 @@ public:
 BasicAI g_ai('R', 'B');
 
 //Call Gmae to create a new game window and start with player 1 Blue
-Game::Game(QWidget *parent, bool singlePlayerMode) :
+Connect4::Connect4(QWidget *parent, bool singlePlayerMode) :
     QDialog(parent),
-    ui(new Ui::Game),
+    ui(new Ui::Connect4),
     currentPlayerPiece('B'),
     gameOver(false),
     singlePlayer(singlePlayerMode)
@@ -187,17 +187,17 @@ Game::Game(QWidget *parent, bool singlePlayerMode) :
 
     // Once button is clicked call onGridCellClicked function
     for (QPushButton* button : gridButtons) {
-        connect(button, &QPushButton::clicked, this, &Game::onGridCellClicked);
+        connect(button, &QPushButton::clicked, this, &Connect4::onGridCellClicked);
     }
 }
 
 // Destructor for Game and delete ourGameBoard and ui
-Game::~Game() {
+Connect4::~Connect4() {
     delete ourGameBoard;
     delete ui;
 }
 
-void Game::onGridCellClicked() {
+void Connect4::onGridCellClicked() {
     if(!gameOver) {
 
         //Check which button was clicked
@@ -221,7 +221,7 @@ void Game::onGridCellClicked() {
 
 /*Make sure to -1 from row and columnso it starts at index 0
 also mdoified logic to flow better with 2 player and AI game modes*/
-void Game::DropInColumn(int column) {
+void Connect4::DropInColumn(int column) {
     if (gameOver) return;
 
     int colIndex = column - 1;
@@ -289,7 +289,7 @@ void Game::DropInColumn(int column) {
             ChangeGameStateText(currentPlayerPiece);
 }
 
-void Game::HighlightCell(int column, int Row, char ColorKey) {
+void Connect4::HighlightCell(int column, int Row, char ColorKey) {
 
     /*Create the object of the clicked button building
     the row and collumn into "Coll%1R%2"*/
@@ -311,7 +311,7 @@ void Game::HighlightCell(int column, int Row, char ColorKey) {
 }
 
 //Display win dialogue box - moved variables inside of function
-void Game::ChangePlayerWins(char PlayerKey) {
+void Connect4::ChangePlayerWins(char PlayerKey) {
 
     int Player1Wins = 0;
     int Player2Wins = 0;
@@ -328,7 +328,7 @@ void Game::ChangePlayerWins(char PlayerKey) {
     }
 }
 
-void Game::ChangeGameStateText(char PlayerKey)
+void Connect4::ChangeGameStateText(char PlayerKey)
 {
     QPlainTextEdit* PlayerTurnText = this->findChild<QPlainTextEdit*>("PlayerTurnText");
     switch(PlayerKey)
@@ -349,7 +349,7 @@ void Game::ChangeGameStateText(char PlayerKey)
     }
 }
 
-void Game::on_resetButton_clicked() {
+void Connect4::on_resetButton_clicked() {
     ourGameBoard->clearBoard();
     for(int currentCol = 1; currentCol <= ourGameBoard->getCols(); currentCol++) {
         for(int currentRow = 1; currentRow <= ourGameBoard->getRows(); currentRow++) {

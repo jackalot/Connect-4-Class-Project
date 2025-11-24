@@ -10,7 +10,7 @@
 #include "ui_mainwindow.h"
 #include "Connect4.h"
 #include "battleship.h"
-
+#include "tictactoe.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -36,8 +36,10 @@ private:
     void setupConnections();
 
     Ui::MainWindow *ui;
-    std::unique_ptr<Game> newConnect4;
-    std::unique_ptr<battleship> newBattleship;
+    // make an instance of this, we will reveal this window in mainwindow.cpp
+    Connect4 *newConnect4;
+    battleship *newBattleship;
+    TicTacToe *newTicTacToe;
 };
 
 #endif // MAINWINDOW_H

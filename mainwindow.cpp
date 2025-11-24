@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , newConnect4(nullptr)
     , newBattleship(nullptr)
+    , newTicTacToe(nullptr)
 {
     try {
         qDebug() << "MainWindow: Starting initialization";
@@ -66,6 +67,9 @@ MainWindow::~MainWindow()
 {
     qDebug() << "MainWindow: Destructor called";
     delete ui;
+    if (newTicTacToe) delete newTicTacToe;
+    if (newBattleship) delete newBattleship;
+    if (newConnect4) delete newConnect4;
 }
 
 // Existing button handlers remain the same

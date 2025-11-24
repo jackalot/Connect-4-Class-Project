@@ -33,6 +33,9 @@ set(PROJECT_SOURCES
     Connect4.cpp
     Connect4.h
     Connect4.ui
+    tictactoe.cpp
+    tictactoe.h
+    tictactoe.ui
 )
 
 if(NOT CMAKE_BUILD_TYPE)
