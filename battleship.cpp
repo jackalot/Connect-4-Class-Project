@@ -923,3 +923,13 @@ void battleship::on_ViewButton_clicked()
     }
 }
 
+
+void battleship::on_ResetButton_clicked()
+{
+    PlayerOneBoard->clearBoard();
+    ourAI->AIBoard->clearBoard();
+    PlayerOneBoard->HideBoard();
+    PlayerOneBoard->ResetCoordinates();
+    ourAI->AIBoard->ResetCoordinates();
+}
+
