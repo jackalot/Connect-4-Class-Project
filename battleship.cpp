@@ -544,7 +544,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                     placeMode = false;
                     PlayerOnesTurn = true;
                     parentUI->SetModeStatus("Game/Attack mode");
-                    parentUI->SetGameStatus("Select a square to attack");
+                    parentUI->SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
                     parentUI->SetViewStatus("You are viewing your board");
                 }
             }
@@ -902,6 +902,8 @@ void battleship::on_ViewButton_clicked()
             PlayerBoardVisible = false;
             PlayerOneBoard->HideBoard();
             AIBoard->DisplayMissesAndHits();
+            SetViewStatus("You are viewing the AI board.");
+            SetGameStatus("Select a square to attack the AI's board");
             //Temporary
             AIBoard->DisplayShips();
         }
@@ -911,6 +913,8 @@ void battleship::on_ViewButton_clicked()
             AIBoard->HideBoard();
             PlayerOneBoard->DisplayMissesAndHits();
             PlayerOneBoard->DisplayShips();
+            SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
+            SetViewStatus("You are viewing your board.");
         }
     }
 }
