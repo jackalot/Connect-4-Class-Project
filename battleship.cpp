@@ -900,17 +900,17 @@ void battleship::on_ViewButton_clicked()
         {
             PlayerBoardVisible = false;
             PlayerOneBoard->HideBoard();
-            AIBoard->DisplayMissesAndHits();
+            //Temporary
+            ourAI->AIBoard->DisplayShips();
+            ourAI->AIBoard->DisplayMissesAndHits();
             SetViewStatus("You are viewing the AI board.");
             SetGameStatus("Select a square to attack the AI's board");
             SetModeStatus("Attack Mode");
-            //Temporary
-            AIBoard->DisplayShips();
         }
         else //swap to the Player's board.
         {
             PlayerBoardVisible = true;
-            AIBoard->HideBoard();
+            ourAI->AIBoard->HideBoard();
             PlayerOneBoard->DisplayMissesAndHits();
             PlayerOneBoard->DisplayShips();
             SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
