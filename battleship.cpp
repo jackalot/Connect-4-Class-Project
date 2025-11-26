@@ -872,3 +872,20 @@ void battleship::on_UndoButton_clicked()
     }
 }
 
+bool PlayerBoardVisible = true;
+void battleship::on_ViewButton_clicked()
+{
+    if(!placeMode)
+    {
+        //swap to the enemy board
+        if(PlayerBoardVisible)
+        {
+            PlayerBoardVisible = false;
+        }
+        else //swap to the Player's board.
+        {
+            PlayerBoardVisible = true;
+        }
+    }
+}
+
