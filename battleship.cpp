@@ -169,7 +169,7 @@ public:
                 if(currentPiece.getXPos() == X && currentPiece.getYPos() == Y)
                 {
                     hit = true;
-                    currentPiece.SetHit();
+                    ourPieces[i].SetHit();
                 }
             }
         }
@@ -537,7 +537,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 
 // Placeholder: receive attack
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-    return false;
+
 }
 void BattleShipBoard::RemoveLastShip() {
     if(ShipsOnBoard.size())
@@ -565,9 +565,15 @@ void BattleShipBoard::RemoveLastShip() {
 }
 
 void SendAttack(int Col, int Row, battleship* parentUI) {
-    if(!AIBoard->RecieveAttack(Col, Row))
+    if(AIBoard->RecieveAttack(Col, Row))
     {
         parentUI->HighlightCell(Row, Col, 'R');
+        AIBoard->setCell(Row, Col, 'H');
+    }
+    else
+    {
+        parentUI->HighlightCell(Row, Col, 'X');
+        AIBoard->setCell(Row, Col, 'M');
     }
 }
 // --------------------- AI LOGIC ---------------------
