@@ -18,6 +18,7 @@ QPlainTextEdit* GameStatusText; // obj name GameStatus
 QPlainTextEdit* ViewStatusText; // obj name ViewStatus
 bool GameOver = false;
 bool placeMode = true;
+bool PlayerOnesTurn = false;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
 class ShipPiece {
@@ -522,6 +523,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 else
                 {
                     placeMode = false;
+                    PlayerOnesTurn = true;
                     parentUI->SetModeStatus("Game/Attack mode");
                     parentUI->SetGameStatus("Select a square to attack");
                     parentUI->SetViewStatus("You are viewing your board");
@@ -532,6 +534,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     else {
         //we ran out of ships to do
         placeMode = false;
+        PlayerOnesTurn = true;
     }
 }
 
@@ -573,15 +576,18 @@ void BattleShipBoard::RemoveLastShip() {
 }
 
 void SendAttack(int Col, int Row, battleship* parentUI) {
-    if(AIBoard->RecieveAttack(Col, Row))
+    if(PlayerOnesTurn)
     {
-        parentUI->HighlightCell(Row, Col, 'R');
-        AIBoard->setCell(Row, Col, 'H');
-    }
-    else
-    {
-        parentUI->HighlightCell(Row, Col, 'X');
-        AIBoard->setCell(Row, Col, 'M');
+        if(AIBoard->RecieveAttack(Col, Row))
+        {
+            parentUI->HighlightCell(Row, Col, 'R');
+            AIBoard->setCell(Row, Col, 'H');
+        }
+        else
+        {
+            parentUI->HighlightCell(Row, Col, 'X');
+            AIBoard->setCell(Row, Col, 'M');
+        }
     }
 }
 // --------------------- AI LOGIC ---------------------
@@ -771,7 +777,10 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if (!placeMode) {
+        if(PlayerOnesTurn)
+        {
         SendAttack(col, row, this); // Mark attack
+        }
     } else {
         PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
