@@ -22,8 +22,11 @@ bool PlayerOnesTurn = false;
 bool PlayerBoardVisible = true;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
+//Each ship is made of ShipPieces
 class ShipPiece : public Coordinate {
+//This piece needs a Coordinate, let's inherit it
 protected:
+//we only can change this to SetHit
     bool HIT = false;
 public:
     Ship* parentShip;
@@ -36,10 +39,6 @@ public:
         setX(xPos);
         setY(yPos);
     }
-
-    // Getters for the coordinates
-
-
     // SetHit method to mark the piece as hit
     void SetHit();
 };
@@ -247,6 +246,15 @@ public:
             for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
             {
                 parentUI->HighlightCell(CurrentRow, CurrentCol, 'D');
+            }
+        }
+    }
+    // Replaces each char with an E for empty
+    void clearBoard(char replacementKey)
+    {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                setCell(i, j, 'E');
             }
         }
     }
