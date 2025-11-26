@@ -595,21 +595,6 @@ void BattleShipBoard::RemoveLastShip() {
     }
 }
 
-void SendAttack(int Col, int Row, battleship* parentUI) {
-    if(PlayerOnesTurn)
-    {
-        if(AIBoard->RecieveAttack(Col, Row))
-        {
-            parentUI->HighlightCell(Row, Col, 'R');
-            AIBoard->setCell(Row, Col, 'H');
-        }
-        else
-        {
-            parentUI->HighlightCell(Row, Col, 'X');
-            AIBoard->setCell(Row, Col, 'M');
-        }
-    }
-}
 // --------------------- AI LOGIC ---------------------
 class AI {
 public:
@@ -779,7 +764,21 @@ public:
     }
 };
 // --------------------- Button click handler ---------------------
-
+void SendAttack(int Col, int Row, battleship* parentUI) {
+    if(PlayerOnesTurn)
+    {
+        if(ourAI->AIBoard->RecieveAttack(Col, Row))
+        {
+            parentUI->HighlightCell(Row, Col, 'R');
+            ourAI->AIBoard->setCell(Row, Col, 'H');
+        }
+        else
+        {
+            parentUI->HighlightCell(Row, Col, 'X');
+            AIBoard->setCell(Row, Col, 'M');
+        }
+    }
+}
 
 void battleship::onButtonClicked() {
     if (GameOver) return;
