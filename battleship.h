@@ -32,6 +32,8 @@ private slots:
 
     void on_ViewButton_clicked();
 
+    void on_ResetButton_clicked();
+
 private:
     Ui::battleship *ui;
 };

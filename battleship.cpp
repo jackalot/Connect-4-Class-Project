@@ -254,7 +254,7 @@ public:
     {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                setCell(i, j, 'E');
+                setCell(i, j, replacementKey);
             }
         }
     }
@@ -926,10 +926,21 @@ void battleship::on_ViewButton_clicked()
 
 void battleship::on_ResetButton_clicked()
 {
-    PlayerOneBoard->clearBoard();
-    ourAI->AIBoard->clearBoard();
+    PlayerOnesTurn = false;
+    placeMode = true;
+    PlayerOneBoard->clearBoard('E');
+    ourAI->AIBoard->clearBoard('E');
     PlayerOneBoard->HideBoard();
     PlayerOneBoard->ResetCoordinates();
     ourAI->AIBoard->ResetCoordinates();
+    delete ourAI;
+    delete AIBoard;
+    delete PlayerOneBoard;
+    PlayerOneBoard = new BattleShipBoard(this);
+    AIBoard = new BattleShipBoard(this);
+    ourAI = new AI(AIBoard);
+    SetModeStatus("Place Ship Mode");
+    SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()) + ". Ship's left: 5");
+    SetGameStatus("Please click a square to put the start position of your ship!");
 }
 
