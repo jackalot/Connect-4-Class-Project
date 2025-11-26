@@ -216,15 +216,25 @@ public:
     {
         return *PlayerBoard;
     }
-    void DisplayPlayerBoardGrid() {
+    void DisplayShips() {
+        for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
+        {
+            for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
+            {
+                if(PlayerBoard->getCell(CurrentRow, CurrentCol) == 'S')
+                {
+                    parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
+                }
+            }
+        }
+    }
+    void DisplayMissesAndHits() {
         for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
         {
             for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
             {
                 switch(PlayerBoard->getCell(CurrentRow, CurrentCol))
                 {
-                    case 'S':
-                    parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
                     case 'H':
                         parentUI->HighlightCell(CurrentRow, CurrentRow, 'R');
                     case 'M':
