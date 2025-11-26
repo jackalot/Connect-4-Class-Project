@@ -30,6 +30,8 @@ private slots:
 
     void on_UndoButton_clicked();
 
+    void on_ViewButton_clicked();
+
 private:
     Ui::battleship *ui;
 };

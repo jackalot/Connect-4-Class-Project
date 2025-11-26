@@ -223,7 +223,7 @@ public:
             {
                 if(PlayerBoard->getCell(CurrentRow, CurrentCol) == 'S')
                 {
-                    parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
+                    parentUI->HighlightCell(CurrentRow, CurrentCol, 'G');
                 }
             }
         }
@@ -236,11 +236,20 @@ public:
                 switch(PlayerBoard->getCell(CurrentRow, CurrentCol))
                 {
                     case 'H':
-                        parentUI->HighlightCell(CurrentRow, CurrentRow, 'R');
+                        parentUI->HighlightCell(CurrentRow, CurrentCol, 'R');
                     case 'M':
-                        parentUI->HighlightCell(CurrentRow, CurrentRow, 'M');
+                        parentUI->HighlightCell(CurrentRow, CurrentCol, 'M');
                     break;
                 }
+            }
+        }
+    }
+    void HideBoard() {
+        for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
+        {
+            for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
+            {
+                parentUI->HighlightCell(CurrentRow, CurrentCol, 'D');
             }
         }
     }
