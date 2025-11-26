@@ -770,7 +770,8 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
         else
         {
             parentUI->HighlightCell(Row, Col, 'X');
-            ourAI->AIBoard->GetPlayerBoard()->setCell(Row, Col, 'M');
+            BoardGrid* CurrentGrid = ourAI->AIBoard->GetPlayerBoard();
+            CurrentGrid->setCell(Row, Col, 'M');
         }
     }
 }
