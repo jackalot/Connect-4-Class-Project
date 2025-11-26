@@ -567,6 +567,7 @@ void BattleShipBoard::RemoveLastShip() {
 
 void BattleShipBoard::SendAttack(int Col, int Row) {
     // Implement sending attack logic here
+    EnemyBoard->RecieveAttack(Col, Row);
 }
 // --------------------- AI LOGIC ---------------------
 class AI {
@@ -755,7 +756,7 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if (!placeMode) {
-        HighlightCell(row, col, 'R'); // Mark attack
+        PlayerOneBoard->SendAttack(col, row); // Mark attack
     } else {
         PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
