@@ -22,23 +22,23 @@ bool PlayerOnesTurn = false;
 bool PlayerBoardVisible = true;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
-class ShipPiece {
-private:
-    Coordinate ourCoords;  // Use the Coordinate class
+class ShipPiece : public Coordinate {
+protected:
     bool HIT = false;
 public:
     Ship* parentShip;
 
     // Constructor
     ShipPiece(int xPos, int yPos, Ship* ship)
-        : ourCoords(xPos, yPos), // Initialize ourCoords directly with Coordinate
+        : // Initialize ourCoords directly with Coordinate
         parentShip(ship)  // Initialize parentShip
     {
+        setX(xPos);
+        setY(yPos);
     }
 
     // Getters for the coordinates
-    int getXPos() { return ourCoords.getX(); }
-    int getYPos() { return ourCoords.getY(); }
+
 
     // SetHit method to mark the piece as hit
     void SetHit();
@@ -168,7 +168,7 @@ public:
             for(int i = 0; i < ShipSize; i++)
             {
                 ShipPiece currentPiece = ourPieces[i];
-                if(currentPiece.getXPos() == X && currentPiece.getYPos() == Y)
+                if(currentPiece.getX() == X && currentPiece.getY() == Y)
                 {
                     hit = true;
                     ourPieces[i].SetHit();
@@ -233,8 +233,9 @@ public:
                 {
                     case 'H':
                         parentUI->HighlightCell(CurrentRow, CurrentCol, 'R');
+                        break;
                     case 'M':
-                        parentUI->HighlightCell(CurrentRow, CurrentCol, 'M');
+                        parentUI->HighlightCell(CurrentRow, CurrentCol, 'X');
                     break;
                 }
             }
@@ -573,8 +574,8 @@ void BattleShipBoard::RemoveLastShip() {
         ShipSizes.push_back(shipToRemove.ShipSize);
         for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
         {
-            int X = shipToRemove.ourPieces[i].getXPos();
-            int Y = shipToRemove.ourPieces[i].getYPos();
+            int X = shipToRemove.ourPieces[i].getX();
+            int Y = shipToRemove.ourPieces[i].getY();
             PlayerBoard->setCell(Y, X, 'E');
         }
         ShipsOnBoard.back().RemoveShipInUI();
