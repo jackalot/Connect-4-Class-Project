@@ -202,7 +202,6 @@ public:
     void PlaceShip(int Col, int Row);
     bool CheckSlotsIfAvailable(bool Paint);
     void ConfirmShip();
-    void SendAttack(int Col, int Row);
     bool RecieveAttack(int Col, int Row);
     void RemoveLastShip();
     char GetDirection();
@@ -565,9 +564,11 @@ void BattleShipBoard::RemoveLastShip() {
     }
 }
 
-void BattleShipBoard::SendAttack(int Col, int Row) {
-    // Implement sending attack logic here
-    EnemyBoard->RecieveAttack(Col, Row);
+void SendAttack(int Col, int Row, battleship* parentUI) {
+    if(!AIBoard->RecieveAttack(Col, Row))
+    {
+        parentUI->HighlightCell(Row, Col, 'R');
+    }
 }
 // --------------------- AI LOGIC ---------------------
 class AI {
@@ -756,7 +757,7 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if (!placeMode) {
-        PlayerOneBoard->SendAttack(col, row); // Mark attack
+        SendAttack(col, row, this); // Mark attack
     } else {
         PlayerOneBoard->PlaceShip(col, row); // Place ship
     }
