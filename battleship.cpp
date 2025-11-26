@@ -190,7 +190,6 @@ void ShipPiece::SetHit() {
 // --------------------- BattleShipBoard ---------------------
 class BattleShipBoard : public BoardGrid {
     BoardGrid* PlayerBoard;
-    BoardGrid* EnemyBoard;
     /**/
 public:
     battleship* parentUI; // pointer to the battleship UI
@@ -209,13 +208,9 @@ public:
     char GetDirection();
     void CreateShip();
     void ResetCoordinates();
-    void SetEnemyBoard(BoardGrid enemyGrid)
+    BoardGrid* GetPlayerBoard()
     {
-        EnemyBoard = &enemyGrid;
-    }
-    BoardGrid GetPlayerBoard()
-    {
-        return *PlayerBoard;
+        return PlayerBoard;
     }
     void DisplayShips() {
         for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
@@ -263,7 +258,6 @@ BattleShipBoard::BattleShipBoard(battleship* ui)
     // UI is 1-10
     // increase size by one
     PlayerBoard(new BoardGrid(11, 11)), // Our ships, where enemy hit's, misses
-    EnemyBoard(new BoardGrid(11, 11)), // where we hit, miss
     parentUI(ui)
 {
     ResetCoordinates();
@@ -770,12 +764,13 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
         if(ourAI->AIBoard->RecieveAttack(Col, Row))
         {
             parentUI->HighlightCell(Row, Col, 'R');
-            ourAI->AIBoard->setCell(Row, Col, 'H');
+            BoardGrid* CurrentGrid = ourAI->AIBoard->GetPlayerBoard();
+            CurrentGrid->setCell(Row, Col, 'H');
         }
         else
         {
             parentUI->HighlightCell(Row, Col, 'X');
-            AIBoard->setCell(Row, Col, 'M');
+            ourAI->AIBoard->GetPlayerBoard()->setCell(Row, Col, 'M');
         }
     }
 }
@@ -832,8 +827,6 @@ battleship::battleship(QWidget *parent)
     }
     // set up game
     ourAI->PlaceARandomShip();
-    ourAI->AIBoard->SetEnemyBoard(PlayerOneBoard->GetPlayerBoard());
-    PlayerOneBoard->SetEnemyBoard(ourAI->AIBoard->GetPlayerBoard());
     // Set up ui
     GameStatusText = this->findChild<QPlainTextEdit*>("GameStatus");
     ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
