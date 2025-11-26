@@ -854,9 +854,12 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
 
 void battleship::on_UndoButton_clicked()
 {
-    if(PlayerOneBoard)
+    if(placeMode)
     {
-        PlayerOneBoard->RemoveLastShip();
+        if(PlayerOneBoard)
+        {
+            PlayerOneBoard->RemoveLastShip();
+        }
     }
 }
 
