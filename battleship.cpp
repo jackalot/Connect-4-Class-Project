@@ -900,10 +900,17 @@ void battleship::on_ViewButton_clicked()
         if(PlayerBoardVisible)
         {
             PlayerBoardVisible = false;
+            PlayerOneBoard->HideBoard();
+            AIBoard->DisplayMissesAndHits();
+            //Temporary
+            AIBoard->DisplayShips();
         }
         else //swap to the Player's board.
         {
             PlayerBoardVisible = true;
+            AIBoard->HideBoard();
+            PlayerOneBoard->DisplayMissesAndHits();
+            PlayerOneBoard->DisplayShips();
         }
     }
 }
