@@ -19,6 +19,7 @@ QPlainTextEdit* ViewStatusText; // obj name ViewStatus
 bool GameOver = false;
 bool placeMode = true;
 bool PlayerOnesTurn = false;
+bool PlayerBoardVisible = true;
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
 class ShipPiece {
@@ -543,7 +544,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 {
                     placeMode = false;
                     PlayerOnesTurn = true;
-                    parentUI->SetModeStatus("Game/Attack mode");
+                    parentUI->SetModeStatus("Viewing our board mode");
                     parentUI->SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
                     parentUI->SetViewStatus("You are viewing your board");
                 }
@@ -796,7 +797,7 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if (!placeMode) {
-        if(PlayerOnesTurn)
+        if(PlayerOnesTurn && PlayerBoardVisible == false)
         {
         SendAttack(col, row, this); // Mark attack
         }
@@ -891,7 +892,6 @@ void battleship::on_UndoButton_clicked()
     }
 }
 
-bool PlayerBoardVisible = true;
 void battleship::on_ViewButton_clicked()
 {
     if(!placeMode)
@@ -904,6 +904,7 @@ void battleship::on_ViewButton_clicked()
             AIBoard->DisplayMissesAndHits();
             SetViewStatus("You are viewing the AI board.");
             SetGameStatus("Select a square to attack the AI's board");
+            SetModeStatus("Attack Mode");
             //Temporary
             AIBoard->DisplayShips();
         }
@@ -915,6 +916,7 @@ void battleship::on_ViewButton_clicked()
             PlayerOneBoard->DisplayShips();
             SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
             SetViewStatus("You are viewing your board.");
+            SetModeStatus("Viewing our board mode");
         }
     }
 }
