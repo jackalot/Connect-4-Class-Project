@@ -537,7 +537,15 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 
 // Placeholder: receive attack
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-
+    bool attackHit = false;
+    for(int i = 0; i < ShipsOnBoard.size(); i++)
+    {
+        if(ShipsOnBoard[i].CheckIfHit(Col, Row))
+        {
+            attackHit = true;
+        }
+    }
+    return attackHit;
 }
 void BattleShipBoard::RemoveLastShip() {
     if(ShipsOnBoard.size())
