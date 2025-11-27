@@ -108,27 +108,24 @@ bool Ship::CheckIfHit(int X, int Y) {
 void Ship::RemoveShipInUI() {
     char direction = GetDirection();
 
-    switch (direction)
-    {
+    switch (direction) {
     case 'U':
-        for (int y = OriginalCoords.getY(); y >= FinalCoords.getY(); y--) {
-            parentUI->HighlightCell(y+1, OriginalCoords.getX()+1, 'D'); // +1 for UI indexing
-        }
+        for (int y = OriginalCoords.getY(); y >= FinalCoords.getY(); y--)
+            parentUI->HighlightCell(y + 1, OriginalCoords.getX() + 1, 'E');
         break;
     case 'D':
-        for (int y = OriginalCoords.getY(); y <= FinalCoords.getY(); y++) {
-            parentUI->HighlightCell(y+1, OriginalCoords.getX()+1, 'D');
-        }
+        for (int y = OriginalCoords.getY(); y <= FinalCoords.getY(); y++)
+            parentUI->HighlightCell(y + 1, OriginalCoords.getX() + 1, 'E');
         break;
     case 'L':
-        for (int x = OriginalCoords.getX(); x >= FinalCoords.getX(); x--) {
-            parentUI->HighlightCell(OriginalCoords.getY()+1, x+1, 'D');
-        }
+        for (int x = OriginalCoords.getX(); x >= FinalCoords.getX(); x--)
+            parentUI->HighlightCell(OriginalCoords.getY() + 1, x + 1, 'E');
         break;
     case 'R':
-        for (int x = OriginalCoords.getX(); x <= FinalCoords.getX(); x++) {
-            parentUI->HighlightCell(OriginalCoords.getY()+1, x+1, 'D');
-        }
+        for (int x = OriginalCoords.getX(); x <= FinalCoords.getX(); x++)
+            parentUI->HighlightCell(OriginalCoords.getY() + 1, x + 1, 'E');
         break;
     }
 }
+
+
