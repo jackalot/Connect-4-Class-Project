@@ -112,29 +112,22 @@ void Ship::RemoveShipInUI() {
     {
     case 'U':
         for (int y = OriginalCoords.getY(); y >= FinalCoords.getY(); y--) {
-            ourPieces.pop_back();
-            parentUI->HighlightCell(y, OriginalCoords.getX(), 'D');
+            parentUI->HighlightCell(y+1, OriginalCoords.getX()+1, 'D'); // +1 for UI indexing
         }
         break;
-
     case 'D':
         for (int y = OriginalCoords.getY(); y <= FinalCoords.getY(); y++) {
-            ourPieces.pop_back();
-            parentUI->HighlightCell(y, OriginalCoords.getX(), 'D');
+            parentUI->HighlightCell(y+1, OriginalCoords.getX()+1, 'D');
         }
         break;
-
     case 'L':
         for (int x = OriginalCoords.getX(); x >= FinalCoords.getX(); x--) {
-            ourPieces.pop_back();
-            parentUI->HighlightCell(OriginalCoords.getY(), x, 'D');
+            parentUI->HighlightCell(OriginalCoords.getY()+1, x+1, 'D');
         }
         break;
-
     case 'R':
         for (int x = OriginalCoords.getX(); x <= FinalCoords.getX(); x++) {
-            ourPieces.pop_back();
-            parentUI->HighlightCell(OriginalCoords.getY(), x, 'D');
+            parentUI->HighlightCell(OriginalCoords.getY()+1, x+1, 'D');
         }
         break;
     }

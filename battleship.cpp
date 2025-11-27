@@ -236,20 +236,27 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row){
 }
 
 // --------------------- Remove last ship ---------------------
-void BattleShipBoard::RemoveLastShip(){
-    if(ShipsOnBoard.empty()){
+void BattleShipBoard::RemoveLastShip() {
+    if (ShipsOnBoard.empty()) {
         parentUI->SetGameStatus("No ships to remove!");
         return;
     }
-    Ship lastShip = ShipsOnBoard.back();
+
+    Ship& lastShip = ShipsOnBoard.back();  // reference to avoid copying
     ShipSizes.push_back(lastShip.ShipSize);
 
-    for(auto &piece : lastShip.ourPieces)
-        PlayerBoard->setCell(piece.getY(),piece.getX(),'E');
-
+    // Clear GUI
     lastShip.RemoveShipInUI();
+
+    // Clear internal board cells
+    for (auto& piece : lastShip.ourPieces) {
+        PlayerBoard->setCell(piece.getY(), piece.getX(), 'E');
+    }
+
     ShipsOnBoard.pop_back();
     ResetCoordinates();
+
+    parentUI->SetGameStatus("Last ship removed.");
 }
 
 // --------------------- Display ---------------------
@@ -480,16 +487,20 @@ void battleship::on_ResetButton_clicked() {
     SetGameStatus("Please click a square to put the start position of your ship!");
 }
 void battleship::on_UndoButton_clicked() {
-    if(!PlayerOneBoard) return;
+    if (!PlayerOneBoard) return;
 
     PlayerOneBoard->RemoveLastShip();
 
-    // Optional: update view status
-    if(!PlayerOneBoard->ShipSizes.empty()) {
-        SetViewStatus("The current needed size is " + std::to_string(PlayerOneBoard->ShipSizes.back()) +
+    // Update view status
+    if (!PlayerOneBoard->ShipSizes.empty()) {
+        int nextSize = PlayerOneBoard->ShipSizes.back();
+        SetViewStatus("The current needed size is " + std::to_string(nextSize) +
                       ". Ships left: " + std::to_string(PlayerOneBoard->ShipSizes.size()));
+        SetGameStatus("Place the ship of size " + std::to_string(nextSize) + ".");
     } else {
-        SetViewStatus("All ships placed.");
+        SetViewStatus("All ships removed.");
+        SetGameStatus("No ships placed. Click to start placing a ship.");
     }
 }
+
 
