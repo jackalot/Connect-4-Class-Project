@@ -380,7 +380,7 @@ public:
                 AIBoard->FinalCoords.setY(endY);
 
                 if(AIBoard->CheckSlotsIfAvailable(false) && AIBoard->CanPlaceShip(AIBoard->OriginalCoords,AIBoard->FinalCoords)){
-                    AIBoard->CheckSlotsIfAvailable(true);
+                    //AIBoard->CheckSlotsIfAvailable(true); // debugging (DEBUG)
                     AIBoard->CreateShip();
                     AIBoard->ShipSizes.pop_back();
                     AIBoard->ResetCoordinates();
