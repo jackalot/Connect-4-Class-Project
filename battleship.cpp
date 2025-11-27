@@ -530,17 +530,26 @@ void battleship::on_ResetButton_clicked() {
     GameOver = false;
     PlayerOnesTurn = false;
     placeMode = true;
+    PlayerBoardVisible = true;
 
     // Delete old objects safely
     delete ourAI; ourAI = nullptr;
     delete AIBoard; AIBoard = nullptr;
     delete PlayerOneBoard; PlayerOneBoard = nullptr;
 
+    // Create new boards and AI
     PlayerOneBoard = new BattleShipBoard(this);
     AIBoard = new BattleShipBoard(this);
     ourAI = new AI(AIBoard);
     ourAI->PlaceAllShipsRandomly();
 
+    // Clear GUI highlights
+    PlayerOneBoard->clearBoard('E');
+    PlayerOneBoard->HideBoard();
+    AIBoard->clearBoard('E');
+    AIBoard->HideBoard();
+
+    // Reset UI text
     SetModeStatus("Place Ship Mode");
     SetViewStatus("Next size: " + std::to_string(PlayerOneBoard->ShipSizes.back()) + ". Ships left: 5");
     SetGameStatus("Click to place the start position of your ship!");
