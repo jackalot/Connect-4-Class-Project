@@ -35,6 +35,7 @@ class BattleShipBoard : public BoardGrid {
 
 public:
     battleship* parentUI;
+    int shipsSunk = 0;
     vector<Ship> ShipsOnBoard;
     Coordinate OriginalCoords;
     Coordinate FinalCoords;
@@ -253,21 +254,33 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 
 // --------------------- Receive attack ---------------------
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-    int x = Col - 1;
-    int y = Row - 1;
+    int x = Col;
+    int y = Row;
+    Ship* CurrentShip = nullptr;
     bool hit = false;
+    for (auto &ship : ShipsOnBoard) {
+        if (ship.CheckIfHit(x, y)) {
+            CurrentShip = &ship; // store pointer
+            hit = true;
+            break;               // stop after first hit
+        }
+    }
 
-    for (auto &ship : ShipsOnBoard)
-        if (ship.CheckIfHit(x, y)) hit = true;
-
-    if (hit) {
+    if (CurrentShip) {
         PlayerBoard->setCell(y, x, 'H');
         parentUI->HighlightCell(Row, Col, 'H');
+        if (CurrentShip->CheckIfSunk()) {
+            shipsSunk++;
+            if (shipsSunk == 5) {
+                GameOver = true;
+                parentUI->SetGameStatus("Game Over, click reset below the board");
+                parentUI->SetViewStatus("Game Over");
+            }
+        }
     } else {
         PlayerBoard->setCell(y, x, 'M');
         parentUI->HighlightCell(Row, Col, 'M');
     }
-
     return hit;
 }
 
