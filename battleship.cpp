@@ -602,11 +602,16 @@ void BattleShipBoard::RemoveLastShip() {
 class AI {
 public:
     BattleShipBoard* AIBoard;
-
+    Coordinate LastHitCoords = new Coordinate(-1, -1);
     // Constructor takes a pointer to a BattleshipBoard
     AI(BattleShipBoard* newAIBoard) {
         AIBoard = newAIBoard; // Initialize the pointer
     }
+    void MakeRandomAttack()
+    {
+        SendAttack(1, 2, AIBoard->parentUI);
+    }
+    /* AI SHip Placement code*/
     void MakeProperSize(int shipSize)
     {
         char Direction = AIBoard->GetDirection();
@@ -782,6 +787,12 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
             BoardGrid* CurrentGrid = ourAI->AIBoard->GetPlayerBoard();
             CurrentGrid->setCell(Row, Col, 'M');
         }
+        PlayerOnesTurn = false;
+        ourAI->MakeRandomAttack();
+    }
+    else
+    {
+        // call AI code here
     }
 }
 
@@ -882,7 +893,9 @@ void battleship::HighlightCell(int row, int col, char ColorKey) {
     }
 }
 
-
+/*
+ * Button handlers
+ */
 void battleship::on_UndoButton_clicked()
 {
     if(placeMode)
