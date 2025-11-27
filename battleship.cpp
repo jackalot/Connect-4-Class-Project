@@ -489,17 +489,19 @@ void battleship::on_ResetButton_clicked() {
 void battleship::on_UndoButton_clicked() {
     if (!PlayerOneBoard) return;
 
-    PlayerOneBoard->RemoveLastShip();
+    if(placeMode) {
+        PlayerOneBoard->RemoveLastShip();
 
-    // Update view status
-    if (!PlayerOneBoard->ShipSizes.empty()) {
-        int nextSize = PlayerOneBoard->ShipSizes.back();
-        SetViewStatus("The current needed size is " + std::to_string(nextSize) +
-                      ". Ships left: " + std::to_string(PlayerOneBoard->ShipSizes.size()));
-        SetGameStatus("Place the ship of size " + std::to_string(nextSize) + ".");
-    } else {
-        SetViewStatus("All ships removed.");
-        SetGameStatus("No ships placed. Click to start placing a ship.");
+        // Update view status
+        if (!PlayerOneBoard->ShipSizes.empty()) {
+            int nextSize = PlayerOneBoard->ShipSizes.back();
+            SetViewStatus("The current needed size is " + std::to_string(nextSize) +
+                          ". Ships left: " + std::to_string(PlayerOneBoard->ShipSizes.size()));
+            SetGameStatus("Place the ship of size " + std::to_string(nextSize) + ".");
+        } else {
+            SetViewStatus("All ships removed.");
+            SetGameStatus("No ships placed. Click to start placing a ship.");
+        }
     }
 }
 
