@@ -768,7 +768,6 @@ public:
     ~AI() {
     }
 };
-// --------------------- Button click handler ---------------------
 void SendAttack(int Col, int Row, battleship* parentUI) {
     if(PlayerOnesTurn)
     {
@@ -789,6 +788,19 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
     }
     else
     {
+        if(PlayerOneBoard->RecieveAttack(Col, Row))
+        {
+            parentUI->HighlightCell(Row, Col, 'R');
+            BoardGrid* CurrentGrid = PlayerOneBoard->GetPlayerBoard();
+            CurrentGrid->setCell(Row, Col, 'H');
+        }
+        else
+        {
+            parentUI->HighlightCell(Row, Col, 'X');
+            BoardGrid* CurrentGrid = PlayerOneBoard->GetPlayerBoard();
+            CurrentGrid->setCell(Row, Col, 'M');
+        }
+        PlayerOnesTurn = false;
         // call AI code here
     }
 }
@@ -797,6 +809,7 @@ void AI::MakeRandomAttack()
 {
     SendAttack(1, 1, AIBoard->parentUI);
 }
+// --------------------- Button click handler ---------------------
 void battleship::onButtonClicked() {
     if (GameOver) return;
 
