@@ -12,11 +12,14 @@ ShipPiece::ShipPiece(int xPos, int yPos, Ship* ship)
 // ------------------------ ShipPiece Methods ----------------------------
 
 void ShipPiece::SetHit() {
-    HIT = true;
-    if (parentShip) {
-        parentShip->IncreaseHitCount();
+    if (!HIT) {              // Only increment once per piece
+        HIT = true;
+        if (parentShip) {
+            parentShip->IncreaseHitCount();
+        }
     }
 }
+
 
 // ----------------------------- Ship Constructor -------------------------
 

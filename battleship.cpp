@@ -36,7 +36,7 @@ class BattleShipBoard : public BoardGrid {
 public:
     battleship* parentUI;
     int shipsSunk = 0;
-    vector<Ship> ShipsOnBoard;
+    vector<Ship*> ShipsOnBoard;
     Coordinate OriginalCoords;
     Coordinate FinalCoords;
     bool firstPointPlaced = false;
@@ -172,8 +172,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
 
 // --------------------- Create ship object ---------------------
 void BattleShipBoard::CreateShip() {
-    Ship newShip(OriginalCoords.getX(), OriginalCoords.getY(),
-                 FinalCoords.getX(), FinalCoords.getY(), parentUI);
+    Ship* newShip = new Ship(OriginalCoords.getX(), OriginalCoords.getY(),
+                             FinalCoords.getX(), FinalCoords.getY(), parentUI);
     ShipsOnBoard.push_back(newShip);
 }
 
@@ -254,13 +254,13 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 
 // --------------------- Receive attack ---------------------
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-    int x = Col;
-    int y = Row;
+    int x = Col - 1;
+    int y = Row - 1;
     Ship* CurrentShip = nullptr;
     bool hit = false;
     for (auto &ship : ShipsOnBoard) {
-        if (ship.CheckIfHit(x, y)) {
-            CurrentShip = &ship; // store pointer
+        if (ship->CheckIfHit(x, y)) {
+            CurrentShip = ship; // store pointer
             hit = true;
             break;               // stop after first hit
         }
@@ -292,16 +292,15 @@ void BattleShipBoard::RemoveLastShip() {
         return;
     }
 
-    Ship& lastShip = ShipsOnBoard.back(); // reference, not copy
-    ShipSizes.push_back(lastShip.ShipSize);
+    Ship* lastShip = ShipsOnBoard.back(); // lastShip is a pointer
+    ShipSizes.push_back(lastShip->ShipSize);
 
     // Clear GUI
-    lastShip.RemoveShipInUI();
-
-    // Clear internal board cells
-    for (auto& piece : lastShip.ourPieces)
+    lastShip->RemoveShipInUI();
+    for (auto& piece : lastShip->ourPieces)
         PlayerBoard->setCell(piece.getY(), piece.getX(), 'E');
 
+    delete lastShip;        // remove pointer from vector
     ShipsOnBoard.pop_back();
     ResetCoordinates();
 
