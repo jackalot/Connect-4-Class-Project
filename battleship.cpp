@@ -20,6 +20,7 @@ bool GameOver = false;
 bool placeMode = true;
 bool PlayerOnesTurn = false;
 bool PlayerBoardVisible = true;
+void swapBoards(); //forward declare
 // --------------------- Ship and ShipPiece ---------------------
 class Ship; // Forward declaration of Ship
 //Each ship is made of ShipPieces
@@ -784,6 +785,7 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
             CurrentGrid->setCell(Row, Col, 'M');
         }
         PlayerOnesTurn = false;
+        swapBoards();
         ourAI->MakeRandomAttack();
     }
     else
@@ -807,7 +809,9 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
 
 void AI::MakeRandomAttack()
 {
-    SendAttack(1, 1, AIBoard->parentUI);
+    int X = rand() % 10;
+    int Y = rand() % 10;
+    SendAttack(X, Y, AIBoard->parentUI);
 }
 // --------------------- Button click handler ---------------------
 void battleship::onButtonClicked() {
