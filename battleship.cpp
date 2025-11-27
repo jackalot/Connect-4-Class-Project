@@ -802,7 +802,7 @@ void SendAttack(int Col, int Row, battleship* parentUI) {
             BoardGrid* CurrentGrid = PlayerOneBoard->GetPlayerBoard();
             CurrentGrid->setCell(Row, Col, 'M');
         }
-        PlayerOnesTurn = false;
+        PlayerOnesTurn = true;
         // call AI code here
     }
 }
