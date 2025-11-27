@@ -920,33 +920,36 @@ void battleship::on_UndoButton_clicked()
         }
     }
 }
-
+void swapBoards()
+{
+    //swap to the enemy board
+    if(PlayerBoardVisible)
+    {
+        PlayerBoardVisible = false;
+        PlayerOneBoard->HideBoard();
+        //Temporary
+        ourAI->AIBoard->DisplayShips();
+        ourAI->AIBoard->DisplayMissesAndHits();
+        PlayerOneBoard->parentUI->SetViewStatus("You are viewing the AI board.");
+        PlayerOneBoard->parentUI->SetGameStatus("Select a square to attack the AI's board");
+        PlayerOneBoard->parentUI->SetModeStatus("Attack Mode");
+    }
+    else //swap to the Player's board.
+    {
+        PlayerBoardVisible = true;
+        ourAI->AIBoard->HideBoard();
+        PlayerOneBoard->DisplayMissesAndHits();
+        PlayerOneBoard->DisplayShips();
+        PlayerOneBoard->parentUI->SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
+        PlayerOneBoard->parentUI->SetViewStatus("You are viewing your board.");
+        PlayerOneBoard->parentUI->SetModeStatus("Viewing our board mode");
+    }
+}
 void battleship::on_ViewButton_clicked()
 {
     if(!placeMode)
     {
-        //swap to the enemy board
-        if(PlayerBoardVisible)
-        {
-            PlayerBoardVisible = false;
-            PlayerOneBoard->HideBoard();
-            //Temporary
-            ourAI->AIBoard->DisplayShips();
-            ourAI->AIBoard->DisplayMissesAndHits();
-            SetViewStatus("You are viewing the AI board.");
-            SetGameStatus("Select a square to attack the AI's board");
-            SetModeStatus("Attack Mode");
-        }
-        else //swap to the Player's board.
-        {
-            PlayerBoardVisible = true;
-            ourAI->AIBoard->HideBoard();
-            PlayerOneBoard->DisplayMissesAndHits();
-            PlayerOneBoard->DisplayShips();
-            SetGameStatus("These are the ships you placed, swap views with the button to the right to start attacking!");
-            SetViewStatus("You are viewing your board.");
-            SetModeStatus("Viewing our board mode");
-        }
+        swapBoards();
     }
 }
 
