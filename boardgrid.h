@@ -30,4 +30,4 @@ public:
     bool isFull() const;
 };
 
-#endif // BOARDGRID_H
+#endif

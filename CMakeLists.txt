@@ -28,7 +28,7 @@ set(PROJECT_SOURCES
     battleship.cpp
     battleship.h
     battleship.ui
-    boardgrid.cpp
+
     boardgrid.h
     Connect4.cpp
     Connect4.h
