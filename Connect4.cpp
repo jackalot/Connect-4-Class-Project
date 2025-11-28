@@ -22,7 +22,7 @@ public:
         for (int row = rows - 1; row >= 0; row--) {
 
             // Use getCell/setCell because 'board' is private in BoardGrid
-            if (getCell(row, col) == ' ') {
+            if (getCell(row, col) == 'E') {
                 setCell(row, col, piece);
                 droppedPiece = row;
                 return true;
@@ -77,7 +77,7 @@ public:
     // Checks if top row is full for a draw
     bool isFull() {
         for (int c = 0; c < cols; c++) {
-            if (getCell(0, c) == ' ') {
+            if (getCell(0, c) == 'E') {
                 return false;
             }
         }
@@ -125,7 +125,7 @@ public:
 
         // Method to win this turn if possible
         for (int c = 0; c < cols; ++c) {
-            if (board.getCell(0, c) != ' ') continue;
+            if (board.getCell(0, c) != 'E') continue;
             Connect4Board temp = board;
             int rTmp = -1;
             if (temp.dropPiece(c, m_ai, rTmp) && temp.checkWin(m_ai)) return c;
@@ -133,7 +133,7 @@ public:
 
         // Method to block opponent if they are about to win
         for (int c = 0; c < cols; ++c) {
-            if (board.getCell(0, c) != ' ') continue;
+            if (board.getCell(0, c) != 'E') continue;
             Connect4Board temp = board;
             int rTmp = -1;
             if (temp.dropPiece(c, m_human, rTmp) && temp.checkWin(m_human)) return c;
@@ -143,7 +143,7 @@ public:
         //if win or block aren't available
         vector<int> validCols;
         for (int c = 0; c < cols; ++c) {
-            if (board.getCell(0, c) == ' ') validCols.push_back(c);
+            if (board.getCell(0, c) == 'E') validCols.push_back(c);
         }
         if (validCols.empty()) return -1;
 
@@ -173,7 +173,6 @@ public:
 
 BasicAI g_ai('R', 'B');
 
-//Call Gmae to create a new game window and start with player 1 Blue
 Connect4::Connect4(QWidget *parent, bool singlePlayerMode) :
     QDialog(parent),
     ui(new Ui::Connect4),
@@ -183,18 +182,15 @@ Connect4::Connect4(QWidget *parent, bool singlePlayerMode) :
 {
     ui->setupUi(this);
 
-    // Create new instance of game
+    // Create new instance of game board
     ourGameBoard = new Connect4Board();
 
-    /* Connect all grid buttons and use regex to parse
-    cell name for button that was clicked
-    \\d+ matches and captures the numbers of named button*/
-    QRegularExpression regex("Coll(\\d+)R(\\d+)");
-    QList<QPushButton*> gridButtons = this->findChildren<QPushButton*>(regex);
-
-    // Once button is clicked call onGridCellClicked function
+    // Connect all grid buttons
+    QList<QPushButton*> gridButtons = this->findChildren<QPushButton*>();
     for (QPushButton* button : gridButtons) {
-        connect(button, &QPushButton::clicked, this, &Connect4::onGridCellClicked);
+        if (button->objectName().startsWith("Coll")) {
+            connect(button, &QPushButton::clicked, this, &Connect4::onGridCellClicked);
+        }
     }
 }
 
@@ -231,70 +227,63 @@ also mdoified logic to flow better with 2 player and AI game modes*/
 void Connect4::DropInColumn(int column) {
     if (gameOver) return;
 
-    int colIndex = column - 1;
-    int droppedPiece = -1;
+    int colIndex = column - 1;       // 0-based for board logic
+    int droppedRow = -1;
 
-    // Two player no ai - Call ourGameBoard dropPiece function
-    if (!ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedPiece)) {
-        return;// full collum
+    // Drop current player's piece
+    if (!ourGameBoard->dropPiece(colIndex, currentPlayerPiece, droppedRow)) {
+        return; // Column full
     }
-        // Highlight correct location of collumn and row
-        HighlightCell(column, droppedPiece + 1, currentPlayerPiece);
 
-        // Check for win
-        if (ourGameBoard->checkWin(currentPlayerPiece)) {
-            ChangePlayerWins(currentPlayerPiece);
-            ChangeGameStateText('G'); // puts gameOver = true
-            return; //// IMPORTANT: we do not call the AI
+    // Highlight the new piece
+    HighlightCell(column, droppedRow + 1, currentPlayerPiece); // buttons are 1-based
 
-        }
-        //check for draw
-        if (ourGameBoard->isFull()) {
-            ChangeGameStateText('F'); // also put gameOver = true
-            return;
-        }
-        //  2 players without AI
-        if (!singlePlayer) {
-        // Switch between human players
-            currentPlayerPiece = (currentPlayerPiece == 'B') ? 'R' : 'B';
-            ChangeGameStateText(currentPlayerPiece);
-            return;
-        }
-        // 1 player vs AI
-        // At this point, the human (B) has already played and has NOT finished the game.
-        // It's the AI's (R) turn.
+    // Check win
+    if (ourGameBoard->checkWin(currentPlayerPiece)) {
+        ChangePlayerWins(currentPlayerPiece);
+        ChangeGameStateText('G'); // gameOver = true
+        return;
+    }
 
-            int aiCol = g_ai.chooseMove(*ourGameBoard); // Dereference pointer
+    // Check draw
+    if (ourGameBoard->isFull()) {
+        ChangeGameStateText('F');
+        return;
+    }
 
-            if (aiCol == -1) {
-                // Sin movimientos válidos: por seguridad, tratamos como tablas
-                ChangeGameStateText('F');
-                return;
-            }
+    // Switch players
+    if (!singlePlayer) {
+        currentPlayerPiece = (currentPlayerPiece == 'B') ? 'R' : 'B';
+        ChangeGameStateText(currentPlayerPiece);
+        return;
+    }
 
-            int aiRow = -1;
-            if (!ourGameBoard->dropPiece(aiCol, 'R', aiRow))
-                return;
+    // Single player mode - AI turn
+    int aiCol = g_ai.chooseMove(*ourGameBoard);
+    if (aiCol == -1) { ChangeGameStateText('F'); return; }
 
-            HighlightCell(aiCol + 1, aiRow + 1, 'R');
+    int aiRow = -1;
+    ourGameBoard->dropPiece(aiCol, 'R', aiRow);
+    HighlightCell(aiCol + 1, aiRow + 1, 'R');
 
-            if (ourGameBoard->checkWin('R')) {
-                ChangePlayerWins('R');
-                QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
-                if (text) text->setPlainText("AI Wins!");
-                gameOver = true;
-                return;
-            }
+    if (ourGameBoard->checkWin('R')) {
+        ChangePlayerWins('R');
+        QPlainTextEdit* text = this->findChild<QPlainTextEdit*>("PlayerTurnText");
+        if (text) text->setPlainText("AI Wins!");
+        gameOver = true;
+        return;
+    }
 
-            if (ourGameBoard->isFull()) {
-                ChangeGameStateText('F');
-                return;
-            }
+    if (ourGameBoard->isFull()) {
+        ChangeGameStateText('F');
+        return;
+    }
 
-            // It's the human player's turn again (B)
-            currentPlayerPiece = 'B';
-            ChangeGameStateText(currentPlayerPiece);
+    // Human's turn again
+    currentPlayerPiece = 'B';
+    ChangeGameStateText(currentPlayerPiece);
 }
+
 
 void Connect4::HighlightCell(int column, int Row, char ColorKey) {
 
@@ -358,12 +347,17 @@ void Connect4::ChangeGameStateText(char PlayerKey)
 
 void Connect4::on_resetButton_clicked() {
     ourGameBoard->clearBoard();
-    for(int currentCol = 1; currentCol <= ourGameBoard->getCols(); currentCol++) {
-        for(int currentRow = 1; currentRow <= ourGameBoard->getRows(); currentRow++) {
-            HighlightCell(currentCol, currentRow, 'G');
+
+    // Highlight all buttons gray ('G')
+    for (int r = 0; r < ourGameBoard->getRows(); ++r) {
+        for (int c = 0; c < ourGameBoard->getCols(); ++c) {
+            HighlightCell(c + 1, r + 1, 'G'); // 1-based for buttons
         }
     }
-    ChangeGameStateText('B');
+
+    // Reset state
     currentPlayerPiece = 'B';
     gameOver = false;
+    ChangeGameStateText('B');
 }
+
