@@ -69,12 +69,13 @@ BattleShipBoard::~BattleShipBoard() {
 
 // --------------------- Board helpers ---------------------
 bool BattleShipBoard::setCell(int row, int col, char symbol) {
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
-        board[row][col] = symbol;
-        return true;
+    if (row < 0 || row >= rows || col < 0 || col >= cols) {
+        throw std::out_of_range("BattleShipBoard::setCell coordinates out of range");
     }
-    return false;
+    board[row][col] = symbol;
+    return true;
 }
+
 
 // --------------------- Check ship placement ---------------------
 bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
@@ -94,32 +95,41 @@ bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
 
 // --------------------- Check and paint ship placement ---------------------
 bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
-    if (ShipSizes.empty()) return false;
-    parentUI->UpdateViewStatus();
-    int dx = 0, dy = 0, length = 0;
+    if (ShipSizes.empty()) {
+        throw std::logic_error("No ships left to place");
+    }
+
     char dir = getDirection();
+    int dx = 0, dy = 0, length = 0;
+
     switch (dir) {
     case 'R': dx = 1; dy = 0; length = end.getX() - start.getX() + 1; break;
     case 'L': dx = -1; dy = 0; length = start.getX() - end.getX() + 1; break;
     case 'D': dx = 0; dy = 1; length = end.getY() - start.getY() + 1; break;
     case 'U': dx = 0; dy = -1; length = start.getY() - end.getY() + 1; break;
+    default:
+        throw std::logic_error("Invalid ship direction");
     }
 
     if (length != ShipSizes.front()) {
-        parentUI->SetGameStatus("Wrong ship size! Need " + std::to_string(ShipSizes.front()));
-        return false;
+        throw std::invalid_argument("Wrong ship size! Need size " + std::to_string(ShipSizes.front()));
     }
 
+    // Check for overlap
     int x = start.getX();
     int y = start.getY();
     for (int i = 0; i < length; ++i) {
-        if (board[y][x] == 'S') {
-            parentUI->SetGameStatus("Cannot place ship here! Overlaps another ship.");
-            return false;
+        if (x < 0 || x >= cols || y < 0 || y >= rows) {
+            throw std::out_of_range("Ship placement out of board bounds");
         }
-        x += dx; y += dy;
+        if (board[y][x] == 'S') {
+            throw std::invalid_argument("Cannot place ship here! Overlaps another ship.");
+        }
+        x += dx;
+        y += dy;
     }
 
+    // Paint the ship if requested
     if (Paint) {
         x = start.getX(); y = start.getY();
         for (int i = 0; i < length; ++i) {
@@ -132,6 +142,7 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
     return true;
 }
 
+
 // --------------------- Create ship object ---------------------
 void BattleShipBoard::CreateShip() {
     Ship* newShip = new Ship(start.getX(), start.getY(),
@@ -141,51 +152,60 @@ void BattleShipBoard::CreateShip() {
 
 // --------------------- Place ship ---------------------
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    int x = Col - 1, y = Row - 1;
+    int x = Col - 1;
+    int y = Row - 1;
 
-    if (!firstPointPlaced) {
-        if (board[y][x] != 'S') {
-            start.setX(x); start.setY(y);
-            firstPointPlaced = true;
-            parentUI->HighlightCell(Row, Col, 'P');
-            parentUI->SetGameStatus("Select second point of the ship!");
-        } else {
-            parentUI->SetGameStatus("First point cannot overlap another ship!");
+    try {
+        if (!firstPointPlaced) {
+            if (board[y][x] != 'S') {
+                start.setX(x);
+                start.setY(y);
+                firstPointPlaced = true;
+                parentUI->HighlightCell(Row, Col, 'P');
+                parentUI->SetGameStatus("Select second point of the ship!");
+            } else {
+                throw std::invalid_argument("Cannot place first point on an existing ship");
+            }
+            return;
         }
-        return;
-    }
 
-    if (!secondPointPlaced) {
-        if ((x == start.getX() || y == start.getY()) && board[y][x] != 'S') {
-            end.setX(x); end.setY(y); secondPointPlaced = true;
-            parentUI->HighlightCell(Row, Col, 'P');
+        if (!secondPointPlaced) {
+            if ((x == start.getX() || y == start.getY()) && board[y][x] != 'S') {
+                end.setX(x);
+                end.setY(y);
+                secondPointPlaced = true;
+                parentUI->HighlightCell(Row, Col, 'P');
 
-            if (CheckSlotsIfAvailable(true)) {
+                // Validate and place ship
+                CheckSlotsIfAvailable(true);
                 CreateShip();
                 ShipSizes.erase(ShipSizes.begin());
                 reset();
 
                 if (ShipSizes.empty()) {
                     placeMode = false;
-                    PlayerOnesTurn = true;
-                    parentUI->SetModeStatus("Viewing our board mode");
-                    parentUI->SetGameStatus("All ships placed! Swap view to attack.");
-                    parentUI->SetViewStatus("You are viewing your board");
+                    parentUI->SetGameStatus("All ships placed!");
+                    parentUI->UpdateViewStatus();
                 } else {
                     parentUI->SetGameStatus(
-                        "Place next ship of size " + std::to_string(ShipSizes.front())
+                        "Next ship size: " + std::to_string(ShipSizes.front())
                         );
+                    parentUI->UpdateViewStatus();
                 }
             } else {
-                parentUI->HighlightCell(start.getY() + 1, start.getX() + 1, 'E');
-                parentUI->HighlightCell(end.getY() + 1, end.getX() + 1, 'E');
-                reset();
+                throw std::invalid_argument("Second point must align with first point and not overlap");
             }
-        } else {
-            parentUI->SetGameStatus("Second point must be aligned horizontally or vertically and not overlap!");
         }
+    } catch (const std::exception &e) {
+        // Reset highlights if placement failed
+        parentUI->HighlightCell(start.getY() + 1, start.getX() + 1, 'E');
+        if (secondPointPlaced)
+            parentUI->HighlightCell(end.getY() + 1, end.getX() + 1, 'E');
+        reset();
+        parentUI->SetGameStatus(e.what());
     }
 }
+
 
 // --------------------- Receive attack ---------------------
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {

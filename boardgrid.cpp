@@ -1,7 +1,8 @@
 #include "boardgrid.h"
 #include <algorithm>
+#include <stdexcept> // for std::out_of_range
 
-// Default constructor (optional, just initializes empty board)
+// Default constructor
 BoardGrid::BoardGrid() : rows(0), cols(0) {}
 
 // Parameterized constructor
@@ -15,7 +16,9 @@ int BoardGrid::getCols() const { return cols; }
 
 // Get a cell value safely
 char BoardGrid::getCell(int row, int col) const {
-    if (row < 0 || row >= rows || col < 0 || col >= cols) return 'E';
+    if (row < 0 || row >= rows || col < 0 || col >= cols) {
+        throw std::out_of_range("BoardGrid::getCell coordinates out of range");
+    }
     return board[row][col];
 }
 
