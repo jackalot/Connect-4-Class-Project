@@ -49,7 +49,9 @@ else()
         Coordinates.h
         ShipSystem.h
         ShipSystem.cpp
-        boardgrid.cpp)
+        boardgrid.cpp
+        SetOfCoords.h
+        SetOfCoords.h)
 endif()
 
 target_link_libraries(COP_II PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
