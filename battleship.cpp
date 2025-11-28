@@ -1,7 +1,7 @@
 #include "battleship.h"
 #include "ui_battleship.h"
 #include "boardgrid.h"
-#include "Coordinates.h"  // templated Coordinate
+#include "Coordinates.h"
 #include "ShipSystem.h"
 #include <vector>
 #include <QDebug>
@@ -11,14 +11,15 @@
 #include <cstdlib>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
-
+#include "SetOfCoords.h"
+#include <set>
 using namespace std;
 
 // --------------------- Forward declarations ---------------------
 class BattleShipBoard;
 class AI;
 void SendAttack(int Col, int Row, battleship* parentUI);
-void swapBoards();
+void swapBoards(bool showAIShips = false);
 
 // --------------------- Global Variables ---------------------
 BattleShipBoard* PlayerOneBoard = nullptr;
@@ -33,14 +34,10 @@ bool PlayerOnesTurn = false;
 bool PlayerBoardVisible = true;
 
 // --------------------- BattleShipBoard Class ---------------------
-class BattleShipBoard : public BoardGrid {
+class BattleShipBoard : public BoardGrid, public SetOfCoords {
 public:
     battleship* parentUI;
     vector<Ship*> ShipsOnBoard;
-    Coordinate<int> OriginalCoords;
-    Coordinate<int> FinalCoords;
-    bool firstPointPlaced = false;
-    bool secondPointPlaced = false;
     vector<int> ShipSizes = {5, 4, 3, 3, 2}; // standard Battleship sizes
     int shipsSunk = 0;
 
@@ -49,32 +46,28 @@ public:
 
     void PlaceShip(int Col, int Row);
     bool CheckSlotsIfAvailable(bool Paint);
-    void ConfirmShip();
-    bool RecieveAttack(int Col, int Row);
-    void RemoveLastShip();
-    char GetDirection();
     void CreateShip();
-    void ResetCoordinates();
     bool CanPlaceShip(Coordinate<int> start, Coordinate<int> end);
     void DisplayShips();
     void DisplayMissesAndHits();
     void HideBoard();
     void clearBoard(char replacementKey);
-
-    bool setCell(int row, int col, char symbol) override; // override virtual
+    void RemoveLastShip();
+    bool RecieveAttack(int Col, int Row);
+    bool setCell(int row, int col, char symbol) override;
 };
 
 // --------------------- Constructor & Destructor ---------------------
 BattleShipBoard::BattleShipBoard(battleship* ui)
-    : BoardGrid(10, 10), parentUI(ui) {
-    ResetCoordinates();
+    : BoardGrid(10, 10), SetOfCoords(), parentUI(ui) {
+    reset(); // initializes start/end & flags
 }
 
 BattleShipBoard::~BattleShipBoard() {
     for (auto ship : ShipsOnBoard) delete ship;
 }
 
-// --------------------- Override setCell ---------------------
+// --------------------- Board helpers ---------------------
 bool BattleShipBoard::setCell(int row, int col, char symbol) {
     if (row >= 0 && row < rows && col >= 0 && col < cols) {
         board[row][col] = symbol;
@@ -83,26 +76,7 @@ bool BattleShipBoard::setCell(int row, int col, char symbol) {
     return false;
 }
 
-// --------------------- Coordinate reset ---------------------
-void BattleShipBoard::ResetCoordinates() {
-    OriginalCoords.setX(-1); OriginalCoords.setY(-1);
-    FinalCoords.setX(-1); FinalCoords.setY(-1);
-    firstPointPlaced = false;
-    secondPointPlaced = false;
-}
-
-// --------------------- Determine direction ---------------------
-char BattleShipBoard::GetDirection() {
-    char direction = 'D'; // default
-    if (OriginalCoords.getX() == FinalCoords.getX()) {
-        direction = (OriginalCoords.getY() < FinalCoords.getY()) ? 'D' : 'U';
-    } else if (OriginalCoords.getY() == FinalCoords.getY()) {
-        direction = (OriginalCoords.getX() < FinalCoords.getX()) ? 'R' : 'L';
-    }
-    return direction;
-}
-
-// --------------------- Check placement ---------------------
+// --------------------- Check ship placement ---------------------
 bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
     int x1 = start.getX(), y1 = start.getY();
     int x2 = end.getX(), y2 = end.getY();
@@ -118,33 +92,26 @@ bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
     return true;
 }
 
-// --------------------- Check and optionally paint ---------------------
+// --------------------- Check and paint ship placement ---------------------
 bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
     if (ShipSizes.empty()) return false;
 
-    char dir = GetDirection();
     int dx = 0, dy = 0, length = 0;
-
-    // Determine direction and length
+    char dir = getDirection();
     switch (dir) {
-    case 'R': dx = 1; dy = 0; length = FinalCoords.getX() - OriginalCoords.getX() + 1; break;
-    case 'L': dx = -1; dy = 0; length = OriginalCoords.getX() - FinalCoords.getX() + 1; break;
-    case 'D': dx = 0; dy = 1; length = FinalCoords.getY() - OriginalCoords.getY() + 1; break;
-    case 'U': dx = 0; dy = -1; length = OriginalCoords.getY() - FinalCoords.getY() + 1; break;
-    default:
-        parentUI->SetGameStatus("Invalid ship direction!");
-        return false;
+    case 'R': dx = 1; dy = 0; length = end.getX() - start.getX() + 1; break;
+    case 'L': dx = -1; dy = 0; length = start.getX() - end.getX() + 1; break;
+    case 'D': dx = 0; dy = 1; length = end.getY() - start.getY() + 1; break;
+    case 'U': dx = 0; dy = -1; length = start.getY() - end.getY() + 1; break;
     }
 
-    // Check length matches required size
     if (length != ShipSizes.front()) {
         parentUI->SetGameStatus("Wrong ship size! Need " + std::to_string(ShipSizes.front()));
         return false;
     }
 
-    // Check for overlapping ships
-    int x = OriginalCoords.getX();
-    int y = OriginalCoords.getY();
+    int x = start.getX();
+    int y = start.getY();
     for (int i = 0; i < length; ++i) {
         if (board[y][x] == 'S') {
             parentUI->SetGameStatus("Cannot place ship here! Overlaps another ship.");
@@ -153,10 +120,8 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
         x += dx; y += dy;
     }
 
-    // Paint the ship on board if requested
     if (Paint) {
-        x = OriginalCoords.getX();
-        y = OriginalCoords.getY();
+        x = start.getX(); y = start.getY();
         for (int i = 0; i < length; ++i) {
             setCell(y, x, 'S');
             parentUI->HighlightCell(y + 1, x + 1, 'S');
@@ -169,20 +134,18 @@ bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
 
 // --------------------- Create ship object ---------------------
 void BattleShipBoard::CreateShip() {
-    Ship* newShip = new Ship(OriginalCoords.getX(), OriginalCoords.getY(),
-                             FinalCoords.getX(), FinalCoords.getY(), parentUI);
+    Ship* newShip = new Ship(start.getX(), start.getY(),
+                             end.getX(), end.getY(), parentUI);
     ShipsOnBoard.push_back(newShip);
 }
 
 // --------------------- Place ship ---------------------
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    int x = Col - 1;  // Convert to 0-based
-    int y = Row - 1;
+    int x = Col - 1, y = Row - 1;
 
     if (!firstPointPlaced) {
         if (board[y][x] != 'S') {
-            OriginalCoords.setX(x);
-            OriginalCoords.setY(y);
+            start.setX(x); start.setY(y);
             firstPointPlaced = true;
             parentUI->HighlightCell(Row, Col, 'P');
             parentUI->SetGameStatus("Select second point of the ship!");
@@ -193,16 +156,14 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
     }
 
     if (!secondPointPlaced) {
-        if ((x == OriginalCoords.getX() || y == OriginalCoords.getY()) && board[y][x] != 'S') {
-            FinalCoords.setX(x);
-            FinalCoords.setY(y);
-            secondPointPlaced = true;
+        if ((x == start.getX() || y == start.getY()) && board[y][x] != 'S') {
+            end.setX(x); end.setY(y); secondPointPlaced = true;
             parentUI->HighlightCell(Row, Col, 'P');
 
             if (CheckSlotsIfAvailable(true)) {
                 CreateShip();
                 ShipSizes.erase(ShipSizes.begin());
-                ResetCoordinates();
+                reset();
 
                 if (ShipSizes.empty()) {
                     placeMode = false;
@@ -216,9 +177,9 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                         );
                 }
             } else {
-                parentUI->HighlightCell(OriginalCoords.getY() + 1, OriginalCoords.getX() + 1, 'E');
-                parentUI->HighlightCell(FinalCoords.getY() + 1, FinalCoords.getX() + 1, 'E');
-                ResetCoordinates();
+                parentUI->HighlightCell(start.getY() + 1, start.getX() + 1, 'E');
+                parentUI->HighlightCell(end.getY() + 1, end.getX() + 1, 'E');
+                reset();
             }
         } else {
             parentUI->SetGameStatus("Second point must be aligned horizontally or vertically and not overlap!");
@@ -230,6 +191,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
 bool BattleShipBoard::RecieveAttack(int Col, int Row) {
     int x = Col-1, y = Row-1;
     bool hit = false;
+
     for (auto &ship : ShipsOnBoard) {
         if (ship->CheckIfHit(x, y)) {
             hit = true;
@@ -245,10 +207,12 @@ bool BattleShipBoard::RecieveAttack(int Col, int Row) {
             break;
         }
     }
+
     if (!hit) {
         setCell(y,x,'M');
         parentUI->HighlightCell(Row,Col,'M');
     }
+
     return hit;
 }
 
@@ -269,17 +233,15 @@ void BattleShipBoard::RemoveLastShip() {
 
     delete lastShip;
     ShipsOnBoard.pop_back();
-
-    ResetCoordinates();
+    reset();
 
     parentUI->SetGameStatus(
         "Last ship removed. Place a ship of size " + std::to_string(ShipSizes.front())
         );
-
     placeMode = true;
 }
 
-// --------------------- Display ---------------------
+// --------------------- Display & hide ---------------------
 void BattleShipBoard::DisplayShips() {
     for(int y=0; y<rows; y++)
         for(int x=0; x<cols; x++) {
@@ -315,7 +277,10 @@ void BattleShipBoard::clearBoard(char replacementKey) {
 class AI {
 public:
     BattleShipBoard* AIBoard;
+    set<pair<int,int>> Attacked; // prevent repeated attacks
+
     AI(BattleShipBoard* board) : AIBoard(board) {}
+
     void PlaceAllShipsRandomly() {
         if(!AIBoard) return;
         while(!AIBoard->ShipSizes.empty()) {
@@ -327,14 +292,14 @@ public:
                 int endX = vertical ? x : x+size-1;
                 int endY = vertical ? y+size-1 : y;
                 if(endX>=10 || endY>=10) continue;
-                AIBoard->OriginalCoords.setX(x);
-                AIBoard->OriginalCoords.setY(y);
-                AIBoard->FinalCoords.setX(endX);
-                AIBoard->FinalCoords.setY(endY);
-                if(AIBoard->CanPlaceShip(AIBoard->OriginalCoords,AIBoard->FinalCoords)) {
+                AIBoard->start.setX(x);
+                AIBoard->start.setY(y);
+                AIBoard->end.setX(endX);
+                AIBoard->end.setY(endY);
+                if(AIBoard->CanPlaceShip(AIBoard->start,AIBoard->end)) {
                     AIBoard->CreateShip();
                     AIBoard->ShipSizes.pop_back();
-                    AIBoard->ResetCoordinates();
+                    AIBoard->reset();
                     placed = true;
                 }
             }
@@ -342,9 +307,19 @@ public:
     }
 
     void MakeRandomAttack() {
-        int x = rand()%10 + 1, y = rand()%10 + 1;
+        if(!AIBoard) return;
+
+        int x, y;
+        do {
+            x = rand()%10 + 1;
+            y = rand()%10 + 1;
+        } while(Attacked.count({x,y}) > 0);
+
+        Attacked.insert({x,y});
         SendAttack(x,y, AIBoard->parentUI);
     }
+
+    void Reset() { Attacked.clear(); }
 };
 
 // --------------------- Send Attack ---------------------
@@ -355,7 +330,7 @@ void SendAttack(int Col,int Row,battleship* parentUI){
         else
             parentUI->HighlightCell(Row,Col,'X');
         PlayerOnesTurn=false;
-        swapBoards();
+        swapBoards(false); // optionally hide AI ships
         ourAI->MakeRandomAttack();
     } else {
         if(PlayerOneBoard->RecieveAttack(Col,Row))
@@ -367,10 +342,10 @@ void SendAttack(int Col,int Row,battleship* parentUI){
 }
 
 // --------------------- Swap Boards ---------------------
-void swapBoards(){
+void swapBoards(bool showAIShips){
     if(PlayerBoardVisible){
         PlayerOneBoard->HideBoard();
-        AIBoard->DisplayShips();
+        if(showAIShips) AIBoard->DisplayShips();
         AIBoard->DisplayMissesAndHits();
         PlayerBoardVisible=false;
         if(ModeStatusText) ModeStatusText->setPlainText("Viewing AI Board Mode");
@@ -466,41 +441,46 @@ void battleship::SetViewStatus(std::string text){ if(ViewStatusText) ViewStatusT
 void battleship::on_ViewButton_clicked() { if(!placeMode) swapBoards(); }
 
 // --------------------- Undo last ship ---------------------
-void battleship::on_UndoButton_clicked() {
-    if (placeMode && PlayerOneBoard) {
-        PlayerOneBoard->RemoveLastShip();
-    } else {
-        SetGameStatus("Cannot undo at this time!");
-    }
-}
+void battleship::on_UndoButton_clicked() { PlayerOneBoard->RemoveLastShip(); }
 
-// --------------------- Reset game ---------------------
 void battleship::on_ResetButton_clicked() {
-    // Delete old boards and AI
-    delete ourAI; ourAI = nullptr;
-    delete PlayerOneBoard; PlayerOneBoard = nullptr;
-    delete AIBoard; AIBoard = nullptr;
-
-    // Reset global state
+    // Reset flags
     GameOver = false;
     placeMode = true;
     PlayerOnesTurn = false;
     PlayerBoardVisible = true;
 
-    // Recreate boards
-    PlayerOneBoard = new BattleShipBoard(this);
-    AIBoard = new BattleShipBoard(this);
+    // Reset Player board
+    if (PlayerOneBoard) {
+        PlayerOneBoard->clearBoard('E');      // Clear all cells
+        PlayerOneBoard->ShipsOnBoard.clear(); // Remove ships
+        PlayerOneBoard->ShipSizes = {5,4,3,3,2};
+        PlayerOneBoard->reset();
+        PlayerOneBoard->shipsSunk = 0;
+    }
 
-    // Recreate AI and place its ships
-    ourAI = new AI(AIBoard);
+    // Reset AI board
+    if (AIBoard) {
+        AIBoard->clearBoard('E');             // Clear all cells
+        AIBoard->ShipsOnBoard.clear();
+        AIBoard->ShipSizes = {5,4,3,3,2};
+        AIBoard->reset();
+        AIBoard->shipsSunk = 0;
+    }
+
+    // Reset AI logic
+    if (ourAI) ourAI->Reset();
     ourAI->PlaceAllShipsRandomly();
 
-    // Update UI
-    SetModeStatus("Place Ship Mode");
-    SetViewStatus("Next size: " + std::to_string(PlayerOneBoard->ShipSizes.front()) +
-                  ". Ships left: " + std::to_string(PlayerOneBoard->ShipSizes.size()));
-    SetGameStatus("Click to place the start position of your ship!");
+    // Reset UI highlights
+    if (PlayerOneBoard) PlayerOneBoard->DisplayShips();
+    if (AIBoard && PlayerBoardVisible == false) AIBoard->HideBoard();
 
-    // Clear button highlights
-    PlayerOneBoard->clearBoard('E');
+    // Reset UI text
+    if (ModeStatusText) ModeStatusText->setPlainText("Place Ship Mode");
+    if (ViewStatusText) ViewStatusText->setPlainText(
+            "Current needed size: " + QString::number(PlayerOneBoard->ShipSizes.front()) +
+            ". Ships left: " + QString::number(PlayerOneBoard->ShipSizes.size())
+            );
+    if (GameStatusText) GameStatusText->setPlainText("Click to place the start position of your ship!");
 }
