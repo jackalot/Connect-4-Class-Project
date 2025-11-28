@@ -1,18 +1,17 @@
 #include "ShipSystem.h"
 #include "battleship.h"
-// ------------------------ ShipPiece Constructor -------------------------
 
+// ------------------------ ShipPiece Constructor -------------------------
 ShipPiece::ShipPiece(int xPos, int yPos, Ship* ship)
     : parentShip(ship)
 {
-    setX(xPos);
-    setY(yPos);
+    this->setX(xPos);
+    this->setY(yPos);
 }
 
 // ------------------------ ShipPiece Methods ----------------------------
-
 void ShipPiece::SetHit() {
-    if (!HIT) {              // Only increment once per piece
+    if (!HIT) {
         HIT = true;
         if (parentShip) {
             parentShip->IncreaseHitCount();
@@ -20,11 +19,9 @@ void ShipPiece::SetHit() {
     }
 }
 
-
 // ----------------------------- Ship Constructor -------------------------
-
 Ship::Ship(int newInitialX, int newInitialY,
-           int newFinalX,    int newFinalY,
+           int newFinalX, int newFinalY,
            battleship* ui)
 {
     OriginalCoords.setX(newInitialX);
@@ -70,14 +67,11 @@ Ship::Ship(int newInitialX, int newInitialY,
 }
 
 // ----------------------------- Ship Methods ----------------------------
-
-char Ship::GetDirection() {
-    if (OriginalCoords.getX() == FinalCoords.getX()) {
+char Ship::GetDirection() const {
+    if (OriginalCoords.getX() == FinalCoords.getX())
         return (OriginalCoords.getY() < FinalCoords.getY()) ? 'D' : 'U';
-    }
-    else if (OriginalCoords.getY() == FinalCoords.getY()) {
+    else if (OriginalCoords.getY() == FinalCoords.getY())
         return (OriginalCoords.getX() < FinalCoords.getX()) ? 'R' : 'L';
-    }
     return 'D';
 }
 
@@ -85,29 +79,24 @@ void Ship::IncreaseHitCount() {
     HitCount++;
 }
 
-bool Ship::CheckIfSunk() {
+bool Ship::CheckIfSunk() const {
     return HitCount == ShipSize;
 }
 
 bool Ship::CheckIfHit(int X, int Y) {
     bool hit = false;
 
-    if (OriginalCoords.getX() == X || OriginalCoords.getY() == Y)
-    {
-        for (int i = 0; i < ShipSize; i++)
-        {
-            ShipPiece& currentPiece = ourPieces[i];
-
-            if (currentPiece.getX() == X && currentPiece.getY() == Y)
-            {
-                hit = true;
-                currentPiece.SetHit();
-            }
+    for (auto &piece : ourPieces) {
+        if (piece.getX() == X && piece.getY() == Y) {
+            hit = true;
+            piece.SetHit();
+            break;
         }
     }
 
     return hit;
 }
+
 void Ship::RemoveShipInUI() {
     char direction = GetDirection();
 
@@ -130,5 +119,3 @@ void Ship::RemoveShipInUI() {
         break;
     }
 }
-
-

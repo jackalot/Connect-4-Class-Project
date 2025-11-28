@@ -2,7 +2,7 @@
 #define SHIPSYSTEM_HPP
 
 #include <vector>
-#include "Coordinates.h"
+#include "Coordinates.h"   // use the templated Coordinate
 
 using std::vector;
 
@@ -11,7 +11,7 @@ class Ship;
 class battleship;
 
 // ------------------------ ShipPiece -------------------------
-class ShipPiece : public Coordinate {
+class ShipPiece : public Coordinate<int> {
 protected:
     bool HIT = false;
 
@@ -27,20 +27,20 @@ public:
 class Ship {
 public:
     vector<ShipPiece> ourPieces;
-    int ShipSize;
+    int ShipSize = 0;
     int HitCount = 0;
 
-    Coordinate OriginalCoords;
-    Coordinate FinalCoords;
+    Coordinate<int> OriginalCoords;
+    Coordinate<int> FinalCoords;
     battleship* parentUI;
 
     Ship(int newInitialX, int newInitialY,
          int newFinalX, int newFinalY,
          battleship* ui);
 
-    char GetDirection();
+    char GetDirection() const;
     void IncreaseHitCount();
-    bool CheckIfSunk();
+    bool CheckIfSunk() const;
     bool CheckIfHit(int X, int Y);
     void RemoveShipInUI();
 };
