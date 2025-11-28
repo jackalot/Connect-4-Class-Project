@@ -80,11 +80,12 @@ bool BattleShipBoard::setCell(int row, int col, char symbol) {
 // --------------------- Constructor ---------------------
 BattleShipBoard::BattleShipBoard(battleship* ui)
     : BoardGrid(10, 10),
-    PlayerBoard(new BoardGrid(10, 10)),
+    PlayerBoard(new BattleShipBoard(ui)),  // ✔️ concrete, not abstract
     parentUI(ui)
 {
     ResetCoordinates();
 }
+
 
 // --------------------- Coordinate reset ---------------------
 void BattleShipBoard::ResetCoordinates() {

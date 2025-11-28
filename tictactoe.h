@@ -14,6 +14,14 @@ class TicTacToeBoard : public BoardGrid {
 public:
     TicTacToeBoard() : BoardGrid(3, 3) {}
 
+    bool setCell(int row, int col, char symbol) override {
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            board[row][col] = symbol;
+            return true;
+        }
+        return false;
+    }
+
     bool checkWin(char p) {
         // Check Rows & Columns for wins
         for (int i = 0; i < 3; i++) {
@@ -26,6 +34,7 @@ public:
         return false;
     }
 };
+
 
 class TicTacToe : public QDialog
 {
