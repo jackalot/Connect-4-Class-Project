@@ -43,7 +43,6 @@ class TicTacToe : public QDialog
 public:
     explicit TicTacToe(QWidget *parent = nullptr, bool singlePlayer = false);
     ~TicTacToe();
-
 private slots:
     void onGridCellClicked(int row, int col);
     void on_resetButton_clicked();
