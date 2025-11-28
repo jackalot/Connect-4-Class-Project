@@ -45,7 +45,7 @@ public:
     ~TicTacToe();
 
 private slots:
-    void onGridCellClicked();
+    void onGridCellClicked(int row, int col);
     void on_resetButton_clicked();
 
 private:
