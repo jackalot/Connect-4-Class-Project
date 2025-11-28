@@ -95,7 +95,7 @@ bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
 // --------------------- Check and paint ship placement ---------------------
 bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
     if (ShipSizes.empty()) return false;
-
+    parentUI->UpdateViewStatus();
     int dx = 0, dy = 0, length = 0;
     char dir = getDirection();
     switch (dir) {
@@ -239,6 +239,7 @@ void BattleShipBoard::RemoveLastShip() {
         "Last ship removed. Place a ship of size " + std::to_string(ShipSizes.front())
         );
     placeMode = true;
+    parentUI->UpdateViewStatus();
 }
 
 // --------------------- Display & hide ---------------------
@@ -434,6 +435,24 @@ void battleship::onButtonClicked() {
 }
 
 // --------------------- UI setters ---------------------
+void battleship::UpdateViewStatus() {
+    if(!PlayerOneBoard) return;
+
+    if(placeMode) {
+        // During ship placement
+        int shipsLeft = PlayerOneBoard->ShipSizes.size();
+        int nextSize = shipsLeft > 0 ? PlayerOneBoard->ShipSizes.front() : 0;
+        SetViewStatus("Current needed size: " + std::to_string(nextSize) +
+                      ". Ships left: " + std::to_string(shipsLeft));
+    } else {
+        // After placement, just show which board we are viewing
+        if(PlayerBoardVisible)
+            SetViewStatus("You are viewing your board");
+        else
+            SetViewStatus("You are viewing AI Board");
+    }
+}
+
 void battleship::SetGameStatus(std::string text){ if(GameStatusText) GameStatusText->setPlainText(QString::fromStdString(text)); }
 void battleship::SetModeStatus(std::string text){ if(ModeStatusText) ModeStatusText->setPlainText(QString::fromStdString(text)); }
 void battleship::SetViewStatus(std::string text){ if(ViewStatusText) ViewStatusText->setPlainText(QString::fromStdString(text)); }
@@ -478,9 +497,6 @@ void battleship::on_ResetButton_clicked() {
 
     // Reset UI text
     if (ModeStatusText) ModeStatusText->setPlainText("Place Ship Mode");
-    if (ViewStatusText) ViewStatusText->setPlainText(
-            "Current needed size: " + QString::number(PlayerOneBoard->ShipSizes.front()) +
-            ". Ships left: " + QString::number(PlayerOneBoard->ShipSizes.size())
-            );
+    if (ViewStatusText) UpdateViewStatus();
     if (GameStatusText) GameStatusText->setPlainText("Click to place the start position of your ship!");
 }
