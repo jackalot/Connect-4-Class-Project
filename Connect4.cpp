@@ -12,7 +12,7 @@ class Connect4Board : public BoardGrid {
 public:
     // Initialize board to be a 8x13 grid
     Connect4Board() : BoardGrid(8, 13) {}
-
+    bool setCell(int row, int col, char symbol) override;
     // Returns true if the column is valid and not full
     bool dropPiece(int col, char piece, int &droppedPiece) {
         if (col < 0 || col >= cols) {
@@ -84,6 +84,13 @@ public:
         return true;
     }
 };
+bool Connect4Board::setCell(int row, int col, char symbol) {
+    if (row >= 0 && row < rows && col >= 0 && col < cols) {
+        board[row][col] = symbol;
+        return true;
+    }
+    return false;
+}
 
 //Boris' AI code - removed duplicate code - made variables private
 //to keep their values protected - modified code to use Qt libraries
