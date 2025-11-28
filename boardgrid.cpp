@@ -19,14 +19,14 @@ char BoardGrid::getCell(int row, int col) const {
     return ' '; // or throw an exception
 }
 
-// Cell setter
-bool BoardGrid::setCell(int row, int col, char symbol) {
+
+/*bool BoardGrid::setCell(int row, int col, char symbol) {
     if (row >= 0 && row < rows && col >= 0 && col < cols) {
         board[row][col] = symbol;
         return true;
     }
     return false;
-}
+}*/
 
 // Clear board implementation
 void BoardGrid::clearBoard() {

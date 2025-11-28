@@ -31,8 +31,9 @@ public:
     // Getter for cell - make it const and safe
     char getCell(int row, int col) const;
 
+    //With this, it's an abstract class
     // Sets a cell value
-    bool setCell(int row, int col, char symbol);
+    virtual bool setCell(int row, int col, char symbol) = 0;
 
     // Resets all cells in 2d vector to empty
     void clearBoard();
