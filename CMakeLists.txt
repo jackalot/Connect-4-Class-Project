@@ -28,7 +28,7 @@ set(PROJECT_SOURCES
     battleship.cpp
     battleship.h
     battleship.ui
-
+    boardgrid.cpp
     boardgrid.h
     Connect4.cpp
     Connect4.h
@@ -48,7 +48,8 @@ else()
     add_executable(COP_II ${PROJECT_SOURCES}
         Coordinates.h
         ShipSystem.h
-        ShipSystem.cpp)
+        ShipSystem.cpp
+        boardgrid.cpp)
 endif()
 
 target_link_libraries(COP_II PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
