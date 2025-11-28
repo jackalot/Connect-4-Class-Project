@@ -56,16 +56,25 @@ public:
     void ResetCoordinates();
     bool CanPlaceShip(Coordinate start, Coordinate end);
     BoardGrid* GetPlayerBoard() { return PlayerBoard; }
-
     void DisplayShips();
     void DisplayMissesAndHits();
     void HideBoard();
     void clearBoard(char replacementKey);
+    // Overriden
+    bool setCell(int row, int col, char symbol) override;
 };
 
 // --------------------- Destructor ---------------------
 BattleShipBoard::~BattleShipBoard() {
     delete PlayerBoard; // important to free memory
+}
+//  --------------------- Overriden setCell() ---------------------
+bool BattleShipBoard::setCell(int row, int col, char symbol) {
+    if (row >= 0 && row < rows && col >= 0 && col < cols) {
+        board[row][col] = symbol;
+        return true;
+    }
+    return false;
 }
 
 // --------------------- Constructor ---------------------

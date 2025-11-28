@@ -6,14 +6,11 @@ using namespace std;
 /* Class for board grid to be used for polymorphism if other
 games are created ex.tic tac toe and battleship*/
 class BoardGrid {
-    // Private variable for showcasing encapsulation
-private:
-    vector<vector<char>> board;
 
 protected:
     int rows;
     int cols;
-
+    vector<vector<char>> board;
 public:
     // Default constructor
     BoardGrid();
