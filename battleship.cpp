@@ -196,6 +196,12 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
                 throw std::invalid_argument("Second point must align with first point and not overlap");
             }
         }
+        if (ShipSizes.empty()) {
+            placeMode = false;
+            parentUI->SetGameStatus("All ships placed!");
+            parentUI->UpdateViewStatus();
+            PlayerOnesTurn = true; // <-- give the player the first turn
+        }
     } catch (const std::exception &e) {
         // Reset highlights if placement failed
         parentUI->HighlightCell(start.getY() + 1, start.getX() + 1, 'E');
@@ -203,6 +209,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
             parentUI->HighlightCell(end.getY() + 1, end.getX() + 1, 'E');
         reset();
         parentUI->SetGameStatus(e.what());
+
     }
 }
 
@@ -448,7 +455,10 @@ void battleship::onButtonClicked() {
     int row = match.captured(2).toInt();
 
     if(!placeMode){
-        if(PlayerOnesTurn && !PlayerBoardVisible) SendAttack(col,row,this);
+        if(PlayerOnesTurn && !PlayerBoardVisible)
+        {
+            SendAttack(col,row,this);
+        }
     } else {
         PlayerOneBoard->PlaceShip(col,row);
     }
