@@ -308,21 +308,22 @@ void Connect4::HighlightCell(int column, int Row, char ColorKey) {
 
 //Display win dialogue box - moved variables inside of function
 void Connect4::ChangePlayerWins(char PlayerKey) {
-
-    int Player1Wins = 0;
-    int Player2Wins = 0;
-
     if(PlayerKey == 'B') {
         Player1Wins++;
         QPlainTextEdit* player1WinsText = this->findChild<QPlainTextEdit*>("Player1WinText");
-        if (player1WinsText){ player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
-    } else if(PlayerKey == 'R') {
-        Player2Wins++;
-        QPlainTextEdit* Player2WinsText = this->findChild<QPlainTextEdit*>("Player2WinText");
-        if (Player2WinsText) Player2WinsText->setPlainText("Player 2's Wins: " + QString::number(Player2Wins));
+        if (player1WinsText) {
+            player1WinsText->setPlainText("Player 1's Wins: " + QString::number(Player1Wins));
+        }
     }
+    else if(PlayerKey == 'R') {
+        Player2Wins++;
+        QPlainTextEdit* player2WinsText = this->findChild<QPlainTextEdit*>("Player2WinText");
+        if (player2WinsText) {
+            player2WinsText->setPlainText("Player 2's Wins: " + QString::number(Player2Wins));
+        }
     }
 }
+
 
 void Connect4::ChangeGameStateText(char PlayerKey)
 {

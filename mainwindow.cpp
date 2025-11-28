@@ -166,13 +166,30 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
 }
 void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
-    // Reuse one-player logic for now
-    on_OnePlayerButtonC4_clicked();
-    // Hides main window and then reveals gameWindow
-    hide();
-    newConnect4 = std::make_unique<Connect4>(this, true);
-    newConnect4->show();
+    try {
+        qDebug() << "TwoPlayerButtonC4 clicked";
+
+        // Hide main window
+        hide();
+
+        // Create Connect 4 window in TWO-PLAYER mode
+        newConnect4 = std::make_unique<Connect4>(this, false); // <-- false = two-player
+        if (!newConnect4) {
+            throw std::runtime_error("Failed to create Connect 4 window");
+        }
+
+        newConnect4->show();
+    }
+    catch (const std::exception& e) {
+        qDebug() << "Connect 4 Window Creation Error: " << e.what();
+        show(); // restore main window
+        QMessageBox::critical(this,
+                              "Window Creation Error",
+                              QString("Could not open Connect 4 game: %1").arg(e.what())
+                              );
+    }
 }
+
 
 void MainWindow::on_OnePlayerButtonTTT_clicked()
 {
