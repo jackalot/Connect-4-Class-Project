@@ -1,50 +1,33 @@
 #include "boardgrid.h"
 
-// Default constructor implementation
+// Default constructor
 BoardGrid::BoardGrid() : rows(0), cols(0) {}
 
-// Parameterized constructor implementation
+// Parameterized constructor
 BoardGrid::BoardGrid(int r, int c)
-    : rows(r), cols(c), board(r, std::vector<char>(c, ' ')) {}
+    : rows(r), cols(c), board(r, vector<char>(c, ' ')) {}
 
-// Const getter implementations
 int BoardGrid::getRows() const { return rows; }
 int BoardGrid::getCols() const { return cols; }
 
-// Safe cell getter
 char BoardGrid::getCell(int row, int col) const {
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
+    if (row >= 0 && row < rows && col >= 0 && col < cols)
         return board[row][col];
-    }
-    return ' '; // or throw an exception
+    return ' '; // Safe default
 }
 
-
-/*bool BoardGrid::setCell(int row, int col, char symbol) {
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
-        board[row][col] = symbol;
-        return true;
-    }
-    return false;
-}*/
-
-// Clear board implementation
+// Default clearBoard
 void BoardGrid::clearBoard() {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            setCell(i, j, ' ');
-        }
-    }
+    for (int y = 0; y < rows; ++y)
+        for (int x = 0; x < cols; ++x)
+            setCell(y, x, ' ');
 }
 
-// Full board check
+// Full check
 bool BoardGrid::isFull() const {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (board[i][j] == ' ') {
+    for (const auto &row : board)
+        for (char cell : row)
+            if (cell == ' ')
                 return false;
-            }
-        }
-    }
     return true;
 }
