@@ -10,10 +10,11 @@ class TicTacToe;
 }
 
 // Applying inheritance for board grid
+// Also using the Abstract class for Board grid
 class TicTacToeBoard : public BoardGrid {
 public:
     TicTacToeBoard() : BoardGrid(3, 3) {}
-
+    // checks the character given if we win
     bool checkWin(char p) {
         // Check Rows & Columns for wins
         for (int i = 0; i < 3; i++) {
@@ -25,6 +26,7 @@ public:
         if (getCell(0, 2) == p && getCell(1, 1) == p && getCell(2, 0) == p) return true;
         return false;
     }
+    //Override the BoardGrid implementation
     bool setCell(int row, int col, char symbol) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
             throw std::out_of_range("TicTacToeBoard::setCell coordinates out of range");
