@@ -2,58 +2,58 @@ cmake_minimum_required(VERSION 3.16)
 
 project(COP_II VERSION 0.1 LANGUAGES CXX)
 
-# Set C++ standard
+# C++ Standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Debugging and warnings
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")  # Improved debug symbols
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")  # Additional warnings
-
-# Enable Qt automoc, autouic, autorcc
-set(CMAKE_AUTOUIC ON)
+# Qt automatic processing
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-# Find Qt package (Qt6 preferred, fallback to Qt5)
+# Find Qt — Qt6 or Qt5
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-# Source files
+# Source files (common to both Qt5 and Qt6)
 set(PROJECT_SOURCES
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+
     battleship.cpp
     battleship.h
     battleship.ui
+
     boardgrid.cpp
     boardgrid.h
+
     Connect4.cpp
     Connect4.h
     Connect4.ui
+
     tictactoe.cpp
     tictactoe.h
     tictactoe.ui
+
+    # Files previously only in Qt5 path:
+    Coordinates.h
+    ShipSystem.h
+    ShipSystem.cpp
+    SetOfCoords.h
 )
 
-# Default to Debug build if none specified
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type" FORCE)
-endif()
-
-# Add executable target and link Qt libraries
+# TARGET
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(COP_II MANUAL_FINALIZATION ${PROJECT_SOURCES})
+    qt_add_executable(COP_II
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+    )
 else()
-    add_executable(COP_II ${PROJECT_SOURCES}
-        Coordinates.h
-        ShipSystem.h
-        ShipSystem.cpp
-        boardgrid.cpp
-        SetOfCoords.h
-        SetOfCoords.h)
+    add_executable(COP_II
+        ${PROJECT_SOURCES}
+    )
 endif()
 
 target_link_libraries(COP_II PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
