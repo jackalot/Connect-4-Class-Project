@@ -452,7 +452,16 @@ battleship::battleship(QWidget *parent)
     SetGameStatus("Click to place the start position of your ship!");
 }
 
-battleship::~battleship() { delete ui; }
+battleship::~battleship() {
+    delete PlayerOneBoard;
+    delete AIBoard;
+    delete ourAI;
+    delete ui;
+    PlayerOneBoard = nullptr;
+    AIBoard= nullptr;
+    ourAI= nullptr;
+    ui = nullptr;
+}
 
 // --------------------- Highlight Cell ---------------------
 void battleship::HighlightCell(int row, int col, char ColorKey) {
