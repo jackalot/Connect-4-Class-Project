@@ -198,7 +198,7 @@ void BattleShipBoard::PlaceShip(int Col, int Row) {
         }
         if (ShipSizes.empty()) {
             placeMode = false;
-            parentUI->SetGameStatus("All ships placed!");
+            parentUI->SetGameStatus("Swap to the enemy view to attack!");
             parentUI->UpdateViewStatus();
             PlayerOnesTurn = true; // <-- give the player the first turn
         }
@@ -377,7 +377,8 @@ void swapBoards(bool showAIShips){
         AIBoard->DisplayMissesAndHits();
         PlayerBoardVisible=false;
         if(ModeStatusText) ModeStatusText->setPlainText("Viewing AI Board Mode");
-        if(ViewStatusText) ViewStatusText->setPlainText("You are viewing AI Board");
+        if(ViewStatusText) ViewStatusText->setPlainText("You are viewing the AI Board");
+        if(GameStatusText) GameStatusText->setPlainText("Attack any non red/gray square!");
     } else {
         AIBoard->HideBoard();
         PlayerOneBoard->DisplayShips();
@@ -385,6 +386,7 @@ void swapBoards(bool showAIShips){
         PlayerBoardVisible=true;
         if(ModeStatusText) ModeStatusText->setPlainText("Viewing Our Board Mode");
         if(ViewStatusText) ViewStatusText->setPlainText("You are viewing your board");
+        if(GameStatusText) GameStatusText->setPlainText("Swap views to attack again!");
     }
 }
 
