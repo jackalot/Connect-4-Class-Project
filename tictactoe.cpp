@@ -15,38 +15,49 @@ TicTacToe::TicTacToe(QWidget *parent, bool singlePlayer) :
     ui->setupUi(this);
     board = new TicTacToeBoard();
 
-    // Explicitly connect buttons
-    for (int r = 1; r <= 3; ++r) {
-        for (int c = 1; c <= 3; ++c) {
-            QString btnName = QString("Coll%1R%2").arg(c).arg(r);
-            QPushButton* btn = this->findChild<QPushButton*>(btnName);
-            if (btn) {
-                // Use a lambda to capture row/col
-                connect(btn, &QPushButton::clicked, this, [=]() {
-                    onGridCellClicked(r, c);
-                });
-            }
+    /* Connect all grid buttons and use regex to parse
+    cell name for button that was clicked
+    \\d+ matches and captures the numbers of named button*/
+    QList<QPushButton*> buttons = this->findChildren<QPushButton*>();
+    QRegularExpression regex("Coll(\\d+)R(\\d+)");
+
+    // Once button is clicked call onGridCellClicked function
+    for (QPushButton* btn : buttons) {
+        if (regex.match(btn->objectName()).hasMatch()) {
+            connect(btn, &QPushButton::clicked, this, &TicTacToe::onGridCellClicked);
         }
     }
 
     if(ui->StatusText) ui->StatusText->setPlainText("Player X's Turn");
 }
 
-
 TicTacToe::~TicTacToe() {
     delete board;
     delete ui;
 }
 
-void TicTacToe::onGridCellClicked(int row, int col) {
+void TicTacToe::onGridCellClicked() {
     if (gameOver) return;
 
-    // 0-based indexing internally
-    if (board->getCell(row - 1, col - 1) == 'E') {
-        handleMove(col, row);
+    //Check which button was clicked
+    QPushButton* button = qobject_cast<QPushButton*>(sender());
+
+    //Check the name of the button
+    QString name = button->objectName();
+    static QRegularExpression regex("Coll(\\d+)R(\\d+)");
+    QRegularExpressionMatch match = regex.match(name);
+
+    //Get the column and row number and convert text to int
+    if (match.hasMatch()) {
+        int col = match.captured(1).toInt();
+        int row = match.captured(2).toInt();
+
+        // Make sure to start at index 0
+        if (board->getCell(row - 1, col - 1) == ' ') {
+            handleMove(col, row);
+        }
     }
 }
-
 
 void TicTacToe::handleMove(int col, int row) {
 
@@ -141,7 +152,7 @@ void TicTacToe::updateUI(int col, int row, char player) {
 
 void TicTacToe::checkGameState(char player) {
     if (board->checkWin(player)) {
-    if(ui->StatusText) ui->StatusText->setPlainText(QString("Player %1 Wins!").arg(player));        gameOver = true;
+        if(ui->StatusText) ui->StatusText->setPlainText(QString("Player %1 Wins!").arg(player));        gameOver = true;
     } else if (board->isFull()) {
         if(ui->StatusText) ui->StatusText->setPlainText("Draw!");
         gameOver = true;
