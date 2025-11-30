@@ -18,7 +18,7 @@ using namespace std;
 // --------------------- Forward declarations ---------------------
 class BattleShipBoard;
 class AI;
-void SendAttack(int Col, int Row, battleship* parentUI);
+bool SendAttack(int Col, int Row, battleship* parentUI);
 void swapBoards(bool showAIShips = false);
 
 // --------------------- Global Variables ---------------------
@@ -350,24 +350,54 @@ public:
     void Reset() { Attacked.clear(); }
 };
 
-// --------------------- Send Attack ---------------------
-void SendAttack(int Col,int Row,battleship* parentUI){
-    if(PlayerOnesTurn){
-        if(AIBoard->RecieveAttack(Col,Row))
-            parentUI->HighlightCell(Row,Col,'R');
-        else
-            parentUI->HighlightCell(Row,Col,'X');
-        PlayerOnesTurn=false;
-        swapBoards(false); // optionally hide AI ships
-        ourAI->MakeRandomAttack();
-    } else {
-        if(PlayerOneBoard->RecieveAttack(Col,Row))
-            parentUI->HighlightCell(Row,Col,'R');
-        else
-            parentUI->HighlightCell(Row,Col,'X');
-        PlayerOnesTurn=true;
+bool SendAttack(int Col, int Row, battleship* parentUI)
+{
+    bool madeValidAttack = false;
+
+    // Convert UI coords (1–10) → internal (0–9)
+    int rowIndex = Row - 1;
+    int colIndex = Col - 1;
+
+    if (PlayerOnesTurn)
+    {
+        // Prevent out-of-bounds and double attack errors
+        if (AIBoard->getCell(rowIndex, colIndex) != 'M' &&
+            AIBoard->getCell(rowIndex, colIndex) != 'H')
+        {
+            // RecieveAttack expects (col, row)
+            if (AIBoard->RecieveAttack(Col, Row))
+                parentUI->HighlightCell(Row, Col, 'R');
+            else
+                parentUI->HighlightCell(Row, Col, 'X');
+
+            PlayerOnesTurn = false;
+            madeValidAttack = true;
+
+            swapBoards(false);
+            ourAI->MakeRandomAttack();
+        }
+        else {
+            parentUI->SetGameStatus("Invalid: cannot attack same spot twice!");
+        }
     }
+    else
+    {
+        if (PlayerOneBoard->getCell(rowIndex, colIndex) != 'M' &&
+            PlayerOneBoard->getCell(rowIndex, colIndex) != 'H')
+        {
+            if (PlayerOneBoard->RecieveAttack(Col, Row))
+                parentUI->HighlightCell(Row, Col, 'R');
+            else
+                parentUI->HighlightCell(Row, Col, 'X');
+
+            madeValidAttack = true;
+            PlayerOnesTurn = true;
+        }
+    }
+
+    return madeValidAttack;
 }
+
 
 // --------------------- Swap Boards ---------------------
 void swapBoards(bool showAIShips){
