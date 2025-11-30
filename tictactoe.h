@@ -14,14 +14,6 @@ class TicTacToeBoard : public BoardGrid {
 public:
     TicTacToeBoard() : BoardGrid(3, 3) {}
 
-    bool setCell(int row, int col, char symbol) override {
-        if (row >= 0 && row < rows && col >= 0 && col < cols) {
-            board[row][col] = symbol;
-            return true;
-        }
-        return false;
-    }
-
     bool checkWin(char p) {
         // Check Rows & Columns for wins
         for (int i = 0; i < 3; i++) {
@@ -33,8 +25,15 @@ public:
         if (getCell(0, 2) == p && getCell(1, 1) == p && getCell(2, 0) == p) return true;
         return false;
     }
-};
+    bool setCell(int row, int col, char symbol) {
+        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+            throw std::out_of_range("TicTacToeBoard::setCell coordinates out of range");
+        }
+        board[row][col] = symbol;
+        return true;
+    }
 
+};
 
 class TicTacToe : public QDialog
 {
@@ -43,8 +42,9 @@ class TicTacToe : public QDialog
 public:
     explicit TicTacToe(QWidget *parent = nullptr, bool singlePlayer = false);
     ~TicTacToe();
+
 private slots:
-    void onGridCellClicked(int row, int col);
+    void onGridCellClicked();
     void on_resetButton_clicked();
 
 private:
