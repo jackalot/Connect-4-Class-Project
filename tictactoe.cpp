@@ -53,7 +53,8 @@ void TicTacToe::onGridCellClicked() {
         int row = match.captured(2).toInt();
 
         // Make sure to start at index 0
-        if (board->getCell(row - 1, col - 1) == ' ') {
+        // Check empty cell labelled 'E' or ' '
+        if (board->getCell(row - 1, col - 1) == 'E' || board->getCell(row - 1, col - 1) == ' ') {
             handleMove(col, row);
         }
     }
@@ -90,8 +91,8 @@ void TicTacToe::aiMove() {
     for (int r = 0; r < 3; r++) {
         for (int c = 0; c < 3; c++) {
 
-
-            if (board->getCell(r, c) == ' ') {
+            //we check for E, which is Empty cell
+            if (board->getCell(r, c) == 'E') {
                 int currentScore = 0;
 
                 // Check for instant win
@@ -99,14 +100,14 @@ void TicTacToe::aiMove() {
                 if (board->checkWin('O')) {
                     currentScore += 4;
                 }
-                board->setCell(r, c, ' ');
+                board->setCell(r, c, 'E');
 
                 // Check for X to see if we need to block
                 board->setCell(r, c, 'X');
                 if (board->checkWin('X')) {
                     currentScore += 3;
                 }
-                board->setCell(r, c, ' ');
+                board->setCell(r, c, 'E');
 
                 // Take center if available
                 if (r == 1 && c == 1) {
