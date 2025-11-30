@@ -557,6 +557,7 @@ void battleship::on_ResetButton_clicked() {
         PlayerOneBoard->ShipSizes = {5,4,3,3,2};
         PlayerOneBoard->reset();
         PlayerOneBoard->shipsSunk = 0;
+        PlayerOneBoard->HideBoard();
     }
 
     // Reset AI board
