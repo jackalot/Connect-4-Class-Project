@@ -544,39 +544,30 @@ void battleship::on_UndoButton_clicked() {
 
 void battleship::on_ResetButton_clicked() {
     // Reset flags
-    GameOver = false;
-    placeMode = true;
+    GameOver       = false;
+    placeMode      = true;
     PlayerOnesTurn = false;
     PlayerBoardVisible = true;
     madeAnAttack = false;
+    PlayerOneBoard->HideBoard();
+    // Destroy old boards/AI
+    delete PlayerOneBoard;
+    delete AIBoard;
+    delete ourAI;
 
-    // Reset Player board
-    if (PlayerOneBoard) {
-        PlayerOneBoard->clearBoard('E');      // Clear all cells
-        PlayerOneBoard->ShipsOnBoard.clear(); // Remove ships
-        PlayerOneBoard->ShipSizes = {5,4,3,3,2};
-        PlayerOneBoard->reset();
-        PlayerOneBoard->shipsSunk = 0;
-        PlayerOneBoard->HideBoard();
-    }
+    // Recreate fresh boards
+    PlayerOneBoard = new BattleShipBoard(this);
+    AIBoard       = new BattleShipBoard(this);
+    ourAI         = new AI(AIBoard);
 
-    // Reset AI board
-    if (AIBoard) {
-        AIBoard->clearBoard('E');             // Clear all cells
-        AIBoard->ShipsOnBoard.clear();
-        AIBoard->ShipSizes = {5,4,3,3,2};
-        AIBoard->reset();
-        AIBoard->shipsSunk = 0;
-    }
-
-    // Reset AI logic
-    if (ourAI) ourAI->Reset();
+    // AI places new ships
     ourAI->PlaceAllShipsRandomly();
 
-    // Reset UI highlights
-    if (PlayerOneBoard) PlayerOneBoard->DisplayShips();
-    if (AIBoard && PlayerBoardVisible == false) AIBoard->HideBoard();
-
+    // make new pointers
+    if(!PlayerOneBoard) PlayerOneBoard = new BattleShipBoard(this);
+    if(!AIBoard) AIBoard = new BattleShipBoard(this);
+    ourAI = new AI(AIBoard);
+    ourAI->PlaceAllShipsRandomly();
     // Reset UI text
     if (ModeStatusText) ModeStatusText->setPlainText("Place Ship Mode");
     if (ViewStatusText) UpdateViewStatus();
