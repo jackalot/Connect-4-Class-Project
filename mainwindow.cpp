@@ -27,8 +27,15 @@ Battle Ship
 
 void MainWindow::on_OnePlayerButtonBS_clicked()
 {
+    // Hides main window and then reveals gameWindow
     hide();
+    if (newBattleship) {
+        delete newBattleship;
+        newBattleship = nullptr;
+    }
     newBattleship = new battleship(this);
+    //Allows main window to reopen after Battlehsip is closed
+    connect(newBattleship, &QDialog::finished, this, &MainWindow::show);
     newBattleship->show();
 }
 
