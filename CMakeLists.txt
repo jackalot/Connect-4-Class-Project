@@ -45,7 +45,13 @@ endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COP_II MANUAL_FINALIZATION ${PROJECT_SOURCES})
 else()
-    add_executable(COP_II ${PROJECT_SOURCES})
+    add_executable(COP_II ${PROJECT_SOURCES}
+        Coordinates.h
+        ShipSystem.h
+        ShipSystem.cpp
+        boardgrid.cpp
+        SetOfCoords.h
+        SetOfCoords.h)
 endif()
 
 target_link_libraries(COP_II PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

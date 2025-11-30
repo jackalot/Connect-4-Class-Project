@@ -939,6 +939,19 @@
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="ResetButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>950</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Reset Button</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

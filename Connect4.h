@@ -29,6 +29,9 @@ private slots:
     void on_resetButton_clicked();
 
 private:
+    int Player1Wins = 0;
+    int Player2Wins = 0;
+
     Ui::Connect4 *ui;
     Connect4Board* ourGameBoard;
     char currentPlayerPiece;

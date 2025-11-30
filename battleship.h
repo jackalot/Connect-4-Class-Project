@@ -25,10 +25,15 @@ public:
     void SetGameStatus(std::string text);
     void SetModeStatus(std::string text);
     void SetViewStatus(std::string text);
+    void UpdateViewStatus();
 private slots:
     void onButtonClicked(); // Keep this under private slots
 
     void on_UndoButton_clicked();
+
+    void on_ViewButton_clicked();
+
+    void on_ResetButton_clicked();
 
 private:
     Ui::battleship *ui;

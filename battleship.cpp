@@ -1,840 +1,564 @@
 #include "battleship.h"
 #include "ui_battleship.h"
-#include <QRegularExpression>
 #include "boardgrid.h"
+#include "Coordinates.h"
+#include "ShipSystem.h"
 #include <vector>
 #include <QDebug>
-
+#include <QPushButton>
+#include <QPlainTextEdit>
+#include <ctime>
+#include <cstdlib>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
+#include "SetOfCoords.h"
+#include <set>
 using namespace std;
-class BattleShipBoard; // Forward declaration
+
+// --------------------- Forward declarations ---------------------
+class BattleShipBoard;
 class AI;
+bool SendAttack(int Col, int Row, battleship* parentUI);
+void swapBoards(bool showAIShips = false);
 
-// Global variable definitions
-BattleShipBoard* PlayerOneBoard = nullptr; // Definition
-BattleShipBoard* AIBoard = nullptr;         // Definition
+// --------------------- Global Variables ---------------------
+BattleShipBoard* PlayerOneBoard = nullptr;
+BattleShipBoard* AIBoard = nullptr;
 AI* ourAI = nullptr;
-QPlainTextEdit* ModeStatusText; // obj name ModeStatus
-QPlainTextEdit* GameStatusText; // obj name GameStatus
-QPlainTextEdit* ViewStatusText; // obj name ViewStatus
-// --------------------- Ship and ShipPiece ---------------------
-class Ship;
+QPlainTextEdit* ModeStatusText = nullptr;
+QPlainTextEdit* GameStatusText = nullptr;
+QPlainTextEdit* ViewStatusText = nullptr;
+bool GameOver = false;
+bool placeMode = true;
+bool PlayerOnesTurn = false;
+bool PlayerBoardVisible = true;
 
-class ShipPiece {
-private:
-    int X;
-    int Y;
-    bool HIT = false;
+// --------------------- BattleShipBoard Class ---------------------
+class BattleShipBoard : public BoardGrid, public SetOfCoords {
 public:
-    Ship* parentShip;
+    battleship* parentUI;
+    vector<Ship*> ShipsOnBoard;
+    vector<int> ShipSizes = {5, 4, 3, 3, 2}; // standard Battleship sizes
+    int shipsSunk = 0;
 
-    ShipPiece(int xPos, int yPos, Ship* ship) : X(xPos), Y(yPos), parentShip(ship) {}
+    BattleShipBoard(battleship* ui);
+    ~BattleShipBoard();
 
-    int getXPos() { return X; }
-    int getYPos() { return Y; }
-    void SetHit();
-};
-
-class Ship {
-public:
-    vector<ShipPiece> ourPieces;
-    int ShipSize;
-    int HitCount = 0;
-    int initialX = -1;
-    int initailY = -1;
-    int FinalX = -1;
-    int FinalY = -1;
-    battleship* parentUI; // pointer to the battleship UI
-    Ship(int newInitialX, int newInitialY, int newFinalX, int newFinalY, battleship* ui) {
-        initialX = newInitialX;
-        initailY = newInitialY;
-        FinalX = newFinalX;
-        FinalY = newFinalY;
-        parentUI = ui;
-        char direction = GetDirection();
-        ShipSize = 0;
-        switch(direction)
-        {
-            case 'U':
-                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
-                {
-                    ShipSize++;
-                    ShipPiece newPiece(initialX, yCoord, this);
-                    ourPieces.push_back(newPiece);
-                }
-                break;
-            case 'D':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
-                {
-                    ShipSize++;
-                    ShipPiece newPiece(initialX, yCoord, this);
-                    ourPieces.push_back(newPiece);
-                }
-                break;
-            case 'L':
-                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
-                {
-                    ShipSize++;
-                    ShipPiece newPiece(xCoord, initailY, this);
-                    ourPieces.push_back(newPiece);
-                }
-                break;
-            case 'R':
-                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
-                {
-                    ShipSize++;
-                    ShipPiece newPiece(xCoord, initailY, this);
-                    ourPieces.push_back(newPiece);
-                }
-                break;
-        }
-    }
-    char GetDirection() {
-        char direction = 'D';
-        if(initialX == FinalX)
-        {
-            if(initailY < FinalY)
-            {
-                direction = 'D';
-            }
-            else
-            {
-                direction = 'U';
-            }
-        }
-        else if(initailY == FinalY)
-        {
-            if(initialX < FinalX)
-            {
-                direction = 'R';
-            }
-            else
-            {
-                direction = 'L';
-            }
-        }
-        return direction;
-    }
-    void IncreaseHitCount() { HitCount++; }
-    bool CheckIfSunk() { return HitCount == ShipSize; }
-    void RemoveShipInUI()
-    {
-        char direction = GetDirection();
-        switch(direction)
-        {
-            case 'U':
-                for(int yCoord = initailY; yCoord >= FinalY; yCoord--)
-                {
-                    ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'D');
-                }
-                break;
-            case 'D':
-                for(int yCoord = initailY; yCoord <= FinalY; yCoord++)
-                {
-                    ourPieces.pop_back();
-                    parentUI->HighlightCell(yCoord, initialX, 'D');
-                }
-                break;
-            case 'L':
-                for(int xCoord = initialX; xCoord >= FinalX; xCoord--)
-                {
-                    ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'D');
-                }
-                break;
-            case 'R':
-                for(int xCoord = initialX; xCoord <= FinalX; xCoord++)
-                {
-                    ourPieces.pop_back();
-                    parentUI->HighlightCell(initailY, xCoord, 'D');
-                }
-                break;
-        }
-    }
-};
-
-// Implement SetHit after Ship is fully defined
-void ShipPiece::SetHit() {
-    HIT = true;
-    if (parentShip) {
-        parentShip->IncreaseHitCount();
-    }
-}
-
-// --------------------- BattleShipBoard ---------------------
-class BattleShipBoard : public BoardGrid {
-    BoardGrid* PlayerBoard;
-    BoardGrid* EnemyBoard;
-    /**/
-public:
-    battleship* parentUI; // pointer to the battleship UI
-    vector<Ship> ShipsOnBoard;
-    int originalX = -1;
-    int originalY = -1;
-    bool firstPointPlaced = false;
-    int FinalX = -1;
-    int FinalY = -1;
-    bool secondPointPlaced = false;
-    vector<int> ShipSizes = {2, 2, 3, 4, 5};
-    BattleShipBoard(battleship* ui);  // constructor declaration
     void PlaceShip(int Col, int Row);
     bool CheckSlotsIfAvailable(bool Paint);
-    void ConfirmShip();
-    void SendAttack(int Col, int Row);
-    bool RecieveAttack(int Col, int Row);
-    void RemoveLastShip();
-    char GetDirection();
     void CreateShip();
-    void ResetCoordinates();
-    void SetEnemyBoard(BoardGrid enemyGrid)
-    {
-        EnemyBoard = &enemyGrid;
-    }
-    BoardGrid GetPlayerBoard()
-    {
-        return *PlayerBoard;
-    }
-    void DisplayPlayerBoardGrid() {
-        for(int CurrentRow = 1; CurrentRow < PlayerBoard->getRows(); CurrentRow++)
-        {
-            for(int CurrentCol = 1; CurrentCol < PlayerBoard->getCols(); CurrentCol++)
-            {
-                switch(PlayerBoard->getCell(CurrentRow, CurrentCol))
-                {
-                    case 'S':
-                    parentUI->HighlightCell(CurrentRow, CurrentRow, 'G');
-                    break;
-                }
-            }
-        }
-    }
+    bool CanPlaceShip(Coordinate<int> start, Coordinate<int> end);
+    void DisplayShips();
+    void DisplayMissesAndHits();
+    void HideBoard();
+    void clearBoard(char replacementKey);
+    void RemoveLastShip();
+    bool RecieveAttack(int Col, int Row);
+    bool setCell(int row, int col, char symbol) override;
 };
-// --------------------- BattleShipBoard methods ---------------------
-// Constructor definition
+
+// --------------------- Constructor & Destructor ---------------------
 BattleShipBoard::BattleShipBoard(battleship* ui)
-    : BoardGrid(10, 10),
-    // code side comes from 0-9,
-    // UI is 1-10
-    // increase size by one
-    PlayerBoard(new BoardGrid(11, 11)), // Our ships, where enemy hit's, misses
-    EnemyBoard(new BoardGrid(11, 11)), // where we hit, miss
-    parentUI(ui)
-{}
-void BattleShipBoard::ResetCoordinates() {
-    originalX = -1;
-    originalY = -1;
-    FinalX = -1;
-    FinalY = -1;
-    firstPointPlaced = false;
-    secondPointPlaced = false;
+    : BoardGrid(10, 10), SetOfCoords(), parentUI(ui) {
+    reset(); // initializes start/end & flags
 }
-char BattleShipBoard::GetDirection() {
 
-        char direction = 'D';
-        if(originalX == FinalX)
-        {
-            if(originalY < FinalY)
-            {
-                direction = 'D';
-            }
-            else
-            {
-                direction = 'U';
-            }
-        }
-        else if(originalY == FinalY)
-        {
-            if(originalX < FinalX)
-            {
-                direction = 'R';
-            }
-            else
-            {
-                direction = 'L';
-            }
-        }
-        return direction;
-
+BattleShipBoard::~BattleShipBoard() {
+    for (auto ship : ShipsOnBoard) delete ship;
 }
-bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint)
-{
-    bool available = true;
-    // Check Vertically
-    char direction = GetDirection();
-    int currentSize = ShipSizes.back();
-    switch(direction)
-    {
-        case 'R':
-            // from left to right
-            // check between the coordinates first
-            for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
-            {
-                int result = FinalX - originalX + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
-                {
-                    available = false;
-                    if(PlayerBoard->getCell(originalY, xCoord) == 'S')
-                    {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
-                    }
-                    else
-                    {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
-                    }
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int xCoord = originalX; xCoord <= FinalX && available; xCoord++)
-                {
-                    if(Paint)
-                    {
-                        parentUI->HighlightCell(originalY, xCoord, 'G');
-                    }
-                    PlayerBoard->setCell(originalY, xCoord, 'S');
-                }
-            }
-            break;
-        case 'L':
-            // From right to left
-            // check between the coordinates first
-            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
-        {
-                 int result = originalX - FinalX + 1; // Inclusive calculation
-            if(PlayerBoard->getCell(originalY, xCoord) == 'S' || currentSize != result)
-            {
-                available = false;
-                if(PlayerBoard->getCell(originalY, xCoord) == 'S')
-                {
-                    /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
-                }
-                else
-                {
-                    /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
-                }
-                break;
-            }
-        }
-            if(available)
-        {
-            // Highlight between the coordinates
-            for(int xCoord = originalX; xCoord >= FinalX && available; xCoord--)
-            {
-                if(Paint)
-                {
-                    parentUI->HighlightCell(originalY, xCoord, 'G');
-                }
-                PlayerBoard->setCell(originalY, xCoord, 'S');
-            }
-        }
-            break;
-        case 'U':
-            // From down to up
-            // check between the coordinates first
-            for(int yCoord = originalY; yCoord >= FinalY && available; yCoord--)
-            {
-                int result = originalY - FinalY + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
-                {
-                    available = false;
-                    if(PlayerBoard->getCell(yCoord, originalX) == 'S')
-                    {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
-                    }
-                    else
-                    {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
-                    }
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord >= FinalY; yCoord--)
-                {
-                    if(Paint)
-                    {
-                        parentUI->HighlightCell(yCoord, originalX, 'G');
-                    }
-                    PlayerBoard->setCell(yCoord, originalX, 'S');
-                }
-            }
-            break;
-        case 'D':
-            // from up to down
-            // check between the coordinates first
-            for(int yCoord = originalY; yCoord <= FinalY && available; yCoord++)
-            {
-                int result = FinalY - originalY + 1; // Inclusive calculation
-                if(PlayerBoard->getCell(yCoord, originalX) == 'S' || currentSize != result)
-                {
-                    available = false;
-                    if(PlayerBoard->getCell(yCoord, originalX) == 'S')
-                    {
-                        /*
-                        * ERROR
-                        * This selection crosses an existing ship.
-                        */
-                    }
-                    else
-                    {
-                        /*
-                        * ERROR
-                        * We need a size of currentSize, this isn't a big enough ship
-                        */
-                    }
-                    break;
-                }
-            }
-            if(available)
-            {
-                // Highlight between the coordinates
-                for(int yCoord = originalY; yCoord <= FinalY; yCoord++)
-                {
-                    if(Paint)
-                    {
-                        parentUI->HighlightCell(yCoord, originalX, 'G');
-                    }
-                    PlayerBoard->setCell(yCoord, originalX, 'S');
-                }
-            }
-            break;
-        default:
-            available = false;
-            break;
+
+// --------------------- Board helpers ---------------------
+bool BattleShipBoard::setCell(int row, int col, char symbol) {
+    if (row < 0 || row >= rows || col < 0 || col >= cols) {
+        throw std::out_of_range("BattleShipBoard::setCell coordinates out of range");
+    }
+    board[row][col] = symbol;
+    return true;
+}
+
+
+// --------------------- Check ship placement ---------------------
+bool BattleShipBoard::CanPlaceShip(Coordinate<int> start, Coordinate<int> end) {
+    int x1 = start.getX(), y1 = start.getY();
+    int x2 = end.getX(), y2 = end.getY();
+    int dx = (x2 > x1) ? 1 : (x2 < x1 ? -1 : 0);
+    int dy = (y2 > y1) ? 1 : (y2 < y1 ? -1 : 0);
+
+    int x = x1, y = y1;
+    while (true) {
+        if (board[y][x] == 'S') return false; // overlap
+        if (x == x2 && y == y2) break;
+        x += dx; y += dy;
+    }
+    return true;
+}
+
+// --------------------- Check and paint ship placement ---------------------
+bool BattleShipBoard::CheckSlotsIfAvailable(bool Paint) {
+    if (ShipSizes.empty()) {
+        throw std::logic_error("No ships left to place");
     }
 
-    return available;
+    char dir = getDirection();
+    int dx = 0, dy = 0, length = 0;
+
+    switch (dir) {
+    case 'R': dx = 1; dy = 0; length = end.getX() - start.getX() + 1; break;
+    case 'L': dx = -1; dy = 0; length = start.getX() - end.getX() + 1; break;
+    case 'D': dx = 0; dy = 1; length = end.getY() - start.getY() + 1; break;
+    case 'U': dx = 0; dy = -1; length = start.getY() - end.getY() + 1; break;
+    default:
+        throw std::logic_error("Invalid ship direction");
+    }
+
+    if (length != ShipSizes.front()) {
+        throw std::invalid_argument("Wrong ship size! Need size " + std::to_string(ShipSizes.front()));
+    }
+
+    // Check for overlap
+    int x = start.getX();
+    int y = start.getY();
+    for (int i = 0; i < length; ++i) {
+        if (x < 0 || x >= cols || y < 0 || y >= rows) {
+            throw std::out_of_range("Ship placement out of board bounds");
+        }
+        if (board[y][x] == 'S') {
+            throw std::invalid_argument("Cannot place ship here! Overlaps another ship.");
+        }
+        x += dx;
+        y += dy;
+    }
+
+    // Paint the ship if requested
+    if (Paint) {
+        x = start.getX(); y = start.getY();
+        for (int i = 0; i < length; ++i) {
+            setCell(y, x, 'S');
+            parentUI->HighlightCell(y + 1, x + 1, 'S');
+            x += dx; y += dy;
+        }
+    }
+
+    return true;
 }
 
-void BattleShipBoard::CreateShip()
-{
-    Ship newShip(originalX, originalY, FinalX, FinalY, parentUI);
+
+// --------------------- Create ship object ---------------------
+void BattleShipBoard::CreateShip() {
+    Ship* newShip = new Ship(start.getX(), start.getY(),
+                             end.getX(), end.getY(), parentUI);
     ShipsOnBoard.push_back(newShip);
 }
-// Place a ship on the board
+
+// --------------------- Place ship ---------------------
 void BattleShipBoard::PlaceShip(int Col, int Row) {
-    if(ShipSizes.size())
-    {
-        /*
-        * ERROR
-        * Please place a ship of size: ShipSizes.back();
-        */
-        if(secondPointPlaced)
-        {
-            //Cancel this ship all together
-            parentUI->HighlightCell(FinalY, FinalX, 'D');
-            parentUI->HighlightCell(originalY, originalX, 'D');
-            ResetCoordinates();
-        }
-        else if (!firstPointPlaced) {
-            if(PlayerBoard->getCell(Row, Col) != 'S')
-            {
-                // just place the first point
-                originalX = Col;
-                originalY = Row;
-                if (parentUI) {
-                    parentUI->HighlightCell(originalY, originalX, 'P');
-                }
+    int x = Col - 1;
+    int y = Row - 1;
+
+    try {
+        if (!firstPointPlaced) {
+            if (board[y][x] != 'S') {
+                start.setX(x);
+                start.setY(y);
                 firstPointPlaced = true;
-                /*
-                * ERROR
-                * Now click a button for the second piece (vertically or hirozontally)
-                */
+                parentUI->HighlightCell(Row, Col, 'P');
+                parentUI->SetGameStatus("Select second point of the ship!");
+            } else {
+                throw std::invalid_argument("Cannot place first point on an existing ship");
             }
+            return;
         }
-        else
-        {
-            // We cancel initial ship placement
-            if(Col == originalX && originalY == Row)
-            {
-                if (parentUI) {
-                    parentUI->HighlightCell(Row, Col, 'D');
-                }
-                /*
-                * ERROR
-                * Click a button to place the first piece
-                */
-                ResetCoordinates();
-            }
-            else
-            {
-                //Place the second point
-                if (!secondPointPlaced) {
-                    if(PlayerBoard->getCell(Row, Col) != 'S')
-                    {
-                        //if it's on the X or Y coordinate, it's not diagnal
-                        if(Col == originalX || originalY == Row)
-                        {
-                            FinalX = Col;
-                            FinalY = Row;
-                            if (parentUI) {
-                                parentUI->HighlightCell(Row, Col, 'P');
-                            }
-                            secondPointPlaced = true;
-                        }
-                        else
-                        {
-                            /*
-                            * ERROR
-                            * You can't place a diagnal ship, sorry I don't make the rules
-                            */
-                        }
-                    }
-                }
-            }
 
-        }
-        if(firstPointPlaced && secondPointPlaced)
-        {
-            //can we place this ship?
-            if(!CheckSlotsIfAvailable(true))
-            {
-                //Cancel the ship
-                parentUI->HighlightCell(FinalY, FinalX, 'D');
-                parentUI->HighlightCell(originalY, originalX, 'D');
-                ResetCoordinates();
-            }
-            else
-            {
+        if (!secondPointPlaced) {
+            if ((x == start.getX() || y == start.getY()) && board[y][x] != 'S') {
+                end.setX(x);
+                end.setY(y);
+                secondPointPlaced = true;
+                parentUI->HighlightCell(Row, Col, 'P');
+
+                // Validate and place ship
+                CheckSlotsIfAvailable(true);
                 CreateShip();
-                //we created one ship, let's pop the one we used
-                ShipSizes.pop_back();
-                ResetCoordinates();
+                ShipSizes.erase(ShipSizes.begin());
+                reset();
 
+                if (ShipSizes.empty()) {
+                    placeMode = false;
+                    parentUI->SetGameStatus("All ships placed!");
+                    parentUI->UpdateViewStatus();
+                } else {
+                    parentUI->SetGameStatus(
+                        "Next ship size: " + std::to_string(ShipSizes.front())
+                        );
+                    parentUI->UpdateViewStatus();
+                }
+            } else {
+                throw std::invalid_argument("Second point must align with first point and not overlap");
             }
         }
-    }
-}
-
-// Placeholder: receive attack
-bool BattleShipBoard::RecieveAttack(int Col, int Row) {
-    return false;
-}
-void BattleShipBoard::RemoveLastShip() {
-    if(ShipsOnBoard.size())
-    {
-        Ship shipToRemove = ShipsOnBoard.back();
-        //we popped it when we made the ship
-        //let's use that size again
-        ShipSizes.push_back(shipToRemove.ShipSize);
-        for (int i = 0; i < shipToRemove.ourPieces.size(); i++)
-        {
-            int X = shipToRemove.ourPieces[i].getXPos();
-            int Y = shipToRemove.ourPieces[i].getYPos();
-            PlayerBoard->setCell(Y, X, 'E');
+        if (ShipSizes.empty()) {
+            placeMode = false;
+            parentUI->SetGameStatus("Swap to the enemy view to attack!");
+            parentUI->UpdateViewStatus();
+            PlayerOnesTurn = true; // <-- give the player the first turn
         }
-        ShipsOnBoard.back().RemoveShipInUI();
-        ShipsOnBoard.pop_back();
-        ResetCoordinates();
-    }
-    else
-    {
-        /*
-         * ERROR
-         * No ships to remove, place one please!
-         */
+    } catch (const std::exception &e) {
+        // Reset highlights if placement failed
+        parentUI->HighlightCell(start.getY() + 1, start.getX() + 1, 'E');
+        if (secondPointPlaced)
+            parentUI->HighlightCell(end.getY() + 1, end.getX() + 1, 'E');
+        reset();
+        parentUI->SetGameStatus(e.what());
+
     }
 }
 
-void BattleShipBoard::SendAttack(int Col, int Row) {
-    // Implement sending attack logic here
+
+// --------------------- Receive attack ---------------------
+bool BattleShipBoard::RecieveAttack(int Col, int Row) {
+    int x = Col-1, y = Row-1;
+    bool hit = false;
+
+    for (auto &ship : ShipsOnBoard) {
+        if (ship->CheckIfHit(x, y)) {
+            hit = true;
+            setCell(y,x,'H');
+            parentUI->HighlightCell(Row,Col,'H');
+            if (ship->CheckIfSunk()) {
+                shipsSunk++;
+                if (shipsSunk == 5) {
+                    GameOver = true;
+                    parentUI->SetGameStatus("Game Over!");
+                }
+            }
+            break;
+        }
+    }
+
+    if (!hit) {
+        setCell(y,x,'M');
+        parentUI->HighlightCell(Row,Col,'M');
+    }
+
+    return hit;
 }
-// --------------------- AI LOGIC ---------------------
+
+// --------------------- Remove last ship ---------------------
+void BattleShipBoard::RemoveLastShip() {
+    if (ShipsOnBoard.empty()) {
+        parentUI->SetGameStatus("No ships to remove!");
+        return;
+    }
+
+    Ship* lastShip = ShipsOnBoard.back();
+    ShipSizes.insert(ShipSizes.begin(), lastShip->ShipSize);
+
+    for (auto& piece : lastShip->ourPieces) {
+        setCell(piece.getY(), piece.getX(), 'E');
+        parentUI->HighlightCell(piece.getY() + 1, piece.getX() + 1, 'E');
+    }
+
+    delete lastShip;
+    ShipsOnBoard.pop_back();
+    reset();
+
+    parentUI->SetGameStatus(
+        "Last ship removed. Place a ship of size " + std::to_string(ShipSizes.front())
+        );
+    placeMode = true;
+    parentUI->UpdateViewStatus();
+}
+
+// --------------------- Display & hide ---------------------
+void BattleShipBoard::DisplayShips() {
+    for(int y=0; y<rows; y++)
+        for(int x=0; x<cols; x++) {
+            char c = board[y][x];
+            if(c=='S') parentUI->HighlightCell(y+1, x+1,'S');
+            else if(c=='H') parentUI->HighlightCell(y+1, x+1,'H');
+            else if(c=='M') parentUI->HighlightCell(y+1, x+1,'M');
+        }
+}
+
+void BattleShipBoard::DisplayMissesAndHits() {
+    for(int y=0; y<rows; y++)
+        for(int x=0; x<cols; x++) {
+            char c = board[y][x];
+            if(c=='H') parentUI->HighlightCell(y+1, x+1,'H');
+            else if(c=='M') parentUI->HighlightCell(y+1, x+1,'M');
+        }
+}
+
+void BattleShipBoard::HideBoard() {
+    for(int y=0; y<rows; y++)
+        for(int x=0; x<cols; x++)
+            parentUI->HighlightCell(y+1,x+1,'E');
+}
+
+void BattleShipBoard::clearBoard(char replacementKey) {
+    for (int y = 0; y < rows; y++)
+        for (int x = 0; x < cols; x++)
+            setCell(y, x, replacementKey);
+}
+
+// --------------------- AI Class ---------------------
 class AI {
 public:
     BattleShipBoard* AIBoard;
+    set<pair<int,int>> Attacked; // prevent repeated attacks
 
-    // Constructor takes a pointer to a BattleshipBoard
-    AI(BattleShipBoard* newAIBoard) {
-        AIBoard = newAIBoard; // Initialize the pointer
-    }
-    void MakeProperSize(int shipSize)
-    {
-        char Direction = AIBoard->GetDirection();
-        bool RightSize = false; // Initialize RightSize to false
-        switch(Direction)
-        {
-        case 'U':
-            while(!RightSize)
-            {
-                int result = AIBoard->originalY - AIBoard->FinalY + 1; // Inclusive calculation
-                if(result == shipSize)
-                {
-                    RightSize = true;
-                }
-                else
-                {
-                    // Adjust coordinates so that it fits
-                    if(result < shipSize)
-                    {
-                        if(AIBoard->FinalY == 1)
-                        {
-                            AIBoard->originalY++;
-                        }
-                        else
-                        {
-                            AIBoard->FinalY--;
-                        }
-                    }
-                    else
-                    {
-                        AIBoard->FinalY++;
-                    }
+    AI(BattleShipBoard* board) : AIBoard(board) {}
+
+    void PlaceAllShipsRandomly() {
+        if(!AIBoard) return;
+        while(!AIBoard->ShipSizes.empty()) {
+            int size = AIBoard->ShipSizes.front();
+            bool placed = false;
+            while(!placed) {
+                bool vertical = rand()%2==0;
+                int x = rand()%10, y = rand()%10;
+                int endX = vertical ? x : x+size-1;
+                int endY = vertical ? y+size-1 : y;
+                if(endX>=10 || endY>=10) continue;
+                AIBoard->start.setX(x);
+                AIBoard->start.setY(y);
+                AIBoard->end.setX(endX);
+                AIBoard->end.setY(endY);
+                if(AIBoard->CanPlaceShip(AIBoard->start,AIBoard->end)) {
+                    AIBoard->CreateShip();
+                    AIBoard->ShipSizes.pop_back();
+                    AIBoard->reset();
+                    placed = true;
                 }
             }
-            break;
-        case 'D':
-            while(!RightSize)
-            {
-                int result = AIBoard->FinalY - AIBoard->originalY + 1; // Inclusive calculation
-                if(result == shipSize)
-                {
-                    RightSize = true;
-                }
-                else
-                {
-                    // Adjust coordinates so that it fits
-                    if(result < shipSize)
-                    {
-                        if(AIBoard->originalY == 1)
-                        {
-                            AIBoard->FinalY++;
-                        }
-                        else
-                        {
-                            AIBoard->originalY--;
-                        }
-                    }
-                    else
-                    {
-                        AIBoard->FinalY++;
-                    }
-                }
-            }
-            break;
-        case 'L':
-            while(!RightSize)
-            {
-                int result = AIBoard->originalX - AIBoard->FinalX + 1; // Inclusive calculation
-                if(result == shipSize)
-                {
-                    RightSize = true;
-                }
-                else
-                {
-                    // Adjust coordinates so that it fits
-                    if(result < shipSize)
-                    {
-                        if(AIBoard->FinalX == 1)
-                        {
-                            AIBoard->originalX++;
-                        }
-                        else
-                        {
-                            AIBoard->FinalX--;
-                        }
-                    }
-                    else
-                    {
-                        AIBoard->FinalX++;
-                    }
-                }
-            }
-            break;
-        case 'R':
-            while(!RightSize)
-            {
-                int result = AIBoard->FinalX - AIBoard->originalX + 1; // Inclusive calculation
-                if(result == shipSize)
-                {
-                    RightSize = true;
-                }
-                else
-                {
-                    // Adjust coordinates so that it fits
-                    if(result < shipSize)
-                    {
-                        if(AIBoard->originalX == 1)
-                        {
-                            AIBoard->FinalX++;
-                        }
-                        else
-                        {
-                            AIBoard->originalX--;
-                        }
-                    }
-                    else
-                    {
-                        AIBoard->FinalX++;
-                    }
-                }
-            }
-            break;
         }
     }
 
-    void PlaceARandomShip()
-    {
-        while (AIBoard->ShipSizes.size())
-        {
-            int shipSize = AIBoard->ShipSizes.back();
-            int orientation = rand() % 2; // 0 for vertical, 1 for horizontal
-            // lets go vertical
-            if(orientation == 1)
-            {
-                AIBoard->originalX = rand() % 10;
-                AIBoard->FinalX = AIBoard->originalX;
-                AIBoard->FinalY = rand() % (10 - shipSize);
-                AIBoard->originalY = rand() % 10;
-            }
-            else //horizontal
-            {
-                AIBoard->originalY = rand() % 10;
-                AIBoard->FinalY = AIBoard->originalY;
-                AIBoard->FinalX = rand() % 10;
-                AIBoard->originalX = rand() % 10;
-            }
-            MakeProperSize(shipSize);
-            if(AIBoard->CheckSlotsIfAvailable(false))
-            {
-                AIBoard->CreateShip();
-                AIBoard->ShipSizes.pop_back();
-            }
-            AIBoard->ResetCoordinates();
-        }
+    void MakeRandomAttack() {
+        if(!AIBoard) return;
+
+        int x, y;
+        do {
+            x = rand()%10 + 1;
+            y = rand()%10 + 1;
+        } while(Attacked.count({x,y}) > 0);
+
+        Attacked.insert({x,y});
+        SendAttack(x,y, AIBoard->parentUI);
     }
-    // Destructor to clean up if needed
-    ~AI() {
-    }
+
+    void Reset() { Attacked.clear(); }
 };
-// --------------------- Button click handler ---------------------
-bool GameOver = false;
-bool placeMode = true;
 
+bool SendAttack(int Col, int Row, battleship* parentUI)
+{
+    bool madeValidAttack = false;
+
+    // Convert UI coords (1–10) → internal (0–9)
+    int rowIndex = Row - 1;
+    int colIndex = Col - 1;
+
+    if (PlayerOnesTurn)
+    {
+        // Prevent out-of-bounds and double attack errors
+        if (AIBoard->getCell(rowIndex, colIndex) != 'M' &&
+            AIBoard->getCell(rowIndex, colIndex) != 'H')
+        {
+            // RecieveAttack expects (col, row)
+            if (AIBoard->RecieveAttack(Col, Row))
+                parentUI->HighlightCell(Row, Col, 'R');
+            else
+                parentUI->HighlightCell(Row, Col, 'X');
+
+            PlayerOnesTurn = false;
+            madeValidAttack = true;
+
+            swapBoards(false);
+            ourAI->MakeRandomAttack();
+        }
+        else {
+            parentUI->SetGameStatus("Invalid: cannot attack same spot twice!");
+        }
+    }
+    else
+    {
+        if (PlayerOneBoard->getCell(rowIndex, colIndex) != 'M' &&
+            PlayerOneBoard->getCell(rowIndex, colIndex) != 'H')
+        {
+            if (PlayerOneBoard->RecieveAttack(Col, Row))
+                parentUI->HighlightCell(Row, Col, 'R');
+            else
+                parentUI->HighlightCell(Row, Col, 'X');
+
+            madeValidAttack = true;
+            PlayerOnesTurn = true;
+        }
+    }
+
+    return madeValidAttack;
+}
+
+
+// --------------------- Swap Boards ---------------------
+void swapBoards(bool showAIShips){
+    if(PlayerBoardVisible){
+        PlayerOneBoard->HideBoard();
+        if(showAIShips) AIBoard->DisplayShips();
+        AIBoard->DisplayMissesAndHits();
+        PlayerBoardVisible=false;
+        if(ModeStatusText) ModeStatusText->setPlainText("Viewing AI Board Mode");
+        if(ViewStatusText) ViewStatusText->setPlainText("You are viewing the AI Board");
+        if(GameStatusText) GameStatusText->setPlainText("Attack any non red/gray square!");
+    } else {
+        AIBoard->HideBoard();
+        PlayerOneBoard->DisplayShips();
+        PlayerOneBoard->DisplayMissesAndHits();
+        PlayerBoardVisible=true;
+        if(ModeStatusText) ModeStatusText->setPlainText("Viewing Our Board Mode");
+        if(ViewStatusText) ViewStatusText->setPlainText("You are viewing your board");
+        if(GameStatusText) GameStatusText->setPlainText("Swap views to attack again!");
+    }
+}
+
+// --------------------- Battleship QWidget ---------------------
+battleship::battleship(QWidget *parent)
+    : QDialog(parent), ui(new Ui::battleship)
+{
+    srand(time(nullptr));
+    ui->setupUi(this);
+
+    if(!PlayerOneBoard) PlayerOneBoard = new BattleShipBoard(this);
+    if(!AIBoard) AIBoard = new BattleShipBoard(this);
+
+    ourAI = new AI(AIBoard);
+    ourAI->PlaceAllShipsRandomly();
+
+    for(int row=1; row<=10; ++row)
+        for(int col=1; col<=10; ++col){
+            QString name = QString("Coll%1R%2").arg(col).arg(row);
+            QPushButton* btn = this->findChild<QPushButton*>(name);
+            if(btn){
+                connect(btn,&QPushButton::clicked,this,&battleship::onButtonClicked);
+                btn->setStyleSheet("background-color:white; color:white;");
+            }
+        }
+
+    GameStatusText = this->findChild<QPlainTextEdit*>("GameStatus");
+    ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
+    ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
+
+    SetModeStatus("Place Ship Mode");
+    SetViewStatus("Current needed size: " + std::to_string(PlayerOneBoard->ShipSizes.front()) + ". Ships left: 5");
+    SetGameStatus("Click to place the start position of your ship!");
+}
+
+battleship::~battleship() { delete ui; }
+
+// --------------------- Highlight Cell ---------------------
+void battleship::HighlightCell(int row, int col, char ColorKey) {
+    QString name = QString("Coll%1R%2").arg(col).arg(row);
+    QPushButton* btn = this->findChild<QPushButton*>(name);
+    if (!btn) return;
+
+    switch (ColorKey) {
+    case 'P': btn->setStyleSheet("background-color: purple; color: white;"); break;
+    case 'S': btn->setStyleSheet("background-color: green; color: white;"); break;
+    case 'E': btn->setStyleSheet("background-color: white; color: white;"); break;
+    case 'M': btn->setStyleSheet("background-color: gray; color: white;"); break;
+    case 'H': btn->setStyleSheet("background-color: red; color: white;"); break;
+    case 'R': btn->setStyleSheet("background-color: orange; color: white;"); break;
+    case 'X': btn->setStyleSheet("background-color: black; color: white;"); break;
+    }
+}
+
+// --------------------- Button clicks ---------------------
 void battleship::onButtonClicked() {
-    if (GameOver) return;
+    if(GameOver || !PlayerOneBoard || !ourAI) return;
 
-    QPushButton* button = qobject_cast<QPushButton*>(sender());
-    if (!button) return;
+    QPushButton* btn = qobject_cast<QPushButton*>(sender());
+    if(!btn) return;
 
-    QString buttonName = button->objectName();
+    QString name = btn->objectName();
     static QRegularExpression regex("Coll(\\d+)R(\\d+)");
-    QRegularExpressionMatch match = regex.match(buttonName);
-
-    if (!match.hasMatch()) return;
+    QRegularExpressionMatch match = regex.match(name);
+    if(!match.hasMatch()) return;
 
     int col = match.captured(1).toInt();
     int row = match.captured(2).toInt();
 
-    if (!placeMode) {
-        HighlightCell(row, col, 'G'); // Mark attack
-    } else {
-        PlayerOneBoard->PlaceShip(col, row); // Place ship
-    }
-}
-// --------------------- battleship UI ---------------------
-battleship::battleship(QWidget *parent)
-    : QDialog(parent), ui(new Ui::battleship)
-{
-    ui->setupUi(this);
-
-    // Initialize boards and pass this UI pointer
-    if (!PlayerOneBoard)
-        PlayerOneBoard = new BattleShipBoard(this);
-
-    if (!AIBoard)
-        AIBoard = new BattleShipBoard(this);
-    ourAI = new AI(AIBoard);
-    // Connect all grid buttons to onButtonClicked()
-    for (int row = 1; row <= 10; ++row) {
-        for (int col = 1; col <= 10; ++col) {
-            QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
-            QPushButton* button = this->findChild<QPushButton*>(buttonName);
-            if (button) {
-                connect(button, &QPushButton::clicked, this, &battleship::onButtonClicked);
-                button->setStyleSheet("background-color: white; color: white;");
-            } else {
-                qDebug() << "Button not found:" << buttonName;
-            }
+    if(!placeMode){
+        if(PlayerOnesTurn && !PlayerBoardVisible)
+        {
+            SendAttack(col,row,this);
         }
-    }
-    // set up game
-    ourAI->PlaceARandomShip();
-    ourAI->AIBoard->SetEnemyBoard(PlayerOneBoard->GetPlayerBoard());
-    PlayerOneBoard->SetEnemyBoard(ourAI->AIBoard->GetPlayerBoard());
-    // Set up ui
-    GameStatusText = this->findChild<QPlainTextEdit*>("GameStatus");
-    ViewStatusText = this->findChild<QPlainTextEdit*>("ViewStatus");
-    ModeStatusText = this->findChild<QPlainTextEdit*>("ModeStatus");
-    SetModeStatus("Place Ship Mode");
-    SetViewStatus("The current needed size is " + PlayerOneBoard->ShipSizes.back());
-    SetGameStatus("Please click a square to put the start position of your ship!");
-}
-
-battleship::~battleship() {
-    delete ui;
-}
-void battleship::SetGameStatus(std::string text)
-{
-    GameStatusText->setPlainText(QString::fromStdString(text));
-}
-void battleship::SetModeStatus(std::string text) {
-    ModeStatusText->setPlainText(QString::fromStdString(text));
-}
-void battleship::SetViewStatus(std::string text) {
-    ViewStatusText->setPlainText(QString::fromStdString(text));
-}
-// Highlight a cell on the UI
-void battleship::HighlightCell(int row, int col, char ColorKey) {
-    QString buttonName = QString("Coll%1R%2").arg(col).arg(row);
-    QPushButton* button = this->findChild<QPushButton*>(buttonName);
-    if (!button) {
-        qDebug() << "ERROR: No button named" << buttonName;
-        return;
-    }
-
-    // P is for placing
-    if (ColorKey == 'P') {
-        button->setStyleSheet("background-color: purple; color: white;");
-    } else if (ColorKey == 'G') { // G is for ships that are placed
-        button->setStyleSheet("background-color: green; color: white;");
-    } else if (ColorKey == 'D') { //D for canceling ships, default color
-        button->setStyleSheet("background-color: white; color: white;");
-    } else if (ColorKey == 'X') { //X for misses
-        button->setStyleSheet("background-color: gray; color: white;");
-    } else if (ColorKey == 'R') { //R for hits
-        button->setStyleSheet("background-color: red; color: white;");
+    } else {
+        PlayerOneBoard->PlaceShip(col,row);
     }
 }
 
+// --------------------- UI setters ---------------------
+void battleship::UpdateViewStatus() {
+    if(!PlayerOneBoard) return;
 
-void battleship::on_UndoButton_clicked()
-{
-    if(PlayerOneBoard)
-    {
-        PlayerOneBoard->RemoveLastShip();
+    if(placeMode) {
+        // During ship placement
+        int shipsLeft = PlayerOneBoard->ShipSizes.size();
+        int nextSize = shipsLeft > 0 ? PlayerOneBoard->ShipSizes.front() : 0;
+        SetViewStatus("Current needed size: " + std::to_string(nextSize) +
+                      ". Ships left: " + std::to_string(shipsLeft));
+    } else {
+        // After placement, just show which board we are viewing
+        if(PlayerBoardVisible)
+            SetViewStatus("You are viewing your board");
+        else
+            SetViewStatus("You are viewing AI Board");
     }
 }
 
+void battleship::SetGameStatus(std::string text){ if(GameStatusText) GameStatusText->setPlainText(QString::fromStdString(text)); }
+void battleship::SetModeStatus(std::string text){ if(ModeStatusText) ModeStatusText->setPlainText(QString::fromStdString(text)); }
+void battleship::SetViewStatus(std::string text){ if(ViewStatusText) ViewStatusText->setPlainText(QString::fromStdString(text)); }
+
+void battleship::on_ViewButton_clicked() { if(!placeMode) swapBoards(); }
+
+// --------------------- Undo last ship ---------------------
+void battleship::on_UndoButton_clicked() { PlayerOneBoard->RemoveLastShip(); }
+
+void battleship::on_ResetButton_clicked() {
+    // Reset flags
+    GameOver = false;
+    placeMode = true;
+    PlayerOnesTurn = false;
+    PlayerBoardVisible = true;
+
+    // Reset Player board
+    if (PlayerOneBoard) {
+        PlayerOneBoard->clearBoard('E');      // Clear all cells
+        PlayerOneBoard->ShipsOnBoard.clear(); // Remove ships
+        PlayerOneBoard->ShipSizes = {5,4,3,3,2};
+        PlayerOneBoard->reset();
+        PlayerOneBoard->shipsSunk = 0;
+    }
+
+    // Reset AI board
+    if (AIBoard) {
+        AIBoard->clearBoard('E');             // Clear all cells
+        AIBoard->ShipsOnBoard.clear();
+        AIBoard->ShipSizes = {5,4,3,3,2};
+        AIBoard->reset();
+        AIBoard->shipsSunk = 0;
+    }
+
+    // Reset AI logic
+    if (ourAI) ourAI->Reset();
+    ourAI->PlaceAllShipsRandomly();
+
+    // Reset UI highlights
+    if (PlayerOneBoard) PlayerOneBoard->DisplayShips();
+    if (AIBoard && PlayerBoardVisible == false) AIBoard->HideBoard();
+
+    // Reset UI text
+    if (ModeStatusText) ModeStatusText->setPlainText("Place Ship Mode");
+    if (ViewStatusText) UpdateViewStatus();
+    if (GameStatusText) GameStatusText->setPlainText("Click to place the start position of your ship!");
+}

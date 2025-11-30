@@ -1,44 +1,33 @@
 #ifndef BOARDGRID_H
 #define BOARDGRID_H
+
 #include <vector>
 using namespace std;
 
-/* Class for board grid to be used for polymorphism if other
-games are created ex.tic tac toe and battleship*/
+// Base class for any board game
 class BoardGrid {
-    // Private variable for showcasing encapsulation
-private:
-    vector<vector<char>> board;
-
 protected:
     int rows;
     int cols;
+    vector<vector<char>> board;
 
 public:
-    // Default constructor
-    BoardGrid();
+    BoardGrid();                    // Default constructor
+    BoardGrid(int r, int c);        // Parameterized constructor
+    virtual ~BoardGrid() = default; // Virtual destructor
 
-    // Parameterized constructor
-    BoardGrid(int r, int c);
-
-    // Destructor
-    ~BoardGrid() = default;
-
-    // Getter methods - make them const
     int getRows() const;
     int getCols() const;
 
-    // Getter for cell - make it const and safe
     char getCell(int row, int col) const;
 
-    // Sets a cell value
-    bool setCell(int row, int col, char symbol);
+    // Pure virtual function to override
+    virtual bool setCell(int row, int col, char symbol) = 0;
 
-    // Resets all cells in 2d vector to empty
-    void clearBoard();
+    // Can override in derived class if needed
+    virtual void clearBoard();
 
-    // Check if board is full
     bool isFull() const;
 };
 
-#endif // BOARDGRID_H
+#endif

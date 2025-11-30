@@ -166,13 +166,30 @@ void MainWindow::on_OnePlayerButtonC4_clicked()
 }
 void MainWindow::on_TwoPlayerButtonC4_clicked()
 {
-    // Reuse one-player logic for now
-    on_OnePlayerButtonC4_clicked();
-    // Hides main window and then reveals gameWindow
-    hide();
-    newConnect4 = std::make_unique<Connect4>(this, true);
-    newConnect4->show();
+    try {
+        qDebug() << "TwoPlayerButtonC4 clicked";
+
+        // Hide main window
+        hide();
+
+        // Create Connect 4 window in TWO-PLAYER mode
+        newConnect4 = std::make_unique<Connect4>(this, false); // <-- false = two-player
+        if (!newConnect4) {
+            throw std::runtime_error("Failed to create Connect 4 window");
+        }
+
+        newConnect4->show();
+    }
+    catch (const std::exception& e) {
+        qDebug() << "Connect 4 Window Creation Error: " << e.what();
+        show(); // restore main window
+        QMessageBox::critical(this,
+                              "Window Creation Error",
+                              QString("Could not open Connect 4 game: %1").arg(e.what())
+                              );
+    }
 }
+
 
 void MainWindow::on_OnePlayerButtonTTT_clicked()
 {
@@ -190,13 +207,12 @@ void MainWindow::on_OnePlayerButtonTTT_clicked()
 
         // Create Battleship window
         try {
-            newTicTacToe = std::make_unique<TicTacToe>(this);
+            newTicTacToe = std::make_unique<TicTacToe>(this, true);
 
             // Validate object creation
             if (!newTicTacToe) {
                 throw std::runtime_error("Failed to create Tic Tac Toe window");
             }
-
             newTicTacToe->show();
         }
         catch (const std::exception& e) {
@@ -220,5 +236,43 @@ void MainWindow::on_OnePlayerButtonTTT_clicked()
 
 void MainWindow::on_TwoPlayerButtonTTT_clicked()
 {
-    //q
+    try {
+        qDebug() << "OnePlayerButtonBS clicked";
+
+        // Validate current window state
+        if (!isVisible()) {
+            qDebug() << "Cannot open Tic Tac Toe from invisible window";
+            return;
+        }
+
+        // Hide current window
+        hide();
+
+        // Create Battleship window
+        try {
+            newTicTacToe = std::make_unique<TicTacToe>(this, false);
+
+            // Validate object creation
+            if (!newTicTacToe) {
+                throw std::runtime_error("Failed to create Tic Tac Toe window");
+            }
+            newTicTacToe->show();
+        }
+        catch (const std::exception& e) {
+            qDebug() << "Tic Tac Toe Window Creation Error: " << e.what();
+
+            // Restore main window visibility
+            show();
+
+            // Show error to user
+            QMessageBox::critical(this,
+                                  "Window Creation Error",
+                                  QString("Could not open Tic Tac Toe game: %1").arg(e.what())
+                                  );
+        }
+    }
+    catch (...) {
+        qDebug() << "Unexpected error in Tic Tac Toe button handler";
+        show(); // Ensure main window is visible
+    }
 }

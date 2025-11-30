@@ -1,49 +1,39 @@
 #include "boardgrid.h"
+#include <algorithm>
+#include <stdexcept> // for std::out_of_range
 
-// Default constructor implementation
+// Default constructor
 BoardGrid::BoardGrid() : rows(0), cols(0) {}
 
-// Parameterized constructor implementation
-BoardGrid::BoardGrid(int r, int c)
-    : rows(r), cols(c), board(r, std::vector<char>(c, ' ')) {}
+// Parameterized constructor
+BoardGrid::BoardGrid(int r, int c) : rows(r), cols(c) {
+    board = std::vector<std::vector<char>>(rows, std::vector<char>(cols, 'E'));
+}
 
-// Const getter implementations
+// Getters
 int BoardGrid::getRows() const { return rows; }
 int BoardGrid::getCols() const { return cols; }
 
-// Safe cell getter
+// Get a cell value safely
 char BoardGrid::getCell(int row, int col) const {
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
-        return board[row][col];
+    if (row < 0 || row >= rows || col < 0 || col >= cols) {
+        throw std::out_of_range("BoardGrid::getCell coordinates out of range");
     }
-    return ' '; // or throw an exception
+    return board[row][col];
 }
 
-// Cell setter
-bool BoardGrid::setCell(int row, int col, char symbol) {
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
-        board[row][col] = symbol;
-        return true;
-    }
-    return false;
-}
-
-// Clear board implementation
+// Clear board
 void BoardGrid::clearBoard() {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            setCell(i, j, ' ');
-        }
+    for (auto &row : board) {
+        std::fill(row.begin(), row.end(), 'E');
     }
 }
 
-// Full board check
+// Check if board is full
 bool BoardGrid::isFull() const {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (board[i][j] == ' ') {
-                return false;
-            }
+    for (auto &row : board) {
+        for (auto &cell : row) {
+            if (cell == 'E') return false;
         }
     }
     return true;
