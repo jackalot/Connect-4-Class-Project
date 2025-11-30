@@ -349,7 +349,7 @@ public:
 
     void Reset() { Attacked.clear(); }
 };
-
+bool madeAnAttack = false;
 bool SendAttack(int Col, int Row, battleship* parentUI)
 {
     bool madeValidAttack = false;
@@ -357,7 +357,7 @@ bool SendAttack(int Col, int Row, battleship* parentUI)
     // Convert UI coords (1–10) → internal (0–9)
     int rowIndex = Row - 1;
     int colIndex = Col - 1;
-
+    madeAnAttack = true;
     if (PlayerOnesTurn)
     {
         // Prevent out-of-bounds and double attack errors
@@ -522,7 +522,16 @@ void battleship::SetViewStatus(std::string text){ if(ViewStatusText) ViewStatusT
 void battleship::on_ViewButton_clicked() { if(!placeMode) swapBoards(); }
 
 // --------------------- Undo last ship ---------------------
-void battleship::on_UndoButton_clicked() { PlayerOneBoard->RemoveLastShip(); }
+void battleship::on_UndoButton_clicked() {
+    if(!madeAnAttack)
+    {
+        PlayerOneBoard->RemoveLastShip();
+    }
+    else
+    {
+        SetGameStatus("You made an attack, you can't undo ships anymore!");
+    }
+}
 
 void battleship::on_ResetButton_clicked() {
     // Reset flags
@@ -530,6 +539,7 @@ void battleship::on_ResetButton_clicked() {
     placeMode = true;
     PlayerOnesTurn = false;
     PlayerBoardVisible = true;
+    madeAnAttack = false;
 
     // Reset Player board
     if (PlayerOneBoard) {
