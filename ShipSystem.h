@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Coordinates.h"   // use the templated Coordinate
-
+#include "SetOfCoords.h"
 using std::vector;
 
 // Forward declarations
@@ -24,14 +24,12 @@ public:
 };
 
 // ----------------------------- Ship -------------------------
-class Ship {
+class Ship : public SetOfCoords {
 public:
     vector<ShipPiece> ourPieces;
     int ShipSize = 0;
     int HitCount = 0;
 
-    Coordinate<int> OriginalCoords;
-    Coordinate<int> FinalCoords;
     battleship* parentUI;
 
     Ship(int newInitialX, int newInitialY,

@@ -24,10 +24,10 @@ Ship::Ship(int newInitialX, int newInitialY,
            int newFinalX, int newFinalY,
            battleship* ui)
 {
-    OriginalCoords.setX(newInitialX);
-    OriginalCoords.setY(newInitialY);
-    FinalCoords.setX(newFinalX);
-    FinalCoords.setY(newFinalY);
+    start.setX(newInitialX);
+    start.setY(newInitialY);
+    end.setX(newFinalX);
+    end.setY(newFinalY);
 
     parentUI = ui;
 
@@ -37,30 +37,30 @@ Ship::Ship(int newInitialX, int newInitialY,
     switch (direction)
     {
     case 'U':
-        for (int y = OriginalCoords.getY(); y >= FinalCoords.getY(); y--) {
+        for (int y = start.getY(); y >= end.getY(); y--) {
             ShipSize++;
-            ourPieces.emplace_back(OriginalCoords.getX(), y, this);
+            ourPieces.emplace_back(start.getX(), y, this);
         }
         break;
 
     case 'D':
-        for (int y = OriginalCoords.getY(); y <= FinalCoords.getY(); y++) {
+        for (int y = start.getY(); y <= end.getY(); y++) {
             ShipSize++;
-            ourPieces.emplace_back(OriginalCoords.getX(), y, this);
+            ourPieces.emplace_back(start.getX(), y, this);
         }
         break;
 
     case 'L':
-        for (int x = OriginalCoords.getX(); x >= FinalCoords.getX(); x--) {
+        for (int x = start.getX(); x >= end.getX(); x--) {
             ShipSize++;
-            ourPieces.emplace_back(x, OriginalCoords.getY(), this);
+            ourPieces.emplace_back(x, start.getY(), this);
         }
         break;
 
     case 'R':
-        for (int x = OriginalCoords.getX(); x <= FinalCoords.getX(); x++) {
+        for (int x = start.getX(); x <= end.getX(); x++) {
             ShipSize++;
-            ourPieces.emplace_back(x, OriginalCoords.getY(), this);
+            ourPieces.emplace_back(x, start.getY(), this);
         }
         break;
     }
@@ -68,10 +68,10 @@ Ship::Ship(int newInitialX, int newInitialY,
 
 // ----------------------------- Ship Methods ----------------------------
 char Ship::GetDirection() const {
-    if (OriginalCoords.getX() == FinalCoords.getX())
-        return (OriginalCoords.getY() < FinalCoords.getY()) ? 'D' : 'U';
-    else if (OriginalCoords.getY() == FinalCoords.getY())
-        return (OriginalCoords.getX() < FinalCoords.getX()) ? 'R' : 'L';
+    if (start.getX() == end.getX())
+        return (start.getY() < end.getY()) ? 'D' : 'U';
+    else if (start.getY() == end.getY())
+        return (start.getX() < end.getX()) ? 'R' : 'L';
     return 'D';
 }
 
@@ -102,20 +102,20 @@ void Ship::RemoveShipInUI() {
 
     switch (direction) {
     case 'U':
-        for (int y = OriginalCoords.getY(); y >= FinalCoords.getY(); y--)
-            parentUI->HighlightCell(y + 1, OriginalCoords.getX() + 1, 'E');
+        for (int y = start.getY(); y >= end.getY(); y--)
+            parentUI->HighlightCell(y + 1, start.getX() + 1, 'E');
         break;
     case 'D':
-        for (int y = OriginalCoords.getY(); y <= FinalCoords.getY(); y++)
-            parentUI->HighlightCell(y + 1, OriginalCoords.getX() + 1, 'E');
+        for (int y = start.getY(); y <= end.getY(); y++)
+            parentUI->HighlightCell(y + 1, start.getX() + 1, 'E');
         break;
     case 'L':
-        for (int x = OriginalCoords.getX(); x >= FinalCoords.getX(); x--)
-            parentUI->HighlightCell(OriginalCoords.getY() + 1, x + 1, 'E');
+        for (int x = start.getX(); x >= end.getX(); x--)
+            parentUI->HighlightCell(start.getY() + 1, x + 1, 'E');
         break;
     case 'R':
-        for (int x = OriginalCoords.getX(); x <= FinalCoords.getX(); x++)
-            parentUI->HighlightCell(OriginalCoords.getY() + 1, x + 1, 'E');
+        for (int x = start.getX(); x <= end.getX(); x++)
+            parentUI->HighlightCell(start.getY() + 1, x + 1, 'E');
         break;
     }
 }
